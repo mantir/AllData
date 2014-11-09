@@ -1,0 +1,1 @@
+sh: ./scale_and_thumb.sh: Permission denied

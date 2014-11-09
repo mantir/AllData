@@ -1,0 +1,2 @@
+AddType php5-cgi .php
+AddHandler php5-cgi .php

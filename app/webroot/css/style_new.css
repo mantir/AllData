@@ -1,0 +1,48 @@
+/* DEBUG CLASSES */
+
+.debug_class{
+	color: red;
+	font-size: 24px;
+}
+
+/* SearchBox Layer over Map last "up" font color */
+.search_header{
+	color: #ffffff;
+	font-size: 24px;
+	font-weight: bold;
+	text-align: center;
+	margin: 20px;
+}
+
+.search_header_footer{
+	text-align:center;
+	font-size:16px;
+	font-weight: bold;
+} 
+
+.searchbox_title_colored{
+	color: rgb(6,166,224);
+}
+
+.label_search_textbox{
+    color: white;
+    font-size: 11px;
+    font-weight: bold;
+
+}
+
+[data-icon]:before {
+    font-family: mufont; /* BYO icon font, mapped smartly */
+    content: attr(data-icon);
+    speak: none; /* Not to be trusted, but hey. */
+}
+
+.icon-alone {
+    display: inline-block; /* Chrome 19 was weird with clickability without this */
+}
+
+.screen-reader-text { /* Reusable, toolbox kind of class */
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+}

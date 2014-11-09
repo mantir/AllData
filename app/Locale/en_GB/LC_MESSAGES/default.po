@@ -1,0 +1,1209 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Hotel Mohr\n"
+"POT-Creation-Date: 2012-09-19 17:06+0100\n"
+"PO-Revision-Date: 2012-09-19 17:08+0100\n"
+"Last-Translator: Martin <info@headkino.de>\n"
+"Language-Team: Martin\n"
+"Language: English\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.3\n"
+"X-Poedit-KeywordsList: __;_\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: C:\\xampp\\htdocs\\mohr\\neu\\app\\View\n"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Arrangements/addy_edit.ctp:5
+#: C:\xampp\htdocs\mohr\neu\app\View/Arrangements/addy_index.ctp:4
+msgid "Neues Angebot erstellen"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Arrangements/addy_edit.ctp:6
+#, php-format
+msgid "Angebot bearbeiten - %s"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Arrangements/addy_index.ctp:2
+#: C:\xampp\htdocs\mohr\neu\app\View/Layouts/default.ctp:31
+msgid "Angebote"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Arrangements/addy_index.ctp:16
+#: C:\xampp\htdocs\mohr\neu\app\View/Clients/addy_index.ctp:12
+#: C:\xampp\htdocs\mohr\neu\app\View/Extras/addy_index.ctp:28
+msgid "Funktionen"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Arrangements/addy_index.ctp:66
+msgid "Ansehen"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Arrangements/addy_index.ctp:67
+msgid "Bearbeiten"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Arrangements/addy_index.ctp:68
+#: C:\xampp\htdocs\mohr\neu\app\View/Extras/addy_index.ctp:40
+msgid "Löschen"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Arrangements/addy_index.ctp:68
+#: C:\xampp\htdocs\mohr\neu\app\View/Arrangements/addy_view.ctp:160
+#: C:\xampp\htdocs\mohr\neu\app\View/Bookings/edit.ctp:42
+#: C:\xampp\htdocs\mohr\neu\app\View/Bookings/view.ctp:150
+#: C:\xampp\htdocs\mohr\neu\app\View/Categories/edit.ctp:17
+#: C:\xampp\htdocs\mohr\neu\app\View/Categories/index.ctp:17
+#: C:\xampp\htdocs\mohr\neu\app\View/Categories/view.ctp:20
+#: C:\xampp\htdocs\mohr\neu\app\View/Categories/view.ctp:69
+#: C:\xampp\htdocs\mohr\neu\app\View/Clients/edit.ctp:26
+#: C:\xampp\htdocs\mohr\neu\app\View/Clients/view.ctp:70
+#: C:\xampp\htdocs\mohr\neu\app\View/Clients/view.ctp:147
+#: C:\xampp\htdocs\mohr\neu\app\View/Images/edit.ctp:29
+#: C:\xampp\htdocs\mohr\neu\app\View/Images/index.ctp:41
+#: C:\xampp\htdocs\mohr\neu\app\View/Images/view.ctp:80
+#: C:\xampp\htdocs\mohr\neu\app\View/Images/view.ctp:105
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/addy_edit.ctp:20
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/addy_index.ctp:23
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/view.ctp:35
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/view.ctp:74
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/view.ctp:115
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/view.ctp:150
+#, php-format
+msgid "Are you sure you want to delete # %s?"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Arrangements/addy_view.ctp:2
+msgid "Arrangement"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Arrangements/addy_view.ctp:4
+#: C:\xampp\htdocs\mohr\neu\app\View/Bookings/view.ctp:14
+#: C:\xampp\htdocs\mohr\neu\app\View/Clients/view.ctp:84
+msgid "Aid"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Arrangements/addy_view.ctp:9
+#: C:\xampp\htdocs\mohr\neu\app\View/Bookings/view.ctp:119
+#: C:\xampp\htdocs\mohr\neu\app\View/Clients/view.ctp:105
+msgid "Aname"
+msgstr "Arrangement Name"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Arrangements/addy_view.ctp:14
+#: C:\xampp\htdocs\mohr\neu\app\View/Categories/view.ctp:4
+#: C:\xampp\htdocs\mohr\neu\app\View/Images/view.ctp:92
+msgid "Cid"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Arrangements/addy_view.ctp:19
+#: C:\xampp\htdocs\mohr\neu\app\View/Bookings/view.ctp:54
+#: C:\xampp\htdocs\mohr\neu\app\View/Clients/view.ctp:92
+msgid "Pcid"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Arrangements/addy_view.ctp:24
+msgid "Ez"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Arrangements/addy_view.ctp:29
+msgid "Dz"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Arrangements/addy_view.ctp:34
+#: C:\xampp\htdocs\mohr\neu\app\View/Bookings/view.ctp:39
+#: C:\xampp\htdocs\mohr\neu\app\View/Clients/view.ctp:89
+msgid "Nights"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Arrangements/addy_view.ctp:39
+msgid "Beschreibung"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Arrangements/addy_view.ctp:44
+#: C:\xampp\htdocs\mohr\neu\app\View/Bookings/view.ctp:114
+#: C:\xampp\htdocs\mohr\neu\app\View/Clients/view.ctp:104
+#: C:\xampp\htdocs\mohr\neu\app\View/Elements/arrangement.ctp:9
+msgid "Leistungen"
+msgstr "Inclusive"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Arrangements/addy_view.ctp:49
+msgid "Ezzusatz"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Arrangements/addy_view.ctp:54
+msgid "Dzzusatz"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Arrangements/addy_view.ctp:59
+msgid "Aktiv"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Arrangements/addy_view.ctp:64
+msgid "Kontingent"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Arrangements/addy_view.ctp:69
+#: C:\xampp\htdocs\mohr\neu\app\View/Bookings/view.ctp:124
+#: C:\xampp\htdocs\mohr\neu\app\View/Clients/view.ctp:106
+msgid "Gutschein"
+msgstr "Coupon"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Arrangements/addy_view.ctp:74
+#: C:\xampp\htdocs\mohr\neu\app\View/Bookings/view.ctp:59
+#: C:\xampp\htdocs\mohr\neu\app\View/Clients/view.ctp:93
+msgid "Preis"
+msgstr "Arrival"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Arrangements/addy_view.ctp:79
+msgid "Zusatz"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Arrangements/addy_view.ctp:84
+msgid "Preise"
+msgstr "Arrival"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Arrangements/addy_view.ctp:89
+msgid "Seen"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Arrangements/addy_view.ctp:94
+msgid "Booked"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Arrangements/addy_view.ctp:99
+msgid "3z"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Arrangements/addy_view.ctp:104
+msgid "4z"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Arrangements/addy_view.ctp:109
+msgid "5z"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Arrangements/addy_view.ctp:114
+msgid "3zzusatz"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Arrangements/addy_view.ctp:119
+msgid "4zzusatz"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Arrangements/addy_view.ctp:124
+msgid "5zzusatz"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Arrangements/addy_view.ctp:129
+msgid "Ab"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Arrangements/addy_view.ctp:134
+#: C:\xampp\htdocs\mohr\neu\app\View/Categories/view.ctp:32
+#: C:\xampp\htdocs\mohr\neu\app\View/Images/view.ctp:4
+msgid "Pic"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Arrangements/addy_view.ctp:139
+msgid "Extra"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Arrangements/addy_view.ctp:144
+msgid "Url"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Arrangements/addy_view.ctp:149
+msgid "Keywords"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Arrangements/addy_view.ctp:157
+#: C:\xampp\htdocs\mohr\neu\app\View/Bookings/add.ctp:38
+#: C:\xampp\htdocs\mohr\neu\app\View/Bookings/addy_index.ctp:80
+#: C:\xampp\htdocs\mohr\neu\app\View/Bookings/edit.ctp:39
+#: C:\xampp\htdocs\mohr\neu\app\View/Bookings/view.ctp:147
+#: C:\xampp\htdocs\mohr\neu\app\View/Categories/add.ctp:13
+#: C:\xampp\htdocs\mohr\neu\app\View/Categories/edit.ctp:14
+#: C:\xampp\htdocs\mohr\neu\app\View/Categories/index.ctp:7
+#: C:\xampp\htdocs\mohr\neu\app\View/Categories/index.ctp:38
+#: C:\xampp\htdocs\mohr\neu\app\View/Categories/view.ctp:17
+#: C:\xampp\htdocs\mohr\neu\app\View/Categories/view.ctp:46
+#: C:\xampp\htdocs\mohr\neu\app\View/Clients/add.ctp:22
+#: C:\xampp\htdocs\mohr\neu\app\View/Clients/addy_index.ctp:49
+#: C:\xampp\htdocs\mohr\neu\app\View/Clients/edit.ctp:23
+#: C:\xampp\htdocs\mohr\neu\app\View/Clients/view.ctp:67
+#: C:\xampp\htdocs\mohr\neu\app\View/Clients/view.ctp:110
+#: C:\xampp\htdocs\mohr\neu\app\View/Extras/add.ctp:17
+#: C:\xampp\htdocs\mohr\neu\app\View/Images/add.ctp:25
+#: C:\xampp\htdocs\mohr\neu\app\View/Images/edit.ctp:26
+#: C:\xampp\htdocs\mohr\neu\app\View/Images/index.ctp:19
+#: C:\xampp\htdocs\mohr\neu\app\View/Images/index.ctp:62
+#: C:\xampp\htdocs\mohr\neu\app\View/Images/view.ctp:77
+#: C:\xampp\htdocs\mohr\neu\app\View/Images/view.ctp:94
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/addy_add.ctp:16
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/addy_edit.ctp:17
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/addy_index.ctp:10
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/addy_index.ctp:44
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/view.ctp:32
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/view.ctp:58
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/view.ctp:99
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/view.ctp:137
+msgid "Actions"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Arrangements/addy_view.ctp:159
+msgid "Edit Arrangement"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Arrangements/addy_view.ctp:160
+msgid "Delete Arrangement"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Arrangements/addy_view.ctp:161
+msgid "List Arrangements"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Arrangements/addy_view.ctp:162
+msgid "New Arrangement"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Bookings/add.ctp:4
+msgid "Add Booking"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Bookings/add.ctp:35
+#: C:\xampp\htdocs\mohr\neu\app\View/Bookings/edit.ctp:36
+#: C:\xampp\htdocs\mohr\neu\app\View/Categories/add.ctp:10
+#: C:\xampp\htdocs\mohr\neu\app\View/Categories/edit.ctp:11
+#: C:\xampp\htdocs\mohr\neu\app\View/Clients/add.ctp:19
+#: C:\xampp\htdocs\mohr\neu\app\View/Clients/edit.ctp:20
+#: C:\xampp\htdocs\mohr\neu\app\View/Extras/add.ctp:14
+#: C:\xampp\htdocs\mohr\neu\app\View/Images/add.ctp:22
+#: C:\xampp\htdocs\mohr\neu\app\View/Images/edit.ctp:23
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/addy_add.ctp:13
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/addy_edit.ctp:14
+#: C:\xampp\htdocs\mohr\neu\app\View/Users/register.ctp:14
+msgid "Submit"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Bookings/add.ctp:41
+#: C:\xampp\htdocs\mohr\neu\app\View/Bookings/edit.ctp:43
+#: C:\xampp\htdocs\mohr\neu\app\View/Bookings/view.ctp:151
+#: C:\xampp\htdocs\mohr\neu\app\View/Clients/add.ctp:26
+#: C:\xampp\htdocs\mohr\neu\app\View/Clients/addy_index.ctp:52
+#: C:\xampp\htdocs\mohr\neu\app\View/Clients/edit.ctp:28
+#: C:\xampp\htdocs\mohr\neu\app\View/Clients/view.ctp:73
+msgid "List Bookings"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Bookings/addy_index.ctp:2
+#: C:\xampp\htdocs\mohr\neu\app\View/Layouts/default.ctp:39
+msgid "Buchungen"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Bookings/addy_index.ctp:67
+msgid ""
+"Seite {:page} von {:pages}, zeige {:current} Buchungen von insgesamt {:"
+"count}, {:start} bis {:end}"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Bookings/addy_index.ctp:73
+#: C:\xampp\htdocs\mohr\neu\app\View/Categories/index.ctp:31
+#: C:\xampp\htdocs\mohr\neu\app\View/Clients/addy_index.ctp:42
+#: C:\xampp\htdocs\mohr\neu\app\View/Images/index.ctp:55
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/addy_index.ctp:37
+msgid "previous"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Bookings/addy_index.ctp:75
+#: C:\xampp\htdocs\mohr\neu\app\View/Categories/index.ctp:33
+#: C:\xampp\htdocs\mohr\neu\app\View/Clients/addy_index.ctp:44
+#: C:\xampp\htdocs\mohr\neu\app\View/Images/index.ctp:57
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/addy_index.ctp:39
+msgid "next"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Bookings/addy_index.ctp:82
+#: C:\xampp\htdocs\mohr\neu\app\View/Bookings/view.ctp:152
+#: C:\xampp\htdocs\mohr\neu\app\View/Clients/add.ctp:27
+#: C:\xampp\htdocs\mohr\neu\app\View/Clients/addy_index.ctp:53
+#: C:\xampp\htdocs\mohr\neu\app\View/Clients/edit.ctp:29
+#: C:\xampp\htdocs\mohr\neu\app\View/Clients/view.ctp:74
+#: C:\xampp\htdocs\mohr\neu\app\View/Clients/view.ctp:156
+msgid "New Booking"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Bookings/edit.ctp:4
+#: C:\xampp\htdocs\mohr\neu\app\View/Bookings/view.ctp:149
+msgid "Edit Booking"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Bookings/edit.ctp:42
+#: C:\xampp\htdocs\mohr\neu\app\View/Categories/edit.ctp:17
+#: C:\xampp\htdocs\mohr\neu\app\View/Categories/index.ctp:17
+#: C:\xampp\htdocs\mohr\neu\app\View/Categories/view.ctp:69
+#: C:\xampp\htdocs\mohr\neu\app\View/Clients/edit.ctp:26
+#: C:\xampp\htdocs\mohr\neu\app\View/Clients/view.ctp:147
+#: C:\xampp\htdocs\mohr\neu\app\View/Images/edit.ctp:29
+#: C:\xampp\htdocs\mohr\neu\app\View/Images/index.ctp:41
+#: C:\xampp\htdocs\mohr\neu\app\View/Images/view.ctp:105
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/addy_edit.ctp:20
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/addy_index.ctp:23
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/view.ctp:74
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/view.ctp:115
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/view.ctp:150
+msgid "Delete"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Bookings/standard.ctp:7
+msgid "Einfache Buchung"
+msgstr "Simple booking"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Bookings/standard.ctp:23
+#: C:\xampp\htdocs\mohr\neu\app\View/Pages/uebernachtung.ctp:20
+msgid "Übernachtungen"
+msgstr "Accomodations"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Bookings/standard.ctp:24
+#: C:\xampp\htdocs\mohr\neu\app\View/Pages/uebernachtung.ctp:22
+msgid "Personenanzahl"
+msgstr "Number of persons"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Bookings/standard.ctp:29
+#: C:\xampp\htdocs\mohr\neu\app\View/Pages/uebernachtung.ctp:26
+msgid "Sonderwünsche"
+msgstr "Special wishes"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Bookings/standard.ctp:33
+msgid "Persönliche Daten"
+msgstr "Personal Information"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Bookings/standard.ctp:40
+#: C:\xampp\htdocs\mohr\neu\app\View/Clients/view.ctp:14
+#: C:\xampp\htdocs\mohr\neu\app\View/Pages/kontakt.ctp:27
+msgid "Vorname"
+msgstr "Forename"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Bookings/standard.ctp:42
+#: C:\xampp\htdocs\mohr\neu\app\View/Clients/view.ctp:19
+#: C:\xampp\htdocs\mohr\neu\app\View/Pages/kontakt.ctp:29
+msgid "Nachname"
+msgstr "Surename"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Bookings/standard.ctp:44
+#: C:\xampp\htdocs\mohr\neu\app\View/Pages/kontakt.ctp:31
+msgid "Straße u. Hausnr"
+msgstr "Address"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Bookings/standard.ctp:46
+msgid "PLZ/Ort"
+msgstr "Zipcode/City"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Bookings/standard.ctp:50
+#: C:\xampp\htdocs\mohr\neu\app\View/Pages/kontakt.ctp:40
+msgid "Land"
+msgstr "Country"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Bookings/standard.ctp:53
+#: C:\xampp\htdocs\mohr\neu\app\View/Clients/view.ctp:39
+#: C:\xampp\htdocs\mohr\neu\app\View/Pages/kontakt.ctp:43
+msgid "Email"
+msgstr "Email"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Bookings/standard.ctp:55
+#: C:\xampp\htdocs\mohr\neu\app\View/Clients/view.ctp:49
+#: C:\xampp\htdocs\mohr\neu\app\View/Pages/kontakt.ctp:45
+msgid "Telefon"
+msgstr "Telephone"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Bookings/standard.ctp:60
+msgid "Mitteilung an das Hotel"
+msgstr "Message for the Hotel"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Bookings/standard.ctp:65
+#: C:\xampp\htdocs\mohr\neu\app\View/Pages/kontakt.ctp:47
+msgid "Gratis Newsletter?"
+msgstr "Free Newsletter?"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Bookings/standard.ctp:71
+#: C:\xampp\htdocs\mohr\neu\app\View/Pages/uebernachtung.ctp:68
+msgid "Verbindlich buchen"
+msgstr "Confirm booking"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Bookings/view.ctp:2
+msgid "Booking"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Bookings/view.ctp:4
+#: C:\xampp\htdocs\mohr\neu\app\View/Clients/view.ctp:82
+msgid "Bid"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Bookings/view.ctp:9
+#: C:\xampp\htdocs\mohr\neu\app\View/Clients/view.ctp:4
+#: C:\xampp\htdocs\mohr\neu\app\View/Clients/view.ctp:83
+msgid "Kid"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Bookings/view.ctp:19
+#: C:\xampp\htdocs\mohr\neu\app\View/Clients/view.ctp:85
+#: C:\xampp\htdocs\mohr\neu\app\View/Extras/addy_index.ctp:17
+#: C:\xampp\htdocs\mohr\neu\app\View/Layouts/default.ctp:37
+msgid "Extras"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Bookings/view.ctp:24
+#: C:\xampp\htdocs\mohr\neu\app\View/Categories/view.ctp:42
+#: C:\xampp\htdocs\mohr\neu\app\View/Clients/view.ctp:86
+#: C:\xampp\htdocs\mohr\neu\app\View/Images/view.ctp:54
+msgid "Time"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Bookings/view.ctp:29
+#: C:\xampp\htdocs\mohr\neu\app\View/Clients/view.ctp:87
+msgid "Start"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Bookings/view.ctp:34
+#: C:\xampp\htdocs\mohr\neu\app\View/Clients/view.ctp:88
+msgid "End"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Bookings/view.ctp:44
+#: C:\xampp\htdocs\mohr\neu\app\View/Clients/view.ctp:90
+msgid "Buchung"
+msgstr "Booking"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Bookings/view.ctp:49
+#: C:\xampp\htdocs\mohr\neu\app\View/Clients/view.ctp:91
+msgid "Mitteilung"
+msgstr "Message"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Bookings/view.ctp:64
+#: C:\xampp\htdocs\mohr\neu\app\View/Clients/view.ctp:94
+msgid "Properson"
+msgstr "Per person"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Bookings/view.ctp:69
+#: C:\xampp\htdocs\mohr\neu\app\View/Clients/view.ctp:95
+msgid "Extrapreis"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Bookings/view.ctp:74
+#: C:\xampp\htdocs\mohr\neu\app\View/Clients/view.ctp:96
+msgid "Zimmerpreis"
+msgstr "Room price"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Bookings/view.ctp:79
+#: C:\xampp\htdocs\mohr\neu\app\View/Clients/view.ctp:97
+msgid "Ip"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Bookings/view.ctp:84
+#: C:\xampp\htdocs\mohr\neu\app\View/Clients/view.ctp:98
+msgid "Bewertet"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Bookings/view.ctp:89
+#: C:\xampp\htdocs\mohr\neu\app\View/Clients/view.ctp:99
+msgid "Status"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Bookings/view.ctp:94
+#: C:\xampp\htdocs\mohr\neu\app\View/Clients/view.ctp:100
+msgid "Rid"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Bookings/view.ctp:99
+#: C:\xampp\htdocs\mohr\neu\app\View/Clients/view.ctp:101
+msgid "Reason"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Bookings/view.ctp:104
+#: C:\xampp\htdocs\mohr\neu\app\View/Clients/view.ctp:102
+msgid "Zusatznacht"
+msgstr "Additional night"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Bookings/view.ctp:109
+#: C:\xampp\htdocs\mohr\neu\app\View/Clients/view.ctp:103
+msgid "Personen"
+msgstr "Number of persons"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Bookings/view.ctp:129
+#: C:\xampp\htdocs\mohr\neu\app\View/Clients/view.ctp:107
+msgid "Gutschein Id"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Bookings/view.ctp:134
+#: C:\xampp\htdocs\mohr\neu\app\View/Clients/view.ctp:108
+msgid "Gwert"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Bookings/view.ctp:139
+#: C:\xampp\htdocs\mohr\neu\app\View/Clients/view.ctp:109
+msgid "Storno"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Bookings/view.ctp:150
+msgid "Delete Booking"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Categories/add.ctp:4
+msgid "Add Category"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Categories/add.ctp:16
+#: C:\xampp\htdocs\mohr\neu\app\View/Categories/edit.ctp:18
+#: C:\xampp\htdocs\mohr\neu\app\View/Categories/view.ctp:21
+#: C:\xampp\htdocs\mohr\neu\app\View/Images/add.ctp:29
+#: C:\xampp\htdocs\mohr\neu\app\View/Images/edit.ctp:31
+#: C:\xampp\htdocs\mohr\neu\app\View/Images/index.ctp:65
+#: C:\xampp\htdocs\mohr\neu\app\View/Images/view.ctp:83
+msgid "List Categories"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Categories/add.ctp:17
+#: C:\xampp\htdocs\mohr\neu\app\View/Categories/edit.ctp:19
+#: C:\xampp\htdocs\mohr\neu\app\View/Categories/index.ctp:41
+#: C:\xampp\htdocs\mohr\neu\app\View/Categories/view.ctp:23
+#: C:\xampp\htdocs\mohr\neu\app\View/Images/add.ctp:28
+#: C:\xampp\htdocs\mohr\neu\app\View/Images/edit.ctp:30
+#: C:\xampp\htdocs\mohr\neu\app\View/Images/view.ctp:81
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/addy_add.ctp:22
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/addy_edit.ctp:24
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/addy_index.ctp:49
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/view.ctp:40
+msgid "List Images"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Categories/add.ctp:18
+#: C:\xampp\htdocs\mohr\neu\app\View/Categories/edit.ctp:20
+#: C:\xampp\htdocs\mohr\neu\app\View/Categories/index.ctp:42
+#: C:\xampp\htdocs\mohr\neu\app\View/Categories/view.ctp:24
+#: C:\xampp\htdocs\mohr\neu\app\View/Categories/view.ctp:78
+#: C:\xampp\htdocs\mohr\neu\app\View/Images/index.ctp:64
+#: C:\xampp\htdocs\mohr\neu\app\View/Images/view.ctp:82
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/addy_add.ctp:23
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/addy_edit.ctp:25
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/addy_index.ctp:50
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/view.ctp:41
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/view.ctp:124
+msgid "New Image"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Categories/edit.ctp:4
+#: C:\xampp\htdocs\mohr\neu\app\View/Categories/view.ctp:19
+msgid "Edit Category"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Categories/index.ctp:2
+msgid "Categories"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Categories/index.ctp:15
+#: C:\xampp\htdocs\mohr\neu\app\View/Categories/view.ctp:67
+#: C:\xampp\htdocs\mohr\neu\app\View/Clients/view.ctp:145
+#: C:\xampp\htdocs\mohr\neu\app\View/Images/index.ctp:39
+#: C:\xampp\htdocs\mohr\neu\app\View/Images/view.ctp:103
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/addy_index.ctp:21
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/view.ctp:72
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/view.ctp:113
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/view.ctp:148
+msgid "View"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Categories/index.ctp:16
+#: C:\xampp\htdocs\mohr\neu\app\View/Categories/view.ctp:68
+#: C:\xampp\htdocs\mohr\neu\app\View/Clients/view.ctp:146
+#: C:\xampp\htdocs\mohr\neu\app\View/Images/index.ctp:40
+#: C:\xampp\htdocs\mohr\neu\app\View/Images/view.ctp:104
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/addy_index.ctp:22
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/view.ctp:73
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/view.ctp:114
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/view.ctp:149
+msgid "Edit"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Categories/index.ctp:25
+#: C:\xampp\htdocs\mohr\neu\app\View/Clients/addy_index.ctp:36
+#: C:\xampp\htdocs\mohr\neu\app\View/Images/index.ctp:49
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/addy_index.ctp:31
+msgid ""
+"Page {:page} of {:pages}, showing {:current} records out of {:count} total, "
+"starting on record {:start}, ending on {:end}"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Categories/index.ctp:40
+#: C:\xampp\htdocs\mohr\neu\app\View/Categories/view.ctp:22
+#: C:\xampp\htdocs\mohr\neu\app\View/Images/add.ctp:30
+#: C:\xampp\htdocs\mohr\neu\app\View/Images/edit.ctp:32
+#: C:\xampp\htdocs\mohr\neu\app\View/Images/index.ctp:66
+#: C:\xampp\htdocs\mohr\neu\app\View/Images/view.ctp:84
+#: C:\xampp\htdocs\mohr\neu\app\View/Images/view.ctp:114
+msgid "New Category"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Categories/view.ctp:2
+msgid "Category"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Categories/view.ctp:9
+#: C:\xampp\htdocs\mohr\neu\app\View/Images/view.ctp:93
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/view.ctp:53
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/view.ctp:136
+msgid "Name"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Categories/view.ctp:20
+msgid "Delete Category"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Categories/view.ctp:28
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/view.ctp:88
+msgid "Related Images"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Categories/view.ctp:33
+#: C:\xampp\htdocs\mohr\neu\app\View/Images/view.ctp:9
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/view.ctp:94
+msgid "Path"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Categories/view.ctp:34
+#: C:\xampp\htdocs\mohr\neu\app\View/Images/view.ctp:14
+msgid "Filename"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Categories/view.ctp:35
+#: C:\xampp\htdocs\mohr\neu\app\View/Images/view.ctp:19
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/view.ctp:9
+msgid "Title"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Categories/view.ctp:36
+#: C:\xampp\htdocs\mohr\neu\app\View/Images/view.ctp:24
+msgid "Poid"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Categories/view.ctp:37
+#: C:\xampp\htdocs\mohr\neu\app\View/Images/view.ctp:29
+msgid "Pos"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Categories/view.ctp:38
+#: C:\xampp\htdocs\mohr\neu\app\View/Images/view.ctp:34
+msgid "Type"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Categories/view.ctp:39
+#: C:\xampp\htdocs\mohr\neu\app\View/Images/view.ctp:39
+msgid "Id2"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Categories/view.ctp:40
+#: C:\xampp\htdocs\mohr\neu\app\View/Images/view.ctp:44
+msgid "Uploader"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Categories/view.ctp:41
+#: C:\xampp\htdocs\mohr\neu\app\View/Images/view.ctp:49
+msgid "Uploadertype"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Categories/view.ctp:43
+#: C:\xampp\htdocs\mohr\neu\app\View/Images/view.ctp:59
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/view.ctp:96
+msgid "Copyright"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Categories/view.ctp:44
+#: C:\xampp\htdocs\mohr\neu\app\View/Images/view.ctp:64
+msgid "Apos"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Categories/view.ctp:45
+#: C:\xampp\htdocs\mohr\neu\app\View/Images/view.ctp:69
+#: C:\xampp\htdocs\mohr\neu\app\View/Layouts/default.ctp:29
+msgid "Admin"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Clients/add.ctp:4
+msgid "Add Client"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Clients/add.ctp:25
+#: C:\xampp\htdocs\mohr\neu\app\View/Clients/edit.ctp:27
+#: C:\xampp\htdocs\mohr\neu\app\View/Clients/view.ctp:71
+msgid "List Clients"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Clients/addy_index.ctp:2
+#: C:\xampp\htdocs\mohr\neu\app\View/Layouts/default.ctp:41
+msgid "Kunden"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Clients/addy_index.ctp:51
+#: C:\xampp\htdocs\mohr\neu\app\View/Clients/view.ctp:72
+msgid "New Client"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Clients/edit.ctp:4
+#: C:\xampp\htdocs\mohr\neu\app\View/Clients/view.ctp:69
+msgid "Edit Client"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Clients/view.ctp:2
+msgid "Client"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Clients/view.ctp:9
+msgid "Anrede"
+msgstr "Arrival"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Clients/view.ctp:24
+msgid "Adresse"
+msgstr "Address"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Clients/view.ctp:29
+msgid "Plz"
+msgstr "Zipcode"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Clients/view.ctp:34
+#: C:\xampp\htdocs\mohr\neu\app\View/Pages/kontakt.ctp:37
+msgid "Ort"
+msgstr "City"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Clients/view.ctp:44
+msgid "Fax"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Clients/view.ctp:54
+msgid "Newsletter"
+msgstr "Free Newsletter?"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Clients/view.ctp:59
+msgid "Bemerkung"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Clients/view.ctp:70
+msgid "Delete Client"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Clients/view.ctp:78
+msgid "Related Bookings"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Elements/arrangement.ctp:27
+msgid "Preis pro Person"
+msgstr "Price per person"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Elements/footer.ctp:4
+msgid "Kontakt"
+msgstr "Contact"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Elements/footer.ctp:6
+msgid "Anfrage"
+msgstr "Request"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Elements/footer.ctp:8
+msgid "Gutscheine"
+msgstr "Coupons"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Elements/footer.ctp:10
+msgid "Gästebuch"
+msgstr "Guestbook"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Elements/footer.ctp:12
+msgid "Anfahrt"
+msgstr "Location & Arrival"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Elements/footer.ctp:16
+msgid "Impressum"
+msgstr "Imprint"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Elements/header.ctp:37
+#: C:\xampp\htdocs\mohr\neu\app\View/Pages/wellnessangebote.ctp:2
+msgid "Ihr Wellnessaufenthalt"
+msgstr "Your Wellness Trip"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Elements/header.ctp:39
+#: C:\xampp\htdocs\mohr\neu\app\View/Pages/kultur_natur.ctp:1
+msgid "Kultur & Natur"
+msgstr "Culture & Nature"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Elements/header.ctp:41
+#: C:\xampp\htdocs\mohr\neu\app\View/Pages/uebernachtung.ctp:2
+msgid "Übernachtung & Frühstück"
+msgstr "Bed & Breakfast"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Elements/header.ctp:43
+#: C:\xampp\htdocs\mohr\neu\app\View/Pages/saisonangebote.ctp:1
+msgid "Saisonangebote"
+msgstr "Seasonal Specials"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Elements/images.edit.ctp:23
+msgid "Hochladen"
+msgstr "Upload"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Extras/add.ctp:4
+msgid "Add Extra"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Extras/add.ctp:20
+msgid "List Extras"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Extras/addy_add.ctp:37
+msgid "Extras anzeigen"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Extras/addy_index.ctp:18
+msgid "Extras hinzufügen"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Extras/addy_index.ctp:40
+#, php-format
+msgid "Wollen Sie wirklich das Extra %s löschen?"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Extras/addy_index.ctp:45
+#: C:\xampp\htdocs\mohr\neu\app\View/Images/addy_index.ctp:38
+msgid "Änderungen speichern"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Images/add.ctp:4
+msgid "Add Image"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Images/edit.ctp:4
+#: C:\xampp\htdocs\mohr\neu\app\View/Images/view.ctp:79
+msgid "Edit Image"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Images/index.ctp:2
+msgid "Images"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Images/view.ctp:2
+msgid "Image"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Images/view.ctp:80
+msgid "Delete Image"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Images/view.ctp:88
+msgid "Related Categories"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Layouts/default.ctp:33
+msgid "Bilder"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Layouts/default.ctp:35
+msgid "Kontingente"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Layouts/default.ctp:43
+msgid "Logout"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Layouts/default.ctp:49
+msgid "Willkommen"
+msgstr "Welcome"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Layouts/default.ctp:53
+msgid "Wellness"
+msgstr "Wellness"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Layouts/default.ctp:55
+msgid "SPA"
+msgstr "SPA"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Layouts/default.ctp:57
+msgid "Beauty"
+msgstr "Beauty"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Layouts/default.ctp:59
+msgid "Anwendungen"
+msgstr "Applications"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Layouts/default.ctp:60
+#: C:\xampp\htdocs\mohr\neu\app\View/Pages/zweisamkeit.ctp:1
+msgid "Zweisamkeit"
+msgstr "Togetherness"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Layouts/default.ctp:65
+msgid "Hotel"
+msgstr "Hotel"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Layouts/default.ctp:67
+msgid "Tradition"
+msgstr "Tradition"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Layouts/default.ctp:69
+msgid "Lage"
+msgstr "Location"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Layouts/default.ctp:71
+msgid "Naturparadies"
+msgstr "Paradise of Nature"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Layouts/default.ctp:76
+msgid "Restaurant"
+msgstr "Restaurant"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Layouts/default.ctp:78
+msgid "Spezialitäten"
+msgstr "Specialities"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Layouts/default.ctp:80
+msgid "Speisekarte"
+msgstr "Menu"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Layouts/default.ctp:85
+msgid "Tagungen"
+msgstr "Meetings"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Layouts/default.ctp:87
+msgid "Tagungsspezial"
+msgstr "Meetingspecial"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Layouts/default.ctp:89
+msgid "Pauschalen"
+msgstr "All-inclusives"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Layouts/default.ctp:94
+msgid "Feiern"
+msgstr "Celebtrations"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Layouts/default.ctp:96
+msgid "Einführung"
+msgstr "Introduction"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Layouts/default.ctp:98
+msgid "Hochzeiten"
+msgstr "Wedding"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Layouts/default.ctp:100
+msgid "Festmenüs"
+msgstr "Menues"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Layouts/default.ctp:105
+msgid "Freitzeit"
+msgstr "Free time"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Layouts/default.ctp:107
+msgid "Fahrradfahren"
+msgstr "Biking"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Layouts/default.ctp:109
+msgid "Fußball"
+msgstr "Football"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Layouts/default.ctp:111
+msgid "Wandern"
+msgstr "Hiking"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Layouts/default.ctp:113
+msgid "Bootfahren"
+msgstr "Boating"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Layouts/default.ctp:115
+msgid "Angeln"
+msgstr "Fishing"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Layouts/default.ctp:117
+msgid "Shopping"
+msgstr "Shopping"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Layouts/default.ctp:119
+msgid "Kultur"
+msgstr "Cultur"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Pages/anfrage.ctp:5
+msgid "Anfrage-Formular"
+msgstr "Request formular"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Pages/home.ctp:5
+msgid "Willkommen im Hotel Mohr & SPA"
+msgstr "Welcome to the Hotel Mohr & SPA"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Pages/home.ctp:21
+msgid "Aktuelles"
+msgstr "News"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Pages/kontakt.ctp:33
+msgid "PLZ"
+msgstr "Zipcode"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Pages/lage_anfahrt.ctp:52
+msgid "Lage & Anfahrt"
+msgstr "Location & Arrival"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Pages/lage_anfahrt.ctp:59
+msgid "Nah bei Berlin und Potsdam"
+msgstr "Close to Berlin and Potsdam"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Pages/lage_anfahrt.ctp:63
+msgid "Anreise"
+msgstr "Arrival"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Pages/lage_anfahrt.ctp:65
+msgid "Ideale Verkehrsanbindungen"
+msgstr "Perfect connection"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Pages/zweisamkeit.ctp:14
+msgid "Unsere buchbaren Partner-Pauschalen"
+msgstr "Our bookable couple arrangements"
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/addy_add.ctp:4
+msgid "Add Post"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/addy_add.ctp:19
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/addy_edit.ctp:21
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/view.ctp:36
+msgid "List Posts"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/addy_add.ctp:20
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/addy_edit.ctp:22
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/addy_index.ctp:47
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/view.ctp:38
+msgid "List Artists"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/addy_add.ctp:21
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/addy_edit.ctp:23
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/addy_index.ctp:48
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/view.ctp:39
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/view.ctp:83
+msgid "New Artist"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/addy_add.ctp:24
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/addy_edit.ctp:26
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/addy_index.ctp:51
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/view.ctp:42
+msgid "List Videos"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/addy_add.ctp:25
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/addy_edit.ctp:27
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/addy_index.ctp:52
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/view.ctp:43
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/view.ctp:159
+msgid "New Video"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/addy_edit.ctp:4
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/view.ctp:34
+msgid "Edit Post"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/addy_index.ctp:2
+msgid "Posts"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/addy_index.ctp:46
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/view.ctp:37
+msgid "New Post"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/view.ctp:2
+msgid "Post"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/view.ctp:4
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/view.ctp:51
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/view.ctp:92
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/view.ctp:133
+msgid "Id"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/view.ctp:14
+msgid "Body"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/view.ctp:19
+msgid "Created"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/view.ctp:24
+msgid "Modified"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/view.ctp:35
+msgid "Delete Post"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/view.ctp:47
+msgid "Related Artists"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/view.ctp:52
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/view.ctp:134
+msgid "Link"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/view.ctp:54
+msgid "Members"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/view.ctp:55
+msgid "Foundationyear"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/view.ctp:56
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/view.ctp:93
+msgid "Description"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/view.ctp:57
+msgid "Place"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/view.ctp:95
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/view.ctp:135
+msgid "Source"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/view.ctp:97
+msgid "Height"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/view.ctp:98
+msgid "Width"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Posts/view.ctp:129
+msgid "Related Videos"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Users/login.ctp:4
+msgid "Please enter your username and password"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Users/login.ctp:10
+msgid "Login"
+msgstr ""
+
+#: C:\xampp\htdocs\mohr\neu\app\View/Users/register.ctp:4
+msgid "Add User"
+msgstr ""
+
+#~ msgid "Doppelzimmer"
+#~ msgstr "Double room"
+
+#~ msgid "Einzelzimmer"
+#~ msgstr "Single room"
+
+#~ msgid "Dreibettzimmer"
+#~ msgstr "Triple room"
+
+#~ msgid "4-Bettzimmer"
+#~ msgstr "Four-bed room"
+
+#~ msgid "5-Bettzimmer"
+#~ msgstr "Five-bed room"

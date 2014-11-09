@@ -1,0 +1,5 @@
+{
+    "require": {
+        "slywalker/boost_cake": "*"
+    }
+}
