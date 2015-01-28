@@ -1,6 +1,6 @@
 <div class="row">
 	<div class="col-md-12">
-        <h2><?php echo __('Einheiten'); ?> <?php echo $this->Html->link(__('+ Neue Einheit'), array('action' => 'add'), array('class' => 'btn btn-primary btn-sm')); ?></h2>
+        <h2><?php echo __('Unit'); ?> <?php echo $this->Html->link(__('+ new Units'), array('action' => 'add'), array('class' => 'btn btn-primary btn-sm')); ?></h2>
         <table class="table">
         <tr>
                 <th><?php echo $this->Paginator->sort('id'); ?></th>
@@ -38,13 +38,13 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title">Einheit</h4>
+        <h4 class="modal-title">Unit</h4>
       </div>
       <div class="modal-body">
         
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Schließen</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal"><?= __('Close')?></button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

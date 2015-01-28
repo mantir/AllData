@@ -72,7 +72,6 @@ class PagesController extends AppController {
 		if($page == 'home'){
 			
 		}
-		$this->render('Page.'.$page, 'js');
 		$this->render(implode('/', $path));
 	}
 	

@@ -26,6 +26,7 @@ App::uses('s', 'Lib'); //special String functions
 App::uses('f', 'Lib'); //helper functions
 App::uses('Browser', 'Vendor'); //to get browser Information
 
+
 /**
  * Application Controller
  *
@@ -47,6 +48,14 @@ class AppController extends Controller {
 	var $errorsExist = false;
 	var $redirectState = false;
 	var $limitReturnList = array(array(), array());
+	var $log_types = array(
+		'imported_url' => array('source_url', 'target_file', 'related' => 'Input'), //A file is donwloaded from a remote URL and stored on the server
+		'uploaded_import' => array(), //An import file is uploaded by the user
+		'imported_file' => array('import_timestamp', 'source_file', 'measure_count', 'start_timestamp', 'end_timestamp', 'related' => 'Input'), //A locally stored file is imported into the database
+		'auth_link_visitor' => array('ip', 'link'),
+		'export' => array('ip', 'link'),
+		'method_executed' => array('user_id', 'method_id', 'value_id')
+	);
 	
 	public $components = array(
 		'Acl',
@@ -79,7 +88,7 @@ class AppController extends Controller {
 		//The functions that are always allowed for every user
 		$this->Auth->allow('index', 'view', 'display', 'autocomplete', 'resetPassword', 'activateAccount', 'enterDeveloperMode', 'exitDeveloperMode', 'search', 'export', 'register', 'login', 'images', 'modeltest'); 
 		$this->Auth->allow();  //No login
-		$this->set('loggedIn', true);// $this->Auth->loggedIn());
+		$this->set('loggedIn', $this->Auth->loggedIn());
 		$this->action = $this->request->params['action'];
 		$user = $this->Auth->user();
 		$this->actor_id = $user['id'];
@@ -88,33 +97,34 @@ class AppController extends Controller {
 		$this->set(array('request' => $this->p));
 		//echo 'AJAX: '.intval($this->RequestHandler->isAjax());
 		$this->isAjax = $this->request->is('ajax') || isset($this->p['isAjax']);
+		//$this->json = isset($this->p['json']) || isset($this->request->params['json']);
 		$this->set('isAjax', $this->isAjax);
 		$this->DeveloperMode = $this->Session->read('DeveloperMode');
 		$this->request->here = str_replace('json/', '', $this->request->here);
 		$this->request->relative = '/'.str_replace($this->request->base.'/', '', $this->request->here);
 		$this->request->controller = $this->request->params['controller'];
+		$this->setLanguage('en');
 		
-		$this->set('webroot', $this->request->webroot);
+		/*$this->set('webroot', $this->request->webroot);
 		$this->set('domain', $this->request->host());
 		$this->set('action', $this->request->params['action']);
 		$this->set('model', $this->modelClass);
-		$this->set('requestUrl', $this->request->url);
-		$this->set('errors', $errors);
+		$this->set('requestUrl', $this->request->url);*/
 		
 		$browser = new Browser();
-		$this->set('browser', array('name' => $browser->Name));
+		/*$this->set('browser', array('name' => $browser->Name));*/
 		
 		//for local testing
 		if(strpos(FULL_BASE_URL, 'localhost') !== false)
 			$this->isLocalhost = true;
 			
-		$methods = array('get', 'post', 'put', 'delete');
+/*		$methods = array('get', 'post', 'put', 'delete');
 		foreach($methods as $m) {
 			if($this->request->is($m)){
 				$this->set('requestMethod', $m);
 				break;
 			}
-		}
+		}*/
 		
 		if($this->request->params['addy']) {
 			//debug($user);
@@ -123,10 +133,12 @@ class AppController extends Controller {
 			else
 				$this->DeveloperMode = true;
 		}
-		
-		$this->layout = 'ajax';
-		if($this->p['asTemplate'])
-			$this->layout = 'template';
+		if($this->json && false)
+			$this->layout = 'json';
+		else
+			$this->layout = 'default';
+		/*if($this->p['asTemplate'])
+			$this->layout = 'template';*/
 		return false;
 		if(!$this->Auth->loggedIn()) {
 			$allowed = $this->Auth->allowedActions;
@@ -169,24 +181,19 @@ class AppController extends Controller {
 	/*
 	*/
 	public function render($view = null, $layout = null){
-		//debug($this->DeveloperMode);
 		if($view != '../dummy')
 			$this->newView = $view; //Sets the name of the .html viewfile
 		
-		if($layout == 'js') {
-			//Sets the name of the .js viewfile
-			$this->newViewJs = $view;
-			return;
-		}
-		if(!$this->DeveloperMode && $this->layout != 'template' && $layout != 'template'){
+		/*if(!$this->DeveloperMode && $this->layout != 'template' && $layout != 'template'){
 			if(!$this->isAjax) {
 				//$view = '../dummy';
 				$layout = 'default';
 			}
-		}
-		//debug($view);
+		}*/
+		
 		if($layout) $this->layout = $layout;
-		//debug($this->layout);
+		if($this->layout == 'ajax')
+			$this->layout = 'json';
 		return parent::render($view, $this->layout);
 	}
 	
@@ -227,12 +234,12 @@ class AppController extends Controller {
 			unset($this->viewVars['content_for_layout']);
 		
 		if(!$this->isAjax || ($this->isAjax && $this->p['loadTemplate'])) {
-			$this->set('loadTemplate', true);
-			/*$file = WWW_ROOT.'js'.DS.'view'.DS.$this->getViewFilename().'.html';
+			/*$this->set('loadTemplate', true);
+			$file = WWW_ROOT.'js'.DS.'view'.DS.$this->getViewFilename().'.html';
 			if(file_exists($file))
 				$template = file_get_contents($file);*/
 		}
-		$this->set('loadTemplate', true); //Da der View manchmal vom Server und manchmal vom CLient gerendert wird immer true.
+		//$this->set('loadTemplate', true); //Da der View manchmal vom Server und manchmal vom CLient gerendert wird immer true.
 		$data = $this->request->data; $query = $this->request->query;
 		if(!is_array($data)) $data = array(); if(!is_array($query)) $query = array();
 		$this->p = array_merge($data, $query);
@@ -240,7 +247,8 @@ class AppController extends Controller {
 		
 		$m = $this->Session->read('Message.flash.message');
 		$this->set('flashMessage', $m);
-		$this->set('authUser', $this->authUser);
+		if(!$this->isAjax)
+			$this->set('authUser', $this->authUser);
 		
 		$currentProject = $this->Session->read('Project');
 		$this->set('currentProject', $currentProject);
@@ -250,29 +258,30 @@ class AppController extends Controller {
 		//debug($request);
 		
 		$return = array(
-			'passedArgs' => $this->passedArgs,
 			'vars' => $this->viewVars,
-			'viewJs' => $this->getViewFilename('js'),
 			'errors' => $errors,
 			//'request' => $this->request,
 			//'data' => $this,
 			'message' => $m,
-			'url' => $this->request->url,
+/*			'url' => $this->request->url,
 			'action' => $this->request->params['action'],
 			'controller' => $this->request->params['controller'],
 			'model' => $this->modelClass,
-			'base' => $this->request->base,
 			'webroot' => $this->request->webroot,
 			'browser' => $this->viewVars['browser'],
 			'here' => $this->request->here,
-			'hereRel' => str_replace($this->request->base.'/', '', $this->request->here)
+			'hereRel' => str_replace($this->request->base.'/', '', $this->request->here)*/
 		);
+		if(!$this->isAjax) {
+			$return['passedArgs'] = $this->passedArgs;
+			$return['base'] = $this->request->base;
+		}
 		if($this->request->params['controller'] == 'pages'){
 			$return['action'] = $return['vars']['action'] = $this->passedArgs[0];
 			unset($return['passedArgs'][0]);
 		}
-		if($this->redirectState || $this->redirectUrl) 
-			$return['vars'] = array('redirectState' => $this->redirectState, 'redirectUrl' => $this->redirectUrl);
+		/*if($this->redirectState || $this->redirectUrl) 
+			$return['vars'] = array('redirectState' => $this->redirectState, 'redirectUrl' => $this->redirectUrl);*/
 		
 		/*if($template)
 			$return['template'] = $template;*/
@@ -305,65 +314,6 @@ class AppController extends Controller {
 		$this->limitReturnList = array($inc, $incD);
 	}
 	
-	/*
-	 *
-	 */
-	public function autocomplete($model = false){
-		//debug($this->p);
-		//activate more autocompletes with adding e.g. /-/tags/genres/etc../
-		if($model && $model != '-') {
-			$more = true;
-			$model = Inflector::camelize(Inflector::singularize($model));
-		} else
-			$model = $this->modelClass;
-		$this->loadModel($model);
-		$s = trim($this->p['query']);
-		$v = $this->p['property'] ? $model.'.'.$this->p['property'] : $model.'.name';
-		$s2 = substr($s, 1);
-		$distance = isset($this->p['distance']) ? $this->p['distance'] : 2;
-		if(strlen($s) > 4 && $distance > 2) $distance = 2;
-		if(strlen($s) > 5 && $distance > 1) $distance = 1;
-		if(strlen($s) > 9) $distance = 0;
-		//elseif(strlen($s) < 7) $distance = 2;
-		//elseif(strlen($s) < 15) $distance = 3;
-		if($s2)
-			$regex = '( |^)'.$s[0].'('.muzup::wordRegex($s2, $distance).').*'; //find all words beginning with the first letter and rest of the word edit distance 2 and autcompleted
-		else
-			$regex = '^'.$s[0].'.*';
-		//debug($regex);
-		$cond = array($v.' REGEXP' => $regex);
-		$conditions = $this->p['conditions'];
-
-		if(is_array($conditions))
-			$conditions = array_merge($conditions, $cond);
-		else
-			$conditions = $cond;
-		$results = $this->{$model}->find('all', array('conditions' => $conditions, 'group' => $v, 'order' => 'CHAR_LENGTH('.$v.') ASC', 'recursive' => -1));
-		//debug($this->{$model}->lastQuery));
-		//$this->set('results', Set::combine($results, '{n}.'.$model.'.id', '{n}.'.$model));
-		$sug = Set::classicExtract($results, '{n}.'.$v);
-		if(!is_array($sug)) $sug = array();
-		$data = Set::classicExtract($results, '{n}.'.$model);
-		if(!is_array($data)) $data = array();
-		
-		//if was added to the url with /-/
-		if($more) {
-			return array('data' => $data, 'sug' => $sug);
-		}
-		//if some more args were passed with /-/ collect the other results and merge
-		if(count($this->passedArgs))
-			foreach($this->passedArgs as $i => $a){
-				if($a == '-') continue;
-				$more = $this->autocomplete($a);
-				$data = array_merge($data, $more['data']);
-				$sug = array_merge($sug, $more['sug']);
-			}
-		$this->set('suggestions', $sug);
-		$this->set('data', $data);
-		$this->set('query', $this->p['query']);
-		$this->limitReturn(array('suggestions', 'data', 'query')); //to speed things up only include this into the results
-		$this->render('../autocomplete');
-	}
 	
 	function getTemplate($name){
 		$n = explode('.', $name);
@@ -443,14 +393,14 @@ class AppController extends Controller {
 	
 	/* 
 	*/
-	public function writeLog($type, $title, $info, $link = '', $dump = false){
+	public function writeLog($type, $data, $dump = false){
 		$this->loadModel('Log');
-		$l = array('type' => $type, 'time' => time(), 'title' => $title, 'info' => $info, 'link' => $link);
+		$l = array('type' => $type, 'time' => time(), 'data' => $data[0], 'data_2' => $data[1],'data_3' => $data[2], 'data_4' => $data[3], 'data_5' => $data[4], 'related_id' => $data['related']);
 		if(strpos($type, '_error') !== false) {
+			$l['error'] = 1;
 			$lt = $this->Log->find('first', array('fields' => 'Log.time', 'conditions' => 'type LIKE "%_error"', 'order' => 'Log.time DESC'));
-			debug($lt);
 			if(time() - $lt['Log']['time'] > strtotime('+12 hours', 0)){
-				mail(console::$serviceEmail, 'Houston Error: '.$title, $info);
+				mail(console::$serviceEmail, 'Alldata Error: '.$data, $info);
 			}
 		}
 		if($dump) {
@@ -459,6 +409,15 @@ class AppController extends Controller {
 		}
 		$this->Log->create();
 		$this->Log->save($l);
+	}
+	
+	public function getLogs($type, $params = array(), $combine = 'id', $order = 'time DESC'){
+		$this->loadModel('Log');
+		$params['type'] = $type;
+		$logs = $this->Log->find('all', array('conditions' => $params));
+		if($logs && $combine)
+			$logs = Set::combine($logs, '{n}.Log.'.$combine, '{n}.Log');
+		return $logs;
 	}
 
 	
@@ -526,7 +485,7 @@ class AppController extends Controller {
                 $this->Session->write('Permissions',$permissions);
                
             //}
-        }else{
+        } else {
             //...they have been cached already, so retrieve them
             $permissions = $this->Session->read('Permissions');
         }
@@ -546,6 +505,32 @@ class AppController extends Controller {
         }
         return false;
     }
+	
+	public function setLanguage($lang = null, $redirect = true){
+		if(($lang == 'de' || $lang == 'en') && $lang != $this->Session->read('Config.language')) {
+			$this->Session->write('Config.language', $lang);
+			$standard_lang = 'en';
+			if(!$lang) $lang = $standard_lang;
+			$this->lang = $lang;
+			//$this->set('lang', $lang);
+			$valid = false;
+			
+			/*@include_once("../Lib/languages/".$standard_lang.".php");
+			if($valid) {
+				$lang_words = $this->language_words;
+				if($lang != $standard_lang) {
+					@include_once("../Lib/languages/".$lang.".php");
+					$this->language_words = array_merge($lang_words, $this->language_words);
+				}
+			}*/
+		}
+		//clearCache();
+		//Cache::clear();
+		/*if($redirect) {
+			$ref = preg_replace('#/pages/([a-z]{2}/)?(.*)#', '/pages/'.$lang.'/$2', $this->referer());
+			$this->redirect($ref);
+		}*/
+	}
 	
 	/*
 	* @e errorstring, if empty function returns bool if there already was an error. It sets errorsExist for 
@@ -599,7 +584,6 @@ class AppController extends Controller {
 		debug($contain);
 		$e = $this->Event->find('all', array('conditions' => 'Event.id=150953 AND Event.station_id=28229', 'limit' => 200, 'contain' => $contain));
 		debug($e);
-		
 	}
 
 }

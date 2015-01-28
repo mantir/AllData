@@ -12,5 +12,5 @@ class Log extends AppModel {
  *
  * @var string
  */
-	public $displayField = 'title';
+	public $displayField = 'data';
 }

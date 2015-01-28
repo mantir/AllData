@@ -6,7 +6,9 @@ App::uses('AppController', 'Controller');
  * @property Unit $Unit
  */
 class UnitsController extends AppController {
-
+	public $paginate = array(
+        'limit' => 200
+    );
 /**
  * index method
  *

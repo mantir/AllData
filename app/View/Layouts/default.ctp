@@ -1,11 +1,11 @@
  <? //debug($return);
 unset($return['vars']['return']); //clear the variable in $return that include $return again (cakephp stuff)
-$this->Session->flash(); //Just clear the flash-messages they are already in $return 
 ?><!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="Content-Type" content="text/html;charset=utf-8" / >
         <? 
 			echo $this->Html->Css('bootstrap.min.united'); 
 			echo $this->Html->Css('style');
@@ -17,7 +17,8 @@ $this->Session->flash(); //Just clear the flash-messages they are already in $re
 			$this->Html->Script('backbone.queryparams', array('inline' => false));
 			$this->Html->Script('backbone-mvc', array('inline' => false));
 			$this->Html->Script('require-min', array('inline' => false));
-			$this->Html->Script('q.min', array('inline' => false));	
+			$this->Html->Script('q.min', array('inline' => false));
+			$this->Html->Script('utils', array('inline' => false));		
 			$this->Html->Script('../app', array('inline' => false));
 		?>
         <title><?=console::$systemName?></title>
@@ -44,38 +45,60 @@ $this->Session->flash(); //Just clear the flash-messages they are already in $re
               	<li>
                     <a href="<?=$this->Html->url("/projects/index")?>"><strong>AllData</strong></a>
                 </li>
+				
                 <li>
-                	<? if($currentProject) { ?>
-                    	<a id="project-link" href="<?=$this->Html->url("/projects/view/".$currentProject['id'])?>"><i class="fa fa-dashboard fa-fw"></i> <?=$currentProject['name']?></a>
+                   <a id="project-link" <?=$currentProject ? '' : 'style="display:none"'?> href="<?=$currentProject ? $this->Html->url("/projects/view/".$currentProject['id']) : '' ?>"><i class="fa fa-dashboard fa-fw"></i> <span id="project-name-link"><?=$currentProject ? $currentProject['name'] : '' ?></a></span>
+                   <a id="projects-link" <?=!$currentProject ? '' : 'style="display:none"'?> href="<?=$this->Html->url("/projects/index")?>"><i class="fa fa-dashboard fa-fw"></i> <?=__('Projects')?></a>
+                </li>
+                <li>
+                    <a id="data-link" href="<?=$currentProject ? $this->Html->url("/projects/data/".$currentProject['id']) : ''?>"><i class="glyphicon glyphicon-stats"></i> <?=__('Data')?></a>
+                </li>
+                <li>
+                	<a id="import-link" href="<?= $currentProject ? $this->Html->url(array('action' => 'upload_import', $currentProject['id'])) : ''; ?>"><span class="glyphicon glyphicon-upload mr-5"></span> <?=__('Import')?></a>
+                </li>
+              </ul>
+              <ul class="nav navbar-nav navbar-right">
+              	<li class="dropdown">
+                	<? if($loggedIn) { ?>
+                    <a id="user-link" data-toggle="dropdown" href="<?=$this->Html->url("/users/settings")?>"><i class="fa fa-user"></i> <?='Logged in'?> <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="user-link">
+                        <li><a href="<?=$this->Html->url("/users/settings")?>"><i class="fa fa-cog"></i> <?=__('Settings')?></a></li>
+                        <li><a href="<?=$this->Html->url("/users/logout")?>"><?=__('Logout') ?></a></li>
+                    </ul>
                     <? } else { ?>
-                    	<a id="project-link" href="<?=$this->Html->url("/projects/index")?>"><i class="fa fa-dashboard fa-fw"></i> Projekte</a>
+                    <a href="<?=$this->Html->url("/users/login")?>"><i class="fa fa-user"></i> <?=__('Login')?></a>
                     <? } ?>
                 </li>
                 <li>
-                    <a href="<?=$this->Html->url("/documentations/index")?>"><i class="fa fa-edit fa-fw"></i> Dokumentation</a>
+                    <a href="<?=$this->Html->url("/documentations/index")?>"><i class="glyphicon glyphicon-question-sign"></i> <?=__('Help')?></a>
                 </li>
                 <li>
-                    <a href="<?=$this->Html->url("/units/index")?>"><i class="fa fa-gear fa-fw"></i> Einheiten</a>
+                    <a href="<?=$this->Html->url("/methods/index")?>"><i class="fa fa-superscript fa-fw"></i> <?=__('Methods')?></a>
+                </li>
+                <li>
+                    <a href="<?=$this->Html->url("/units/index")?>"><i class="fa fa-link"></i> <?=__('Units')?></a>
                 </li>
               </ul>
-              
             </div>
           </div>
         </nav>
         <div id="page-wrapper" class="container-fluid">
-        	<? $message =  $this->Session->flash();
-			if($message) {  ?>
-                <div class="alert alert-dismissable alert-danger">
-                  <?= $message ?>
-                </div>
-            <? } ?>
-        	<div class='page'><?= $this->fetch('content'); ?></div>
+        	<div class='page'>
+            	<? $message =  $this->Session->flash();
+				if($message) {  ?>
+					<div style="position:absolute; z-index:1000" class="alert alert-dismissable alert-danger">
+					  <?= $message ?>
+					</div>
+				<? } ?>
+				<?= $this->fetch('content'); ?>
+            </div>
         </div>
         <script type="text/javascript"> var baseUrl = '<?=$return['base']?>'; </script>
         <?= $this->fetch('script'); ?>
         <script type="text/javascript">
 			var data = <? echo json_encode($return); ?>;
 			$(document).ready(function(e) {
+				app.clearAlerts();
 			   /*if($('.cake-debug-output').length)
 					$('html').addClass('overflow-auto');*/
 				app.init('<?=$return['base']?>', data, $('.page').html());

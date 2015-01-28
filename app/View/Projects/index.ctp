@@ -1,6 +1,6 @@
 <div class="row">
 	<div class="col-md-12">
-    	<h2><?php echo __('Projekte'); ?> <?php echo $this->Html->link(__('+ Neues Projekt erstellen'), array('action' => 'add'), array( 'class' => 'btn btn-primary')); ?></h2>
+    	<h2><?php echo __('Projects'); ?> <?php echo $this->Html->link(__('+ Create new Project'), array('action' => 'add'), array( 'class' => 'btn btn-primary')); ?></h2>
     </div>
 </div>
 <div class="row">
@@ -20,7 +20,7 @@
         <p>
         <?php
         echo $this->Paginator->counter(array(
-        'format' => __('Seite {:page}/{:pages}')
+        'format' => __('page {:page}/{:pages}')
         ));
         ?>	</p>
     
@@ -39,13 +39,13 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title">Projekt</h4>
+        <h4 class="modal-title">Project</h4>
       </div>
       <div class="modal-body">
         
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Schließen</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal"><?=__('Close');?></button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

@@ -39,6 +39,13 @@ class Value extends AppModel {
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
+		),
+		'Method' => array(
+			'className' => 'Method',
+			'foreignKey' => 'method_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
 		)
 	);
 

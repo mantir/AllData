@@ -1,4 +1,4 @@
-app.controllers.events = BackboneMVC.Controller.extend({
+app.controllers.inputs = BackboneMVC.Controller.extend({
     name: 'inputs',
 	views:[], //These are the views we will use with the controller
 	

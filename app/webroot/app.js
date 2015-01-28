@@ -1,10 +1,23 @@
 requirejs.config({
 	baseUrl : baseUrl+'/',
 	paths: {
-		js:'js',
+		//js:'js',
 		views: 'views',
-		controllers: 'controllers'
+		c: 'controllers',
+
+		calendar: 'js/bootstrap-datepicker',
+		editor: 'js/ckeditor/ckeditor',
+		codeeditor: 'js/codemirror-4.8/lib/codemirror',
+		phpjs: 'js/phpjs',
+		charts: 'js/highcharts/highstock',
+		charts_exporting: 'js/highcharts/modules/exporting',
+		charts_theme: 'js/highcharts/themes/dark-unica'
+	},
+	shim: {
+		charts_exporting: ['charts'],
+		charts_theme: ['charts']
 	}
+	
 });
 var routes = {
 	'/':'home',
@@ -24,10 +37,12 @@ var AppRouter = BackboneMVC.Router.extend({
 app = {
 	c: {}, //Controller array
 	controllers: {}, //Controllerklassen
-	controllerList: ["controllers/projects", "controllers/pages", "controllers/documentations", "controllers/logs", 'controllers/settings', 'controllers/values', 'controllers/inputs', 'controllers/units'],
+	controllerList: ["c/projects", "c/pages", "c/documentations", "c/logs", 'c/settings', 'c/values', 'c/inputs', 'c/units', 'c/methods', 'c/exports', 'c/users'],
 	viewType:"text/x-underscore-template",
 	loader_gif:baseUrl+"/img/gloader.gif",
+	loader_gif_2:baseUrl+"/img/fbloader.gif",
 	requests : [],
+	refreshNext: false, //Whether to not fetch data from cache instead of loading it from the server in the next request
 	jsonUrl: 'json/',
 	going : {},
 	config : [],
@@ -35,22 +50,25 @@ app = {
 	router : new AppRouter(),
 	init: function(baseUrl, d, content){ //Base Url and Data
 		if(baseUrl.substr(-1, 1) != '/') baseUrl += '/';
-		d.content = content;
 		if(baseUrl) {
 			this.baseUrl = baseUrl;
 		} else {
 			this.baseUrl = document.location.pathname.replace(/\/index\.html/, '');
 		}
 		var that = this;
-		$(document).one('app:controllersLoaded', function(){
-			that.updateLayout();
-			that.bindEvents();
-			Backbone.history.start({pushState: true, root: that.baseUrl, silent: true});
-			var curUrl = that.url();
-			that.requests[curUrl] = d; //Start Url schon geladen
-			that.route(curUrl);
+		//app.setUpRequire();
+		app.require(['phpjs'], function() {
+			d.content = content;
+			$(document).one('app:controllersLoaded', function(){
+				that.updateLayout();
+				that.bindEvents();
+				Backbone.history.start({pushState: true, root: that.baseUrl, silent: true});
+				var curUrl = that.url();
+				that.requests[curUrl] = d; //Start Url schon geladen
+				that.route(curUrl);
+			});
+			that.loadControllers(app.controllerList);
 		});
-		this.loadControllers(app.controllerList);
 	},
 	url:function(query){
 		var s = query ? query : Backbone.history.location.search;
@@ -63,31 +81,48 @@ app = {
 			url = url.replace(new RegExp(this.baseUrl), '');
 		return url;
 	},
-	route:function(url, notrigger){
+	route:function(url, notrigger, replace){
 		url = app.unbaseUrl(url);
 		/*var fr = url.indexOf('?'); 
 		if(fr > -1)
 			url = url.substr(0, fr) + '~'+url.substr(fr + 1);*/
 		if(!notrigger)
 			app.lastURL = Backbone.history.fragment;
-		this.router.navigate(url, {trigger: !notrigger, replace: false});
+		this.router.navigate(url, {trigger: !notrigger, replace: replace});
+	},
+	call_url: function(url){
+		var current = Backbone.history.fragment;
+		this.route(url, false, true);
+		this.route(current, true, true);
 	},
 	require:function(what, callback){
+		if(typeof(what) == 'string')
+			what = [what];
+		var which = what.slice(0); //clone array, must be array
 		for(var i in what) {
-			if(what[i] == 'calendar'){ what[i] = this.baseUrl+'js/bootstrap-datepicker.js'; this.config['calendar'] = {language: "de", autoclose: true, todayHighlight: true}; } else
-			if(what[i] == 'editor') { what[i] = this.baseUrl+'js/ckeditor/ckeditor.js'; }
-			//if(what[i] == 'charts') { what[i] = this.baseUrl+'js/morris.min.js'; what.push(this.baseUrl+'js/raphael-min.js'); }
-			//if(what[i] == 'charts') { what[i] = this.baseUrl+'js/Chart.min.js'; }
-			if(what[i] == 'charts') { what[i] = this.baseUrl+'js/highcharts.js'; what.push(this.baseUrl+'js/highchart-dark-unica.js'); } 
-			//if(what[i] == 'tooltip') { what[i] = this.baseUrl+'js/morris.min.js'; what.push(this.baseUrl+'js/raphael-min.js'); }
+			if(what[i] == 'calendar'){ this.config['calendar'] = {language: "de", autoclose: true, todayHighlight: true}; app.loadCss(this.baseUrl+'css/datepicker3.css'); } else
+			if(what[i] == 'phpjs') { which[i] = 'phpjs/date'; which.push('phpjs/strtotime'); } else
+			if(what[i] == 'charts') {  which.push('charts_exporting'); /*which.push('charts_theme');*/ } else
+			if(what[i] == 'codeeditor') { app.loadCss(this.baseUrl+'js/codemirror-4.8/lib/codemirror.css'); } 
 		}
-		require(what, callback);
+		console.log(which);
+		require(which, callback);
+	},
+	loadCss:function(url) {
+		var link = document.createElement("link");
+		link.type = "text/css";
+		link.rel = "stylesheet";
+		link.href = url;
+		document.getElementsByTagName("head")[0].appendChild(link);
 	},
 	refresh:function(callback){
 		var url = Backbone.history.fragment;
 		this.refreshing = true;
 		this.setCallback(callback);
 		this.route(url);
+	},
+	setRefresh:function(){
+		this.refreshNext = true;
 	},
 	callback : function(){},
 	setCallback:function(callback){
@@ -97,7 +132,7 @@ app = {
 			self.callback = function(){};
 		}
 	},
-	render : function(view, d, con){
+	render: function(view, d, con){
 		var t = this.template('views/'+view);
 		if(!t) return d.content;
 		if(d && d.vars)
@@ -146,7 +181,7 @@ app = {
 				samePage = true;
 				//if(!self.refreshing) return;
 			}
-			var html = app.render(c+'.'+a, d); 
+			var html = app.render(c+'.'+a, d);
 			//var footer = $('.footer', '#'+c+'-'+a);
 			if(self.refreshing) {
 				$con.append(html);
@@ -157,6 +192,7 @@ app = {
 			self.activePage().data('appurl', url);
 			self.refreshing = false;
 			app.locked = false;
+			app.clearAlerts();
 			q.resolve(d);
 			if(samePage || true) return;
 			//$.mobile.pageContainer.change will be needed in future versions
@@ -181,10 +217,18 @@ app = {
 	},
 	get: function(url){
 		var q = Q.defer();
-		if(app.requests[url] && !this.refreshing) {
+		if(app.requests[url] && !this.refreshing && !this.refreshNext) {
 			q.resolve(app.requests[url]);
 		} else {
-        	$.getJSON(this.baseUrl+this.jsonUrl + url).done(function(d){ app.requests[url] = d; q.resolve(d);}).fail(function(){ alert('Es ist ein Fehler aufgetreten. Bitte Seite neuladen.'); q.resolve({}); });
+			this.refreshNext = false;
+        	$.getJSON(this.baseUrl+this.jsonUrl + url)
+				.done(function(d){ 
+					app.requests[url] = d; 
+					q.resolve(d);
+				})
+				.fail(function(){ 
+					alert('Es ist ein Fehler aufgetreten. Bitte Seite neuladen.'); q.resolve({}); 
+				});
 		}
 		return q.promise;
 	},
@@ -192,6 +236,11 @@ app = {
 		var q = Q.defer();
         $.post(this.baseUrl+this.jsonUrl + url).done(function(d){ app.requests[url] = d; q.resolve(d);}).fail(function(){ alert('Es ist ein Fehler aufgetreten. Bitte Seite neuladen.'); q.resolve({}); });
 		return q.promise;
+	},
+	submit: function(e){
+		var p = $(e.target).serializeArray();
+		
+		return false;
 	},
 	uncache: function(url){
 		url = app.unbaseUrl(url);
@@ -247,7 +296,10 @@ app = {
 		//Klick Handler
 		$(document).on('click', 'a', function(e){
 			var href = $(this).attr('href');
-			if(href && href.indexOf('javascript:') == -1 && href.indexOf('http://') == -1) {
+			var target = $(this).attr('target');
+			var rel = $(this).attr('rel');
+			var role = $(this).attr('role');
+			if(href && href.indexOf('javascript:') == -1 && href.indexOf('https://') == -1 && href.indexOf('http://') == -1 && !target && role != 'tab') {
 				$(this).addClass('ui-btn-active');
 				self.route(href);
 				e.preventDefault();
@@ -308,7 +360,16 @@ app = {
 			return false;
 	},
 	loadIndicator:function(){
-		return '<img class="loader" src="'+this.loader_gif+'" alt="Laden..." />';
+		return '<img class="loader" src="'+this.loader_gif+'" alt="Loading..." />';
+	},
+	loadIndicator2:function(){
+		return '<img src="'+this.loader_gif_2+'" alt="Loading..." />';
+	}, 
+	clearAlerts: function(){
+		if($('.alert').length)
+			window.setTimeout(function(){
+				$('.alert').fadeOut(200);
+			}, 4000);
 	}
 }
 

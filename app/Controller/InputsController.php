@@ -8,6 +8,7 @@ App::uses('AppController', 'Controller');
 class InputsController extends AppController {
 	var $marker = '_###_';
 	var $limiter = '_---_';
+	var $title_limiter = '_____';
 /**
  * index method
  *
@@ -80,8 +81,9 @@ class InputsController extends AppController {
 		$input = $this->Input->read(null, $id);
 		$filename = $input['Input']['template_path'];
 		$filename = '../webroot'.$filename;
+	
 		if($input['Input']['type'] == 'text')
-			$skeleton = $this->parseText($filename, $input['Input']['delimiter'], $input['Input']['data_row']);
+			$skeleton = $this->parseText($filename, $input['Input']['delimiter'], $input['Input']['data_row'], $input['Input']['head_row']);
 		else
 			$skeleton = $this->{'parse'.strtoupper($input['Input']['type'])}($filename);
 		
@@ -119,9 +121,10 @@ class InputsController extends AppController {
 		}
 		$marker = $this->marker;
 		$limiter = $this->limiter;
+		$title_limiter = $this->title_limiter;
 		$skeleton = htmlspecialchars($skeleton); // Für Darstellung vorbereiten
 		$values = $this->Input->Value->find('list', array('conditions' => 'Value.project_id = '.$project_id));
-		$this->set(compact('marker', 'limiter', 'name', 'values', 'skeleton', 'saved_paths', 'input'));
+		$this->set(compact('marker', 'limiter', 'title_limiter', 'name', 'values', 'skeleton', 'saved_paths', 'input'));
 		$this->render('add');
 	}
 	
@@ -141,27 +144,35 @@ class InputsController extends AppController {
 		return $d;
 	}
 	
-	public function parseTEXT($file = '../Test/test1.json', $delimiter = ',', &$data_row = -1){
+	//parses textfile and sets marker to later in the view put the HTML-selects for the values in the correct position with the correct title
+	public function parseTEXT($file = '../Test/test1.json', $delimiter = ',', &$data_row = -1, &$head_row = -1){
 		//$file = '../webroot/uploads/input_545950577d717xA80146_36765237.txt';
 		//$file = '../Test/test.txt';
 		$rows = file($file);
 		$paths = array();
 		$data_row--;
+		$head_row--;
+		$header = array();
 		foreach($rows as $i => $r) {
+			if($head_row == $i) {
+				$limiter = $delimiter;
+				$cols = explode($limiter[0], $r);
+				$limiter = substr($limiter, 1);
+				foreach($cols as $j => $col) {
+					$col = trim(str_replace("\n", '', $col));
+					$header[$j] = $col.$this->title_limiter;
+				}
+				//debug($header);
+			}
 			if($data_row >= 0) {
 				if($i >= $data_row){
 					$limiter = $delimiter;
 					$cols = explode($limiter[0], $r);
 					$limiter = substr($limiter, 1);
-					for ($j = 0; $j < strlen($limiter); $i++) {
-						foreach($cols as $col) {
-							
-						}
-					}
 					$newRow = array();
 					foreach($cols as $j => $col) {
 						if($col = trim(str_replace("\n", '', $col))) {
-							$newRow[] = $this->marker.$col.$this->limiter.$j.$this->marker;
+							$newRow[] = $this->marker.$header[$j].$col.$this->limiter.$j.$this->marker;
 						}
 					}
 					//debug($newRow);
@@ -174,7 +185,8 @@ class InputsController extends AppController {
 			}
 		}
 		$data_row++;
-		//debug($d);
+		$head_row++;
+		//debug($rows);
 		return implode("\n", $rows);
 	}
 	

@@ -47,18 +47,6 @@ class User extends AppModel {
 				'rule' => array('email'),
 				'message' => 'You must enter a correct email address.'
 			)
-		),
-		'url' => array(
-			'unique' => array(
-				'rule' => 'isUnique',
-				'message' => 'This URL is already in use.'
-			),
-			'between' => array(
-				'rule' => array('between', 6, 20),
-				'message' => 'Your url must have at least 6 up to 20 characters',
-				'allowEmpty' => false,
-				'last' => false // Stop validation after this rule
-			)
 		)
 		/*'role' => array(
 			'valid' => array(
@@ -71,20 +59,6 @@ class User extends AppModel {
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
-/**
- * belongsTo associations
- *
- * @var array
- */
-	public $belongsTo = array(
-		'Image' => array(
-			'className' => 'Image',
-			'foreignKey' => 'image_id',
-			'conditions' => '',
-			'fields' => array('filename', 'id'),
-			'order' => ''
-		)
-	);
 	
 /**
  * hasMany associations

@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-md-12">
     <?php echo $this->Form->create('Input', array('type' => 'file', 'class' => 'form', 'url' => $this->request->relative)); ?>
-        <h3><?php echo __('Input '.console::editOrAdd($this->request->relative)); ?></h3>
+        <h3><?php echo __('%s Input', console::editOrAdd($this->request->relative)); ?></h3>
         <?php
             echo $this->Form->input('name', console::$htmlInput);
 			echo $this->Form->input('template_file', array_merge(console::$htmlInput, array('class' => 'btn btn-default btn-file', 'type' => 'file')));
@@ -9,6 +9,7 @@
 				?><div class="row"><?
 					echo $this->Form->input('delimiter', array_merge(console::$htmlInput, array('label' => 'Trennzeichen<br />in einer Zeile', 'div' => array('class' => 'form-group col-lg-1 col-md-3'))));
 					echo $this->Form->input('data_row', array_merge(console::$htmlInput, array('label' => 'Zeile, ab der die Daten beginnen','div' => array('class' => 'form-group col-lg-1 col-md-3'))));
+					echo $this->Form->input('head_row', array_merge(console::$htmlInput, array('label' => 'Zeile, mit Spaltenüberschriften','div' => array('class' => 'form-group col-lg-1 col-md-3'))));
 					echo $this->Form->input('timestamp_format', array_merge(console::$htmlInput, array(
 						'label' => 'Timestamp-Format<br />'.
 						$this->Html->link('Mögliche Formate', 'javascript:;', array('data-toggle' => "modal", 'data-target' => "#format-view-modal")), 
@@ -28,11 +29,15 @@
 			$paths = array();
 			$counter = -1;
 			$values[-1] = 'Timestamp';
-			$inputReplace = function($matches) use ($limiter, $values, $self, &$paths, &$counter, $values, $saved_paths) {
+			$inputReplace = function($matches) use ($limiter, $values, $self, &$paths, &$counter, $values, $saved_paths, $title_limiter) {
 				$v = $matches[1];
+				$v = split($title_limiter, $v);
+				$title = $v[1] ? $v[0].' / '.$v[1] : $v[0];
+				
 				$path = stripslashes($matches[2]);
-				//debug($v);
-				if($paths[$path]) return $v;
+				if($paths[$path]) {
+					return $v[1] ? $v[1] : $v[0];
+				}
 				$paths[$path] = true;
 				$counter++;
 				if(!$self->request->data['Value']['Value'][$counter] && $saved_paths[$path])
@@ -41,7 +46,7 @@
 				return '<input type="hidden" name="data[Value][path]['.$counter.']" value="'.$path.'" />'.
 						$self->Form->input('Value.Value.'.$counter, array(
 							'type' => 'select', 'options' => $values, 'data-toggle' => "tooltip", 
-							'title' => $v, 'empty' => '  --------', 'label' => false, 'div' => false, 
+							'title' => $title, 'empty' => '  --------', 'label' => false, 'div' => false, 
 							'value' => $self->request->data['Value']['Value'][$counter], 'multiple' => false)
 						);
 			};
@@ -50,6 +55,19 @@
 		?>
         <div class="row" >
         	<pre style="max-height:400px;" class="col-md-12"><?= $skeleton ?></pre>
+        </div>
+         <div class="row">
+         	<?
+				echo $this->Form->input('list_url', array_merge(console::$htmlInput, array(
+						'label' => __('List URL: A webpage or something similar where to check for new data files.'), 
+						'div' => array('class' => 'form-group col-lg-12'))));
+				echo $this->Form->input('link_regex', array_merge(console::$htmlInput, array(
+						'label' => __('Regular expression: To search for file links under the list URL.'),
+						'div' => array('class' => 'form-group col-md-12'))));
+				echo $this->Form->input('page_container', array_merge(console::$htmlInput, array(
+						'label' => 'Page Container: Can be a regular expression or a jQuery selector to extract the file content from a container.',
+						'div' => array('class' => 'form-group col-md-12')))
+					); ?>
         </div>
         <? } ?>
     	<?php echo $this->Form->end(array('class' => 'btn btn-primary mb-20', 'label' => __('Speichern'))); ?>

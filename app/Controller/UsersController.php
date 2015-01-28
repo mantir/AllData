@@ -7,7 +7,8 @@ class UsersController extends AppController {
 		'Auth' => array(
 			'authenticate' => array(
 				'Form' => array(
-					'fields' => array('username' => 'email')
+					'fields' => array('username' => 'email'),
+					'scope' => array('activated' => 1)
 				)
 			)
 		)
@@ -42,28 +43,26 @@ class UsersController extends AppController {
 	}
 	
 	public function register() {
-		$this->loadModel('Aro');
+		//$this->loadModel('Aro');
 		//debug($this->request->data);
-		$this->set("groups", $this->Aro->find('list', array('fields' => array('Aro.alias'))));
+		//$this->set("groups", $this->Aro->find('list', array('fields' => array('Aro.alias'))));
 		if ($this->request->is('post')) {
 			$this->User->create();
-			$this->request->data['User']['url'] = $this->generateUrl();
 			$this->request->data['User']['id'] = $this->generateID();
 			$this->request->data['User']['activated'] = 0;
-			$this->request->data['Setting']['object_id'] = $this->request->data['User']['id'];
 			$user = $this->request->data['User'];
+			$this->request->data['User']['register_time'] = time();
+			$this->request->data['User']['activation_code'] = uniqid();
 			if (($user['password'] == $user['passwordRepeat']) && $this->User->save($this->request->data)) {
-					$this->loadModel('Activation');
-					$code = $this->Activation->generateCode('ac', $this->request->data['User']['id'], $this->request->clientIp());
 					$this->su(__('The registration was successfull. An email with an activation link was sent to your inbox.'));
 					//cant send mails from localhost...
 					if(!$this->isLocalhost) {
 						$email = new CakeEmail();
-						$email
-							->from(muzup::$noreplyEmail)->to($this->request->data['User']['email'])
+						$sent = $email
+							->from(console::$noreplyEmail)->to($this->request->data['User']['email'])
 							->template('registered')
 							->emailFormat('both')
-							->subject(__('Activate your Muzup account'))
+							->subject(__('Activate your '.console::$systemName.' account'))
 							->viewVars(array('user' => $this->request->data['User'], 'activateLink' => Router::url(array('controller' => 'users', 'action' => 'activateAccount', '?' => array('activation' => $code)), true)))
 							->send();
 					}
@@ -112,23 +111,22 @@ class UsersController extends AppController {
 			$this->redirect('/');
 		}
 		if ($this->request->is('post')) {
-			$this->Auth->userScope = array('User.activated'=>1);
 			if ($this->Auth->login()) {
 				$this->_refreshAuth();
 				$this->set('loggedIn', true);
-				$this->su(__('Sie sind nun eingeloggt.'));
+				$this->su(__('You are now logged in.'));
 				if($this->request->data['User']['goto'])
 					$this->redirect($this->Auth->redirect(), 'real');
 				else
 					$this->redirect($this->Auth->redirect('/', 'real'));
 			} else {
-				$this->er(__('Invalid email or password, try again'));
+				$this->er(__('Invalid email or password or account was not activated.'));
 			}
 		}
 	}
 	
 	public function logout() {
-		$this->redirect($this->Auth->logout(), 'real');
+		$this->redirect($this->Auth->logout());
 		$this->render('../dummy');
 	}
 	
@@ -136,16 +134,16 @@ class UsersController extends AppController {
 		$q = $this->request->query;
 		$this->loadModel('Activation');
 		if($q['activation']){
-			$a = $this->Activation->find('first', array('conditions' => 'id="'.$q['activation'].'"'));
-			if(!empty($a)){
-				$this->User->id = $a['Activation']['object_id'];
+			$u = $this->User->find('first', array('conditions' => 'activation_code="'.$q['activation'].'"'));
+			if(!empty($u)){
+				$this->User->id = $u['User']['id'];
 				if($this->User->exists()) {
 					$this->User->save(array('User' => array('activated' => 1)));
 					$user = $this->User->read();
 					$this->request->data = $user;
 					$this->Auth->login($user);
 					$this->_refreshAuth();
-					$this->su(__('Your account was successfully verified. Welcome to Muzup!'));
+					$this->su(__('Your account was successfully verified. Welcome to '.console::$systemName.'!'));
 					$this->redirect(array('controller' => 'users', 'action' => 'view', $this->User->id));
 				} else {
 					$this->er(__('Invalid link.'));
@@ -254,24 +252,6 @@ class UsersController extends AppController {
 				$this->er("The user doesn't exist.");
 			} else $exists = true;
 		} else $exists = true;
-		if($exists){
-			$ownProfile = false;
-			$isRecommended = false;
-			if($this->Auth->loggedIn()) {
-				if($this->User->id == $this->Auth->user('id')) 
-					$ownProfile = true; 
-				else {
-					$self = $this->User->find('first', array('recursive' => $recursive, 'conditions' => 'User.id='.$this->Auth->user('id')));
-					if($self['RecommendedUser'])
-						foreach($self['RecommendedUser'] as $ru) {
-							if($ru['id'] == $this->User->id) {
-								$isRecommended = true;
-								break;
-							}
-						}
-				}
-			}
-		}
 		$this->set(compact('user', 'ownProfile', 'isRecommended'));
 	}
 	
@@ -311,7 +291,7 @@ class UsersController extends AppController {
  * @param string $id
  * @return void
  */
-	public function edit($id = null) {
+	public function settings($id = null) {
 		$user = $this->Auth->user();
 		$id = $user['id'];
 		$this->User->id = $id;
@@ -322,13 +302,8 @@ class UsersController extends AppController {
 			$user = $this->request->data['User'];
 			$data = $this->request->data;
 			//Create New Genres for User
-			$data['Genre']['Genre'] = $this->addGenres($data['New']['Genre'], $data['Genre']['Genre']);
-			//Create New Tags for User
-			$data['Tag']['Tag'] = $this->addTags($data['New']['Tag'], $data['Tag']['Tag']);
 			if ($this->User->save($data)) {
 				$u = $this->User->read(); //read user to get the setting id
-				$this->User->Setting->id = $u['Setting']['id']; //set the setting id for saving
-				$this->User->Setting->save($this->request->data);  //save the settings model
 				//debug($this->User->lastQuery());
 				$this->_refreshAuth(); //refresh the authUser, if his url was change
 				//$this->_refreshAuth('name', $this->data['User']['name']); //refresh the authUser
@@ -346,9 +321,7 @@ class UsersController extends AppController {
 				$this->request->data['New']['Tag'] = implode(',', Set::classicExtract($tags, '{n}.name'));
 		}
 		$user = $this->User->read(null, $id);
-		$tags = $this->User->Tag->find('list');
-		$topgenres = $this->User->Genre->mainGenres('list');
-		$this->set(compact('tags', 'topgenres', 'user'));
+		$this->set(compact('user'));
 		//debug($this->Session->read('Auth.User.url'));
 	}
 	

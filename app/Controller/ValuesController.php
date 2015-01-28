@@ -6,15 +6,6 @@ App::uses('AppController', 'Controller');
  * @property Value $Value
  */
 class ValuesController extends AppController {
-/**
- * index method
- *
- * @return void
- */
-	public function index() {
-		$this->Value->recursive = 0;
-		$this->set('values', $this->paginate());
-	}
 
 /**
  * view method
@@ -25,6 +16,7 @@ class ValuesController extends AppController {
  */
 	public function view($id = null) {
 		$this->Value->id = $id;
+		$this->Value->recursive = 0;
 		if (!$this->Value->exists()) {
 			throw new NotFoundException(__('Invalid value'));
 		}
@@ -47,8 +39,10 @@ class ValuesController extends AppController {
 				$this->Session->setFlash(__('The value could not be saved. Please, try again.'));
 			}
 		}
+		$this->loadModel('Method');
 		$units = $this->Value->Unit->find('list');
-		$this->set(compact('project_id', 'units', 'inputs'));
+		$methods = $this->Method->find('list', array('conditions' => 'project_id = 0 OR project_id = '.$project_id));
+		$this->set(compact('project_id', 'units', 'inputs', 'methods'));
 	}
 
 /**
@@ -63,10 +57,14 @@ class ValuesController extends AppController {
 		if (!$this->Value->exists()) {
 			throw new NotFoundException(__('Invalid value'));
 		}
+		$this->Value->recursive = 0;
 		$v = $this->Value->read(null, $id);
+		$project_id = $v['Value']['project_id'];
 		if ($this->request->is('post') || $this->request->is('put')) {
+			if($this->request->data['Value']['method_id']) {
+				$this->request->data['Value']['method_params'] = json_encode($this->request->data['params']);
+			}
 			if ($this->Value->save($this->request->data)) {
-				$project_id = $v['Value']['project_id'];
 				$this->Session->setFlash(__('The value has been saved'));
 				$this->redirect(array('controller' => 'projects', 'action' => 'view', $project_id));
 			} else {
@@ -75,8 +73,18 @@ class ValuesController extends AppController {
 		}  else {
 			$this->request->data = $this->Value->read(null, $id);
 		}
+		$this->loadModel('Method');
 		$units = $this->Value->Unit->find('list');
-		$this->set(compact('units', 'inputs'));
+		$methods = $this->Method->find('list', array('conditions' => 'project_id = 0 OR project_id = '.$project_id));
+		$values = $this->Value->find('list', array('order' => 'Value.name ASC', 'conditions' => 'Value.id != "'.$id.'" AND project_id = '.$project_id));
+		
+		$this->loadModel('Method');
+		if($v['Method']['id']) {
+			$params = $this->Method->parse_params($v['Method']['params']);
+			$this->request->data['params'] = json_decode($this->request->data['Value']['method_params'], true);
+		}
+		//debug($params);
+		$this->set(compact('units', 'inputs', 'methods', 'params', 'values'));
 		$this->render('add');
 	}
 
@@ -96,9 +104,14 @@ class ValuesController extends AppController {
 		if (!$this->Value->exists()) {
 			throw new NotFoundException(__('Invalid value'));
 		}
+		$v = $this->Value->read(null, $id);
+		
+		if (!$this->Value->exists()) {
+			throw new NotFoundException(__('Invalid value'));
+		}
 		if ($this->Value->delete()) {
 			$this->Session->setFlash(__('Value deleted'));
-			$this->redirect(array('action' => 'index'));
+			$this->redirect(array('controller' => 'projects', 'action' => 'view', $v['Value']['project_id']));
 		}
 		$this->Session->setFlash(__('Value was not deleted'));
 		$this->redirect(array('action' => 'index'));

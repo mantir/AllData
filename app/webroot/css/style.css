@@ -61,6 +61,33 @@ pre input, pre select{
     display: block;
 }
 
+.form-group input[type=checkbox]{
+	margin-right:10px !important;
+}
+
+#form-tabs{
+	position:relative;
+	z-index:1030;
+	margin-top:-50px;
+}
+
+.make-null{
+	cursor:pointer;
+}
+a{
+	cursor:pointer;
+	outline:none !important;
+}
+
+#form-tabs .nav-tabs a{
+	color:#000;
+	outline:none !important;
+}
+
+#value-list{
+	margin-bottom:0 !important;
+}
+
 .ml-0{margin-left:0px}.ml-5{margin-left:5px}.ml-10{margin-left:10px}.ml-20{margin-left:20px}
 .mr-0{margin-right:0px}.mr-5{margin-right:5px}.mr-10{margin-right:10px}.mr-20{margin-right:20px}.mr-30{margin-right:30px}
 .mt-0{margin-top:0px}.mt-5{margin-top:5px}.mt-10{margin-top:10px}.mt-20{margin-top:20px}.mt-30{margin-top:30px}

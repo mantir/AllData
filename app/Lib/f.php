@@ -44,6 +44,21 @@ class f{
 		return $xml->saveXML();
 	}
 	
+	function array_to_csv(array &$array)
+	{
+	   if (count($array) == 0) {
+		 return null;
+	   }
+	   ob_start();
+	   $df = fopen("php://output", 'w');
+	   //fputcsv($df, array_keys(reset($array)));
+	   foreach ($array as $row) {
+		  fputcsv($df, $row);
+	   }
+	   fclose($df);
+	   return ob_get_clean();
+	}
+	
 	
 	static function timeSpan($timestring, $timestamp, &$plus, &$minus){
 		$plus = strtotime('+'.$timestring, $timestamp);
@@ -79,4 +94,49 @@ class f{
 		ob_end_clean();
 		return $c;
 	}
+	
+	static  function url_to_absolute($absolute, $relative) {
+        $p = parse_url($relative);
+        if($p["scheme"]) return $relative;
+        
+        extract(parse_url($absolute));
+        
+        $path = dirname($path); 
+    
+        if($relative{0} == '/') {
+            $cparts = array_filter(explode("/", $relative));
+        }
+        else {
+            $aparts = array_filter(explode("/", $path));
+            $rparts = array_filter(explode("/", $relative));
+            $cparts = array_merge($aparts, $rparts);
+            foreach($cparts as $i => $part) {
+                if($part == '.') {
+                    $cparts[$i] = null;
+                }
+                if($part == '..') {
+                    $cparts[$i - 1] = null;
+                    $cparts[$i] = null;
+                }
+            }
+            $cparts = array_filter($cparts);
+        }
+        $path = implode("/", $cparts);
+        $url = "";
+        if($scheme) {
+            $url = "$scheme://";
+        }
+        if($user) {
+            $url .= "$user";
+            if($pass) {
+                $url .= ":$pass";
+            }
+            $url .= "@";
+        }
+        if($host) {
+            $url .= "$host/";
+        }
+        $url .= $path;
+        return $url;
+    }
 }

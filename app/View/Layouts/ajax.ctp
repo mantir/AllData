@@ -14,6 +14,7 @@ endif;
 
 if($loadTemplate)
 	$return['content'] = $this->fetch('content');
+
 //unset($return['vars']);
 if(is_array($return['passedArgs']))
 	$return['routeUrl'] = $this->Html->url(array_merge($return['passedArgs'], array('controller' => $return['controller'], 'action' => $return['action'])));
