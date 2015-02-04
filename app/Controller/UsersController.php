@@ -8,7 +8,7 @@ class UsersController extends AppController {
 			'authenticate' => array(
 				'Form' => array(
 					'fields' => array('username' => 'email'),
-					'scope' => array('activated' => 1)
+					'scope' => array('activated' => 1, 'isGuest' => 0)
 				)
 			)
 		)
@@ -24,7 +24,7 @@ class UsersController extends AppController {
 	}
 	
 	/*public function initDB() {
-		$this->Acl->deny(0, 'addy');
+		$this->Acl->deny(0, 'admin');
 	
 		//we add an exit to avoid an ugly "missing views" error message
 		echo "all done";
@@ -36,7 +36,7 @@ class UsersController extends AppController {
 		$this->render('login');
 	}
 	
-	public function addy_index(){
+	public function admin_index(){
 		$this->set('session', $this->Auth->user());
 		$this->User->recursive = 0;
 		$this->set('users', $this->paginate());
@@ -46,13 +46,13 @@ class UsersController extends AppController {
 		//$this->loadModel('Aro');
 		//debug($this->request->data);
 		//$this->set("groups", $this->Aro->find('list', array('fields' => array('Aro.alias'))));
-		if ($this->request->is('post')) {
+		if ($this->request->is('post') || $this->request->is('put')) {
 			$this->User->create();
 			$this->request->data['User']['id'] = $this->generateID();
 			$this->request->data['User']['activated'] = 0;
 			$user = $this->request->data['User'];
 			$this->request->data['User']['register_time'] = time();
-			$this->request->data['User']['activation_code'] = uniqid();
+			$code = $this->request->data['User']['activation_code'] = uniqid();
 			if (($user['password'] == $user['passwordRepeat']) && $this->User->save($this->request->data)) {
 					$this->su(__('The registration was successfull. An email with an activation link was sent to your inbox.'));
 					//cant send mails from localhost...
@@ -144,7 +144,7 @@ class UsersController extends AppController {
 					$this->Auth->login($user);
 					$this->_refreshAuth();
 					$this->su(__('Your account was successfully verified. Welcome to '.console::$systemName.'!'));
-					$this->redirect(array('controller' => 'users', 'action' => 'view', $this->User->id));
+					$this->redirect('/');
 				} else {
 					$this->er(__('Invalid link.'));
 				}
@@ -213,12 +213,12 @@ class UsersController extends AppController {
 		} 
 	}
 	
-	public function addy_login(){
+	public function admin_login(){
 		$this->render('login');
 		$this->login();
 	}
 	
-	public function addy_loginAs($id = null){
+	public function admin_loginAs($id = null){
 		if($this->Auth->user('isAdmin')){
 			$user = $this->User->read(null, $id);
 			$this->Auth->login($user);
@@ -238,10 +238,10 @@ class UsersController extends AppController {
 		//$this->er('URL: '.$url);
 		if(!$url) {
 			$user = $this->Auth->user();
-			$url = $user['url'];
+			$url = $user['id'];
 			//debug($user);
 		} 
-		$user = $this->User->find('first', array('conditions' => 'User.url = "'.$url.'"'));
+		$user = $this->User->find('first', array('conditions' => 'User.id = "'.$url.'"'));
 		//debug($user);
 		$this->User->id = $user['User']['id'];
 		$recursive = 1;
@@ -253,18 +253,6 @@ class UsersController extends AppController {
 			} else $exists = true;
 		} else $exists = true;
 		$this->set(compact('user', 'ownProfile', 'isRecommended'));
-	}
-	
-/**
- * view method Profile
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
-	
-	public function dashboard(){
-		
 	}
 
 /**
@@ -308,19 +296,17 @@ class UsersController extends AppController {
 				$this->_refreshAuth(); //refresh the authUser, if his url was change
 				//$this->_refreshAuth('name', $this->data['User']['name']); //refresh the authUser
 				//$this->_refreshAuth('Setting', $u['Setting']); //refresh the authUser
-				$this->Session->setFlash(__('Changes has been saved'));
+				$this->Session->setFlash(__('Changes have been saved'));
 				//$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('Something went wrong. Please, try again.'));
 			}
 		} else {
 			$this->request->data = $this->User->read(null, $id);
-			$this->request->data['New']['Genre'] = $this->request->data['Genre'];
-			$tags = $this->request->data['Tag'];
-			if(count($tags))
-				$this->request->data['New']['Tag'] = implode(',', Set::classicExtract($tags, '{n}.name'));
+			unset($this->request->data['User']['password']);
 		}
 		$user = $this->User->read(null, $id);
+		unset($user['User']['password']);
 		$this->set(compact('user'));
 		//debug($this->Session->read('Auth.User.url'));
 	}
@@ -353,13 +339,13 @@ class UsersController extends AppController {
 
 
 /**
- * addy_view method
+ * admin_view method
  *
  * @throws NotFoundException
  * @param string $id
  * @return void
  */
-	public function addy_view($id = null) {
+	public function admin_view($id = null) {
 		$this->User->id = $id;
 		if (!$this->User->exists()) {
 			throw new NotFoundException(__('Invalid user'));
@@ -368,11 +354,11 @@ class UsersController extends AppController {
 	}
 
 /**
- * addy_add method
+ * admin_add method
  *
  * @return void
  */
-	public function addy_add() {
+	public function admin_add() {
 		if ($this->request->is('post')) {
 			$this->User->create();
 			if ($this->User->save($this->request->data)) {
@@ -385,13 +371,13 @@ class UsersController extends AppController {
 	}
 
 /**
- * addy_edit method
+ * admin_edit method
  *
  * @throws NotFoundException
  * @param string $id
  * @return void
  */
-	public function addy_edit($id = null) {
+	public function admin_edit($id = null) {
 		$this->User->id = $id;
 		if (!$this->User->exists()) {
 			throw new NotFoundException(__('Invalid user'));
@@ -409,14 +395,14 @@ class UsersController extends AppController {
 	}
 
 	/**
-	 * addy_delete method
+	 * admin_delete method
 	 *
 	 * @throws MethodNotAllowedException
 	 * @throws NotFoundException
 	 * @param string $id
 	 * @return void
 	 */
-	public function addy_delete($id = null) {
+	public function admin_delete($id = null) {
 		if (!$this->request->is('post')) {
 			throw new MethodNotAllowedException();
 		}

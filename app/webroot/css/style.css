@@ -32,6 +32,20 @@ body.modal-open{
 	left:50%;
 }
 
+.section-headline{
+	background:#EEE;
+	padding:3px 10px;
+	margin-bottom:0;
+}
+
+.section-headline i{
+	float:right;
+	color:#CCC;
+}
+.section-headline i:hover{
+	color:#333;
+}
+
 table .actions a{
 	margin-right:10px;
 }
@@ -77,6 +91,11 @@ pre input, pre select{
 a{
 	cursor:pointer;
 	outline:none !important;
+}
+.error-message{
+	color:#F00;
+	margin-left: 5px;
+    margin-top: 5px;
 }
 
 #form-tabs .nav-tabs a{

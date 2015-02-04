@@ -3,20 +3,12 @@
  * Application level Controller
  *
  * This file is application-wide controller file. You can put all
- * application-wide controller-related methods here.
+ * application-wide controller-related methods here. All other Controllers will inherit from the AppController.
  *
- * PHP 5
- *
- * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
- *
- * Licensed under The MIT License
- * Redistributions of files must retain the above copyright notice.
- *
- * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
- * @link          http://cakephp.org CakePHP(tm) Project
+ * @copyright     Martin Kapp 2014-15
+ * @link          http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  * @package       app.Controller
- * @since         CakePHP(tm) v 0.2.9
+ * @since         v 0.1
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
@@ -27,18 +19,9 @@ App::uses('f', 'Lib'); //helper functions
 App::uses('Browser', 'Vendor'); //to get browser Information
 
 
-/**
- * Application Controller
- *
- * Add your application-wide methods in the class below, your controllers
- * will inherit them.
- *
- * @package       app.Controller
- * @link http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
- */
 class AppController extends Controller {
-	/*
-		p is the merge between query params and posted params, so all params from GET and POST together
+	/**
+	*	p is the merge between query params and posted params, so all params from GET and POST together
 	*/
 	var $p = array();
 	var $error = '', $success = '';
@@ -88,7 +71,6 @@ class AppController extends Controller {
 		//The functions that are always allowed for every user
 		$this->Auth->allow('index', 'view', 'display', 'autocomplete', 'resetPassword', 'activateAccount', 'enterDeveloperMode', 'exitDeveloperMode', 'search', 'export', 'register', 'login', 'images', 'modeltest'); 
 		$this->Auth->allow();  //No login
-		$this->set('loggedIn', $this->Auth->loggedIn());
 		$this->action = $this->request->params['action'];
 		$user = $this->Auth->user();
 		$this->actor_id = $user['id'];
@@ -125,14 +107,14 @@ class AppController extends Controller {
 				break;
 			}
 		}*/
-		
-		if($this->request->params['addy']) {
-			//debug($user);
+		//debug($user);
+		/*if($this->request->params['admin']) {
+			debug($user);
 			if(!$user['isAdmin'])
-				$this->redirect(str_replace('addy/', '/', $this->request->url));
+				$this->redirect(str_replace('admin/', '/', $this->request->url));
 			else
 				$this->DeveloperMode = true;
-		}
+		}*/
 		if($this->json && false)
 			$this->layout = 'json';
 		else
@@ -157,6 +139,44 @@ class AppController extends Controller {
 				//$this->redirect('/users/login', 403, false);
 			}
 		}
+	}
+	
+	/**
+	* Checks whether the user is authorized for actions in the current project
+	* @param int project_id: ID to check if the user has the necessary state
+	* @param int state: the state the user must at least have in this project, 0: Guest, 1: Contributor, 2: Admin
+	* @param bool render: whether to render an error message and change the view if no authorization is found
+	* @returns boolean
+	*/
+	public function authorizedProject($project_id, $state, $render = true){
+		if(!$this->Auth->user('id'))
+			return false;
+		if($this->Auth->user('isAdmin'))
+			return true;
+		//debug($this->Auth->user('id'));
+		$this->loadModel('Project');
+		$this->Project->Behaviors->attach('Containable');
+		$project = $this->Project->find('first', array('fields' => 'id', 'contain' => array('Member' => array('fields' => 'id')), 'conditions' => 'Project.id = "'.$project_id.'"'));
+		//debug($project);
+		if(is_array($project['Member']))
+			foreach($project['Member'] as $member) {
+				if($member['id'] == $this->Auth->user('id')){
+					return $member['ProjectsUser']['state'] >= $state;
+				}
+			}
+		if($render) {
+			$this->noPermissionError();
+		}
+		return false;
+	}
+	
+	/**
+	* Creates an error message, that the user has no rights to perform an action and renders an empty page
+	* @return void
+	*/
+	public function noPermissionError(){
+		$this->er(__('You have no permission to perform this action in this project.'));
+		$this->render('../dummy');
 	}
 	
 	public function isAuthorized() {
@@ -194,6 +214,10 @@ class AppController extends Controller {
 		if($layout) $this->layout = $layout;
 		if($this->layout == 'ajax')
 			$this->layout = 'json';
+		if($this->layout == 'default') {
+			$this->set('loggedIn', $this->Auth->loggedIn());
+			$this->set('authUser', $this->Auth->user());
+		}
 		return parent::render($view, $this->layout);
 	}
 	
@@ -494,13 +518,13 @@ class AppController extends Controller {
         foreach($permissions as $permission) {
             if($permission == '*') {
                 Configure::write('debug',2);
-                return true;//Super Admin Bypass Found
+                return true; //Super Admin Bypass Found
             }
             if($permission == $controllerName.':*') {
-                return true;//Controller Wide Bypass Found
+                return true; //Controller Wide Bypass Found
             }
             if($permission == $controllerName.':'.$actionName) {
-                return true;//Specific permission found
+                return true; //Specific permission found
             }
         }
         return false;
@@ -563,27 +587,5 @@ class AppController extends Controller {
 		$this->Session->setFlash($this->error.$this->success); 
 	}
 	
-	function test(){ 
-		//$d = simplexml_load_string('');
-		$date = '14.09.2013';
-		$datetime1 = new DateTime($date);
-		$interval = $datetime1->diff(new DateTime(date('d.m.Y')));
-		debug($interval);
-		$this->render('../dummy');
-		
-		$this->loadModel('Station');
-		$ev = $this->Station->find('all', array('recursive' => 0, 'order' => 'rank ASC'));
-		echo json_encode($ev);
-		$this->render('../dummy');
-	}
-	
-	function modeltest($id = false){
-		$this->loadModel('Event');
-		$this->Event->Behaviors->load('Containable');
-		$contain = array('Video.Similar');
-		debug($contain);
-		$e = $this->Event->find('all', array('conditions' => 'Event.id=150953 AND Event.station_id=28229', 'limit' => 200, 'contain' => $contain));
-		debug($e);
-	}
 
 }

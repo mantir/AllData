@@ -35,8 +35,19 @@ class User extends AppModel {
 				'message' => 'Your password must have at least 6 up to 30 characters',
 				'allowEmpty' => false,
 				'last' => false, // Stop validation after this rule
-				'on' => 'create', // Limit validation to 'create' or 'update' operations
 			)
+		),
+		'name' => array(
+			'between' => array(
+				'rule' => array('between', 4, 30),
+				'message' => 'Name must have at least 4 up to 30 characters',
+				'allowEmpty' => false,
+				'last' => false, // Stop validation after this rule
+			),
+			'unique' => array(
+				'rule' => 'isUnique',
+				'message' => 'It already exists a user with this name.'
+			),
 		),
 		'email' => array(
 			'unique' => array(

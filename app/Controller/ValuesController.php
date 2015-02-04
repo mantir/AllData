@@ -7,31 +7,39 @@ App::uses('AppController', 'Controller');
  */
 class ValuesController extends AppController {
 
-/**
- * view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
+	/**
+	 * view method
+	 *
+	 * @throws NotFoundException
+	 * @param string $id
+	 * @return void
+	 */
 	public function view($id = null) {
 		$this->Value->id = $id;
+		
 		$this->Value->recursive = 0;
 		if (!$this->Value->exists()) {
 			throw new NotFoundException(__('Invalid value'));
 		}
-		$this->set('value', $this->Value->read(null, $id));
+		$v = $this->Value->read(null, $id);
+		if(!$this->authorizedProject($v['Value']['project_id'], console::$contributorState)) {
+			return;
+		}
+		$this->set('value', $v);
 	}
 
-/**
- * add method
- *
- * @return void
- */
+	/**
+	 * add method
+	 *
+	 * @return void
+	 */
 	public function add($project_id) {
 		if ($this->request->is('post')) {
 			$this->Value->create();
 			$this->request->data['Value']['project_id'] = $project_id;
+			if(!$this->authorizedProject($v['Value']['project_id'], console::$contributorState)) {
+				return;
+			}
 			if ($this->Value->save($this->request->data)) {
 				$this->Session->setFlash(__('The value has been saved'));
 				$this->redirect(array('controller' => 'projects', 'action' => 'view', $project_id));
@@ -44,14 +52,14 @@ class ValuesController extends AppController {
 		$methods = $this->Method->find('list', array('conditions' => 'project_id = 0 OR project_id = '.$project_id));
 		$this->set(compact('project_id', 'units', 'inputs', 'methods'));
 	}
-
-/**
- * edit method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
+	
+	/**
+	 * edit method
+	 *
+	 * @throws NotFoundException
+	 * @param string $id
+	 * @return void
+	 */
 	public function edit($id = null) {
 		$this->Value->id = $id;
 		if (!$this->Value->exists()) {
@@ -60,6 +68,9 @@ class ValuesController extends AppController {
 		$this->Value->recursive = 0;
 		$v = $this->Value->read(null, $id);
 		$project_id = $v['Value']['project_id'];
+		if(!$this->authorizedProject($v['Value']['project_id'], console::$contributorState)) {
+			return;
+		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if($this->request->data['Value']['method_id']) {
 				$this->request->data['Value']['method_params'] = json_encode($this->request->data['params']);
@@ -88,14 +99,14 @@ class ValuesController extends AppController {
 		$this->render('add');
 	}
 
-/**
- * delete method
- *
- * @throws MethodNotAllowedException
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
+	/**
+	 * delete method
+	 *
+	 * @throws MethodNotAllowedException
+	 * @throws NotFoundException
+	 * @param string $id
+	 * @return void
+	 */
 	public function delete($id = null) {
 		if (!$this->request->is('post')) {
 			throw new MethodNotAllowedException();
@@ -105,6 +116,10 @@ class ValuesController extends AppController {
 			throw new NotFoundException(__('Invalid value'));
 		}
 		$v = $this->Value->read(null, $id);
+		
+		if(!$this->authorizedProject($v['Value']['project_id'], console::$contributorState)) {
+			return;
+		}
 		
 		if (!$this->Value->exists()) {
 			throw new NotFoundException(__('Invalid value'));

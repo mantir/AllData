@@ -60,7 +60,7 @@ unset($return['vars']['return']); //clear the variable in $return that include $
               <ul class="nav navbar-nav navbar-right">
               	<li class="dropdown">
                 	<? if($loggedIn) { ?>
-                    <a id="user-link" data-toggle="dropdown" href="<?=$this->Html->url("/users/settings")?>"><i class="fa fa-user"></i> <?='Logged in'?> <span class="caret"></span></a>
+                    <a id="user-link" data-toggle="dropdown" href="javascript:;"><i class="fa fa-user"></i> <?=$authUser['name']?> <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu" aria-labelledby="user-link">
                         <li><a href="<?=$this->Html->url("/users/settings")?>"><i class="fa fa-cog"></i> <?=__('Settings')?></a></li>
                         <li><a href="<?=$this->Html->url("/users/logout")?>"><?=__('Logout') ?></a></li>
@@ -72,12 +72,14 @@ unset($return['vars']['return']); //clear the variable in $return that include $
                 <li>
                     <a href="<?=$this->Html->url("/documentations/index")?>"><i class="glyphicon glyphicon-question-sign"></i> <?=__('Help')?></a>
                 </li>
+                <? if($authUser && $authUser['isAdmin']) { ?>
                 <li>
-                    <a href="<?=$this->Html->url("/methods/index")?>"><i class="fa fa-superscript fa-fw"></i> <?=__('Methods')?></a>
+                    <a href="<?=$this->Html->url("/admin/methods/index")?>"><i class="fa fa-superscript fa-fw"></i> <?=__('Methods')?></a>
                 </li>
                 <li>
-                    <a href="<?=$this->Html->url("/units/index")?>"><i class="fa fa-link"></i> <?=__('Units')?></a>
+                    <a href="<?=$this->Html->url("/admin/units/index")?>"><i class="fa fa-link"></i> <?=__('Units')?></a>
                 </li>
+                <? } ?>
               </ul>
             </div>
           </div>
@@ -86,7 +88,7 @@ unset($return['vars']['return']); //clear the variable in $return that include $
         	<div class='page'>
             	<? $message =  $this->Session->flash();
 				if($message) {  ?>
-					<div style="position:absolute; z-index:1000" class="alert alert-dismissable alert-danger">
+					<div style="position:absolute; z-index:1000" class="alert alert-danger">
 					  <?= $message ?>
 					</div>
 				<? } ?>
@@ -104,5 +106,22 @@ unset($return['vars']['return']); //clear the variable in $return that include $
 				app.init('<?=$return['base']?>', data, $('.page').html());
 			});
         </script>
+        
+        <div id="error-view-modal" class="modal fade">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title"><?=__('Error') ?></h4>
+              </div>
+              <div class="modal-body">
+                
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal"><?= __('Close')?></button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
     </body>
 </html>

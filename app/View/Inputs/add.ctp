@@ -31,12 +31,12 @@
 			$values[-1] = 'Timestamp';
 			$inputReplace = function($matches) use ($limiter, $values, $self, &$paths, &$counter, $values, $saved_paths, $title_limiter) {
 				$v = $matches[1];
-				$v = split($title_limiter, $v);
-				$title = $v[1] ? $v[0].' / '.$v[1] : $v[0];
+				$v = explode($title_limiter, $v);
+				$title = isset($v[1]) ? $v[0].' / '.$v[1] : $v[0];
 				
 				$path = stripslashes($matches[2]);
 				if($paths[$path]) {
-					return $v[1] ? $v[1] : $v[0];
+					return isset($v[1]) ? $v[1] : $v[0];
 				}
 				$paths[$path] = true;
 				$counter++;
@@ -45,9 +45,15 @@
 					
 				return '<input type="hidden" name="data[Value][path]['.$counter.']" value="'.$path.'" />'.
 						$self->Form->input('Value.Value.'.$counter, array(
-							'type' => 'select', 'options' => $values, 'data-toggle' => "tooltip", 
-							'title' => $title, 'empty' => '  --------', 'label' => false, 'div' => false, 
-							'value' => $self->request->data['Value']['Value'][$counter], 'multiple' => false)
+							'type' => 'select', 
+							'options' => $values, 
+							'data-toggle' => "tooltip", 
+							'title' => $title, 
+							'empty' => '  --------', 
+							'label' => false, 
+							'div' => false, 
+							'value' => $self->request->data['Value']['Value'][$counter], 
+							'multiple' => false)
 						);
 			};
 			if($skeleton) {

@@ -7,22 +7,38 @@ App::uses('AppModel', 'Model');
  * @property Value $Value
  */
 class Input extends AppModel {
+	
+	public $validate = array(
+		'name' => array(
+			'notEmpty' => array(
+				'message' => 'Must not be empty',
+				'allowEmpty' => false,
+				'last' => false,
+			),
+			'between' => array(
+				'rule' => array('between', 2, 20),
+				'message' => 'Name must have at least 2 up to 20 characters',
+				'allowEmpty' => false,
+				'last' => false, // Stop validation after this rule
+			),
+		),
+	);
 
-/**
- * Display field
- *
- * @var string
- */
+	/**
+	 * Display field
+	 *
+	 * @var string
+	 */
 	public $displayField = 'name';
 
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
-/**
- * belongsTo associations
- *
- * @var array
- */
+	/**
+	 * belongsTo associations
+	 *
+	 * @var array
+	 */
 	public $belongsTo = array(
 		'Project' => array(
 			'className' => 'Project',
@@ -33,11 +49,11 @@ class Input extends AppModel {
 		)
 	);
 
-/**
- * hasAndBelongsToMany associations
- *
- * @var array
- */
+	/**
+	 * hasAndBelongsToMany associations
+	 *
+	 * @var array
+	 */
 	public $hasAndBelongsToMany = array(
 		'Value' => array(
 			'className' => 'Value',

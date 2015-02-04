@@ -122,7 +122,7 @@
                         	<input <?= isset($form_values[$v['Value']['id']]) ? 'checked="checked"' : ''?> data-value_id="<?=$v['Value']['id'] ?>" class="value-checkbox" <?= $noMeasures ? 'disabled="disabled"' : ''; ?> type="checkbox" id="value_<?=$v['Value']['id'] ?>" />
                             <a data-value_id="<?=$v['Value']['id'] ?>" href="javascript:;" class="ml-10 value-link"><?=$v['Value']['name'] ?></a>
                             <div class="value-buttons pull-right">
-                            	<?php echo $this->Html->link('<i class="fa fa-edit"></i>', array('controller' => 'values', 'action' => 'edit', $v['Value']['id']), array(
+                            	<?php echo $this->Html->link(console::$icons['edit'], array('controller' => 'values', 'action' => 'edit', $v['Value']['id']), array(
 									'data-value_id' => $v['Value']['id'], 
 									'title' => __('Edit'),
 									'escape' => false, 

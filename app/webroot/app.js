@@ -1,9 +1,7 @@
 requirejs.config({
 	baseUrl : baseUrl+'/',
 	paths: {
-		//js:'js',
-		views: 'views',
-		c: 'controllers',
+		c: 'controllers', //for shorter paths in app.controllerList
 
 		calendar: 'js/bootstrap-datepicker',
 		editor: 'js/ckeditor/ckeditor',
@@ -21,23 +19,23 @@ requirejs.config({
 });
 var routes = {
 	'/':'home',
-	'':'home'
+	'':'home',
 };
 //routes[baseUrl+'/*'] = 'relative';
 var AppRouter = BackboneMVC.Router.extend({
 	name: "appRouter",
 	routes:routes,
-	defaultRoute: function(path) {
-		alert(Backbone.history.fragment);
-    },
 	home:function(){
 		app.route('projects/index');
-	}
+	},
+	admin:function(){
+		alert('THX');
+	},
 });
 app = {
 	c: {}, //Controller array
 	controllers: {}, //Controllerklassen
-	controllerList: ["c/projects", "c/pages", "c/documentations", "c/logs", 'c/settings', 'c/values', 'c/inputs', 'c/units', 'c/methods', 'c/exports', 'c/users'],
+	controllerList: ["c/projects", "c/pages", "c/documentations", "c/logs", 'c/settings', 'c/values', 'c/inputs', 'c/units', 'c/methods', 'c/exports', 'c/users', 'c/admin'],
 	viewType:"text/x-underscore-template",
 	loader_gif:baseUrl+"/img/gloader.gif",
 	loader_gif_2:baseUrl+"/img/fbloader.gif",
@@ -89,6 +87,9 @@ app = {
 		if(!notrigger)
 			app.lastURL = Backbone.history.fragment;
 		this.router.navigate(url, {trigger: !notrigger, replace: replace});
+	},
+	updateUrl: function(url){
+		this.route(url, true, true);
 	},
 	call_url: function(url){
 		var current = Backbone.history.fragment;
@@ -162,7 +163,8 @@ app = {
 			return q.promise;
 		}
 		this.locked = true;
-
+		if(url.indexOf('/admin_') > -1) //Admin routing
+			url = 'admin/'+url.replace(RegExp('/admin_'), '/');
 		if(window.backDetected) {
 			back = true;
 			window.backDetected = false;
@@ -224,10 +226,36 @@ app = {
         	$.getJSON(this.baseUrl+this.jsonUrl + url)
 				.done(function(d){ 
 					app.requests[url] = d; 
+					app.checkForMessageToShow(d);
 					q.resolve(d);
 				})
-				.fail(function(){ 
-					alert('Es ist ein Fehler aufgetreten. Bitte Seite neuladen.'); q.resolve({}); 
+				.fail(function(d){
+					var text = d.responseText;
+					console.log(text);
+					var m = text.match(/{.*}/mg);
+					console.log(m);
+					if(m[0]) {
+						for(var i in m) {
+							if($.isNumeric(i)) {
+								try {
+									d = eval('('+m[i]+')');
+								} catch(e) {
+									d = {};
+								}
+								if(d.vars) {
+									var index = text.search(RegExp(m[i].replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'), 'mg'));
+									text = text.substr(0, index) + text.substring(index + m[i].length);
+									break;
+								}
+							} 
+						}
+					} else
+						d = {};
+					text += 'An error occured, please reaload the page.';
+					$('#error-view-modal').find('.modal-body').html(text);
+					$('#error-view-modal').modal();
+					app.checkForMessageToShow(d);
+					q.resolve(d); 
 				});
 		}
 		return q.promise;
@@ -236,6 +264,11 @@ app = {
 		var q = Q.defer();
         $.post(this.baseUrl+this.jsonUrl + url).done(function(d){ app.requests[url] = d; q.resolve(d);}).fail(function(){ alert('Es ist ein Fehler aufgetreten. Bitte Seite neuladen.'); q.resolve({}); });
 		return q.promise;
+	},
+	checkForMessageToShow: function(d){
+		if(d.message) {
+			
+		}
 	},
 	submit: function(e){
 		var p = $(e.target).serializeArray();

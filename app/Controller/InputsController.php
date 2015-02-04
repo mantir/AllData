@@ -9,23 +9,23 @@ class InputsController extends AppController {
 	var $marker = '_###_';
 	var $limiter = '_---_';
 	var $title_limiter = '_____';
-/**
- * index method
- *
- * @return void
- */
+	/**
+	 * index method
+	 *
+	 * @return void
+	 */
 	public function index() {
 		$this->Input->recursive = 0;
 		$this->set('inputs', $this->paginate());
 	}
 
-/**
- * view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
+	/**
+	 * view method
+	 *
+	 * @throws NotFoundException
+	 * @param string $id
+	 * @return void
+	 */
 	public function view($id = null) {
 		$this->Input->id = $id;
 		if (!$this->Input->exists()) {
@@ -34,11 +34,11 @@ class InputsController extends AppController {
 		$this->set('input', $this->Input->read(null, $id));
 	}
 
-/**
- * add method
- *
- * @return void
- */
+	/**
+	 * add method
+	 *
+	 * @return void
+	 */
 	public function add($project_id) {
 		if ($this->request->is('post')) {
 			$r = $this->request->data;
@@ -46,6 +46,7 @@ class InputsController extends AppController {
 			$filename = $this->upload();
 			if(!trim($name) || !$filename) {
 				$this->render('add');
+				$this->er(__('The name must not be empty and it must be uploaded a valid input template.'));
 				return;
 			}
 			$r['Input']['project_id'] = $project_id;
@@ -60,7 +61,6 @@ class InputsController extends AppController {
 				$this->Session->setFlash(__('The input could not be saved. Please, try again.'));
 			}
 		}
-		
 		$values = $this->Input->Value->find('list', array('conditions' => 'Value.project_id = '.$project_id));
 		$this->set(compact('name'));
 	}
@@ -100,6 +100,7 @@ class InputsController extends AppController {
 					}
 			if ($this->Input->save($r)) {
 				$this->Session->setFlash(__('The input has been saved'));
+				debug($r);
 				if(is_array($r['Value']['Value']))
 					foreach($r['Value']['Value'] as $i => $v) {
 						$path = $r['Value']['path'][$i];
@@ -148,11 +149,16 @@ class InputsController extends AppController {
 	public function parseTEXT($file = '../Test/test1.json', $delimiter = ',', &$data_row = -1, &$head_row = -1){
 		//$file = '../webroot/uploads/input_545950577d717xA80146_36765237.txt';
 		//$file = '../Test/test.txt';
-		$rows = file($file);
+		if(!file_exists($file)) {
+			$this->er('The input template file cannot be found. Please upload a new one.');
+			$rows = array();
+		} else
+			$rows = file($file);
 		$paths = array();
 		$data_row--;
 		$head_row--;
 		$header = array();
+		if(!$delimiter) $delimiter = ',';
 		foreach($rows as $i => $r) {
 			if($head_row == $i) {
 				$limiter = $delimiter;
@@ -171,7 +177,7 @@ class InputsController extends AppController {
 					$limiter = substr($limiter, 1);
 					$newRow = array();
 					foreach($cols as $j => $col) {
-						if($col = trim(str_replace("\n", '', $col))) {
+						if(($col = trim(str_replace(',', '.', str_replace("'", '', str_replace('"', '', str_replace("\n", '', $col)))))) !== '') {
 							$newRow[] = $this->marker.$header[$j].$col.$this->limiter.$j.$this->marker;
 						}
 					}
@@ -204,7 +210,10 @@ class InputsController extends AppController {
 	
 	public function getTemplateType($file){
 		$path = '../webroot'.$file;
-		$t = trim(file_get_contents($path));
+		$t = @file_get_contents($path);
+		$t = trim($t);
+		if(!$t)
+			return '';
 		$c = $t[0];
 		if($c == '{' || $c == '[')
 			return 'json';

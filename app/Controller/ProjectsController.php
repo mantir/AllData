@@ -1,4 +1,15 @@
 <?php
+/**
+ * Projects Controller
+ *
+ * Provides all project related functions.
+ *
+ * @copyright     Martin Kapp 2014-15
+ * @link          http://headkino.de
+ * @package       app.Controller
+ * @since         v 0.1
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
+ */
 App::uses('AppController', 'Controller');
 /**
  * Projects Controller
@@ -8,8 +19,7 @@ App::uses('AppController', 'Controller');
 class ProjectsController extends AppController {
 
 /**
- * index method
- *
+ * Shows a list of all for the users visible projects.
  * @return void
  */
 	public function index() {
@@ -19,8 +29,7 @@ class ProjectsController extends AppController {
 	}
 
 /**
- * view method
- *
+ * Shows a glance of a project with all Values, Inputs, Project Members, Methods, Units
  * @throws NotFoundException
  * @param string $id
  * @return void
@@ -33,26 +42,30 @@ class ProjectsController extends AppController {
 		}
 		$this->Project->Behaviors->load('Containable');
 		$this->loadModel('Method');
-		$p = $this->Project->find('first', array('conditions' => array('Project.id' => $id), 'contain' => array('Value' => array('Input', 'Unit', 'Method'), 'Input')));
+		$p = $this->Project->find('first', array('conditions' => array('Project.id' => $id), 'contain' => array('Value' => array('Input', 'Unit', 'Method'), 'Member', 'Input', 'Export')));
 		foreach($p['Value'] as $i =>  $v) {
 			if($v['method_id'])
 				$p['Value'][$i]['execName'] = $this->Method->getExecName($v['Method']['name'], $v['Method']['params'], $v['method_params'], Set::combine($p['Value'], '{n}.id', '{n}'));
 		}
 		//debug($p);
 		$this->set('project', $p);
-		$this->project_display_session($p);
+		$this->project_set_session($p);
 	}
 	
-	/*stores a current project to the session to output it on top of the page and to know in which project the user is currently navigating
-	@p: project record from database
+	/**
+	* stores a current project to the session to output it on top of the page and to memorize in which project the user is currently navigating
+	* @param array $p: project record from database
+	* @return void
 	*/
-	private function project_display_session($p){
+	private function project_set_session($p){
 		$this->Session->write('Project', array('id' => $p['Project']['id'], 'name' => $p['Project']['name']));
 	}
 	
-	/*returns a link list with files that could be imported from a source URL for an input
-	@input: input_id or input record from database to get array of links from source
-	@return array of links
+	
+	/**
+	* returns a link list with files that could be imported from a source URL for an input
+	* @param mixed $input: input_id or input record from database to get array of links from source
+	* @return array of links
 	*/
 	public function get_import_list($input){
 		if(!is_array($input)) {
@@ -69,9 +82,10 @@ class ProjectsController extends AppController {
 		return $links;
 	}
 	
-	/*returns all already imported urls from a source
-	@input: input_id or input record from database to get already imported links from logs
-	@return array of logs from database
+	/**
+	* returns all already imported urls from a source
+	* @param mixed $input: input_id or input record from database to get already imported links from logs
+	* @return array of logs from database
 	*/
 	public function get_imported_links($input){
 		if(is_array($input)) {
@@ -81,10 +95,10 @@ class ProjectsController extends AppController {
 		return $logs;
 	}
 	
-	/*imports either all passed links into the system or checks the list-URL for new input if there is something new to import
-	@input_id: of the input for which to check for new files from source
-	@links: array of links to remote files which should be imported, if not provided, the input source is checked for new links
-	@return true or false for import succeeded or not not
+	/**imports either all passed links into the system or checks the list-URL for new input if there is something new to import
+	* @param $input_id: of the input for which to check for new files from source
+	* @param $links: array of links to remote files which should be imported, if not provided, the input source is checked for new links
+	* @return true or false for import succeeded or not not
 	*/
 	public function update_imports($input_id = null, $links = false) {
 		if(!$input_id) {
@@ -122,10 +136,14 @@ class ProjectsController extends AppController {
 		return true;
 	}
 	
-	/*Imports a locally stored file into the database
-	 @input_id: of the Input, that maps the data onto the values
-	 @filename: relative filepath to the file to be imported
-	 @return true or false for import succeeded or not not
+	/**
+	* Imports a locally stored file into the database
+	* @param $input_id of the Input, that maps the data onto the values
+	* @param $filename relative filepath to the file to be imported
+	* @return array
+	* 	imported: true or false for import succeeded or not not
+	*	earliest: earliest timestamp imported
+	*	latest: latest timestamp imported
 	*/
 	public function import($input_id = null, $filename = null) {
 		if(!$input_id || !$filename) {
@@ -144,7 +162,14 @@ class ProjectsController extends AppController {
 		$import_timestamp = time();
 
 		switch($type) {
-			case "text": $measures = $this->parseTEXT($filename, $input['Value'], $input['Input']['delimiter'], $input['Input']['data_row'], $input['Input']['timestamp_pos'], $input['Input']['timestamp_format']);
+			case "text": $measures = $this->parseTEXT(
+					$filename, 
+					$input['Value'], 
+					$input['Input']['delimiter'], 
+					$input['Input']['data_row'], 
+					$input['Input']['timestamp_pos'], 
+					$input['Input']['timestamp_format']
+				);
 			break;
 			case "json": break;
 			case "xml": break;
@@ -165,7 +190,7 @@ class ProjectsController extends AppController {
 		$this->Measure->saveAll($measures);
 		//Doppelte Einträge löschen
 		$this->deleteDuplicateMeasures();
-		return true;
+		return array('imported' => true, 'earliest' => $earliest, 'latest' => $latest);
 	}
 	
 	/*Imports a manually uploaded file or makes a guided import from the source URL of an input
@@ -200,19 +225,19 @@ class ProjectsController extends AppController {
 			$this->update_imports($this->request->data['Input'], $links);
 		} else
 		if ($this->request->is('post') && $this->request->data['import_file']['name']) { //import from file
-			//$filename = $this->store_data($this->request->data['Input']);
-			$filename = '/uploads/import_1415156048xA80146_36765237.csv';
+			$filename = $this->store_data($this->request->data['Input']);
+			//$filename = '/uploads/import_1415156048xA80146_36765237.csv';
 			$imported = $this->import($this->request->data['Input'], $filename);
-			if($imported) {
-				$this->redirect(array('action' => 'data', $id, '?' => array('import_timestamp' => $import_timestamp)));
+			if($imported['imported']) {
+				$this->redirect(array('action' => 'data', $id, '?' => array('start' => date('d.m.Y',$imported['earliest']), 'end' => date('d.m.Y',$imported['latest']))));
 			}
 			
 		}
 		
 		$project = $this->Project->read(null, $id);
-		$inputs = $this->Project->Input->find('list');
+		$inputs = $this->Project->Input->find('list', array('conditions' => 'project_id="'.$id.'"'));
 		$this->set(compact('project', 'inputs', 'input'));
-		$this->project_display_session($project);
+		$this->project_set_session($project);
 		$this->render('import');
 	}
 	
@@ -272,11 +297,6 @@ class ProjectsController extends AppController {
 					$limiter = $delimiter;
 					$cols = explode($limiter[0], $row);
 					$limiter = substr($limiter, 1);
-					for ($j = 0; $j < strlen($limiter); $i++) {
-						foreach($cols as $col) {
-							
-						}
-					}
 					$newRow = array();
 					$timestamp = trim($cols[$timestamp_pos]);
 					$useStrTime = $timestamp_format ? false : true;
@@ -403,7 +423,7 @@ class ProjectsController extends AppController {
 			
 			$unit_prefixes = console::$unit_prefixes;
 			$project = $this->Project->read(null, $project_id);
-			$this->project_display_session($project);
+			$this->project_set_session($project);
 			$this->set(compact('project', 'values', 'imports', 'methods', 'unit_prefixes', 'import_timestamp', 'form_values'));
 		} else {
 			$this->set(compact('values'));
@@ -599,7 +619,10 @@ class ProjectsController extends AppController {
 	public function add() {
 		if ($this->request->is('post')) {
 			$this->Project->create();
-			if ($this->Project->save($this->request->data)) {
+			$this->request->data['Member']['Member'][0] = $this->Auth->user('id');
+			if ($this->Project->saveAll($this->request->data)) {
+				$id = $this->Project->getLastInsertId();
+				$this->Project->query('UPDATE projects_users SET state='.console::$adminState.' WHERE user_id="'.$this->Auth->user('id').'" AND project_id="'.$id.'"');
 				$this->Session->setFlash(__('The project has been saved'));
 				$this->redirect(array('action' => 'index'));
 			} else {

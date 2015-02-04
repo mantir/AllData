@@ -8,21 +8,34 @@ App::uses('AppModel', 'Model');
  */
 class Project extends AppModel {
 
-/**
- * Display field
- *
- * @var string
- */
+	/**
+	 * Display field
+	 *
+	 * @var string
+	 */
 	public $displayField = 'name';
 
 
-	//The Associations below have been created with all possible keys, those that are not needed can be removed
+	public $validate = array(
+		'name' => array(
+			'between' => array(
+				'rule' => array('between', 4, 30),
+				'message' => 'Name must have at least 4 up to 30 characters',
+				'allowEmpty' => false,
+				'last' => false, // Stop validation after this rule
+			),
+			'unique' => array(
+				'rule' => 'isUnique',
+				'message' => 'It already exists a project with this name.'
+			),
+		),
+	);
 
-/**
- * hasMany associations
- *
- * @var array
- */
+	/**
+	 * hasMany associations
+	 *
+	 * @var array
+	 */
 	public $hasMany = array(
 		'Input' => array(
 			'className' => 'Input',
@@ -49,6 +62,42 @@ class Project extends AppModel {
 			'exclusive' => '',
 			'finderQuery' => '',
 			'counterQuery' => ''
+		),
+		'Export' => array(
+			'className' => 'Export',
+			'foreignKey' => 'project_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		)
+	);
+	
+	/**
+	 * hasAndBelongsToMany associations
+	 *
+	 * @var array
+	 */
+	public $hasAndBelongsToMany = array(
+		'Member' => array(
+			'className' => 'User',
+			'joinTable' => 'projects_users',
+			'foreignKey' => 'project_id',
+			'associationForeignKey' => 'user_id',
+			'unique' => 'keepExisting',
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'finderQuery' => '',
+			'deleteQuery' => '',
+			'insertQuery' => ''
 		)
 	);
 

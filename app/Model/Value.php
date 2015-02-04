@@ -10,21 +10,31 @@ App::uses('AppModel', 'Model');
  */
 class Value extends AppModel {
 
-/**
- * Display field
- *
- * @var string
- */
+	/**
+	 * Display field
+	 *
+	 * @var string
+	 */
 	public $displayField = 'name';
-
+	
+	public $validate = array(
+		'name' => array(
+			'between' => array(
+				'rule' => array('between', 2, 40),
+				'message' => 'Name must have at least 2 up to 40 characters',
+				'allowEmpty' => false,
+				'last' => false, // Stop validation after this rule
+			),
+		),
+	);
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
-/**
- * belongsTo associations
- *
- * @var array
- */
+	/**
+	 * belongsTo associations
+	 *
+	 * @var array
+	 */
 	public $belongsTo = array(
 		'Project' => array(
 			'className' => 'Project',

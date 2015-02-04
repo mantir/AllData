@@ -7,25 +7,26 @@ App::uses('AppController', 'Controller');
  */
 class UnitsController extends AppController {
 	public $paginate = array(
-        'limit' => 200
+        'limit' => 1000000
     );
-/**
- * index method
- *
- * @return void
- */
-	public function index() {
+	
+	/**
+	 * index method
+	 *
+	 * @return void
+	 */
+	public function admin_index() {
 		$this->Unit->recursive = 0;
 		$this->set('units', $this->paginate());
 	}
 
-/**
- * view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
+	/**
+	 * view method
+	 *
+	 * @throws NotFoundException
+	 * @param string $id
+	 * @return void
+	 */
 	public function view($id = null) {
 		$this->Unit->id = $id;
 		if (!$this->Unit->exists()) {
@@ -34,11 +35,11 @@ class UnitsController extends AppController {
 		$this->set('unit', $this->Unit->read(null, $id));
 	}
 
-/**
- * add method
- *
- * @return void
- */
+	/**
+	 * add method
+	 *
+	 * @return void
+	 */
 	public function add() {
 		if ($this->request->is('post')) {
 			$this->Unit->create();
@@ -51,13 +52,13 @@ class UnitsController extends AppController {
 		}
 	}
 
-/**
- * edit method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
+	/**
+	 * edit method
+	 *
+	 * @throws NotFoundException
+	 * @param string $id
+	 * @return void
+	 */
 	public function edit($id = null) {
 		$this->Unit->id = $id;
 		if (!$this->Unit->exists()) {
@@ -76,14 +77,14 @@ class UnitsController extends AppController {
 		$this->render('add');
 	}
 
-/**
- * delete method
- *
- * @throws MethodNotAllowedException
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
+	/**
+	 * delete method
+	 *
+	 * @throws MethodNotAllowedException
+	 * @throws NotFoundException
+	 * @param string $id
+	 * @return void
+	 */
 	public function delete($id = null) {
 		if (!$this->request->is('post')) {
 			throw new MethodNotAllowedException();
