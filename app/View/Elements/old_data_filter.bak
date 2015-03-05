@@ -1,0 +1,89 @@
+                    <?php echo $this->Form->create(null, array('class' => 'form', 'type' => 'get', 'url' => $this->request->relative)); ?>
+                        <div class="col-md-10">
+                            <div id="form-tabs" role="tabpanel">
+                                <!-- Nav tabs -->
+                                <ul class="nav nav-tabs" role="tablist">
+                                    <li role="presentation" class="active"><a href="#date-pane" aria-controls="date-pane" role="tab" data-toggle="tab">Date</a></li>
+                                    <li role="presentation"><a href="#filter-pane" aria-controls="filter-pane" role="tab" data-toggle="tab">Filter</a></li>
+                                </ul>
+                                
+                                <!-- Tab panes -->
+                                <div class="tab-content">
+                                    <!--date-->
+                                    <div role="tabpanel" class="tab-pane active" id="date-pane">
+                                        <div class="row mt-10 mb-10">
+                                            <div class="col-md-6">
+                                                <?php
+                                                    echo $this->Form->input('start', array_merge(console::$htmlInput, array(
+														'class' => console::$htmlInput['class'].' calendar-input', 
+														'label' => false,
+														'value' => $this->request->query['start'],
+														//'style' => 'width:96px !important',
+														'placeholder' => __('Start date'), 
+														'type' => 'text')));
+                                                ?>
+                                                <?php
+                                                    echo $this->Form->input('start_hour', array_merge(console::$htmlInput, array(
+														'class' => '', 
+														'options' => console::range(0, 23), 
+														'div' => false, 
+														'label' => false, 
+														'value' => $this->request->query['start_hour'], 
+														'type' => 'select'))).' : '.
+                                                    $this->Form->input('start_minute', array_merge(console::$htmlInput, array(
+														'class' => '', 
+														'options' => console::range(0, 59), 
+														'div' => false, 'label' => false, 
+														'value' => $this->request->query['start_minute'], 
+														'type' => 'select'))).' <i class="make-null glyphicon glyphicon-remove-circle"></i>';
+                                                ?>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <?php
+                                                    echo $this->Form->input('end', array_merge(console::$htmlInput, array(
+														'class' => console::$htmlInput['class'].' calendar-input', 
+														'value' => $this->request->query['end'], 
+														'label' => false,
+														//'style' => 'width:96px !important',
+														'placeholder' => __('End date'), 
+														'type' => 'text')));
+                                                ?>
+                                                <?php
+                                                    echo $this->Form->input('end_hour', array_merge(console::$htmlInput, array(
+														'class' => '', 
+														'options' => console::range(0, 23), 'div' => false, 
+														'label' => false, 'value' => $this->request->query['end_hour'], 
+														'type' => 'select'))).' : '.
+                                                    $this->Form->input('end_minute', array_merge(console::$htmlInput, array(
+														'class' => '', 'options' => console::range(0, 59), 
+														'div' => false, 
+														'label' => false, 
+														'value' => $this->request->query['end_minute'], 
+														'type' => 'select'))).' <i class="make-null glyphicon glyphicon-remove-circle"></i>';;
+                                                ?>
+                                           </div>
+                                           
+                                           <div id="form-value-ids" class="hidden"></div>
+                                       </div>
+                                    </div>
+                                    <!--Filter-->
+                                    <div role="tabpanel" class="tab-pane" id="filter-pane">
+                                        <div class="row mt-10">
+                                            <div class="col-md-12">
+                                                <?php echo $this->Form->input('import_timestamp', array_merge(console::$htmlInput, array(
+													'value' => $this->request->query['import_timestamp'], 
+													'label' => false,
+													'type' => 'select', 
+													'options' => $imports, 
+													'empty' => '---Import time---'))); ?>
+                                            </div>
+                                       </div>
+                                    </div>
+                                </div>
+                            
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <?= $this->Form->Input(__('Show'), array('type' => 'submit', 'class' => 'btn btn-primary btn-sm mt-30', 'label' => false)) ?>
+                        </div>
+					<?php echo $this->Form->end(); ?>

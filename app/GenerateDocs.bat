@@ -1,0 +1,1 @@
+php apigen.phar generate -s Controller -s Model -s Lib/alldata --todo -d webroot/docs/php
