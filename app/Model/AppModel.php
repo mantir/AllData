@@ -13,10 +13,10 @@
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
- * @link          http://cakephp.org CakePHP(tm) Project
+ * @copyright     Martin Kapp 2014-15
+ * @link          http://book.cakephp.org/2.0/en/models.html
  * @package       app.Model
- * @since         CakePHP(tm) v 0.2.9
+ * @since         v 0.1
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
@@ -31,6 +31,9 @@ App::uses('Model', 'Model');
  * @package       app.Model
  */
 class AppModel extends Model {
+	/**
+	*
+	*/
 	function lastQuery(){
 		$dbo = $this->getDatasource();
 		$logs = $dbo->getLog();
@@ -38,21 +41,18 @@ class AppModel extends Model {
 		return $logs['log'];
 	}
 	
+	/**
+	* Prints the database log for the current model
+	*/
 	function debugDB(){
 		$dbo = $this->getDatasource();
 		$logs = $dbo->getLog();
 		debug($logs);
 	}
 	
-	
-	function lang($lang){
-		//debug($this);
-		if($lang != 'de' && $this->displayFieldEN){
-			$displayField = $this->displayFieldEN;
-			$this->virtualFields[$this->displayField] = $displayField;
-		}
-	}
-	
+	/**
+	* Generates a unique id for the model
+	*/
 	function generateID(){
 		$gen_id = rand(1000, 9999).rand(1000, 9999);
 		while($this->find('count', array('conditions' => $this->name.'.id='.$gen_id)) > 0){
@@ -81,97 +81,5 @@ class AppModel extends Model {
 		// use the model's isUnique function to check the unique rule
 		return $this->isUnique($unique, false);
 	}
-	
-	/*
-		to parameters to be unequal when using in validate array in model (e.g. Recommendation)
-	*/
-	function checkUnequal($data, $fields) {
-		// check if the param contains multiple columns
-		if (!is_array($fields)) return false;
-		 
-		return $this->data[$this->name][$fields[0]] != $this->data[$this->name][$fields[1]];
-	}
-	
-	
-	/**
-	 * Unbinds validation rules and optionally sets the remaining rules to required.
-	 * 
-	 * @param string $type 'Remove' = removes $fields from $this->validate
-	 *                       'Keep' = removes everything EXCEPT $fields from $this->validate
-	 * @param array $fields
-	 * @param bool $require Whether to set 'required'=>true on remaining fields after unbind
-	 * @return null
-	 * @access public
-	 */
-	function unbindValidation($type, $fields, $require=false)
-	{
-		if ($type === 'remove')
-		{
-			$this->validate = array_diff_key($this->validate, array_flip($fields));
-		}
-		else
-		if ($type === 'keep')
-		{
-			$this->validate = array_intersect_key($this->validate, array_flip($fields));
-		}
-		
-		if ($require === true)
-		{
-			foreach ($this->validate as $field=>$rules)
-			{
-				if (is_array($rules))
-				{
-					$rule = key($rules);
-					
-					$this->validate[$field][$rule]['required'] = true;
-				}
-				else
-				{
-					$ruleName = (ctype_alpha($rules)) ? $rules : 'required';
-					
-					$this->validate[$field] = array($ruleName=>array('rule'=>$rules,'required'=>true));
-				}
-			}
-		}
-	} 
-	
-	public function bindValidation($rules) {
-		$fields = is_array($rules) ? $rules : array($rules);
-		$this->validate = array_merge($this->validate, $fields);
-	}
-	
-	function filterBindings($bindings = null, $exclude = false) {
-        if (empty($bindings) && !is_array($bindings)) {
-            return false;
-        }
-        $relations = array('hasOne', 'hasMany', 'belongsTo', 'hasAndBelongsToMany');
-        $unbind = array();
-		if($exclude) {
-			foreach ($bindings as $binding) {
-				foreach ($relations as $relation) {
-					if (isset($this->$relation)) {
-						$currentRelation = $this->$relation;
-						if (isset($currentRelation) && isset($currentRelation[$binding])) {
-							$unbind[$relation][] = $binding;
-						}
-					}
-				}
-			}
-		} else {
-			foreach ($relations as $relation) {
-				if (isset($this->$relation)) {
-					$entities = $this->$relation;
-					foreach($entities as $k => $e) {
-						if(array_search($k, $bindings) === false)
-							$unbind[$relation][] = $k;
-					}
-				}
-			}
-		}
-
-        if (!empty($unbind)) {
-            $this->unbindModel($unbind);
-        }
-    } 
 	
 }

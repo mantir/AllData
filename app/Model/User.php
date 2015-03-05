@@ -1,13 +1,14 @@
 <?php
 /**
- * User Model
+ * User model
  *
- * @property Image $Image
- * @property Message $Message
- * @property Group $Group
- * @property Language $Language
- * @property Recommendation $Recommendation
+ * @copyright     Martin Kapp 2014-15
+ * @link          http://book.cakephp.org/2.0/en/models.html
+ * @package       app.Model
+ * @since         v 0.1
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
+ 
 class User extends AppModel {
 
 /**
@@ -94,8 +95,27 @@ class User extends AppModel {
  *
  * @var array
  */
+	/**
+	 * hasAndBelongsToMany associations
+	 *
+	 * @var array
+	 */
 	public $hasAndBelongsToMany = array(
-	
+		'Project' => array(
+			'className' => 'Project',
+			'joinTable' => 'projects_users',
+			'foreignKey' => 'user_id',
+			'associationForeignKey' => 'project_id',
+			'unique' => 'keepExisting',
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'finderQuery' => '',
+			'deleteQuery' => '',
+			'insertQuery' => ''
+		)
 	);
 
 }

@@ -54,7 +54,7 @@ unset($return['vars']['return']); //clear the variable in $return that include $
                     <a id="data-link" href="<?=$currentProject ? $this->Html->url("/projects/data/".$currentProject['id']) : ''?>"><i class="glyphicon glyphicon-stats"></i> <?=__('Data')?></a>
                 </li>
                 <li>
-                	<a id="import-link" href="<?= $currentProject ? $this->Html->url(array('action' => 'upload_import', $currentProject['id'])) : ''; ?>"><span class="glyphicon glyphicon-upload mr-5"></span> <?=__('Import')?></a>
+                	<a id="import-link" href="<?= $currentProject ? $this->Html->url(array('controller' => 'projects', 'action' => 'upload_import', $currentProject['id'])) : ''; ?>"><span class="glyphicon glyphicon-upload mr-5"></span> <?=__('Import')?></a>
                 </li>
               </ul>
               <ul class="nav navbar-nav navbar-right">

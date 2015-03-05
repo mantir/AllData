@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-12">
-    <?php echo $this->Form->create('Value', array('class' => 'form', 'url' => $this->request->relative)); ?>
+    <?php echo $this->Form->create('Value', array('class' => 'form', 'url' => $this->request->uri)); ?>
         <h3><?php echo __('Value '.console::editOrAdd($this->request->relative)); ?></h3>
         <?php
             echo $this->Form->input('name', console::$htmlInput);
@@ -13,7 +13,8 @@
             	<? echo $this->Form->input('minimum', array_merge(console::$htmlInput, array('div' => array('class' => 'form-group col-md-6')))); ?>
 				<? echo $this->Form->input('maximum', array_merge(console::$htmlInput, array('div' => array('class' => 'form-group col-md-6')))); ?>
                 <? echo $this->Form->input('error_codes', array_merge(console::$htmlInput, array('between' => __(' (Error code:description) 1 per line'), 'div' => array('class' => 'form-group col-md-6')))); ?>
-            	<? echo $this->Form->input('method_id', array_merge(console::$htmlInput, array('between' => ' Set Method if Value shell be calculated.', 'type' => 'select', 'options' => $methods, 'empty' => '--- '.__('Calculate with Method').' ---', 'div' => array('class' => 'form-group col-md-6')))); ?>
+                <? echo $this->Form->input('max_variation', array_merge(console::$htmlInput, array('between' => ' Measures musn\'t change more than this per hour.', 'div' => array('class' => 'form-group col-md-6')))); ?>
+            	<? echo $this->Form->input('method_id', array_merge(console::$htmlInput, array('between' => ' Set Method if Value shall be calculated.', 'type' => 'select', 'options' => $methods, 'empty' => '--- '.__('Calculate with Method').' ---', 'div' => array('class' => 'form-group col-md-6')))); ?>
                 
                 <div id="value-method" <?= $this->request->data['Value']['method_id'] ? '' : 'style="display:none"' ?> class="col-md-6">
                 	<div id="method-params">
@@ -22,9 +23,7 @@
 						
 					?>
                     </div>
-                	<div class="row">
-                        
-                        <?
+                	<div class="row"><?
                             echo $this->Form->input('interval_count', array_merge(console::$htmlInput, array(
                                     'div' => array('class' => 'col-md-6'),
                                     'options' => console::range(1, 59),

@@ -70,7 +70,7 @@ app = {
 	},
 	url:function(query){
 		var s = query ? query : Backbone.history.location.search;
-		if(Backbone.history.fragment.indexOf(s) > -1)
+		if(Backbone.history.fragment.indexOf(s) > -1 || Backbone.history.fragment.indexOf(decodeURI(s)) > -1)
 			s = '';
 		return Backbone.history.fragment + s;
 	},
@@ -106,7 +106,7 @@ app = {
 			if(what[i] == 'charts') {  which.push('charts_exporting'); /*which.push('charts_theme');*/ } else
 			if(what[i] == 'codeeditor') { app.loadCss(this.baseUrl+'js/codemirror-4.8/lib/codemirror.css'); } 
 		}
-		console.log(which);
+		//console.log(which);
 		require(which, callback);
 	},
 	loadCss:function(url) {
@@ -122,7 +122,10 @@ app = {
 		this.setCallback(callback);
 		this.route(url);
 	},
-	setRefresh:function(){
+	setRefresh:function(url){
+		if(url) {
+			delete app.requests[url];
+		} else
 		this.refreshNext = true;
 	},
 	callback : function(){},
@@ -147,6 +150,8 @@ app = {
 			q.resolve();
 			return q.promise;
 		}
+		if($('.modal-backdrop:visible').length)
+			$('.modal-backdrop:visible').remove();
 		target.modal();
 		target.on('hidden.bs.modal', function() {
 			app.route(app.lastURL, true);
@@ -169,7 +174,6 @@ app = {
 			back = true;
 			window.backDetected = false;
 		}
-		//window.reverseTransition = back;
 		var self = this; var samePage = false;
 		var $con = this.container.find('.page');
 		if(target && target.length > 0)
@@ -217,15 +221,19 @@ app = {
 	changePage:function(){
 		
 	},
-	get: function(url){
+	get: function(url, params){
 		var q = Q.defer();
-		if(app.requests[url] && !this.refreshing && !this.refreshNext) {
+		if(!params)
+			var queryString = ''; 
+		else
+			var queryString = $.param(params);
+		if(app.requests[url+queryString] && !this.refreshing && !this.refreshNext) {
 			q.resolve(app.requests[url]);
 		} else {
 			this.refreshNext = false;
-        	$.getJSON(this.baseUrl+this.jsonUrl + url)
+        	$.getJSON(this.baseUrl+this.jsonUrl + url, params)
 				.done(function(d){ 
-					app.requests[url] = d; 
+					app.requests[url+queryString] = d; 
 					app.checkForMessageToShow(d);
 					q.resolve(d);
 				})
@@ -251,10 +259,12 @@ app = {
 						}
 					} else
 						d = {};
+					if(d.message)
+						text += d.message+' ';
 					text += 'An error occured, please reaload the page.';
 					$('#error-view-modal').find('.modal-body').html(text);
 					$('#error-view-modal').modal();
-					app.checkForMessageToShow(d);
+					//app.checkForMessageToShow(d);
 					q.resolve(d); 
 				});
 		}
@@ -267,8 +277,10 @@ app = {
 	},
 	checkForMessageToShow: function(d){
 		if(d.message) {
-			
+			$('#error-view-modal').find('.modal-body').html(d.message);
+			$('#error-view-modal').modal();
 		}
+		d.message = false;
 	},
 	submit: function(e){
 		var p = $(e.target).serializeArray();
@@ -323,6 +335,28 @@ app = {
 			}
 			self.updateLayout(animating);
 		});
+		
+		$('.modal').on('hidden.bs.modal', function( event ) {
+        	$(this).removeClass( 'fv-modal-stack' );
+        	$('body').data( 'fv_open_modals', $('body').data( 'fv_open_modals' ) - 1 );
+        });
+		
+		$( '.modal' ).on( 'shown.bs.modal', function ( event ) {
+		   // keep track of the number of open modals
+		   if ( typeof( $('body').data( 'fv_open_modals' ) ) == 'undefined' ) {
+			 $('body').data( 'fv_open_modals', 0 );
+		   }
+			// if the z-index of this modal has been set, ignore.
+			if ( $(this).hasClass( 'fv-modal-stack' ) ) {
+				return;
+			}
+			$(this).addClass( 'fv-modal-stack' );
+			$('body').data( 'fv_open_modals', $('body').data( 'fv_open_modals' ) + 1 );
+			$(this).css('z-index', 1040 + (10 * $('body').data( 'fv_open_modals' )));
+			$( '.modal-backdrop' ).not( '.fv-modal-stack' ).css( 'z-index', 1039 + (10 * $('body').data( 'fv_open_modals' )));
+			$( '.modal-backdrop' ).not( 'fv-modal-stack' ).addClass( 'fv-modal-stack' ); 
+		});
+
 		$(document).on('click', 'a[data-rel="back"]', function(){
 			window.history.back();
 		});

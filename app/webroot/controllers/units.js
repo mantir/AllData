@@ -30,7 +30,8 @@ app.controllers.events = BackboneMVC.Controller.extend({
      	
     },
 	default:function(){this.index()},
-    index:function(project_id){
+	
+    admin_index:function(){
 		var self = this;
 		app.loadPage(this.name, 'index', app.url()).done(function(d){
 

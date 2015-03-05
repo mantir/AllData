@@ -1,7 +1,22 @@
 <?php
+/**
+ * Users Controller
+ *
+ * Provides all user related functions.
+ *
+ * @copyright     Martin Kapp 2014-15
+ * @link          http://headkino.de
+ * @package       app.Controller
+ * @since         v 0.1
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
+ */
 
 App::uses('CakeEmail', 'Network/Email');
-
+/**
+ * Users Controller
+ *
+ * @property User $User
+ */
 class UsersController extends AppController {
 	public $components = array(
 		'Auth' => array(
@@ -52,6 +67,7 @@ class UsersController extends AppController {
 			$this->request->data['User']['activated'] = 0;
 			$user = $this->request->data['User'];
 			$this->request->data['User']['register_time'] = time();
+			$this->request->data['User']['email'] = strtolower($this->request->data['User']['email']);
 			$code = $this->request->data['User']['activation_code'] = uniqid();
 			if (($user['password'] == $user['passwordRepeat']) && $this->User->save($this->request->data)) {
 					$this->su(__('The registration was successfull. An email with an activation link was sent to your inbox.'));
@@ -159,7 +175,7 @@ class UsersController extends AppController {
 		$q = $this->request->query;
 		$this->loadModel('Activation');
 		if($q['activation']){
-			$a = $this->Activation->find('first', array('conditions' => 'id="'.$q['activation'].'"'));
+			$a = $this->User->find('first', array('conditions' => 'activation_code="'.$q['activation'].'"'));
 			if(!empty($a)){
 				$this->set('allowReset', true);
 			} else {
@@ -170,14 +186,15 @@ class UsersController extends AppController {
 		if($this->request->is('post')){
 			$d = $this->request->data;
 			if($d['User']['email']) {
-				$u = $this->User->find('first', array('conditions' => array('User.email' => $d['User']['email'])));
+				$u = $this->User->find('first', array('conditions' => array('User.email' => strtolower($d['User']['email']), 'User.activated' => 1)));
 				if(empty($u)){
-					$this->er(__('It doesn\'t exist a user with this name or email address.'));
+					$this->er(__('The user does not exist.'));
 				} else {
-					debug($u);
-					$code = $this->Activation->generateCode('pw', $u['User']['id'], $this->request->clientIp());
+					$code = uniqid();
+					$this->User->id = $u['User']['id'];
+					$this->User->save(array('activation_code' => $code));
 					$email = new CakeEmail();
-					$email->from(muzup::$noreplyEmail);
+					$email->from(console::$noreplyEmail);
 					$email->to($u['User']['email']);
 					$email->template('beforeResetPassword');
 					$email->emailFormat('both');
@@ -187,7 +204,7 @@ class UsersController extends AppController {
 					$this->su(__('An email with a reset link was sent to your inbox.'));
 				}
 			} else {
-				$u = $this->User->find('first', array('conditions' => array('User.id' => $a['Activation']['object_id'])));
+				$u = $a;
 				if(empty($u)){
 					$this->er(__('The user does not exist.'));
 				} else if($d['User']['password']) {
@@ -202,7 +219,6 @@ class UsersController extends AppController {
 						if($user['password'] != $user['passwordRepeat']) {
 							$this->er(__('The passwords were not the same.'));
 							$this->User->set($this->request->data);
-							//debug($this);
 							$this->User->validates();
 						} else
 							$this->er(__('Something went wrong, please try again.'));
@@ -326,11 +342,23 @@ class UsersController extends AppController {
 			throw new NotFoundException(__('Invalid user'));
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
-			if ($this->User->save($this->request->data)) {
-				$this->Session->setFlash(__('The user has been saved'));
-				$this->redirect(array('action' => 'index'));
+			$password_correct = $this->User->find('count', array('conditions' => array(
+				'email' => strtolower($user['email']), 
+				'password' => $this->Auth->password($this->request->data['User']['old_password'])))
+			);
+			$r = $this->request->data;
+			if ($password_correct && ($r['User']['password'] == $r['User']['password_repeat']) && $this->User->save($this->request->data)) {
+				$this->Session->setFlash(__('The new password has been saved'));
+				$this->redirect(array('action' => 'settings'));
 			} else {
-				$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
+				if($r['User']['password'] != $r['User']['password_repeat']) {
+					$this->er(__('The new passwords were not the same.'));
+					$this->User->set($this->request->data);
+					$this->User->validates();
+				} else if(!$password_correct) {
+					$this->er(__('The old password is not correct.'));
+				} else
+					$this->er(__('Something went wrong, please try again.'));
 			}
 		} else {
 			$this->request->data = $this->User->read(null, $id);

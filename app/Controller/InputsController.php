@@ -1,4 +1,16 @@
 <?php
+/**
+ * Inputs Controller
+ *
+ * This file is the inputs controller.
+ *
+ * @copyright     Martin Kapp 2014-15
+ * @link          http://book.cakephp.org/2.0/en/controllers.html
+ * @package       app.Controller
+ * @since         v 0.1
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
+ */
+ 
 App::uses('AppController', 'Controller');
 /**
  * Inputs Controller
@@ -6,37 +18,14 @@ App::uses('AppController', 'Controller');
  * @property Input $Input
  */
 class InputsController extends AppController {
-	var $marker = '_###_';
-	var $limiter = '_---_';
-	var $title_limiter = '_____';
-	/**
-	 * index method
-	 *
-	 * @return void
-	 */
-	public function index() {
-		$this->Input->recursive = 0;
-		$this->set('inputs', $this->paginate());
-	}
+	var $marker = '_###_'; //marker to start and end a select in the view before replacing those markers with selects 
+	var $limiter = '_---_'; //Limiter inside a marker to delimit title and path
+	var $title_limiter = '_____'; //To delimit the column headlines in a CSV file
 
-	/**
-	 * view method
-	 *
-	 * @throws NotFoundException
-	 * @param string $id
-	 * @return void
-	 */
-	public function view($id = null) {
-		$this->Input->id = $id;
-		if (!$this->Input->exists()) {
-			throw new NotFoundException(__('Invalid input'));
-		}
-		$this->set('input', $this->Input->read(null, $id));
-	}
 
 	/**
 	 * add method
-	 *
+	 * @param $project_id Project ID to which the Input shall be added
 	 * @return void
 	 */
 	public function add($project_id) {
@@ -54,6 +43,7 @@ class InputsController extends AppController {
 			$r['Input']['type'] = $this->getTemplateType($filename);
 			$this->Input->create();
 			if ($this->Input->save($r)) {
+				$this->writeLog('created', array($this->Auth->user('id'), 'inputs', 'related' => $this->Input->getLastInsertId()));
 				$this->Session->setFlash(__('The input has been saved'));
 				$id = $this->Input->getInsertID();
 				$this->redirect(array('action' => 'edit', $id));
@@ -66,10 +56,11 @@ class InputsController extends AppController {
 	}
 	
 	/**
-	 * edit method
-	 *
+	 * Edit method, Displays the template file and let's the user set some parameters for the input format. E.g. in which row starts the data, timestamp format, column delimiter (in CSV)
+	 * The function which replaces the marks with HTML-Selects is found in the view file View/Input/edit. It maybe has to be adapted for other formats than CSV.
+	 * The user can setup a source list URL to automatically import data from a source.
 	 * @throws NotFoundException
-	 * @param string $id
+	 * @param string $id Input ID
 	 * @return void
 	 */
 	public function edit($id = null) {
@@ -84,9 +75,9 @@ class InputsController extends AppController {
 	
 		if($input['Input']['type'] == 'text')
 			$skeleton = $this->parseText($filename, $input['Input']['delimiter'], $input['Input']['data_row'], $input['Input']['head_row']);
-		else
+		else if($input['Input']['type'])
 			$skeleton = $this->{'parse'.strtoupper($input['Input']['type'])}($filename);
-		
+
 		$project_id = $input['Input']['project_id'];
 		if ($this->request->is('post') || $this->request->is('put')) {
 			$r['Input']['template_path'] = ($filename = $this->upload()) ? $filename : $input['Input']['template_path'];
@@ -99,8 +90,9 @@ class InputsController extends AppController {
 						}
 					}
 			if ($this->Input->save($r)) {
+				$this->writeLog('edited', array($this->Auth->user('id'), 'inputs', 'related' => $id));
 				$this->Session->setFlash(__('The input has been saved'));
-				debug($r);
+				//debug($r);
 				if(is_array($r['Value']['Value']))
 					foreach($r['Value']['Value'] as $i => $v) {
 						$path = $r['Value']['path'][$i];
@@ -108,8 +100,6 @@ class InputsController extends AppController {
 					}
 				if(!$filename && !$this->request->data['refresh'])
 					$this->redirect(array('action' => 'view', 'controller' => 'projects', $project_id));
-				else
-					$this->redirect(array('action' => 'edit', $id));
 			} else {
 				$this->Session->setFlash(__('The input could not be saved. Please, try again.'));
 			}
@@ -123,13 +113,18 @@ class InputsController extends AppController {
 		$marker = $this->marker;
 		$limiter = $this->limiter;
 		$title_limiter = $this->title_limiter;
-		$skeleton = htmlspecialchars($skeleton); // Für Darstellung vorbereiten
+		$skeleton = htmlspecialchars($skeleton); // Prepare for display
 		$values = $this->Input->Value->find('list', array('conditions' => 'Value.project_id = '.$project_id));
 		$this->set(compact('marker', 'limiter', 'title_limiter', 'name', 'values', 'skeleton', 'saved_paths', 'input'));
 		$this->render('add');
 	}
 	
-	public function parseXML($file = '../Test/test1.xml'){
+	/**
+	* Converts a XML file structure into an array (Needs to be adapted to real formats if there is a use case)
+	* @param $file Path to file to parse
+	* @return array
+	*/
+	public function parseXML($file){
 		$t = file_get_contents($file);
 		$d = f::xml_to_json('<root>'.$t.'</root>');
 		$d = $this->parseArray($d);
@@ -137,26 +132,41 @@ class InputsController extends AppController {
 		return ($d); 
 	}
 	
-	public function parseJSON($file = '../Test/test1.json'){
+	/**
+	* Converts a JSON file structure into an array 
+	* @todo Needs probably to be adapted to real foramts
+	* @param $file Path to file to parse
+	* @return array
+	*/
+	public function parseJSON($file){
 		$t = file_get_contents($file);
 		$d = json_decode($t, true);
 		$d = $this->parseArray($d);
-		$d = json_encode($d, JSON_PRETTY_PRINT); //Schön formatieren
+		$d = json_encode($d, JSON_PRETTY_PRINT); //Good readable format
 		return $d;
 	}
 	
-	//parses textfile and sets marker to later in the view put the HTML-selects for the values in the correct position with the correct title
-	public function parseTEXT($file = '../Test/test1.json', $delimiter = ',', &$data_row = -1, &$head_row = -1){
+	/** 
+	* Parses a textfile and sets marker to put in the view the HTML-selects for the values in the correct position with the correct title
+	* @param string $file: file path to a template file
+	* @param string $delimiter: one or more characters which delimit the columns in the CSV
+	* @param int $data_row: number of the row where the actual data begins in the text file
+	* @param int $head_row: number of the row where headline information is found for the columns
+	*/
+	public function parseTEXT($file, $delimiter = ',', &$data_row = -1, &$head_row = -1){
 		//$file = '../webroot/uploads/input_545950577d717xA80146_36765237.txt';
-		//$file = '../Test/test.txt';
+		//$file = '../Test/test.txt';  = '../Test/test1.json'
 		if(!file_exists($file)) {
 			$this->er('The input template file cannot be found. Please upload a new one.');
 			$rows = array();
-		} else
+		} else {
 			$rows = file($file);
+		}
+		//debug($file);
 		$paths = array();
 		$data_row--;
 		$head_row--;
+		$cols_count = 0;
 		$header = array();
 		if(!$delimiter) $delimiter = ',';
 		foreach($rows as $i => $r) {
@@ -174,6 +184,7 @@ class InputsController extends AppController {
 				if($i >= $data_row){
 					$limiter = $delimiter;
 					$cols = explode($limiter[0], $r);
+					$cols_count = count($cols);
 					$limiter = substr($limiter, 1);
 					$newRow = array();
 					foreach($cols as $j => $col) {
@@ -192,10 +203,20 @@ class InputsController extends AppController {
 		}
 		$data_row++;
 		$head_row++;
-		//debug($rows);
-		return implode("\n", $rows);
+
+		if($cols_count > 0) //If the data row was not set up and no columns were found
+			$rows = implode("\n", $rows);
+		else
+			$rows = implode("", $rows);
+		return $rows;
 	}
 	
+	/**
+	* parses an array structure and returns a textual representation with markers to replace them with HTML-selects in the view. The path is unique for each select.
+	* @param array|string $d: Data structure as array (tree) or as a string (leave of the tree)
+	* @param string $path: the current path for $d
+	* @return array of markers if $d is an array or one marker if $d is a string
+	*/
 	public function parseArray($d, $path = '') {
 		if(is_array($d)) {
 			foreach($d as $k => $t) {
@@ -208,12 +229,17 @@ class InputsController extends AppController {
 		}
 	}
 	
+	/**
+	* returns the file format of a template file.
+	* @param string $file: Input file path relative to the webroot folder
+	* @return string: text, json or xml
+	*/
 	public function getTemplateType($file){
 		$path = '../webroot'.$file;
 		$t = @file_get_contents($path);
 		$t = trim($t);
 		if(!$t)
-			return '';
+			return 'text';
 		$c = $t[0];
 		if($c == '{' || $c == '[')
 			return 'json';
@@ -222,49 +248,57 @@ class InputsController extends AppController {
 		return 'text';
 	}
 	
+	/**
+	* Handles the upload of an input template file from input->add or input->edit action.
+	* @return string, filename of the template file
+	*/
 	function upload() {	
 		// Initialize filename-variable
 		$filename = null;
 		if (!empty($this->request->data['Input']['template_file']['tmp_name']) && is_uploaded_file($this->request->data['Input']['template_file']['tmp_name'])) {
 			$filename = basename($this->request->data['Input']['template_file']['name']); 
 			$filename = 'input_'.uniqid().$filename;
-			$filepath = DS . 'uploads' . DS .$filename;
+			$filepath = 'uploads' . DS .$filename;
 			$filename = '/' . 'uploads' . '/' . $filename;
 			move_uploaded_file(
 				$this->data['Input']['template_file']['tmp_name'],
 				WWW_ROOT . $filepath
 			);
+			/*
+			//debug(WWW_ROOT . $filepath);
+			$encoding = mb_detect_encoding(WWW_ROOT . $filepath);
+			//debug($encoding);
+			$file = file_get_contents(WWW_ROOT . $filepath);
+			
+			$file = iconv($encoding, 'UTF-8', $file);
+			file_put_contents(WWW_ROOT . $filepath, $file);
+			//mb_convert_encoding(WWW_ROOT . $filepath, 'UTF-8');
+			*/
+			$content = file_get_contents(WWW_ROOT . $filepath);
+			$encoding = mb_detect_encoding($content);
+			if(!$encoding) {
+				$content = mb_convert_encoding($content, 'UTF-8');
+				file_put_contents(WWW_ROOT . $filepath, $content);
+			}
+			if(!$content) {
+				$this->er(__('The provided template file is empty. If the original file is not empty it can be a problem with the encoding of the uploaded file. Please verify that the file is encoded with UTF-8 if it contains UTF-8 characters, for example.'));
+			}
 		}
-		
 		// Set the file-name only to save in the database
 		$this->data['Input']['template_file'] = $filename;
 		return $filename;
 	}
 
 
-/**
- * delete method
- *
- * @throws MethodNotAllowedException
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
+	/**
+	 * delete method
+	 *
+	 * @throws MethodNotAllowedException
+	 * @throws NotFoundException
+	 * @param string $id
+	 * @return void
+	 */
 	public function delete($id = null) {
-		if (!$this->request->is('post')) {
-			throw new MethodNotAllowedException();
-		}
-		$this->Input->id = $id;
-		if (!$this->Input->exists()) {
-			throw new NotFoundException(__('Invalid input'));
-		}
-		$i = $this->Input->read(null, $id);
-		$pid = $i['Input']['project_id'];
-		if ($this->Input->delete()) {
-			$this->Session->setFlash(__('Input deleted'));
-			$this->redirect(array('action' => 'view', 'controller' => 'projects', $pid));
-		}
-		$this->Session->setFlash(__('Input was not deleted'));
-		$this->redirect(array('action' => 'index'));
+		$this->delete_object('Input', $id);
 	}
 }

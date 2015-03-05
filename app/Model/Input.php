@@ -1,4 +1,14 @@
 <?php
+/**
+ * Input model
+ *
+ * @copyright     Martin Kapp 2014-15
+ * @link          http://book.cakephp.org/2.0/en/models.html
+ * @package       app.Model
+ * @since         v 0.1
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
+ */
+ 
 App::uses('AppModel', 'Model');
 /**
  * Input Model
@@ -10,11 +20,6 @@ class Input extends AppModel {
 	
 	public $validate = array(
 		'name' => array(
-			'notEmpty' => array(
-				'message' => 'Must not be empty',
-				'allowEmpty' => false,
-				'last' => false,
-			),
 			'between' => array(
 				'rule' => array('between', 2, 20),
 				'message' => 'Name must have at least 2 up to 20 characters',

@@ -32,23 +32,49 @@ body.modal-open{
 	left:50%;
 }
 
-.section-headline{
-	background:#EEE;
-	padding:3px 10px;
-	margin-bottom:0;
+#log-container{
+	overflow:auto;
+	max-height:300px;
+	margin-bottom:20px;
 }
 
-.section-headline i{
-	float:right;
-	color:#CCC;
+.section-headline{
+	background:#DDD;
+	padding:3px 10px;
+	margin-bottom:0;
+	margin-top:0;
+	border-top: 1px solid #fff;
 }
-.section-headline i:hover{
+.table th{
+	
+}
+.table th h3{
+	margin:0 !important;
+}
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th {
+	vertical-align:middle !important;
+}
+.table th.actions,.table td.actions{
+	width:30px;
+	max-width:10%;
+	text-align:center;
+	white-space:nowrap;
+}
+.section-headline i, table th i{
+	float:right;
+	color:#000;
+	font-size:24px !important;
+}
+.section-headline i:hover,table th i:hover{
 	color:#333;
 }
 
 table .actions a{
 	margin-right:10px;
 }
+
+table.table tr td div.btn-group, ul li div.btn-group  { visibility:hidden;}
+table.table tr:hover td div.btn-group, ul li:hover div.btn-group  { visibility:visible; }
 
 pre input, pre select{
 	background:#FEFEFE;
@@ -105,6 +131,10 @@ a{
 
 #value-list{
 	margin-bottom:0 !important;
+}
+
+#charts{
+	border-bottom:1px solid #CCC;
 }
 
 .ml-0{margin-left:0px}.ml-5{margin-left:5px}.ml-10{margin-left:10px}.ml-20{margin-left:20px}

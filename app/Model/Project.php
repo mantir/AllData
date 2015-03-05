@@ -1,4 +1,13 @@
 <?php
+/**
+ * Project model
+ *
+ * @copyright     Martin Kapp 2014-15
+ * @link          http://book.cakephp.org/2.0/en/models.html
+ * @package       app.Model
+ * @since         v 0.1
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
+ */
 App::uses('AppModel', 'Model');
 /**
  * Project Model
@@ -65,6 +74,32 @@ class Project extends AppModel {
 		),
 		'Export' => array(
 			'className' => 'Export',
+			'foreignKey' => 'project_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
+		'Method' => array(
+			'className' => 'Method',
+			'foreignKey' => 'project_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
+		'Unit' => array(
+			'className' => 'Unit',
 			'foreignKey' => 'project_id',
 			'dependent' => false,
 			'conditions' => '',

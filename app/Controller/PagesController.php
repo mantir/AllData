@@ -3,7 +3,7 @@
  * Static content controller.
  *
  * This file will render views from views/pages/
- *
+ * Is not actually needed in this project
  * PHP 5
  *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
@@ -20,7 +20,6 @@
  */
 
 App::uses('AppController', 'Controller');
-App::uses('console', 'Lib');
 
 /**
  * Static content controller
@@ -70,7 +69,7 @@ class PagesController extends AppController {
 			$title_for_layout = Inflector::humanize($path[$count - 1]);
 		}
 		if($page == 'home'){
-			
+			$this->redirect('projects/index');
 		}
 		$this->render(implode('/', $path));
 	}

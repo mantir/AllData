@@ -12,6 +12,7 @@ app.controllers.inputs = BackboneMVC.Controller.extend({
 	
 	edit:function(id){
 		var self = this;
+		app.setRefresh();
 		app.loadPage(this.name, 'edit', app.url()).done(function(d){
 			$('pre > select').tooltip({placement:'bottom'});
 		});

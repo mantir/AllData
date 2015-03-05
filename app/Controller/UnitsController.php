@@ -1,4 +1,15 @@
 <?php
+/**
+ * Units Controller
+ *
+ * Provides all project related functions.
+ *
+ * @copyright     Martin Kapp 2014-15
+ * @link          http://headkino.de
+ * @package       app.Controller
+ * @since         v 0.1
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
+ */
 App::uses('AppController', 'Controller');
 /**
  * Units Controller
@@ -7,7 +18,8 @@ App::uses('AppController', 'Controller');
  */
 class UnitsController extends AppController {
 	public $paginate = array(
-        'limit' => 1000000
+        'limit' => 1000000,
+		'maxLimit' => 1000000
     );
 	
 	/**
@@ -40,12 +52,24 @@ class UnitsController extends AppController {
 	 *
 	 * @return void
 	 */
-	public function add() {
+	public function add($project_id = null) {
+		if(!$this->authorizedProject($project_id, console::$contributorState)) {
+			return;
+		}
+		if(!$project_id && !$this->Auth->user('isAdmin')) {
+			$this->noPermissionError();
+			return;
+		}
+		$this->request->data['Unit']['project_id'] = $project_id;
 		if ($this->request->is('post')) {
 			$this->Unit->create();
 			if ($this->Unit->save($this->request->data)) {
+				$this->writeLog('created', array($this->Auth->user('id'), 'units', 'related' => $this->Unit->getLastInsertId()));
 				$this->Session->setFlash(__('The unit has been saved'));
-				$this->redirect(array('action' => 'index'));
+				if($project_id)
+					$this->redirect(array('action' => 'view', 'controller' => 'projects', $project_id));
+				else
+					$this->redirect(array('action' => 'admin_index', 'controller' => 'units', 'admin' => 1));
 			} else {
 				$this->Session->setFlash(__('The unit could not be saved. Please, try again.'));
 			}
@@ -64,12 +88,18 @@ class UnitsController extends AppController {
 		if (!$this->Unit->exists()) {
 			throw new NotFoundException(__('Invalid unit'));
 		}
+		$u = $this->Unit->read(null, $id);
+		$project_id = $u['Unit']['project_id'];
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->Unit->save($this->request->data)) {
+				$this->writeLog('edited', array($this->Auth->user('id'), 'units', 'related' => $id));
 				$this->Session->setFlash(__('The unit has been saved'));
-				$this->redirect(array('action' => 'index'));
+				if($project_id)
+					$this->redirect(array('action' => 'view', 'controller' => 'projects', $project_id));
+				else
+					$this->redirect(array('action' => 'admin_index', 'controller' => 'units', 'admin' => 1));
 			} else {
-				$this->Session->setFlash(__('The unit could not be saved. Please, try again.'));
+				$this->er(__('The unit could not be saved. Please, try again.'));
 			}
 		} else {
 			$this->request->data = $this->Unit->read(null, $id);
@@ -86,18 +116,6 @@ class UnitsController extends AppController {
 	 * @return void
 	 */
 	public function delete($id = null) {
-		if (!$this->request->is('post')) {
-			throw new MethodNotAllowedException();
-		}
-		$this->Unit->id = $id;
-		if (!$this->Unit->exists()) {
-			throw new NotFoundException(__('Invalid unit'));
-		}
-		if ($this->Unit->delete()) {
-			$this->Session->setFlash(__('Unit deleted'));
-			$this->redirect(array('action' => 'index'));
-		}
-		$this->Session->setFlash(__('Unit was not deleted'));
-		$this->redirect(array('action' => 'index'));
+		$this->delete_object('Unit', $id);
 	}
 }

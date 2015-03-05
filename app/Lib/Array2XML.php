@@ -5,9 +5,10 @@
  * It returns the XML in form of DOMDocument class for further manipulation.
  * It throws exception if the tag name or attribute name has illegal chars.
  *
- * Author : Lalit Patel
- * Website: http://www.lalit.org/lab/convert-php-array-to-xml-with-attributes
- * License: Apache License 2.0
+ * @package app.Lib
+ * @author Lalit Patel
+ * @link http://www.lalit.org/lab/convert-php-array-to-xml-with-attributes
+ * @license Apache License 2.0
  *          http://www.apache.org/licenses/LICENSE-2.0
  * Version: 0.1 (10 July 2011)
  * Version: 0.2 (16 August 2011)
