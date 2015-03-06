@@ -1,3 +1,14 @@
+/**
+ * This is the projects controller.
+ *
+ * @copyright     Martin Kapp 2014-15
+ * @link          http://headkino.de
+ * @package       app.Lib
+ * @since         v 0.1
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
+ * 
+ * @class app.controllers.projects
+ */
 app.controllers.projects = BackboneMVC.Controller.extend({
     name: 'projects',
 	current: 0, //current project
@@ -13,13 +24,20 @@ app.controllers.projects = BackboneMVC.Controller.extend({
 	minZoom:0,
 	w_resize:function(){}, //window resize function
 	charts: [],
-	setCurrent: function(c){ //Sets the current project {id:"", name:""}
+	/**
+	 * Sets the current project {id:"", name:""} and updates the links the page header.
+	 * @method setCurrent
+	 * @param {Object} c Project object containing id and name
+	 * @return 
+	 */
+	setCurrent: function(c){
 		this.current = c;
 		if(c && c.id) {
 			$('#project-name-link').html(c.name);
 			$('#project-link').attr('href', app.baseUrl+'projects/view/'+c.id);
 			$('#projects-link').hide();
 			$('#data-link').attr('href', app.baseUrl+'projects/data/'+c.id);
+			$('#import-link').attr('href', app.baseUrl+'projects/upload_import/'+c.id);
 			$('#data-link,#import-link,#project-link').show();
 		}
 		else {
@@ -28,6 +46,12 @@ app.controllers.projects = BackboneMVC.Controller.extend({
 		}
 	},
 	
+    /**
+     * Loads the Project.view from the server
+     * @method view
+     * @param {int} id Project ID
+     * @return 
+     */
     view:function(id){
 		var self = this;
 		app.loadPage(this.name, 'view', app.url()).done(function(d){
@@ -40,6 +64,13 @@ app.controllers.projects = BackboneMVC.Controller.extend({
 		});
     },
 	
+	/**
+	 * Loads the Logs into the space on the Project.view view
+	 * @method loadLogs
+	 * @param {string} type Can be import, user, or data
+	 * @param {string} page Default 0
+	 * @return 
+	 */
 	loadLogs: function(type, page){
 		if(!page)
 			$('#logs').html('');
@@ -48,6 +79,12 @@ app.controllers.projects = BackboneMVC.Controller.extend({
 		})
 	},
 	
+	/**
+	 * Loads the Project.view from the server
+	 * @method add
+	 * @param {} id
+	 * @return 
+	 */
 	add:function(id){
 		var self = this;
 		var dialog = $('#project-view-modal');
@@ -57,9 +94,11 @@ app.controllers.projects = BackboneMVC.Controller.extend({
     },
 	
 	/**
-	* Upload a file or import a list of links from an input source
-	* @param id: project id
-	*/
+	 * Upload a file or import a list of links from an input source
+	 * @method upload_import
+	 * @param {} id
+	 * @return 
+	 */
 	upload_import:function(id){
 		var self = this;
 		var dialog = $('#project-view-modal');
@@ -81,10 +120,12 @@ app.controllers.projects = BackboneMVC.Controller.extend({
     },
 	
 	/**
-	* Import an uploaded file 
-	* @param id: input id
-	* @param $_GET[filename]: the filename of the file to import must be provided in the url
-	*/
+	 * Import an uploaded file 
+	 * @method import
+	 * @todo
+	 * @param {} id Input ID
+	 * @return 
+	 */
 	import:function(id){
 		/*TODO
 		Create the logic to import a file that has already been uploaded. E.g. from the logs to import again if there was an error
@@ -92,9 +133,11 @@ app.controllers.projects = BackboneMVC.Controller.extend({
     },
 	
 	/**
-	* Fetch all selected file links in the upload_import view
-	* @param d: Object from server with available links
-	*/
+	 * Fetch all selected file links in the Projects.upload_import view
+	 * @method fetch_links
+	 * @param {} d
+	 * @return 
+	 */
 	fetch_links: function(d) {
 		var self = this;
 		if(self.importing) return;
@@ -124,9 +167,10 @@ app.controllers.projects = BackboneMVC.Controller.extend({
 	},
 	
 	/**
-	* Before submitting data the selected values should be added to the form so they are passed over the url so they can be checked in the new view again (E.g. when changing time range)
-	* @return true
-	*/
+	 * Before submitting data in the Projects.data view, the selected values should be added to the form so they are passed over the url so they can be checked in the new view again (E.g. when changing time range)
+	 * @method addSelectedValuesToForm
+	 * @return Literal
+	 */
 	addSelectedValuesToForm: function(){
 		var values = $('.value-checkbox:checked').map(function(d,i){ return $(this).data('value_id') } ).get();
 		$('#form-value-ids').html($.map(values, function(d){
@@ -136,8 +180,10 @@ app.controllers.projects = BackboneMVC.Controller.extend({
 	},
 	
 	/**
-	* Update the Url if other values are selected to keep track of the changes in history
-	*/
+	 * Update the Url in Projects.data view if other values are selected to keep track of the changes in history
+	 * @method updateDataUrl
+	 * @return 
+	 */
 	updateDataUrl:function(){
 		this.addSelectedValuesToForm();
 		var $project_form = $('#ProjectDataForm');
@@ -146,8 +192,11 @@ app.controllers.projects = BackboneMVC.Controller.extend({
 	},
 	
 	/**
-	*
-	*/
+	 * This function is executed when the Projects.data view for the data visualization was loaded. It sets the events for buttons and value interactions in the sidebar.
+	 * @method data
+	 * @param {} params
+	 * @return 
+	 */
 	data:function(params){
 		var self = this;
 		this.loaded_value = {};
@@ -215,6 +264,11 @@ app.controllers.projects = BackboneMVC.Controller.extend({
 				//when a method is executed
 				var $method_select = $('#method_id');
 				var currentMethod = 0;
+				/**
+				 * Loads the Method.view view into a dialog to execute the method.
+				 * @method method_function
+				 * @return
+				 */
 				var method_function = function(){
 					var method_id = $('#method_id').val();
 					if(!method_id) return;
@@ -261,6 +315,11 @@ app.controllers.projects = BackboneMVC.Controller.extend({
 				
 				if(!self.initialized) {
 					self.initialized = true;
+					/**
+					 * Executed on window resize, is defined on runtime
+					 * @method w_resize
+					 * @return 
+					 */
 					self.w_resize = function(){
 						$('body').scrollTop();
 						if($('#value-list').length)
@@ -287,8 +346,11 @@ app.controllers.projects = BackboneMVC.Controller.extend({
     },
 	
 	/**
-	*
-	*/
+	 * Checks a value in the list in the Projects.data view
+	 * @method selectValue
+	 * @param {int} id Value ID
+	 * @return 
+	 */
 	selectValue:function(id){
 		$('.value-checkbox').prop('checked', false);
 		$('#value_'+id).prop('checked', true);
@@ -296,8 +358,11 @@ app.controllers.projects = BackboneMVC.Controller.extend({
 	},
 	
 	/**
-	*
-	*/
+	 * Shows or hides the flagged data (state: -1) in the graph
+	 * @method toggleFlags
+	 * @param {} value_id
+	 * @return 
+	 */
 	toggleFlags: function(value_id){
 		this.show_flagged_values[value_id] = !this.show_flagged_values[value_id];
 		$btn = $('.value-toggle-flag-link[data-value_id='+value_id+']');
@@ -311,8 +376,11 @@ app.controllers.projects = BackboneMVC.Controller.extend({
 	},
 	
 	/**
-	*
-	*/
+	 * Shows the original graph with user deleted data and flags where the user marked the data as correct in the Projects.data view.
+	 * @method showOriginal
+	 * @param {int} value_id Value ID
+	 * @return 
+	 */
 	showOriginal: function(value_id){
 		this.show_original_values[value_id] = !this.show_original_values[value_id];
 		$btn = $('.value-original-link[data-value_id='+value_id+']');
@@ -326,8 +394,11 @@ app.controllers.projects = BackboneMVC.Controller.extend({
 	},
 	
 	/**
-	*
-	*/
+	 * Flags the data in the current view as ! (state: -1) or correct (state: 1). In the Projects.data view.
+	 * @method flag_data
+	 * @param {string} flag can be !, correct
+	 * @return 
+	 */
 	flag_data: function(flag){
 		var start = Math.floor(this.minZoom / 1000); 
 		var end = Math.ceil(this.maxZoom / 1000);
@@ -346,8 +417,11 @@ app.controllers.projects = BackboneMVC.Controller.extend({
 	},
 	
 	/**
-	*
-	*/
+	 * Resets user deleted data (state: -2) or from user as correct marked data (state: 2) to state 0. In the Projects.data view.
+	 * @method reset_data
+	 * @param {string} flag deleted or correct
+	 * @return 
+	 */
 	reset_data: function(flag){
 		var start = Math.floor(this.minZoom / 1000); 
 		var end = Math.ceil(this.maxZoom / 1000);
@@ -369,8 +443,13 @@ app.controllers.projects = BackboneMVC.Controller.extend({
 	},
 	
 	/**
-	*
-	*/
+	 * Checks the data for a value on the server and reloads the value data in the Projects.data view. 
+	 * @method checkValueData
+	 * @param {} value_id
+	 * @param {} start
+	 * @param {} end
+	 * @return 
+	 */
 	checkValueData: function(value_id, start, end){
 		var self = this;
 		app.setRefresh();
@@ -388,6 +467,13 @@ app.controllers.projects = BackboneMVC.Controller.extend({
 		});
 	},
 	
+	/**
+	 * Unflags or deletes data in the Projects.data view, which is flagged -1. The flag type says why it is flagged.
+	 * @method manipulateFlags
+	 * @param {string} method can be unflag or delete
+	 * @param {string} flagType can be !, max, min or error
+	 * @return 
+	 */
 	manipulateFlags: function(method, flagType){
 		var start = Math.floor(this.minZoom / 1000); 
 		var end = Math.ceil(this.maxZoom / 1000);
@@ -404,6 +490,14 @@ app.controllers.projects = BackboneMVC.Controller.extend({
 		});
 	},
 	
+	/**
+	 * Is executed when a method was calculated in the Projects.data view. 
+	 *
+	 * @method calculatedMethod
+	 * @param {Object} d the returned data from the server
+	 * @param {int} method_id ID of executed method
+	 * @return 
+	 */
 	calculatedMethod: function(d, method_id){
 		var res = d.vars.result;
 		if(typeof(data) == 'string') {
@@ -422,8 +516,18 @@ app.controllers.projects = BackboneMVC.Controller.extend({
 	},
 	
 	/**
-	*
-	*/
+	 * Calculates a value by its predefined method. Triggered by a button click on the value in the list in the Projects.data view.
+	 * 
+	 * @method calculateValue
+	 * @param {} id
+	 * @param {} startDate
+	 * @param {} endDate
+	 * @param {} startHour
+	 * @param {} startMinute
+	 * @param {} endHour
+	 * @param {} endMinute
+	 * @return 
+	 */
 	calculateValue: function(id, startDate, endDate, startHour, startMinute, endHour, endMinute){
 		if(this.calculating_value) {
 			alert('It can only one value be calculated at once.');
@@ -442,6 +546,17 @@ app.controllers.projects = BackboneMVC.Controller.extend({
 		});
 	},
 	
+	/**
+	 * It sets the visiblity of the buttons on a value in the list.
+	 * If the value has data in the current time range with state:
+	 * 0: Show the check_data button
+	 * -1: Show the show flags button
+	 * 2 or -2: Show the show original data button
+	 * 
+	 * @method value_state_btns
+	 * @param {} value_id
+	 * @return 
+	 */
 	value_state_btns: function(value_id){
 		//console.log(this.value_states[value_id]);
 		$('.value-check-data-link[data-value_id='+value_id+']').toggle(this.value_states[value_id][0] != undefined);
@@ -450,9 +565,11 @@ app.controllers.projects = BackboneMVC.Controller.extend({
 	},
 	
 	/**
-	* converts an array of values with measures from the database into the chart format
-	* @param values: object from the server, with values and its measures
-	*/
+	 * Converts an array of values with measures from the database into the Highcharts chart format. In the Projects.data view.
+	 * @method data_to_chart_format
+	 * @param {} values
+	 * @return data
+	 */
 	data_to_chart_format: function(values){
 		var data = {};
 		var timestamps = {};
@@ -488,9 +605,12 @@ app.controllers.projects = BackboneMVC.Controller.extend({
 	},
 	
 	/**
-	* converts an array of values with measures from the database into the series of flags to be drawn on the data
-	* @param values: object from the server, with values and its measures
-	*/
+	 * Converts an array of values with measures from the database into the series of flags to be drawn on the data with the Highcharts framework in the Projects.data view.
+	 * @method data_to_flags
+	 * @param {} values
+	 * @param {} original
+	 * @return data
+	 */
 	data_to_flags: function(values, original){
 		var data = {};
 		for(var i in values) { //convert data structure for diagram
@@ -537,13 +657,20 @@ app.controllers.projects = BackboneMVC.Controller.extend({
 		return data;
 	},
 	
+	/**
+	 * Returns an array of all selected value IDs in Projects.data view
+	 * @method get_selected_value_ids
+	 * @return array of int
+	 */
 	get_selected_value_ids: function(){
 		return $('.value-checkbox:checked').map(function(){ return $(this).data('value_id'); }).get();
 	},
 	
 	/**
-	* draws the data-charts for the selected values
-	*/
+	 * Draws the data-charts for the selected values in the Projects.data view. It uses the Highcharts API
+	 * @method drawGraphs
+	 * @return 
+	 */
 	drawGraphs:function(){
 		var p = this.measured_data;
 		var diagram_type = $('#diagram_type').val();
@@ -619,6 +746,12 @@ app.controllers.projects = BackboneMVC.Controller.extend({
 				xAxis: { //
 					type: 'datetime',
 					events: {
+						/**
+						 * Sets the zomm start and zoom end on the xAxis
+						 * @method setExtremes
+						 * @param {} e
+						 * @return 
+						 */
 						setExtremes: function (e) { //Store zoom level to reset it on redrawing
 							self.maxZoom = e.max;
 							self.minZoom = e.min;
@@ -689,6 +822,12 @@ app.controllers.projects = BackboneMVC.Controller.extend({
 					}
 					//pointStart: start,
 			};
+			/**
+			 * Returns the caption for a yAxis (Value name prefix unit e.g.)
+			 * @method get_y_text
+			 * @param {} i
+			 * @return BinaryExpression
+			 */
 			var get_y_text = function(i){ return (p.values[i].Value.prefix ? p.unit_prefixes[p.values[i].Value.prefix] : '') + p.values[i].Unit.name + ' (' + p.values[i].Value.prefix + p.values[i].Unit.symbol + ')'; }; //Text for y Axis: unit name
 			
 			
@@ -812,13 +951,12 @@ app.controllers.projects = BackboneMVC.Controller.extend({
 		});
 	},
 	
-	delete:function(id){
-		var self = this;
-		app.post(this.name+'/delete/' + app.url()).done(function(d){
-			alert(d.vars.message);
-		});
-    },
-	
+	/**
+	 * Invites a user to a project
+	 * @method invite
+	 * @param {int} id Project ID
+	 * @return 
+	 */
 	invite:function(id){
 		var self = this;
 		var dialog = $('#user-view-modal');
@@ -827,6 +965,12 @@ app.controllers.projects = BackboneMVC.Controller.extend({
 		});
 	},
 	
+	/**
+	 * Edit the project
+	 * @method edit
+	 * @param {int} id Project ID
+	 * @return 
+	 */
 	edit:function(id){
 		var self = this;
 		var dialog = $('#project-view-modal');
@@ -835,10 +979,21 @@ app.controllers.projects = BackboneMVC.Controller.extend({
 		});
     },
 	
-    init:function(){
-     	
-    },
+
+	/**
+	 * Backbone default method if no action is provided. It maps it on the index method.
+	 * @method default
+	 * @param {string} filter CakePHP filter string, can be empty
+	 * @return 
+	 */
 	default:function(filter){this.index(filter)},
+	
+    /**
+     * Shows a list of the users projects
+     * @method index
+     * @param {string} filter CakePHP filter string, can be empty
+     * @return 
+     */
     index:function(filter){
 		this.setCurrent(0);
 		var self = this;

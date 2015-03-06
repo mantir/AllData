@@ -313,6 +313,15 @@ class Method extends AppModel {
 		}
 		return false;
 	}
+	
+	/**
+	* Checks if the code runs without errors (Has to be implemented)
+	* @todo
+	* @param $code
+	*/
+	public function check_code($code){
+
+	}
 
 	
 	/**

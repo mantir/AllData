@@ -24,13 +24,29 @@
 
 	var $window = $(window);
 
+	/**
+	 * Description
+	 * @method UTCDate
+	 * @return NewExpression
+	 */
 	function UTCDate(){
 		return new Date(Date.UTC.apply(Date, arguments));
 	}
+	/**
+	 * Description
+	 * @method UTCToday
+	 * @return CallExpression
+	 */
 	function UTCToday(){
 		var today = new Date();
 		return UTCDate(today.getFullYear(), today.getMonth(), today.getDate());
 	}
+	/**
+	 * Description
+	 * @method alias
+	 * @param {} method
+	 * @return FunctionExpression
+	 */
 	function alias(method){
 		return function(){
 			return this[method].apply(this, arguments);
@@ -39,9 +55,21 @@
 
 	var DateArray = (function(){
 		var extras = {
+			/**
+			 * Description
+			 * @method get
+			 * @param {} i
+			 * @return MemberExpression
+			 */
 			get: function(i){
 				return this.slice(i)[0];
 			},
+			/**
+			 * Description
+			 * @method contains
+			 * @param {} d
+			 * @return UnaryExpression
+			 */
 			contains: function(d){
 				// Array.indexOf is not cross-browser;
 				// $.inArray doesn't work with Dates
@@ -51,9 +79,21 @@
 						return i;
 				return -1;
 			},
+			/**
+			 * Description
+			 * @method remove
+			 * @param {} i
+			 * @return 
+			 */
 			remove: function(i){
 				this.splice(i,1);
 			},
+			/**
+			 * Description
+			 * @method replace
+			 * @param {} new_array
+			 * @return 
+			 */
 			replace: function(new_array){
 				if (!new_array)
 					return;
@@ -62,9 +102,19 @@
 				this.clear();
 				this.push.apply(this, new_array);
 			},
+			/**
+			 * Description
+			 * @method clear
+			 * @return 
+			 */
 			clear: function(){
 				this.splice(0);
 			},
+			/**
+			 * Description
+			 * @method copy
+			 * @return a
+			 */
 			copy: function(){
 				var a = new DateArray();
 				a.replace(this);
@@ -83,6 +133,13 @@
 
 	// Picker object
 
+	/**
+	 * Description
+	 * @method Datepicker
+	 * @param {} element
+	 * @param {} options
+	 * @return 
+	 */
 	var Datepicker = function(element, options){
 		this.dates = new DateArray();
 		this.viewDate = UTCToday();
@@ -407,6 +464,11 @@
 			});
 		},
 
+		/**
+		 * Description
+		 * @method show
+		 * @return 
+		 */
 		show: function(){
 			if (!this.isInline)
 				this.picker.appendTo('body');
@@ -416,6 +478,11 @@
 			this._trigger('show');
 		},
 
+		/**
+		 * Description
+		 * @method hide
+		 * @return 
+		 */
 		hide: function(){
 			if (this.isInline)
 				return;
@@ -438,6 +505,11 @@
 			this._trigger('hide');
 		},
 
+		/**
+		 * Description
+		 * @method remove
+		 * @return 
+		 */
 		remove: function(){
 			this.hide();
 			this._detachEvents();
@@ -462,24 +534,49 @@
 			return utc && new Date(Date.UTC(utc.getUTCFullYear(), utc.getUTCMonth(), utc.getUTCDate()));
 		},
 
+		/**
+		 * Description
+		 * @method getDates
+		 * @return CallExpression
+		 */
 		getDates: function(){
 			return $.map(this.dates, this._utc_to_local);
 		},
 
+		/**
+		 * Description
+		 * @method getUTCDates
+		 * @return CallExpression
+		 */
 		getUTCDates: function(){
 			return $.map(this.dates, function(d){
 				return new Date(d);
 			});
 		},
 
+		/**
+		 * Description
+		 * @method getDate
+		 * @return CallExpression
+		 */
 		getDate: function(){
 			return this._utc_to_local(this.getUTCDate());
 		},
 
+		/**
+		 * Description
+		 * @method getUTCDate
+		 * @return NewExpression
+		 */
 		getUTCDate: function(){
 			return new Date(this.dates.get(-1));
 		},
 
+		/**
+		 * Description
+		 * @method setDates
+		 * @return 
+		 */
 		setDates: function(){
 			var args = $.isArray(arguments[0]) ? arguments[0] : arguments;
 			this.update.apply(this, args);
@@ -487,6 +584,11 @@
 			this.setValue();
 		},
 
+		/**
+		 * Description
+		 * @method setUTCDates
+		 * @return 
+		 */
 		setUTCDates: function(){
 			var args = $.isArray(arguments[0]) ? arguments[0] : arguments;
 			this.update.apply(this, $.map(args, this._utc_to_local));
@@ -497,6 +599,11 @@
 		setDate: alias('setDates'),
 		setUTCDate: alias('setUTCDates'),
 
+		/**
+		 * Description
+		 * @method setValue
+		 * @return 
+		 */
 		setValue: function(){
 			var formatted = this.getFormattedDate();
 			if (!this.isInput){
@@ -509,6 +616,12 @@
 			}
 		},
 
+		/**
+		 * Description
+		 * @method getFormattedDate
+		 * @param {} format
+		 * @return CallExpression
+		 */
 		getFormattedDate: function(format){
 			if (format === undefined)
 				format = this.o.format;
@@ -519,24 +632,47 @@
 			}).join(this.o.multidateSeparator);
 		},
 
+		/**
+		 * Description
+		 * @method setStartDate
+		 * @param {} startDate
+		 * @return 
+		 */
 		setStartDate: function(startDate){
 			this._process_options({startDate: startDate});
 			this.update();
 			this.updateNavArrows();
 		},
 
+		/**
+		 * Description
+		 * @method setEndDate
+		 * @param {} endDate
+		 * @return 
+		 */
 		setEndDate: function(endDate){
 			this._process_options({endDate: endDate});
 			this.update();
 			this.updateNavArrows();
 		},
 
+		/**
+		 * Description
+		 * @method setDaysOfWeekDisabled
+		 * @param {} daysOfWeekDisabled
+		 * @return 
+		 */
 		setDaysOfWeekDisabled: function(daysOfWeekDisabled){
 			this._process_options({daysOfWeekDisabled: daysOfWeekDisabled});
 			this.update();
 			this.updateNavArrows();
 		},
 
+		/**
+		 * Description
+		 * @method place
+		 * @return 
+		 */
 		place: function(){
 			if (this.isInline)
 				return;
@@ -603,6 +739,11 @@
 		},
 
 		_allow_update: true,
+		/**
+		 * Description
+		 * @method update
+		 * @return 
+		 */
 		update: function(){
 			if (!this._allow_update)
 				return;
@@ -663,6 +804,11 @@
 			this.fill();
 		},
 
+		/**
+		 * Description
+		 * @method fillDow
+		 * @return 
+		 */
 		fillDow: function(){
 			var dowCnt = this.o.weekStart,
 				html = '<tr>';
@@ -678,6 +824,11 @@
 			this.picker.find('.datepicker-days thead').append(html);
 		},
 
+		/**
+		 * Description
+		 * @method fillMonths
+		 * @return 
+		 */
 		fillMonths: function(){
 			var html = '',
 			i = 0;
@@ -687,6 +838,12 @@
 			this.picker.find('.datepicker-months td').html(html);
 		},
 
+		/**
+		 * Description
+		 * @method setRange
+		 * @param {} range
+		 * @return 
+		 */
 		setRange: function(range){
 			if (!range || !range.length)
 				delete this.range;
@@ -697,6 +854,12 @@
 			this.fill();
 		},
 
+		/**
+		 * Description
+		 * @method getClassNames
+		 * @param {} date
+		 * @return cls
+		 */
 		getClassNames: function(date){
 			var cls = [],
 				year = this.viewDate.getUTCFullYear(),
@@ -734,6 +897,11 @@
 			return cls;
 		},
 
+		/**
+		 * Description
+		 * @method fill
+		 * @return 
+		 */
 		fill: function(){
 			var d = new Date(this.viewDate),
 				year = d.getUTCFullYear(),
@@ -860,6 +1028,11 @@
 			yearCont.html(html);
 		},
 
+		/**
+		 * Description
+		 * @method updateNavArrows
+		 * @return 
+		 */
 		updateNavArrows: function(){
 			if (!this._allow_update)
 				return;
@@ -900,6 +1073,12 @@
 			}
 		},
 
+		/**
+		 * Description
+		 * @method click
+		 * @param {} e
+		 * @return 
+		 */
 		click: function(e){
 			e.preventDefault();
 			var target = $(e.target).closest('span, td, th'),
@@ -1052,6 +1231,13 @@
 			}
 		},
 
+		/**
+		 * Description
+		 * @method moveMonth
+		 * @param {} date
+		 * @param {} dir
+		 * @return new_date
+		 */
 		moveMonth: function(date, dir){
 			if (!date)
 				return undefined;
@@ -1089,6 +1275,10 @@
 				// ...then reset the day, keeping it in the new month
 				new_month = new_date.getUTCMonth();
 				new_date.setUTCDate(day);
+				/**
+				 * Description
+				 * @return BinaryExpression
+				 */
 				test = function(){
 					return new_month !== new_date.getUTCMonth();
 				};
@@ -1102,14 +1292,33 @@
 			return new_date;
 		},
 
+		/**
+		 * Description
+		 * @method moveYear
+		 * @param {} date
+		 * @param {} dir
+		 * @return CallExpression
+		 */
 		moveYear: function(date, dir){
 			return this.moveMonth(date, dir*12);
 		},
 
+		/**
+		 * Description
+		 * @method dateWithinRange
+		 * @param {} date
+		 * @return LogicalExpression
+		 */
 		dateWithinRange: function(date){
 			return date >= this.o.startDate && date <= this.o.endDate;
 		},
 
+		/**
+		 * Description
+		 * @method keydown
+		 * @param {} e
+		 * @return 
+		 */
 		keydown: function(e){
 			if (this.picker.is(':not(:visible)')){
 				if (e.keyCode === 27) // allow escape to hide and re-show picker
@@ -1229,6 +1438,12 @@
 			}
 		},
 
+		/**
+		 * Description
+		 * @method showMode
+		 * @param {} dir
+		 * @return 
+		 */
 		showMode: function(dir){
 			if (dir){
 				this.viewMode = Math.max(this.o.minViewMode, Math.min(2, this.viewMode + dir));
@@ -1242,6 +1457,13 @@
 		}
 	};
 
+	/**
+	 * Description
+	 * @method DateRangePicker
+	 * @param {} element
+	 * @param {} options
+	 * @return 
+	 */
 	var DateRangePicker = function(element, options){
 		this.element = $(element);
 		this.inputs = $.map(options.inputs, function(i){
@@ -1259,12 +1481,22 @@
 		this.updateDates();
 	};
 	DateRangePicker.prototype = {
+		/**
+		 * Description
+		 * @method updateDates
+		 * @return 
+		 */
 		updateDates: function(){
 			this.dates = $.map(this.pickers, function(i){
 				return i.getUTCDate();
 			});
 			this.updateRanges();
 		},
+		/**
+		 * Description
+		 * @method updateRanges
+		 * @return 
+		 */
 		updateRanges: function(){
 			var range = $.map(this.dates, function(d){
 				return d.valueOf();
@@ -1273,6 +1505,12 @@
 				p.setRange(range);
 			});
 		},
+		/**
+		 * Description
+		 * @method dateUpdated
+		 * @param {} e
+		 * @return 
+		 */
 		dateUpdated: function(e){
 			// `this.updating` is a workaround for preventing infinite recursion
 			// between `changeDate` triggering and `setUTCDate` calling.  Until
@@ -1309,18 +1547,37 @@
 
 			delete this.updating;
 		},
+		/**
+		 * Description
+		 * @method remove
+		 * @return 
+		 */
 		remove: function(){
 			$.map(this.pickers, function(p){ p.remove(); });
 			delete this.element.data().datepicker;
 		}
 	};
 
+	/**
+	 * Description
+	 * @method opts_from_el
+	 * @param {} el
+	 * @param {} prefix
+	 * @return out
+	 */
 	function opts_from_el(el, prefix){
 		// Derive options from element data-attrs
 		var data = $(el).data(),
 			out = {}, inkey,
 			replace = new RegExp('^' + prefix.toLowerCase() + '([A-Z])');
 		prefix = new RegExp('^' + prefix.toLowerCase());
+		/**
+		 * Description
+		 * @method re_lower
+		 * @param {} _
+		 * @param {} a
+		 * @return CallExpression
+		 */
 		function re_lower(_,a){
 			return a.toLowerCase();
 		}
@@ -1332,6 +1589,12 @@
 		return out;
 	}
 
+	/**
+	 * Description
+	 * @method opts_from_locale
+	 * @param {} lang
+	 * @return out
+	 */
 	function opts_from_locale(lang){
 		// Derive options from locale plugins
 		var out = {};
@@ -1351,6 +1614,12 @@
 	}
 
 	var old = $.fn.datepicker;
+	/**
+	 * Description
+	 * @method datepicker
+	 * @param {} option
+	 * @return 
+	 */
 	$.fn.datepicker = function(option){
 		var args = Array.apply(null, arguments);
 		args.shift();
@@ -1445,14 +1714,33 @@
 				navFnc: 'FullYear',
 				navStep: 10
 		}],
+		/**
+		 * Description
+		 * @method isLeapYear
+		 * @param {} year
+		 * @return LogicalExpression
+		 */
 		isLeapYear: function(year){
 			return (((year % 4 === 0) && (year % 100 !== 0)) || (year % 400 === 0));
 		},
+		/**
+		 * Description
+		 * @method getDaysInMonth
+		 * @param {} year
+		 * @param {} month
+		 * @return MemberExpression
+		 */
 		getDaysInMonth: function(year, month){
 			return [31, (DPGlobal.isLeapYear(year) ? 29 : 28), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31][month];
 		},
 		validParts: /dd?|DD?|mm?|MM?|yy(?:yy)?/g,
 		nonpunctuation: /[^ -\/:-@\[\u3400-\u9fff-`{-~\t\n\r]+/g,
+		/**
+		 * Description
+		 * @method parseFormat
+		 * @param {} format
+		 * @return ObjectExpression
+		 */
 		parseFormat: function(format){
 			// IE treats \0 as a string end in inputs (truncating the value),
 			// so it's a bad format delimiter, anyway
@@ -1463,6 +1751,14 @@
 			}
 			return {separators: separators, parts: parts};
 		},
+		/**
+		 * Description
+		 * @method parseDate
+		 * @param {} date
+		 * @param {} format
+		 * @param {} language
+		 * @return date
+		 */
 		parseDate: function(date, format, language){
 			if (!date)
 				return undefined;
@@ -1500,12 +1796,33 @@
 			var parsed = {},
 				setters_order = ['yyyy', 'yy', 'M', 'MM', 'm', 'mm', 'd', 'dd'],
 				setters_map = {
+					/**
+					 * Description
+					 * @method yyyy
+					 * @param {} d
+					 * @param {} v
+					 * @return CallExpression
+					 */
 					yyyy: function(d,v){
 						return d.setUTCFullYear(v);
 					},
+					/**
+					 * Description
+					 * @method yy
+					 * @param {} d
+					 * @param {} v
+					 * @return CallExpression
+					 */
 					yy: function(d,v){
 						return d.setUTCFullYear(2000+v);
 					},
+					/**
+					 * Description
+					 * @method m
+					 * @param {} d
+					 * @param {} v
+					 * @return d
+					 */
 					m: function(d,v){
 						if (isNaN(d))
 							return d;
@@ -1517,6 +1834,13 @@
 							d.setUTCDate(d.getUTCDate()-1);
 						return d;
 					},
+					/**
+					 * Description
+					 * @method d
+					 * @param {} d
+					 * @param {} v
+					 * @return CallExpression
+					 */
 					d: function(d,v){
 						return d.setUTCDate(v);
 					}
@@ -1533,6 +1857,11 @@
 				}).toArray();
 			}
 			// Process remainder
+			/**
+			 * Description
+			 * @method match_part
+			 * @return BinaryExpression
+			 */
 			function match_part(){
 				var m = this.slice(0, parts[i].length),
 					p = parts[i].slice(0, m.length);
@@ -1570,6 +1899,14 @@
 			}
 			return date;
 		},
+		/**
+		 * Description
+		 * @method formatDate
+		 * @param {} date
+		 * @param {} format
+		 * @param {} language
+		 * @return CallExpression
+		 */
 		formatDate: function(date, format, language){
 			if (!date)
 				return '';
@@ -1640,9 +1977,12 @@
 	$.fn.datepicker.DPGlobal = DPGlobal;
 
 
-	/* DATEPICKER NO CONFLICT
-	* =================== */
-
+	/**
+	 * DATEPICKER NO CONFLICT
+	 * =================== 
+	 * @method noConflict
+	 * @return ThisExpression
+	 */
 	$.fn.datepicker.noConflict = function(){
 		$.fn.datepicker = old;
 		return this;

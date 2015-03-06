@@ -25,6 +25,13 @@ var queryStringParam = /^\?(.*)/,
 Backbone.Router.arrayValueSplit = '|';
 
 _.extend(Backbone.History.prototype, {
+  /**
+   * Description
+   * @method getFragment
+   * @param {} fragment
+   * @param {} forcePushState
+   * @return CallExpression
+   */
   getFragment: function(fragment, forcePushState) {
     /*jshint eqnull:true */
     if (fragment == null) {
@@ -47,6 +54,13 @@ _.extend(Backbone.History.prototype, {
 
   // this will not perform custom query param serialization specific to the router
   // but will return a map of key/value pairs (the value is a string or array)
+  /**
+   * Description
+   * @method getQueryParameters
+   * @param {} fragment
+   * @param {} forcePushState
+   * @return 
+   */
   getQueryParameters: function(fragment, forcePushState) {
     fragment = this.getFragment(fragment, forcePushState);
     // if no query string exists, this will still be the original fragment
@@ -75,6 +89,12 @@ _.extend(Backbone.History.prototype, {
 });
 
 _.extend(Backbone.Router.prototype, {
+  /**
+   * Description
+   * @method initialize
+   * @param {} options
+   * @return 
+   */
   initialize: function(options) {
     this.encodedSplatParts = options && options.encodedSplatParts;
   },
@@ -216,6 +236,10 @@ _.extend(Backbone.Router.prototype, {
 
   /**
    * Return the route fragment with queryParameters serialized to query parameter string
+   * @method toFragment
+   * @param {} route
+   * @param {} queryParameters
+   * @return route
    */
   toFragment: function(route, queryParameters) {
     if (queryParameters) {
@@ -233,10 +257,20 @@ _.extend(Backbone.Router.prototype, {
 
 /**
  * Serialize the val hash to query parameters and return it.  Use the namePrefix to prefix all param names (for recursion)
+ * @method toQueryString
+ * @param {} val
+ * @param {} namePrefix
+ * @return CallExpression
  */
 function toQueryString(val, namePrefix) {
   /*jshint eqnull:true */
   var splitChar = Backbone.Router.arrayValueSplit;
+  /**
+   * Description
+   * @method encodeSplit
+   * @param {} val
+   * @return CallExpression
+   */
   function encodeSplit(val) { return String(val).replace(splitChar, encodeURIComponent(splitChar)); }
 
   if (!val) {
@@ -277,6 +311,12 @@ function toQueryString(val, namePrefix) {
   return rtn.join('&');
 }
 
+/**
+ * Description
+ * @method parseParams
+ * @param {} value
+ * @return 
+ */
 function parseParams(value) {
   // decodeURIComponent doesn't touch '+'
   try {
@@ -287,6 +327,13 @@ function parseParams(value) {
   }
 }
 
+/**
+ * Description
+ * @method iterateQueryString
+ * @param {} queryString
+ * @param {} callback
+ * @return 
+ */
 function iterateQueryString(queryString, callback) {
   var keyValues = queryString.split('&');
   _.each(keyValues, function(keyValue) {
@@ -304,6 +351,13 @@ function iterateQueryString(queryString, callback) {
 //
 // Note that https://github.com/jashkenas/backbone/pull/2890 should hopefully make this irrevelant
 //
+/**
+ * Description
+ * @method navigate
+ * @param {} fragment
+ * @param {} options
+ * @return 
+ */
 Backbone.History.prototype.navigate = function(fragment, options) {
   /*jshint curly:false */
   if (!Backbone.History.started) return false;

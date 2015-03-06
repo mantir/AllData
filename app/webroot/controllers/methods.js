@@ -1,3 +1,14 @@
+/**
+ * This is the methods controller
+ *
+ * @copyright     Martin Kapp 2014-15
+ * @link          http://headkino.de
+ * @package       app.Lib
+ * @since         v 0.1
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
+ * 
+ * @class app.controllers.methods
+ */
 app.controllers.methods = BackboneMVC.Controller.extend({
     name: 'methods',
 	views:[], //These are the views we will use with the controller
@@ -6,6 +17,12 @@ app.controllers.methods = BackboneMVC.Controller.extend({
 		mode: "php"
 	},
 	
+	/**
+	 * Description
+	 * @method add
+	 * @param {} id
+	 * @return 
+	 */
 	add:function(id){
 		var self = this;
 		app.loadPage(this.name, 'add', app.url()).done(function(d){
@@ -13,6 +30,12 @@ app.controllers.methods = BackboneMVC.Controller.extend({
 		});
     },
 	
+	/**
+	 * Description
+	 * @method edit
+	 * @param {} id
+	 * @return 
+	 */
 	edit:function(id){
 		var self = this;
 		app.loadPage(this.name, 'edit', app.url()).done(function(d){
@@ -20,6 +43,11 @@ app.controllers.methods = BackboneMVC.Controller.extend({
 		});
     },
 	
+	/**
+	 * Description
+	 * @method view
+	 * @return 
+	 */
 	view: function(){
 		$('.make-null').click(function(){
 			$(this).prevAll('select').each(function(index, element) {
@@ -34,6 +62,11 @@ app.controllers.methods = BackboneMVC.Controller.extend({
 		});
 	},
 	
+	/**
+	 * Description
+	 * @method execute
+	 * @return 
+	 */
 	execute: function(){
 		
 	},
@@ -45,6 +78,12 @@ app.controllers.methods = BackboneMVC.Controller.extend({
 	
 	$doc: false,
 	$params: false,
+	/**
+	 * Description
+	 * @method coding
+	 * @param {} id
+	 * @return 
+	 */
 	coding:function(id){
 		var self = this;
 		if($('#MethodCode').length == 0)
@@ -59,6 +98,11 @@ app.controllers.methods = BackboneMVC.Controller.extend({
 		});
 	},
 	
+	/**
+	 * Description
+	 * @method parseParams
+	 * @return 
+	 */
 	parseParams: function(){
 		var self = this;
 		var params = [
@@ -93,6 +137,12 @@ app.controllers.methods = BackboneMVC.Controller.extend({
 		});
 	},
 		
+	/**
+	 * Description
+	 * @method delete
+	 * @param {} id
+	 * @return 
+	 */
 	delete:function(id){
 		var self = this;
 		app.post(this.name+'/delete/' + app.url()).done(function(d){
@@ -100,10 +150,25 @@ app.controllers.methods = BackboneMVC.Controller.extend({
 		});
     },
 	
+    /**
+     * Description
+     * @method init
+     * @return 
+     */
     init:function(){
      	
     },
+	/**
+	 * Description
+	 * @method default
+	 * @return 
+	 */
 	default:function(){this.index()},
+    /**
+     * Description
+     * @method admin_index
+     * @return 
+     */
     admin_index:function(){
 		var self = this;
 		app.loadPage(this.name, 'index', app.url()).done(function(d){

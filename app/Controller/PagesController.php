@@ -45,7 +45,7 @@ class PagesController extends AppController {
 	public $uses = array();
 
 /**
- * Displays a view
+ * Displays a page in the View/Pages folder
  *
  * @param mixed What page to display
  * @return void
@@ -71,6 +71,7 @@ class PagesController extends AppController {
 		if($page == 'home'){
 			$this->redirect('projects/index');
 		}
+		//debug($path);
 		$this->render(implode('/', $path));
 	}
 	

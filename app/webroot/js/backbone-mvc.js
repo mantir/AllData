@@ -82,6 +82,11 @@
      * @type {Class}
      */
     var ControllerSingleton = (function () {
+        /**
+         * Description
+         * @method BaseController
+         * @return 
+         */
         function BaseController() {
             this._created = (new Date()).getTime(); //this can be useful for development
         }
@@ -90,8 +95,19 @@
             _created:null
         });
 
+        /**
+         * Description
+         * @method extend
+         * @param {} properties
+         * @return klass
+         */
         BaseController.extend = function (properties) {
             var instance;
+            /**
+             * Description
+             * @method klass
+             * @return instance
+             */
             var klass = function Controller() {
                 if (instance !== undefined) { //try to simulate Singleton
                     return instance;
@@ -122,8 +138,10 @@
     _.extend(BackboneMVC, {
         /**
          * A utility method used to create namespace object levels
-         * @param {String} namespaceString levels in namespaces
          * @example "Mammalia.Cetacea.Delphinidae.Dolphin"
+         * @method namespace
+         * @param {String} namespaceString levels in namespaces
+         * @return 
          */
         namespace:function (namespaceString) {
             var components = namespaceString.split('.');
@@ -142,19 +160,38 @@
          */
         //some default implementations for the methods are listed here:
         Controller:{
+            /**
+             * Description
+             * @method beforeFilter
+             * @return CallExpression
+             */
             beforeFilter:function () {
                 return (new $.Deferred()).resolve();
             },
 
+            /**
+             * Description
+             * @method afterRender
+             * @return CallExpression
+             */
             afterRender:function () {
                 return (new $.Deferred()).resolve();
             },
 
+            /**
+             * Description
+             * @method checkSession
+             * @return CallExpression
+             */
             checkSession:function () {
                 //if not defined, then always succeed
                 return (new $.Deferred()).resolve(true);
             },
 
+            /**
+             * Description
+             * @return Literal
+             */
             'default':function () {
                 //TODO: this function will list all the actions of the controller
                 //intend to be overridden in most of the cases
@@ -175,6 +212,12 @@
                     "*components":'dispatch' // route everything to 'dispatch' method
                 },
 
+                /**
+                 * Description
+                 * @method dispatch
+                 * @param {} actionPath
+                 * @return CallExpression
+                 */
                 dispatch:function (actionPath) {
                     var components = (actionPath || '').replace(/\/+$/g, '').split('/');
                     var controllerName;
@@ -208,13 +251,18 @@
                     return invokeAction(controllerName, action, _arguments);
                 },
 
+                /**
+                 * Description
+                 * @return 
+                 */
                 '404':function () {
                     //do nothing, expect overriding
                 },
 
                 /**
                  * Return the last invoked action
-                 * @return {object} the last action being invoked and it's parameters
+                 * @method getLastAction
+                 * @return MemberExpression
                  */
                 getLastAction:function () {
                     return _.last(this._history, 1)[0];
@@ -222,9 +270,10 @@
 
                 /**
                  * Make navigate() returns a deferred object
+                 * @method navigate
                  * @param fragment
                  * @param options may contain trigger and replace options.
-                 * @return {*} Deferred
+                 * @return 
                  */
                 navigate: function(fragment, options){
                     if (!options || options === true) {
@@ -243,6 +292,12 @@
                 }
             };
 
+            /**
+             * Description
+             * @method extend
+             * @param {} properties
+             * @return CallExpression
+             */
             function extend(properties){
                 var _routes = _.extend(properties.routes || {}, _inherentRouterProperties.routes );
                 return Backbone.Router.extend(_.extend(properties, _inherentRouterProperties, { routes: _routes }));
@@ -266,16 +321,35 @@
          * @example //TODO
          */
         Model:{
+            /**
+             * Description
+             * @method extend
+             * @param {} properties
+             * @return CallExpression
+             */
             extend:function (properties) {
                 properties = _.extend({
                     __fetchSuccessCallback:null,
                     __fetchErrorCallback:null,
 
+                    /**
+                     * Description
+                     * @method fetch
+                     * @param {} options
+                     * @return 
+                     */
                     fetch:function (options) {
                         options = options || {};
                         //wrap the success callback, so we get a chance of triggering 'read' event
                         //by taking over the '__fetchSuccessCallback()' defined in 'parse()'
                         var success = options.success;
+                        /**
+                         * Description
+                         * @method success
+                         * @param {} model
+                         * @param {} resp
+                         * @return 
+                         */
                         options.success = function (model, resp) {
                             if (success) {
                                 success(model, resp);
@@ -288,6 +362,13 @@
                         };
                         //wrap the error callback, so we get a chance of triggering 'error' event
                         var error = options.error;
+                        /**
+                         * Description
+                         * @method error
+                         * @param {} model
+                         * @param {} resp
+                         * @return 
+                         */
                         options.error = function (model, resp) {
                             if (error){
                                 error(model, resp);
@@ -300,8 +381,9 @@
                     /**
                      * Intercept the data return from server and see if there is any error.
                      * Overriding is discouraged.
+                     * @method parse
                      * @param {object} response the returned and parsed json object
-                     * @return {*}
+                     * @return MemberExpression
                      */
                     parse:function (response) {
                         this.__fetchSuccessCallback = null;
@@ -410,8 +492,9 @@
 
     /**
      * use duck-typing to check if an object is a Deferred Object.
+     * @method isDeferred
      * @param suspiciousObject
-     * @return {boolean}
+     * @return LogicalExpression
      */
     function isDeferred(suspiciousObject) {
         //duck-typing
@@ -422,9 +505,10 @@
     /**
      * Convert a non-deferred object ot deferred object, and resolve or reject the deferred object based on the value
      * of the non-deferred object.
+     * @method assertDeferredByResult
      * @param deferred
      * @param result
-     * @return {object} a Deferred Object
+     * @return CallExpression
      */
     function assertDeferredByResult(deferred, result) {
         if (typeof result === 'undefined') {
@@ -435,8 +519,9 @@
 
     /**
      * convert to CamelCased form
+     * @method camelCased
      * @param string the non-camel-cased form
-     * @return {string}
+     * @return CallExpression
      */
     function camelCased(string) {
         if (typeof string !== 'string') {
@@ -454,8 +539,9 @@
 
     /**
      * convert to underscored form
+     * @method underscored
      * @param string the non-underscored form
-     * @return {string}
+     * @return CallExpression
      */
     function underscored(string) {
         if (typeof string !== 'string') {
@@ -476,10 +562,11 @@
     /**
      * Invoke the action method under a controller, also takes care of event callbacks and session checking method
      * on the call chain.
+     * @method invokeAction
      * @param controllerName the controller name
      * @param {string} action action method name
      * @param {Array} _arguments the parameters sent ot the action method
-     * @return {*}
+     * @return deferred
      */
     function invokeAction(controllerName, action, _arguments) {
         var controller = new ControllersPool[controllerName]();
@@ -532,6 +619,15 @@
         return deferred;
     }
 
+    /**
+     * Description
+     * @method addHistoryEntry
+     * @param {} router
+     * @param {} controller_name
+     * @param {} action
+     * @param {} _arguments
+     * @return 
+     */
     function addHistoryEntry(router, controller_name, action, _arguments) {
         if (router._history.length > 888) {
             router._history = _.last(router._history, 888);

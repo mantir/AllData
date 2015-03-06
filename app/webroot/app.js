@@ -1,3 +1,14 @@
+/**
+ * This is the app class. It manages the whole application.
+ *
+ * @copyright     Martin Kapp 2014-15
+ * @link          http://headkino.de
+ * @package       app.Lib
+ * @since         v 0.1
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
+ * 
+ * @class app
+ */
 requirejs.config({
 	baseUrl : baseUrl+'/',
 	paths: {
@@ -25,17 +36,19 @@ var routes = {
 var AppRouter = BackboneMVC.Router.extend({
 	name: "appRouter",
 	routes:routes,
+	/**
+	 * Route the home url to the Projects.index page
+	 * @method home
+	 * @return 
+	 */
 	home:function(){
 		app.route('projects/index');
-	},
-	admin:function(){
-		alert('THX');
 	},
 });
 app = {
 	c: {}, //Controller array
 	controllers: {}, //Controllerklassen
-	controllerList: ["c/projects", "c/pages", "c/documentations", "c/logs", 'c/settings', 'c/values', 'c/inputs', 'c/units', 'c/methods', 'c/exports', 'c/users', 'c/admin'],
+	controllerList: ["c/projects", "c/pages", "c/logs", 'c/values', 'c/inputs', 'c/units', 'c/methods', 'c/exports', 'c/users', 'c/admin'],
 	viewType:"text/x-underscore-template",
 	loader_gif:baseUrl+"/img/gloader.gif",
 	loader_gif_2:baseUrl+"/img/fbloader.gif",
@@ -46,6 +59,14 @@ app = {
 	config : [],
 	viewFileExt: 'js',
 	router : new AppRouter(),
+	/**
+	 * Initializes the app on page loading
+	 * @method init
+	 * @param {string} baseUrl The base url of alldata, it can be passed or is calculated from the current URL: e.g. http://headkino.de/alldata/
+	 * @param {Object} d Data array from the server. The same object would have been returned from an AJAX request to the page. The data is cached in the app.requests Object
+	 * @param {string} content Rendered view HTML
+	 * @return 
+	 */
 	init: function(baseUrl, d, content){ //Base Url and Data
 		if(baseUrl.substr(-1, 1) != '/') baseUrl += '/';
 		if(baseUrl) {
@@ -68,17 +89,38 @@ app = {
 			that.loadControllers(app.controllerList);
 		});
 	},
+	/**
+	 * Returns the current relative url. Relative to the app.baseUrl
+	 * @method url
+	 * @param {string} query string. If the string isn't already at the end of the current URL, it is added and returned
+	 * @return BinaryExpression
+	 */
 	url:function(query){
 		var s = query ? query : Backbone.history.location.search;
 		if(Backbone.history.fragment.indexOf(s) > -1 || Backbone.history.fragment.indexOf(decodeURI(s)) > -1)
 			s = '';
 		return Backbone.history.fragment + s;
 	},
+	/**
+	 * Removes the app.baseUrl from an url
+	 * @method unbaseUrl
+	 * @param {string} url
+	 * @return url
+	 */
 	unbaseUrl :function(url) {
 		if(url.indexOf(this.baseUrl) > -1)
 			url = url.replace(new RegExp(this.baseUrl), '');
 		return url;
 	},
+	/**
+	 * Routes a given URL to the corresponding controller and method and the URL in the browser can be changed. e.g. /projects/view/2 => Projects-controller executing view-function passing parameter 2.
+	 * 
+	 * @method route
+	 * @param {string} url The route url
+	 * @param {bool|undefined} notrigger Just change the Browser URL and don't trigger the action in the controller
+	 * @param {bool|undefined} replace Replaces the current URL in the browser with with the url parameter and doesn't add it to the Backbone history. (like nothing happened) 
+	 * @return 
+	 */
 	route:function(url, notrigger, replace){
 		url = app.unbaseUrl(url);
 		/*var fr = url.indexOf('?'); 
@@ -88,14 +130,33 @@ app = {
 			app.lastURL = Backbone.history.fragment;
 		this.router.navigate(url, {trigger: !notrigger, replace: replace});
 	},
+	/**
+	 * Just change the browser URL without triggering the corresponding controller action.
+	 * @method updateUrl
+	 * @param {string} url
+	 * @return 
+	 */
 	updateUrl: function(url){
 		this.route(url, true, true);
 	},
+	/**
+	 * Executes a controller action and changes the URL, then it replaces the changed URL with the previous URL again (like nothing happened)
+	 * @method call_url
+	 * @param {} url
+	 * @return 
+	 */
 	call_url: function(url){
 		var current = Backbone.history.fragment;
 		this.route(url, false, true);
 		this.route(current, true, true);
 	},
+	/**
+	 * Wrapper for require.js
+	 * @method require
+	 * @param {string|array} what What should be required
+	 * @param {function} callback Executed after required files are loaded
+	 * @return 
+	 */
 	require:function(what, callback){
 		if(typeof(what) == 'string')
 			what = [what];
@@ -109,6 +170,12 @@ app = {
 		//console.log(which);
 		require(which, callback);
 	},
+	/**
+	 * Loads a stylesheet dynamically and adds it to the header
+	 * @method loadCss
+	 * @param {string} url
+	 * @return 
+	 */
 	loadCss:function(url) {
 		var link = document.createElement("link");
 		link.type = "text/css";
@@ -116,19 +183,42 @@ app = {
 		link.href = url;
 		document.getElementsByTagName("head")[0].appendChild(link);
 	},
+	/**
+	 * Refresh the current view
+	 * @method refresh
+	 * @param {function} callback
+	 * @return 
+	 */
 	refresh:function(callback){
 		var url = Backbone.history.fragment;
 		this.refreshing = true;
 		this.setCallback(callback);
 		this.route(url);
 	},
+	/**
+	 * Uncache the data for an already loaded URL so it is loaded again.
+	 * @method setRefresh
+	 * @param {string} url URL to be refreshed. If empty the next request is refreshed.
+	 * @return 
+	 */
 	setRefresh:function(url){
 		if(url) {
 			delete app.requests[url];
 		} else
 		this.refreshNext = true;
 	},
+	/**
+	 * app.callback a global callback function which can be set with setCallback. Used for example in the app.loadPage function
+	 * @method callback
+	 * @return 
+	 */
 	callback : function(){},
+	/**
+	 * Set the app.callback function.
+	 * @method setCallback
+	 * @param {} callback
+	 * @return 
+	 */
 	setCallback:function(callback){
 		var self = this;
 		this.callback = function(){
@@ -136,14 +226,16 @@ app = {
 			self.callback = function(){};
 		}
 	},
-	render: function(view, d, con){
-		var t = this.template('views/'+view);
-		if(!t) return d.content;
-		if(d && d.vars)
-			d = d.vars;
-		var temp = _.template(t);
-		return temp(d);
-	},
+
+	/**
+	 * Like loadPage only laoding the page contents into a given dialog
+	 * @method loadDialog
+	 * @param {string} c Controller name
+	 * @param {string} a Action name
+	 * @param {string} url URL to fetch data from the server
+	 * @param {jQuery Object} target Backbone modal Dialog container
+	 * @return Q.promise from Q.js for callbacks
+	 */
 	loadDialog: function(c, a, url, target) {
 		var q = Q.defer();
 		if(this.locked) {
@@ -161,6 +253,15 @@ app = {
 		});
 		return q.promise;
 	},
+	/**
+	 * Load the page contents rom the server
+	 * @method loadPage
+	 * @param {} c Controller name
+	 * @param {} a Action name
+	 * @param {} url URL to fetch data from the server
+	 * @param {} target The target container for the loaded page content (Default this.container.find('.page'))
+	 * @return Q.promise from Q.js for callbacks
+	 */
 	loadPage: function(c, a, url, target){
 		var q = Q.defer();
 		if(this.locked) {
@@ -179,16 +280,20 @@ app = {
 		if(target && target.length > 0)
 			$con = target;
 		$con.html(this.loadIndicator());
+		/**
+		 * Executed after new page was loaded
+		 * @method callback
+		 * @param {} d
+		 * @return 
+		 */
 		var callback = function(d){
-			//console.log($.mobile.activePage.data('appfunction')+' '+c+'.'+a);
 			if(self.activePage().data('appurl') == url) {
 				app.locked = false;
 				q.resolve(d);
 				samePage = true;
-				//if(!self.refreshing) return;
 			}
-			var html = app.render(c+'.'+a, d);
-			//var footer = $('.footer', '#'+c+'-'+a);
+			var html = d.content;
+
 			if(self.refreshing) {
 				$con.append(html);
 				self.callback();
@@ -218,9 +323,22 @@ app = {
 			callback(url);
 		return q.promise;
 	},
+	/**
+	 * Implement if page transitions a wanted
+	 * @todo
+	 * @method changePage
+	 * @return 
+	 */
 	changePage:function(){
 		
 	},
+	/**
+	 * Fetches json data from the server
+	 * @method get
+	 * @param {string} url
+	 * @param {object} params URL parameters
+	 * @return a Q.promise from Q.js for callback
+	 */
 	get: function(url, params){
 		var q = Q.defer();
 		if(!params)
@@ -270,11 +388,23 @@ app = {
 		}
 		return q.promise;
 	},
+	/**
+	 * post data to a server url
+	 * @method post
+	 * @param {string} url
+	 * @return MemberExpression
+	 */
 	post: function(url){
 		var q = Q.defer();
         $.post(this.baseUrl+this.jsonUrl + url).done(function(d){ app.requests[url] = d; q.resolve(d);}).fail(function(){ alert('Es ist ein Fehler aufgetreten. Bitte Seite neuladen.'); q.resolve({}); });
 		return q.promise;
 	},
+	/**
+	 * Checks if the returned data object contains a message which should be shown in a dialog
+	 * @method checkForMessageToShow
+	 * @param {} d
+	 * @return 
+	 */
 	checkForMessageToShow: function(d){
 		if(d.message) {
 			$('#error-view-modal').find('.modal-body').html(d.message);
@@ -282,15 +412,13 @@ app = {
 		}
 		d.message = false;
 	},
-	submit: function(e){
-		var p = $(e.target).serializeArray();
-		
-		return false;
-	},
-	uncache: function(url){
-		url = app.unbaseUrl(url);
-		delete app.requests[url];
-	},
+
+
+	/**
+	 * Updates the layout on page load or on windows resize
+	 * @method updateLayout
+	 * @return 
+	 */
 	updateLayout:function(){
 		if(!this.container) {
 			this.container = $('#page-wrapper');
@@ -308,6 +436,11 @@ app = {
 		var height = $(window).height() - hheight - fheight;
 		this.container.css('min-height', height+'px');
 	},
+	/**
+	 * Binds all global events to their jQuery DOM objects
+	 * @method bindEvents
+	 * @return 
+	 */
 	bindEvents:function(){
 		var self = this;
 		$(document).on('pagebeforechange', function(e, a){
@@ -386,9 +519,21 @@ app = {
 			e.preventDefault();
 		});
 	},
+	/**
+	 * Returns the current page Container as jQuery Object
+	 * @method activePage
+	 * @return MemberExpression
+	 */
 	activePage: function(){
 		return this.container;
 	},
+	/**
+	 * Loads all controller files
+	 * @method loadControllers
+	 * @param {array} urls URLs to the controller files. Defined in app.controllerList
+	 * @trigger app:controllersLoaded
+	 * @return 
+	 */
 	loadControllers: function(urls) {
 		var that = this;
 		require(urls, function(){
@@ -406,32 +551,31 @@ app = {
 					c++;
 				}
 			}
-			require(views, function(data){
-				for(var c in views) {
-					var id = that.getTemplateID(viewNames[c]);
-					$('body').append($("<script type='" + that.viewType + "' id='" + id + "'>" + arguments[c] + "</script>"));
-				}
-				$(document).trigger('app:controllersLoaded');
-			});
+			$(document).trigger('app:controllersLoaded');
 		});
 	},
-	getTemplateID: function(url){
-		return url.replace(/\//g, '-').replace(/\./g, '__');
-	},
-	template: function(url){
-		var id = this.getTemplateID(url);
-		var t = document.getElementById(id);
-		if(t)
-			return t.innerHTML;
-		else
-			return false;
-	},
+
+	/**
+	 * Returns HTML for a global loading animation
+	 * @method loadIndicator
+	 * @return string HTML
+	 */
 	loadIndicator:function(){
 		return '<img class="loader" src="'+this.loader_gif+'" alt="Loading..." />';
 	},
+	/**
+	 * Returns HTML for a non global loading animation
+	 * @method loadIndicator2
+	 * @return string HTML
+	 */
 	loadIndicator2:function(){
 		return '<img src="'+this.loader_gif_2+'" alt="Loading..." />';
 	}, 
+	/**
+	 * Fades out any alert messages which have been shown to the user after 4 seconds.
+	 * @method clearAlerts
+	 * @return 
+	 */
 	clearAlerts: function(){
 		if($('.alert').length)
 			window.setTimeout(function(){
@@ -440,6 +584,13 @@ app = {
 	}
 }
 
+/**
+ * Detects the browser the user is using
+ * @method detectUA
+ * @param {jQuery} $ jQuery
+ * @param {string} userAgent UserAgent string
+ * @return 
+ */
 var detectUA = function($, userAgent) {
 	$.os = {};
 	$.os.webkit = userAgent.match(/WebKit\/([\d.]+)/) ? true : false;

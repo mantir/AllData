@@ -51,6 +51,11 @@
 
   // Runs Backbone.js in *noConflict* mode, returning the `Backbone` variable
   // to its previous owner. Returns a reference to this Backbone object.
+  /**
+   * Description
+   * @method noConflict
+   * @return ThisExpression
+   */
   Backbone.noConflict = function() {
     root.Backbone = previousBackbone;
     return this;
@@ -84,6 +89,14 @@
 
     // Bind an event to a `callback` function. Passing `"all"` will bind
     // the callback to all events fired.
+    /**
+     * Description
+     * @method on
+     * @param {} name
+     * @param {} callback
+     * @param {} context
+     * @return ThisExpression
+     */
     on: function(name, callback, context) {
       if (!eventsApi(this, 'on', name, [callback, context]) || !callback) return this;
       this._events || (this._events = {});
@@ -94,6 +107,14 @@
 
     // Bind an event to only be triggered a single time. After the first time
     // the callback is invoked, it will be removed.
+    /**
+     * Description
+     * @method once
+     * @param {} name
+     * @param {} callback
+     * @param {} context
+     * @return CallExpression
+     */
     once: function(name, callback, context) {
       if (!eventsApi(this, 'once', name, [callback, context]) || !callback) return this;
       var self = this;
@@ -109,6 +130,14 @@
     // callbacks with that function. If `callback` is null, removes all
     // callbacks for the event. If `name` is null, removes all bound
     // callbacks for all events.
+    /**
+     * Description
+     * @method off
+     * @param {} name
+     * @param {} callback
+     * @param {} context
+     * @return ThisExpression
+     */
     off: function(name, callback, context) {
       var retain, ev, events, names, i, l, j, k;
       if (!this._events || !eventsApi(this, 'off', name, [callback, context])) return this;
@@ -141,6 +170,12 @@
     // passed the same arguments as `trigger` is, apart from the event name
     // (unless you're listening on `"all"`, which will cause your callback to
     // receive the true name of the event as the first argument).
+    /**
+     * Description
+     * @method trigger
+     * @param {} name
+     * @return ThisExpression
+     */
     trigger: function(name) {
       if (!this._events) return this;
       var args = slice.call(arguments, 1);
@@ -154,6 +189,14 @@
 
     // Tell this object to stop listening to either specific events ... or
     // to every object it's currently listening to.
+    /**
+     * Description
+     * @method stopListening
+     * @param {} obj
+     * @param {} name
+     * @param {} callback
+     * @return ThisExpression
+     */
     stopListening: function(obj, name, callback) {
       var listeningTo = this._listeningTo;
       if (!listeningTo) return this;
@@ -176,6 +219,15 @@
   // Implement fancy features of the Events API such as multiple event
   // names `"change blur"` and jQuery-style event maps `{change: action}`
   // in terms of the existing API.
+  /**
+   * Description
+   * @method eventsApi
+   * @param {} obj
+   * @param {} action
+   * @param {} name
+   * @param {} rest
+   * @return Literal
+   */
   var eventsApi = function(obj, action, name, rest) {
     if (!name) return true;
 
@@ -202,6 +254,13 @@
   // A difficult-to-believe, but optimized internal dispatch function for
   // triggering events. Tries to keep the usual cases speedy (most internal
   // Backbone events have 3 arguments).
+  /**
+   * Description
+   * @method triggerEvents
+   * @param {} events
+   * @param {} args
+   * @return 
+   */
   var triggerEvents = function(events, args) {
     var ev, i = -1, l = events.length, a1 = args[0], a2 = args[1], a3 = args[2];
     switch (args.length) {
@@ -219,6 +278,14 @@
   // listen to an event in another object ... keeping track of what it's
   // listening to.
   _.each(listenMethods, function(implementation, method) {
+    /**
+     * Description
+     * @method method
+     * @param {} obj
+     * @param {} name
+     * @param {} callback
+     * @return ThisExpression
+     */
     Events[method] = function(obj, name, callback) {
       var listeningTo = this._listeningTo || (this._listeningTo = {});
       var id = obj._listenId || (obj._listenId = _.uniqueId('l'));
@@ -247,7 +314,15 @@
 
   // Create a new model with the specified attributes. A client id (`cid`)
   // is automatically generated and assigned for you.
-  var Model = Backbone.Model = function(attributes, options) {
+  var Model = 
+/**
+  * Description
+  * @method Model
+  * @param {} attributes
+  * @param {} options
+  * @return 
+  */
+ Backbone.Model = function(attributes, options) {
     var attrs = attributes || {};
     options || (options = {});
     this.cid = _.uniqueId('c');
@@ -275,31 +350,65 @@
 
     // Initialize is an empty function by default. Override it with your own
     // initialization logic.
+    /**
+     * Description
+     * @method initialize
+     * @return 
+     */
     initialize: function(){},
 
     // Return a copy of the model's `attributes` object.
+    /**
+     * Description
+     * @method toJSON
+     * @param {} options
+     * @return CallExpression
+     */
     toJSON: function(options) {
       return _.clone(this.attributes);
     },
 
     // Proxy `Backbone.sync` by default -- but override this if you need
     // custom syncing semantics for *this* particular model.
+    /**
+     * Description
+     * @method sync
+     * @return CallExpression
+     */
     sync: function() {
       return Backbone.sync.apply(this, arguments);
     },
 
     // Get the value of an attribute.
+    /**
+     * Description
+     * @method get
+     * @param {} attr
+     * @return MemberExpression
+     */
     get: function(attr) {
       return this.attributes[attr];
     },
 
     // Get the HTML-escaped value of an attribute.
+    /**
+     * Description
+     * @method escape
+     * @param {} attr
+     * @return CallExpression
+     */
     escape: function(attr) {
       return _.escape(this.get(attr));
     },
 
     // Returns `true` if the attribute contains a value that is not null
     // or undefined.
+    /**
+     * Description
+     * @method has
+     * @param {} attr
+     * @return BinaryExpression
+     */
     has: function(attr) {
       return this.get(attr) != null;
     },
@@ -307,6 +416,14 @@
     // Set a hash of model attributes on the object, firing `"change"`. This is
     // the core primitive operation of a model, updating the data and notifying
     // anyone who needs to know about the change in state. The heart of the beast.
+    /**
+     * Description
+     * @method set
+     * @param {} key
+     * @param {} val
+     * @param {} options
+     * @return ThisExpression
+     */
     set: function(key, val, options) {
       var attr, attrs, unset, changes, silent, changing, prev, current;
       if (key == null) return this;
@@ -377,11 +494,24 @@
 
     // Remove an attribute from the model, firing `"change"`. `unset` is a noop
     // if the attribute doesn't exist.
+    /**
+     * Description
+     * @method unset
+     * @param {} attr
+     * @param {} options
+     * @return CallExpression
+     */
     unset: function(attr, options) {
       return this.set(attr, void 0, _.extend({}, options, {unset: true}));
     },
 
     // Clear all attributes on the model, firing `"change"`.
+    /**
+     * Description
+     * @method clear
+     * @param {} options
+     * @return CallExpression
+     */
     clear: function(options) {
       var attrs = {};
       for (var key in this.attributes) attrs[key] = void 0;
@@ -390,6 +520,12 @@
 
     // Determine if the model has changed since the last `"change"` event.
     // If you specify an attribute name, determine if that attribute has changed.
+    /**
+     * Description
+     * @method hasChanged
+     * @param {} attr
+     * @return CallExpression
+     */
     hasChanged: function(attr) {
       if (attr == null) return !_.isEmpty(this.changed);
       return _.has(this.changed, attr);
@@ -401,6 +537,12 @@
     // persisted to the server. Unset attributes will be set to undefined.
     // You can also pass an attributes object to diff against the model,
     // determining if there *would be* a change.
+    /**
+     * Description
+     * @method changedAttributes
+     * @param {} diff
+     * @return changed
+     */
     changedAttributes: function(diff) {
       if (!diff) return this.hasChanged() ? _.clone(this.changed) : false;
       var val, changed = false;
@@ -414,6 +556,12 @@
 
     // Get the previous value of an attribute, recorded at the time the last
     // `"change"` event was fired.
+    /**
+     * Description
+     * @method previous
+     * @param {} attr
+     * @return MemberExpression
+     */
     previous: function(attr) {
       if (attr == null || !this._previousAttributes) return null;
       return this._previousAttributes[attr];
@@ -421,6 +569,11 @@
 
     // Get all of the attributes of the model at the time of the previous
     // `"change"` event.
+    /**
+     * Description
+     * @method previousAttributes
+     * @return CallExpression
+     */
     previousAttributes: function() {
       return _.clone(this._previousAttributes);
     },
@@ -428,11 +581,23 @@
     // Fetch the model from the server. If the server's representation of the
     // model differs from its current attributes, they will be overridden,
     // triggering a `"change"` event.
+    /**
+     * Description
+     * @method fetch
+     * @param {} options
+     * @return CallExpression
+     */
     fetch: function(options) {
       options = options ? _.clone(options) : {};
       if (options.parse === void 0) options.parse = true;
       var model = this;
       var success = options.success;
+      /**
+       * Description
+       * @method success
+       * @param {} resp
+       * @return 
+       */
       options.success = function(resp) {
         if (!model.set(model.parse(resp, options), options)) return false;
         if (success) success(model, resp, options);
@@ -445,6 +610,14 @@
     // Set a hash of model attributes, and sync the model to the server.
     // If the server returns an attributes hash that differs, the model's
     // state will be `set` again.
+    /**
+     * Description
+     * @method save
+     * @param {} key
+     * @param {} val
+     * @param {} options
+     * @return xhr
+     */
     save: function(key, val, options) {
       var attrs, method, xhr, attributes = this.attributes;
 
@@ -477,6 +650,12 @@
       if (options.parse === void 0) options.parse = true;
       var model = this;
       var success = options.success;
+      /**
+       * Description
+       * @method success
+       * @param {} resp
+       * @return 
+       */
       options.success = function(resp) {
         // Ensure attributes are restored during synchronous saves.
         model.attributes = attributes;
@@ -503,15 +682,32 @@
     // Destroy this model on the server if it was already persisted.
     // Optimistically removes the model from its collection, if it has one.
     // If `wait: true` is passed, waits for the server to respond before removal.
+    /**
+     * Description
+     * @method destroy
+     * @param {} options
+     * @return xhr
+     */
     destroy: function(options) {
       options = options ? _.clone(options) : {};
       var model = this;
       var success = options.success;
 
+      /**
+       * Description
+       * @method destroy
+       * @return 
+       */
       var destroy = function() {
         model.trigger('destroy', model, model.collection, options);
       };
 
+      /**
+       * Description
+       * @method success
+       * @param {} resp
+       * @return 
+       */
       options.success = function(resp) {
         if (options.wait || model.isNew()) destroy();
         if (success) success(model, resp, options);
@@ -532,6 +728,11 @@
     // Default URL for the model's representation on the server -- if you're
     // using Backbone's restful methods, override this to change the endpoint
     // that will be called.
+    /**
+     * Description
+     * @method url
+     * @return BinaryExpression
+     */
     url: function() {
       var base =
         _.result(this, 'urlRoot') ||
@@ -543,21 +744,44 @@
 
     // **parse** converts a response into the hash of attributes to be `set` on
     // the model. The default implementation is just to pass the response along.
+    /**
+     * Description
+     * @method parse
+     * @param {} resp
+     * @param {} options
+     * @return resp
+     */
     parse: function(resp, options) {
       return resp;
     },
 
     // Create a new model with identical attributes to this one.
+    /**
+     * Description
+     * @method clone
+     * @return NewExpression
+     */
     clone: function() {
       return new this.constructor(this.attributes);
     },
 
     // A model is new if it has never been saved to the server, and lacks an id.
+    /**
+     * Description
+     * @method isNew
+     * @return UnaryExpression
+     */
     isNew: function() {
       return !this.has(this.idAttribute);
     },
 
     // Check if the model is currently in a valid state.
+    /**
+     * Description
+     * @method isValid
+     * @param {} options
+     * @return CallExpression
+     */
     isValid: function(options) {
       return this._validate({}, _.extend(options || {}, { validate: true }));
     },
@@ -580,6 +804,11 @@
 
   // Mix in each Underscore method as a proxy to `Model#attributes`.
   _.each(modelMethods, function(method) {
+    /**
+     * Description
+     * @method method
+     * @return CallExpression
+     */
     Model.prototype[method] = function() {
       var args = slice.call(arguments);
       args.unshift(this.attributes);
@@ -600,7 +829,15 @@
   // Create a new **Collection**, perhaps to contain a specific type of `model`.
   // If a `comparator` is specified, the Collection will maintain
   // its models in sort order, as they're added and removed.
-  var Collection = Backbone.Collection = function(models, options) {
+  var Collection = 
+/**
+  * Description
+  * @method Collection
+  * @param {} models
+  * @param {} options
+  * @return 
+  */
+ Backbone.Collection = function(models, options) {
     options || (options = {});
     if (options.model) this.model = options.model;
     if (options.comparator !== void 0) this.comparator = options.comparator;
@@ -622,25 +859,55 @@
 
     // Initialize is an empty function by default. Override it with your own
     // initialization logic.
+    /**
+     * Description
+     * @method initialize
+     * @return 
+     */
     initialize: function(){},
 
     // The JSON representation of a Collection is an array of the
     // models' attributes.
+    /**
+     * Description
+     * @method toJSON
+     * @param {} options
+     * @return CallExpression
+     */
     toJSON: function(options) {
       return this.map(function(model){ return model.toJSON(options); });
     },
 
     // Proxy `Backbone.sync` by default.
+    /**
+     * Description
+     * @method sync
+     * @return CallExpression
+     */
     sync: function() {
       return Backbone.sync.apply(this, arguments);
     },
 
     // Add a model, or list of models to the set.
+    /**
+     * Description
+     * @method add
+     * @param {} models
+     * @param {} options
+     * @return CallExpression
+     */
     add: function(models, options) {
       return this.set(models, _.extend({merge: false}, options, addOptions));
     },
 
     // Remove a model, or a list of models from the set.
+    /**
+     * Description
+     * @method remove
+     * @param {} models
+     * @param {} options
+     * @return ConditionalExpression
+     */
     remove: function(models, options) {
       var singular = !_.isArray(models);
       models = singular ? [models] : _.clone(models);
@@ -667,6 +934,13 @@
     // removing models that are no longer present, and merging models that
     // already exist in the collection, as necessary. Similar to **Model#set**,
     // the core operation for updating the data contained by the collection.
+    /**
+     * Description
+     * @method set
+     * @param {} models
+     * @param {} options
+     * @return ConditionalExpression
+     */
     set: function(models, options) {
       options = _.defaults({}, options, setOptions);
       if (options.parse) models = this.parse(models, options);
@@ -761,6 +1035,13 @@
     // you can reset the entire set with a new list of models, without firing
     // any granular `add` or `remove` events. Fires `reset` when finished.
     // Useful for bulk operations and optimizations.
+    /**
+     * Description
+     * @method reset
+     * @param {} models
+     * @param {} options
+     * @return models
+     */
     reset: function(models, options) {
       options || (options = {});
       for (var i = 0, l = this.models.length; i < l; i++) {
@@ -774,11 +1055,24 @@
     },
 
     // Add a model to the end of the collection.
+    /**
+     * Description
+     * @method push
+     * @param {} model
+     * @param {} options
+     * @return CallExpression
+     */
     push: function(model, options) {
       return this.add(model, _.extend({at: this.length}, options));
     },
 
     // Remove a model from the end of the collection.
+    /**
+     * Description
+     * @method pop
+     * @param {} options
+     * @return model
+     */
     pop: function(options) {
       var model = this.at(this.length - 1);
       this.remove(model, options);
@@ -786,11 +1080,24 @@
     },
 
     // Add a model to the beginning of the collection.
+    /**
+     * Description
+     * @method unshift
+     * @param {} model
+     * @param {} options
+     * @return CallExpression
+     */
     unshift: function(model, options) {
       return this.add(model, _.extend({at: 0}, options));
     },
 
     // Remove a model from the beginning of the collection.
+    /**
+     * Description
+     * @method shift
+     * @param {} options
+     * @return model
+     */
     shift: function(options) {
       var model = this.at(0);
       this.remove(model, options);
@@ -798,23 +1105,47 @@
     },
 
     // Slice out a sub-array of models from the collection.
+    /**
+     * Description
+     * @method slice
+     * @return CallExpression
+     */
     slice: function() {
       return slice.apply(this.models, arguments);
     },
 
     // Get a model from the set by id.
+    /**
+     * Description
+     * @method get
+     * @param {} obj
+     * @return LogicalExpression
+     */
     get: function(obj) {
       if (obj == null) return void 0;
       return this._byId[obj] || this._byId[obj.id] || this._byId[obj.cid];
     },
 
     // Get the model at the given index.
+    /**
+     * Description
+     * @method at
+     * @param {} index
+     * @return MemberExpression
+     */
     at: function(index) {
       return this.models[index];
     },
 
     // Return models with matching attributes. Useful for simple cases of
     // `filter`.
+    /**
+     * Description
+     * @method where
+     * @param {} attrs
+     * @param {} first
+     * @return CallExpression
+     */
     where: function(attrs, first) {
       if (_.isEmpty(attrs)) return first ? void 0 : [];
       return this[first ? 'find' : 'filter'](function(model) {
@@ -827,6 +1158,12 @@
 
     // Return the first model with matching attributes. Useful for simple cases
     // of `find`.
+    /**
+     * Description
+     * @method findWhere
+     * @param {} attrs
+     * @return CallExpression
+     */
     findWhere: function(attrs) {
       return this.where(attrs, true);
     },
@@ -834,6 +1171,12 @@
     // Force the collection to re-sort itself. You don't need to call this under
     // normal circumstances, as the set will maintain sort order as each item
     // is added.
+    /**
+     * Description
+     * @method sort
+     * @param {} options
+     * @return ThisExpression
+     */
     sort: function(options) {
       if (!this.comparator) throw new Error('Cannot sort a set without a comparator');
       options || (options = {});
@@ -850,6 +1193,12 @@
     },
 
     // Pluck an attribute from each model in the collection.
+    /**
+     * Description
+     * @method pluck
+     * @param {} attr
+     * @return CallExpression
+     */
     pluck: function(attr) {
       return _.invoke(this.models, 'get', attr);
     },
@@ -857,11 +1206,23 @@
     // Fetch the default set of models for this collection, resetting the
     // collection when they arrive. If `reset: true` is passed, the response
     // data will be passed through the `reset` method instead of `set`.
+    /**
+     * Description
+     * @method fetch
+     * @param {} options
+     * @return CallExpression
+     */
     fetch: function(options) {
       options = options ? _.clone(options) : {};
       if (options.parse === void 0) options.parse = true;
       var success = options.success;
       var collection = this;
+      /**
+       * Description
+       * @method success
+       * @param {} resp
+       * @return 
+       */
       options.success = function(resp) {
         var method = options.reset ? 'reset' : 'set';
         collection[method](resp, options);
@@ -875,12 +1236,26 @@
     // Create a new instance of a model in this collection. Add the model to the
     // collection immediately, unless `wait: true` is passed, in which case we
     // wait for the server to agree.
+    /**
+     * Description
+     * @method create
+     * @param {} model
+     * @param {} options
+     * @return model
+     */
     create: function(model, options) {
       options = options ? _.clone(options) : {};
       if (!(model = this._prepareModel(model, options))) return false;
       if (!options.wait) this.add(model, options);
       var collection = this;
       var success = options.success;
+      /**
+       * Description
+       * @method success
+       * @param {} model
+       * @param {} resp
+       * @return 
+       */
       options.success = function(model, resp) {
         if (options.wait) collection.add(model, options);
         if (success) success(model, resp, options);
@@ -891,11 +1266,23 @@
 
     // **parse** converts a response into a list of models to be added to the
     // collection. The default implementation is just to pass it through.
+    /**
+     * Description
+     * @method parse
+     * @param {} resp
+     * @param {} options
+     * @return resp
+     */
     parse: function(resp, options) {
       return resp;
     },
 
     // Create a new collection with an identical list of models as this one.
+    /**
+     * Description
+     * @method clone
+     * @return NewExpression
+     */
     clone: function() {
       return new this.constructor(this.models);
     },
@@ -962,6 +1349,11 @@
 
   // Mix in each Underscore method as a proxy to `Collection#models`.
   _.each(methods, function(method) {
+    /**
+     * Description
+     * @method method
+     * @return CallExpression
+     */
     Collection.prototype[method] = function() {
       var args = slice.call(arguments);
       args.unshift(this.models);
@@ -974,6 +1366,13 @@
 
   // Use attributes instead of properties.
   _.each(attributeMethods, function(method) {
+    /**
+     * Description
+     * @method method
+     * @param {} value
+     * @param {} context
+     * @return CallExpression
+     */
     Collection.prototype[method] = function(value, context) {
       var iterator = _.isFunction(value) ? value : function(model) {
         return model.get(value);
@@ -995,7 +1394,14 @@
 
   // Creating a Backbone.View creates its initial element outside of the DOM,
   // if an existing element is not provided...
-  var View = Backbone.View = function(options) {
+  var View = 
+/**
+  * Description
+  * @method View
+  * @param {} options
+  * @return 
+  */
+ Backbone.View = function(options) {
     this.cid = _.uniqueId('view');
     options || (options = {});
     _.extend(this, _.pick(options, viewOptions));
@@ -1018,23 +1424,44 @@
 
     // jQuery delegate for element lookup, scoped to DOM elements within the
     // current view. This should be preferred to global lookups where possible.
+    /**
+     * Description
+     * @method $
+     * @param {} selector
+     * @return CallExpression
+     */
     $: function(selector) {
       return this.$el.find(selector);
     },
 
     // Initialize is an empty function by default. Override it with your own
     // initialization logic.
+    /**
+     * Description
+     * @method initialize
+     * @return 
+     */
     initialize: function(){},
 
     // **render** is the core function that your view should override, in order
     // to populate its element (`this.el`), with the appropriate HTML. The
     // convention is for **render** to always return `this`.
+    /**
+     * Description
+     * @method render
+     * @return ThisExpression
+     */
     render: function() {
       return this;
     },
 
     // Remove this view by taking the element out of the DOM, and removing any
     // applicable Backbone.Events listeners.
+    /**
+     * Description
+     * @method remove
+     * @return ThisExpression
+     */
     remove: function() {
       this.$el.remove();
       this.stopListening();
@@ -1043,6 +1470,13 @@
 
     // Change the view's element (`this.el` property), including event
     // re-delegation.
+    /**
+     * Description
+     * @method setElement
+     * @param {} element
+     * @param {} delegate
+     * @return ThisExpression
+     */
     setElement: function(element, delegate) {
       if (this.$el) this.undelegateEvents();
       this.$el = element instanceof Backbone.$ ? element : Backbone.$(element);
@@ -1066,6 +1500,12 @@
     // Omitting the selector binds the event to `this.el`.
     // This only works for delegate-able events: not `focus`, `blur`, and
     // not `change`, `submit`, and `reset` in Internet Explorer.
+    /**
+     * Description
+     * @method delegateEvents
+     * @param {} events
+     * @return ThisExpression
+     */
     delegateEvents: function(events) {
       if (!(events || (events = _.result(this, 'events')))) return this;
       this.undelegateEvents();
@@ -1090,6 +1530,11 @@
     // Clears all callbacks previously bound to the view with `delegateEvents`.
     // You usually don't need to use this, but may wish to if you have multiple
     // Backbone views attached to the same DOM element.
+    /**
+     * Description
+     * @method undelegateEvents
+     * @return ThisExpression
+     */
     undelegateEvents: function() {
       this.$el.off('.delegateEvents' + this.cid);
       return this;
@@ -1131,6 +1576,14 @@
   // instead of `application/json` with the model in a param named `model`.
   // Useful when interfacing with server-side languages like **PHP** that make
   // it difficult to read the body of `PUT` requests.
+  /**
+   * Description
+   * @method sync
+   * @param {} method
+   * @param {} model
+   * @param {} options
+   * @return xhr
+   */
   Backbone.sync = function(method, model, options) {
     var type = methodMap[method];
 
@@ -1166,6 +1619,12 @@
       params.type = 'POST';
       if (options.emulateJSON) params.data._method = type;
       var beforeSend = options.beforeSend;
+      /**
+       * Description
+       * @method beforeSend
+       * @param {} xhr
+       * @return 
+       */
       options.beforeSend = function(xhr) {
         xhr.setRequestHeader('X-HTTP-Method-Override', type);
         if (beforeSend) return beforeSend.apply(this, arguments);
@@ -1181,6 +1640,11 @@
     // that still has ActiveX enabled by default, override jQuery to use that
     // for XHR instead. Remove this line when jQuery supports `PATCH` on IE8.
     if (params.type === 'PATCH' && noXhrPatch) {
+      /**
+       * Description
+       * @method xhr
+       * @return NewExpression
+       */
       params.xhr = function() {
         return new ActiveXObject("Microsoft.XMLHTTP");
       };
@@ -1207,6 +1671,11 @@
 
   // Set the default implementation of `Backbone.ajax` to proxy through to `$`.
   // Override this if you'd like to use a different library.
+  /**
+   * Description
+   * @method ajax
+   * @return CallExpression
+   */
   Backbone.ajax = function() {
     return Backbone.$.ajax.apply(Backbone.$, arguments);
   };
@@ -1216,7 +1685,14 @@
 
   // Routers map faux-URLs to actions, and fire events when routes are
   // matched. Creating a new one sets its `routes` hash, if not set statically.
-  var Router = Backbone.Router = function(options) {
+  var Router = 
+/**
+  * Description
+  * @method Router
+  * @param {} options
+  * @return 
+  */
+ Backbone.Router = function(options) {
     options || (options = {});
     if (options.routes) this.routes = options.routes;
     this._bindRoutes();
@@ -1235,6 +1711,11 @@
 
     // Initialize is an empty function by default. Override it with your own
     // initialization logic.
+    /**
+     * Description
+     * @method initialize
+     * @return 
+     */
     initialize: function(){},
 
     // Manually bind a single named route to a callback. For example:
@@ -1243,6 +1724,14 @@
     //       ...
     //     });
     //
+    /**
+     * Description
+     * @method route
+     * @param {} route
+     * @param {} name
+     * @param {} callback
+     * @return ThisExpression
+     */
     route: function(route, name, callback) {
       if (!_.isRegExp(route)) route = this._routeToRegExp(route);
       if (_.isFunction(name)) {
@@ -1263,11 +1752,25 @@
 
     // Execute a route handler with the provided parameters.  This is an
     // excellent place to do pre-route setup or post-route cleanup.
+    /**
+     * Description
+     * @method execute
+     * @param {} callback
+     * @param {} args
+     * @return 
+     */
     execute: function(callback, args) {
       if (callback) callback.apply(this, args);
     },
 
     // Simple proxy to `Backbone.history` to save a fragment into the history.
+    /**
+     * Description
+     * @method navigate
+     * @param {} fragment
+     * @param {} options
+     * @return ThisExpression
+     */
     navigate: function(fragment, options) {
       Backbone.history.navigate(fragment, options);
       return this;
@@ -1319,7 +1822,13 @@
   // [onhashchange](https://developer.mozilla.org/en-US/docs/DOM/window.onhashchange)
   // and URL fragments. If the browser supports neither (old IE, natch),
   // falls back to polling.
-  var History = Backbone.History = function() {
+  var History = 
+/**
+  * Description
+  * @method History
+  * @return 
+  */
+ Backbone.History = function() {
     this.handlers = [];
     _.bindAll(this, 'checkUrl');
 
@@ -1356,12 +1865,23 @@
     interval: 50,
 
     // Are we at the app root?
+    /**
+     * Description
+     * @method atRoot
+     * @return BinaryExpression
+     */
     atRoot: function() {
       return this.location.pathname.replace(/[^\/]$/, '$&/') === this.root;
     },
 
     // Gets the true hash value. Cannot use location.hash directly due to bug
     // in Firefox where location.hash will always be decoded.
+    /**
+     * Description
+     * @method getHash
+     * @param {} window
+     * @return ConditionalExpression
+     */
     getHash: function(window) {
       var match = (window || this).location.href.match(/#(.*)$/);
       return match ? match[1] : '';
@@ -1369,6 +1889,13 @@
 
     // Get the cross-browser normalized URL fragment, either from the URL,
     // the hash, or the override.
+    /**
+     * Description
+     * @method getFragment
+     * @param {} fragment
+     * @param {} forcePushState
+     * @return CallExpression
+     */
     getFragment: function(fragment, forcePushState) {
       if (fragment == null) {
         if (this._hasPushState || !this._wantsHashChange || forcePushState) {
@@ -1384,6 +1911,12 @@
 
     // Start the hash change handling, returning `true` if the current URL matches
     // an existing route, and `false` otherwise.
+    /**
+     * Description
+     * @method start
+     * @param {} options
+     * @return 
+     */
     start: function(options) {
       if (History.started) throw new Error("Backbone.history has already been started");
       History.started = true;
@@ -1449,6 +1982,11 @@
 
     // Disable Backbone.history, perhaps temporarily. Not useful in a real app,
     // but possibly useful for unit testing Routers.
+    /**
+     * Description
+     * @method stop
+     * @return 
+     */
     stop: function() {
       Backbone.$(window).off('popstate', this.checkUrl).off('hashchange', this.checkUrl);
       clearInterval(this._checkUrlInterval);
@@ -1457,12 +1995,25 @@
 
     // Add a route to be tested when the fragment changes. Routes added later
     // may override previous routes.
+    /**
+     * Description
+     * @method route
+     * @param {} route
+     * @param {} callback
+     * @return 
+     */
     route: function(route, callback) {
       this.handlers.unshift({route: route, callback: callback});
     },
 
     // Checks the current URL to see if it has changed, and if it has,
     // calls `loadUrl`, normalizing across the hidden iframe.
+    /**
+     * Description
+     * @method checkUrl
+     * @param {} e
+     * @return 
+     */
     checkUrl: function(e) {
       var current = this.getFragment();
       if (current === this.fragment && this.iframe) {
@@ -1476,6 +2027,12 @@
     // Attempt to load the current URL fragment. If a route succeeds with a
     // match, returns `true`. If no defined routes matches the fragment,
     // returns `false`.
+    /**
+     * Description
+     * @method loadUrl
+     * @param {} fragment
+     * @return CallExpression
+     */
     loadUrl: function(fragment) {
       fragment = this.fragment = this.getFragment(fragment);
       return _.any(this.handlers, function(handler) {
@@ -1493,6 +2050,13 @@
     // The options object can contain `trigger: true` if you wish to have the
     // route callback be fired (not usually desirable), or `replace: true`, if
     // you wish to modify the current URL without adding an entry to the history.
+    /**
+     * Description
+     * @method navigate
+     * @param {} fragment
+     * @param {} options
+     * @return 
+     */
     navigate: function(fragment, options) {
       if (!History.started) return false;
       if (!options || options === true) options = {trigger: !!options};
@@ -1555,6 +2119,13 @@
   // Helper function to correctly set up the prototype chain, for subclasses.
   // Similar to `goog.inherits`, but uses a hash of prototype properties and
   // class properties to be extended.
+  /**
+   * Description
+   * @method extend
+   * @param {} protoProps
+   * @param {} staticProps
+   * @return child
+   */
   var extend = function(protoProps, staticProps) {
     var parent = this;
     var child;
@@ -1565,6 +2136,10 @@
     if (protoProps && _.has(protoProps, 'constructor')) {
       child = protoProps.constructor;
     } else {
+      /**
+       * Description
+       * @return CallExpression
+       */
       child = function(){ return parent.apply(this, arguments); };
     }
 
@@ -1573,6 +2148,11 @@
 
     // Set the prototype chain to inherit from `parent`, without calling
     // `parent`'s constructor function.
+    /**
+     * Description
+     * @method Surrogate
+     * @return 
+     */
     var Surrogate = function(){ this.constructor = child; };
     Surrogate.prototype = parent.prototype;
     child.prototype = new Surrogate;
@@ -1592,13 +2172,31 @@
   Model.extend = Collection.extend = Router.extend = View.extend = History.extend = extend;
 
   // Throw an error when a URL is needed, and none is supplied.
+  /**
+   * Description
+   * @method urlError
+   * @return 
+   */
   var urlError = function() {
     throw new Error('A "url" property or function must be specified');
   };
 
   // Wrap an optional error callback with a fallback error event.
+  /**
+   * Description
+   * @method wrapError
+   * @param {} model
+   * @param {} options
+   * @return 
+   */
   var wrapError = function(model, options) {
     var error = options.error;
+    /**
+     * Description
+     * @method error
+     * @param {} resp
+     * @return 
+     */
     options.error = function(resp) {
       if (error) error(model, resp, options);
       model.trigger('error', model, resp, options);

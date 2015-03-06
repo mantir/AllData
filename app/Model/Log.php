@@ -12,7 +12,7 @@ App::uses('AppModel', 'Model');
 /**
  * Log Model
  *
- * @property Event $Event
+ * @property Log $Log
  */
 class Log extends AppModel {
 
@@ -122,8 +122,6 @@ class Log extends AppModel {
 				$users[$model] = Set::combine($users[$model], '{n}.users.id', '{n}.users.name');
 				
 				$res[$model] = Set::extract($res[$model], '{n}.logs');
-				//debug($users);
-				//debug($res);
 			}
 			
 			$logs = array();

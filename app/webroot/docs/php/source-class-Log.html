@@ -115,7 +115,7 @@
 </span><span id="12" class="l"><a href="#12"> 12: </a><span class="php-comment">/**
 </span></span><span id="13" class="l"><a href="#13"> 13: </a><span class="php-comment"> * Log Model
 </span></span><span id="14" class="l"><a href="#14"> 14: </a><span class="php-comment"> *
-</span></span><span id="15" class="l"><a href="#15"> 15: </a><span class="php-comment"> * @property Event $Event
+</span></span><span id="15" class="l"><a href="#15"> 15: </a><span class="php-comment"> * @property Log $Log
 </span></span><span id="16" class="l"><a href="#16"> 16: </a><span class="php-comment"> */</span>
 </span><span id="17" class="l"><a href="#17"> 17: </a><span class="php-keyword1">class</span> <span class="php-keyword2">Log</span> <span class="php-keyword1">extends</span> AppModel {
 </span><span id="18" class="l"><a href="#18"> 18: </a>
@@ -225,60 +225,58 @@
 </span><span id="122" class="l"><a href="#122">122: </a>                <span class="php-var">$users</span>[<span class="php-var">$model</span>] = Set::combine(<span class="php-var">$users</span>[<span class="php-var">$model</span>], <span class="php-quote">'{n}.users.id'</span>, <span class="php-quote">'{n}.users.name'</span>);
 </span><span id="123" class="l"><a href="#123">123: </a>                
 </span><span id="124" class="l"><a href="#124">124: </a>                <span class="php-var">$res</span>[<span class="php-var">$model</span>] = Set::<span class="php-keyword2">extract</span>(<span class="php-var">$res</span>[<span class="php-var">$model</span>], <span class="php-quote">'{n}.logs'</span>);
-</span><span id="125" class="l"><a href="#125">125: </a>                <span class="php-comment">//debug($users);</span>
-</span><span id="126" class="l"><a href="#126">126: </a>                <span class="php-comment">//debug($res);</span>
-</span><span id="127" class="l"><a href="#127">127: </a>            }
-</span><span id="128" class="l"><a href="#128">128: </a>            
-</span><span id="129" class="l"><a href="#129">129: </a>            <span class="php-var">$logs</span> = <span class="php-keyword1">array</span>();
-</span><span id="130" class="l"><a href="#130">130: </a>            <span class="php-keyword1">foreach</span>(<span class="php-var">$res</span> <span class="php-keyword1">as</span> <span class="php-var">$model</span> =&gt; <span class="php-var">$r</span>){
-</span><span id="131" class="l"><a href="#131">131: </a>                <span class="php-keyword1">foreach</span>(<span class="php-var">$r</span> <span class="php-keyword1">as</span> <span class="php-var">$e</span>) {
-</span><span id="132" class="l"><a href="#132">132: </a>                    <span class="php-var">$l</span> = <span class="php-keyword1">array</span>(<span class="php-quote">'type'</span> =&gt; <span class="php-quote">'user'</span>, <span class="php-quote">'time'</span> =&gt; <span class="php-var">$e</span>[<span class="php-quote">'time'</span>]);
-</span><span id="133" class="l"><a href="#133">133: </a>                    <span class="php-keyword1">foreach</span>(<span class="php-var">$this</span>-&gt;data_fields <span class="php-keyword1">as</span> <span class="php-var">$j</span> =&gt; <span class="php-var">$df</span>) {
-</span><span id="134" class="l"><a href="#134">134: </a>                        <span class="php-keyword1">if</span>(<span class="php-var">$e</span>[<span class="php-var">$df</span>]) {
-</span><span id="135" class="l"><a href="#135">135: </a>                            <span class="php-var">$l</span>[<span class="php-var">$this</span>-&gt;logTypes[<span class="php-quote">'user_edited'</span>][<span class="php-var">$j</span>]] = <span class="php-var">$e</span>[<span class="php-var">$df</span>];
-</span><span id="136" class="l"><a href="#136">136: </a>                        }
-</span><span id="137" class="l"><a href="#137">137: </a>                    }
-</span><span id="138" class="l"><a href="#138">138: </a>                    <span class="php-var">$l</span>[<span class="php-quote">'action'</span>] = <span class="php-var">$e</span>[<span class="php-quote">'type'</span>];
-</span><span id="139" class="l"><a href="#139">139: </a>                    <span class="php-keyword1">if</span>(<span class="php-var">$l</span>[<span class="php-quote">'action'</span>] != <span class="php-quote">'deleted'</span>) {
-</span><span id="140" class="l"><a href="#140">140: </a>                        <span class="php-var">$l</span>[<span class="php-quote">'related_id'</span>] = <span class="php-var">$e</span>[<span class="php-quote">'related_id'</span>];
-</span><span id="141" class="l"><a href="#141">141: </a>                        <span class="php-var">$l</span>[<span class="php-quote">'name'</span>] = <span class="php-var">$names</span>[<span class="php-var">$model</span>][<span class="php-var">$e</span>[<span class="php-quote">'related_id'</span>]];
-</span><span id="142" class="l"><a href="#142">142: </a>                    }
-</span><span id="143" class="l"><a href="#143">143: </a>                    <span class="php-var">$l</span>[<span class="php-quote">'username'</span>] = <span class="php-var">$users</span>[<span class="php-var">$model</span>][<span class="php-var">$l</span>[<span class="php-quote">'user'</span>]];
-</span><span id="144" class="l"><a href="#144">144: </a>                    <span class="php-var">$logs</span>[<span class="php-var">$e</span>[<span class="php-quote">'time'</span>]] = <span class="php-var">$l</span>;
-</span><span id="145" class="l"><a href="#145">145: </a>                }
-</span><span id="146" class="l"><a href="#146">146: </a>            }
-</span><span id="147" class="l"><a href="#147">147: </a>            
-</span><span id="148" class="l"><a href="#148">148: </a>        } <span class="php-keyword1">else</span> 
-</span><span id="149" class="l"><a href="#149">149: </a>        
-</span><span id="150" class="l"><a href="#150">150: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$type</span> == <span class="php-quote">'data'</span>) {
-</span><span id="151" class="l"><a href="#151">151: </a>            <span class="php-var">$imported_file</span> = <span class="php-var">$this</span>-&gt;query(<span class="php-quote">'SELECT '</span>.<span class="php-var">$this</span>-&gt;getFieldList(<span class="php-quote">'imported_file'</span>).<span class="php-quote">' FROM logs WHERE type=&quot;imported_file&quot; AND related_id IN (SELECT id FROM inputs WHERE project_id=&quot;'</span>.<span class="php-var">$project_id</span>.<span class="php-quote">'&quot;) ORDER BY time DESC LIMIT '</span>.<span class="php-var">$limit</span>);
-</span><span id="152" class="l"><a href="#152">152: </a>            <span class="php-var">$field</span> = <span class="php-var">$this</span>-&gt;dataField(<span class="php-quote">'imported_file'</span>, <span class="php-quote">'filename'</span>);
-</span><span id="153" class="l"><a href="#153">153: </a>            <span class="php-var">$file_list</span> = Set::<span class="php-keyword2">extract</span>(<span class="php-var">$imported_file</span>, <span class="php-quote">'{n}.logs.'</span>.<span class="php-var">$field</span>);
-</span><span id="154" class="l"><a href="#154">154: </a>            <span class="php-var">$files</span> = Set::combine(<span class="php-var">$imported_file</span>, <span class="php-quote">'{n}.logs.'</span>.<span class="php-var">$field</span>, <span class="php-quote">'{n}.logs'</span>);
-</span><span id="155" class="l"><a href="#155">155: </a>            
-</span><span id="156" class="l"><a href="#156">156: </a>            <span class="php-var">$field</span> = <span class="php-var">$this</span>-&gt;dataField(<span class="php-quote">'imported_url'</span>, <span class="php-quote">'filename'</span>);
-</span><span id="157" class="l"><a href="#157">157: </a>            <span class="php-comment">//debug($field);</span>
-</span><span id="158" class="l"><a href="#158">158: </a>            <span class="php-var">$imported_url</span> = <span class="php-var">$this</span>-&gt;query(<span class="php-quote">'SELECT '</span>.<span class="php-var">$this</span>-&gt;getFieldList(<span class="php-quote">'imported_url'</span>).<span class="php-quote">' FROM logs WHERE type=&quot;imported_url&quot; AND '</span>.<span class="php-var">$field</span>.<span class="php-quote">' IN (&quot;'</span>.<span class="php-keyword2">implode</span>(<span class="php-quote">'&quot;,&quot;'</span>, <span class="php-var">$file_list</span>).<span class="php-quote">'&quot;)'</span>);
-</span><span id="159" class="l"><a href="#159">159: </a>            <span class="php-var">$imported_url</span> = Set::combine(<span class="php-var">$imported_url</span>, <span class="php-quote">'{n}.logs.'</span>.<span class="php-var">$field</span>, <span class="php-quote">'{n}.logs'</span>);
-</span><span id="160" class="l"><a href="#160">160: </a>            <span class="php-var">$logs</span> = <span class="php-keyword1">array</span>();
-</span><span id="161" class="l"><a href="#161">161: </a>            <span class="php-keyword1">foreach</span>(<span class="php-var">$files</span> <span class="php-keyword1">as</span> <span class="php-var">$t</span> =&gt; <span class="php-var">$f</span>){
-</span><span id="162" class="l"><a href="#162">162: </a>                <span class="php-var">$l</span> = <span class="php-keyword1">array</span>(<span class="php-quote">'type'</span> =&gt; <span class="php-quote">'import'</span>, <span class="php-quote">'time'</span> =&gt; <span class="php-var">$f</span>[<span class="php-quote">'time'</span>]);
-</span><span id="163" class="l"><a href="#163">163: </a>                <span class="php-keyword1">foreach</span>(<span class="php-var">$this</span>-&gt;data_fields <span class="php-keyword1">as</span> <span class="php-var">$j</span> =&gt; <span class="php-var">$df</span>) {
-</span><span id="164" class="l"><a href="#164">164: </a>                    <span class="php-keyword1">if</span>(<span class="php-var">$f</span>[<span class="php-var">$df</span>])
-</span><span id="165" class="l"><a href="#165">165: </a>                        <span class="php-var">$l</span>[<span class="php-var">$this</span>-&gt;logTypes[<span class="php-quote">'imported_file'</span>][<span class="php-var">$j</span>]] = <span class="php-var">$f</span>[<span class="php-var">$df</span>];
-</span><span id="166" class="l"><a href="#166">166: </a>                    <span class="php-keyword1">if</span>(<span class="php-var">$imported_url</span>[<span class="php-var">$t</span>] &amp;&amp; <span class="php-var">$imported_url</span>[<span class="php-var">$t</span>][<span class="php-var">$df</span>]) {
-</span><span id="167" class="l"><a href="#167">167: </a>                        <span class="php-var">$l</span>[<span class="php-var">$this</span>-&gt;logTypes[<span class="php-quote">'imported_url'</span>][<span class="php-var">$j</span>]] = <span class="php-var">$imported_url</span>[<span class="php-var">$t</span>][<span class="php-var">$df</span>];
-</span><span id="168" class="l"><a href="#168">168: </a>                    }
-</span><span id="169" class="l"><a href="#169">169: </a>                }
-</span><span id="170" class="l"><a href="#170">170: </a>                <span class="php-var">$l</span>[<span class="php-var">$this</span>-&gt;logTypes[<span class="php-quote">'imported_file'</span>][<span class="php-quote">'related'</span>]] = <span class="php-var">$f</span>[<span class="php-quote">'related_id'</span>];
-</span><span id="171" class="l"><a href="#171">171: </a>                <span class="php-var">$logs</span>[<span class="php-var">$f</span>[<span class="php-quote">'time'</span>]] = <span class="php-var">$l</span>;
-</span><span id="172" class="l"><a href="#172">172: </a>            }
-</span><span id="173" class="l"><a href="#173">173: </a>        }
-</span><span id="174" class="l"><a href="#174">174: </a>        <span class="php-keyword2">krsort</span>(<span class="php-var">$logs</span>);
-</span><span id="175" class="l"><a href="#175">175: </a>        <span class="php-keyword1">return</span> <span class="php-var">$logs</span>;
-</span><span id="176" class="l"><a href="#176">176: </a>    }
-</span><span id="177" class="l"><a href="#177">177: </a>}
-</span><span id="178" class="l"><a href="#178">178: </a></span></code></pre>
+</span><span id="125" class="l"><a href="#125">125: </a>            }
+</span><span id="126" class="l"><a href="#126">126: </a>            
+</span><span id="127" class="l"><a href="#127">127: </a>            <span class="php-var">$logs</span> = <span class="php-keyword1">array</span>();
+</span><span id="128" class="l"><a href="#128">128: </a>            <span class="php-keyword1">foreach</span>(<span class="php-var">$res</span> <span class="php-keyword1">as</span> <span class="php-var">$model</span> =&gt; <span class="php-var">$r</span>){
+</span><span id="129" class="l"><a href="#129">129: </a>                <span class="php-keyword1">foreach</span>(<span class="php-var">$r</span> <span class="php-keyword1">as</span> <span class="php-var">$e</span>) {
+</span><span id="130" class="l"><a href="#130">130: </a>                    <span class="php-var">$l</span> = <span class="php-keyword1">array</span>(<span class="php-quote">'type'</span> =&gt; <span class="php-quote">'user'</span>, <span class="php-quote">'time'</span> =&gt; <span class="php-var">$e</span>[<span class="php-quote">'time'</span>]);
+</span><span id="131" class="l"><a href="#131">131: </a>                    <span class="php-keyword1">foreach</span>(<span class="php-var">$this</span>-&gt;data_fields <span class="php-keyword1">as</span> <span class="php-var">$j</span> =&gt; <span class="php-var">$df</span>) {
+</span><span id="132" class="l"><a href="#132">132: </a>                        <span class="php-keyword1">if</span>(<span class="php-var">$e</span>[<span class="php-var">$df</span>]) {
+</span><span id="133" class="l"><a href="#133">133: </a>                            <span class="php-var">$l</span>[<span class="php-var">$this</span>-&gt;logTypes[<span class="php-quote">'user_edited'</span>][<span class="php-var">$j</span>]] = <span class="php-var">$e</span>[<span class="php-var">$df</span>];
+</span><span id="134" class="l"><a href="#134">134: </a>                        }
+</span><span id="135" class="l"><a href="#135">135: </a>                    }
+</span><span id="136" class="l"><a href="#136">136: </a>                    <span class="php-var">$l</span>[<span class="php-quote">'action'</span>] = <span class="php-var">$e</span>[<span class="php-quote">'type'</span>];
+</span><span id="137" class="l"><a href="#137">137: </a>                    <span class="php-keyword1">if</span>(<span class="php-var">$l</span>[<span class="php-quote">'action'</span>] != <span class="php-quote">'deleted'</span>) {
+</span><span id="138" class="l"><a href="#138">138: </a>                        <span class="php-var">$l</span>[<span class="php-quote">'related_id'</span>] = <span class="php-var">$e</span>[<span class="php-quote">'related_id'</span>];
+</span><span id="139" class="l"><a href="#139">139: </a>                        <span class="php-var">$l</span>[<span class="php-quote">'name'</span>] = <span class="php-var">$names</span>[<span class="php-var">$model</span>][<span class="php-var">$e</span>[<span class="php-quote">'related_id'</span>]];
+</span><span id="140" class="l"><a href="#140">140: </a>                    }
+</span><span id="141" class="l"><a href="#141">141: </a>                    <span class="php-var">$l</span>[<span class="php-quote">'username'</span>] = <span class="php-var">$users</span>[<span class="php-var">$model</span>][<span class="php-var">$l</span>[<span class="php-quote">'user'</span>]];
+</span><span id="142" class="l"><a href="#142">142: </a>                    <span class="php-var">$logs</span>[<span class="php-var">$e</span>[<span class="php-quote">'time'</span>]] = <span class="php-var">$l</span>;
+</span><span id="143" class="l"><a href="#143">143: </a>                }
+</span><span id="144" class="l"><a href="#144">144: </a>            }
+</span><span id="145" class="l"><a href="#145">145: </a>            
+</span><span id="146" class="l"><a href="#146">146: </a>        } <span class="php-keyword1">else</span> 
+</span><span id="147" class="l"><a href="#147">147: </a>        
+</span><span id="148" class="l"><a href="#148">148: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$type</span> == <span class="php-quote">'data'</span>) {
+</span><span id="149" class="l"><a href="#149">149: </a>            <span class="php-var">$imported_file</span> = <span class="php-var">$this</span>-&gt;query(<span class="php-quote">'SELECT '</span>.<span class="php-var">$this</span>-&gt;getFieldList(<span class="php-quote">'imported_file'</span>).<span class="php-quote">' FROM logs WHERE type=&quot;imported_file&quot; AND related_id IN (SELECT id FROM inputs WHERE project_id=&quot;'</span>.<span class="php-var">$project_id</span>.<span class="php-quote">'&quot;) ORDER BY time DESC LIMIT '</span>.<span class="php-var">$limit</span>);
+</span><span id="150" class="l"><a href="#150">150: </a>            <span class="php-var">$field</span> = <span class="php-var">$this</span>-&gt;dataField(<span class="php-quote">'imported_file'</span>, <span class="php-quote">'filename'</span>);
+</span><span id="151" class="l"><a href="#151">151: </a>            <span class="php-var">$file_list</span> = Set::<span class="php-keyword2">extract</span>(<span class="php-var">$imported_file</span>, <span class="php-quote">'{n}.logs.'</span>.<span class="php-var">$field</span>);
+</span><span id="152" class="l"><a href="#152">152: </a>            <span class="php-var">$files</span> = Set::combine(<span class="php-var">$imported_file</span>, <span class="php-quote">'{n}.logs.'</span>.<span class="php-var">$field</span>, <span class="php-quote">'{n}.logs'</span>);
+</span><span id="153" class="l"><a href="#153">153: </a>            
+</span><span id="154" class="l"><a href="#154">154: </a>            <span class="php-var">$field</span> = <span class="php-var">$this</span>-&gt;dataField(<span class="php-quote">'imported_url'</span>, <span class="php-quote">'filename'</span>);
+</span><span id="155" class="l"><a href="#155">155: </a>            <span class="php-comment">//debug($field);</span>
+</span><span id="156" class="l"><a href="#156">156: </a>            <span class="php-var">$imported_url</span> = <span class="php-var">$this</span>-&gt;query(<span class="php-quote">'SELECT '</span>.<span class="php-var">$this</span>-&gt;getFieldList(<span class="php-quote">'imported_url'</span>).<span class="php-quote">' FROM logs WHERE type=&quot;imported_url&quot; AND '</span>.<span class="php-var">$field</span>.<span class="php-quote">' IN (&quot;'</span>.<span class="php-keyword2">implode</span>(<span class="php-quote">'&quot;,&quot;'</span>, <span class="php-var">$file_list</span>).<span class="php-quote">'&quot;)'</span>);
+</span><span id="157" class="l"><a href="#157">157: </a>            <span class="php-var">$imported_url</span> = Set::combine(<span class="php-var">$imported_url</span>, <span class="php-quote">'{n}.logs.'</span>.<span class="php-var">$field</span>, <span class="php-quote">'{n}.logs'</span>);
+</span><span id="158" class="l"><a href="#158">158: </a>            <span class="php-var">$logs</span> = <span class="php-keyword1">array</span>();
+</span><span id="159" class="l"><a href="#159">159: </a>            <span class="php-keyword1">foreach</span>(<span class="php-var">$files</span> <span class="php-keyword1">as</span> <span class="php-var">$t</span> =&gt; <span class="php-var">$f</span>){
+</span><span id="160" class="l"><a href="#160">160: </a>                <span class="php-var">$l</span> = <span class="php-keyword1">array</span>(<span class="php-quote">'type'</span> =&gt; <span class="php-quote">'import'</span>, <span class="php-quote">'time'</span> =&gt; <span class="php-var">$f</span>[<span class="php-quote">'time'</span>]);
+</span><span id="161" class="l"><a href="#161">161: </a>                <span class="php-keyword1">foreach</span>(<span class="php-var">$this</span>-&gt;data_fields <span class="php-keyword1">as</span> <span class="php-var">$j</span> =&gt; <span class="php-var">$df</span>) {
+</span><span id="162" class="l"><a href="#162">162: </a>                    <span class="php-keyword1">if</span>(<span class="php-var">$f</span>[<span class="php-var">$df</span>])
+</span><span id="163" class="l"><a href="#163">163: </a>                        <span class="php-var">$l</span>[<span class="php-var">$this</span>-&gt;logTypes[<span class="php-quote">'imported_file'</span>][<span class="php-var">$j</span>]] = <span class="php-var">$f</span>[<span class="php-var">$df</span>];
+</span><span id="164" class="l"><a href="#164">164: </a>                    <span class="php-keyword1">if</span>(<span class="php-var">$imported_url</span>[<span class="php-var">$t</span>] &amp;&amp; <span class="php-var">$imported_url</span>[<span class="php-var">$t</span>][<span class="php-var">$df</span>]) {
+</span><span id="165" class="l"><a href="#165">165: </a>                        <span class="php-var">$l</span>[<span class="php-var">$this</span>-&gt;logTypes[<span class="php-quote">'imported_url'</span>][<span class="php-var">$j</span>]] = <span class="php-var">$imported_url</span>[<span class="php-var">$t</span>][<span class="php-var">$df</span>];
+</span><span id="166" class="l"><a href="#166">166: </a>                    }
+</span><span id="167" class="l"><a href="#167">167: </a>                }
+</span><span id="168" class="l"><a href="#168">168: </a>                <span class="php-var">$l</span>[<span class="php-var">$this</span>-&gt;logTypes[<span class="php-quote">'imported_file'</span>][<span class="php-quote">'related'</span>]] = <span class="php-var">$f</span>[<span class="php-quote">'related_id'</span>];
+</span><span id="169" class="l"><a href="#169">169: </a>                <span class="php-var">$logs</span>[<span class="php-var">$f</span>[<span class="php-quote">'time'</span>]] = <span class="php-var">$l</span>;
+</span><span id="170" class="l"><a href="#170">170: </a>            }
+</span><span id="171" class="l"><a href="#171">171: </a>        }
+</span><span id="172" class="l"><a href="#172">172: </a>        <span class="php-keyword2">krsort</span>(<span class="php-var">$logs</span>);
+</span><span id="173" class="l"><a href="#173">173: </a>        <span class="php-keyword1">return</span> <span class="php-var">$logs</span>;
+</span><span id="174" class="l"><a href="#174">174: </a>    }
+</span><span id="175" class="l"><a href="#175">175: </a>}
+</span><span id="176" class="l"><a href="#176">176: </a></span></code></pre>
 
 	<div id="footer">
 		 API documentation generated by <a href="http://apigen.org">ApiGen</a>

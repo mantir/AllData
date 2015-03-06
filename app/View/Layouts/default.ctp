@@ -70,7 +70,7 @@ unset($return['vars']['return']); //clear the variable in $return that include $
                     <? } ?>
                 </li>
                 <li>
-                    <a href="<?=$this->Html->url("/documentations/index")?>"><i class="glyphicon glyphicon-question-sign"></i> <?=__('Help')?></a>
+                    <a href="<?=$this->Html->url("/pages/documentation")?>"><i class="glyphicon glyphicon-question-sign"></i> <?=__('Help')?></a>
                 </li>
                 <? if($authUser && $authUser['isAdmin']) { ?>
                 <li>
@@ -113,6 +113,23 @@ unset($return['vars']['return']); //clear the variable in $return that include $
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title"><?=__('Error') ?></h4>
+              </div>
+              <div class="modal-body">
+                
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal"><?= __('Close')?></button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+        
+        <div id="help-modal" class="modal fade">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title"><?=__('Help') ?></h4>
               </div>
               <div class="modal-body">
                 

@@ -416,26 +416,35 @@
 </span><span id="313" class="l"><a href="#313">313: </a>        }
 </span><span id="314" class="l"><a href="#314">314: </a>        <span class="php-keyword1">return</span> <span class="php-keyword1">false</span>;
 </span><span id="315" class="l"><a href="#315">315: </a>    }
-</span><span id="316" class="l"><a href="#316">316: </a>
-</span><span id="317" class="l"><a href="#317">317: </a>    
-</span><span id="318" class="l"><a href="#318">318: </a>    <span class="php-comment">/**
-</span></span><span id="319" class="l"><a href="#319">319: </a><span class="php-comment">    * Parses params from string 'name:type:description' into array(array('name' =&gt; '...', 'type' =&gt; '...', 'description' =&gt; '...'),...)
-</span></span><span id="320" class="l"><a href="#320">320: </a><span class="php-comment">    * @param string $string String to parse
+</span><span id="316" class="l"><a href="#316">316: </a>    
+</span><span id="317" class="l"><a href="#317">317: </a>    <span class="php-comment">/**
+</span></span><span id="318" class="l"><a href="#318">318: </a><span class="php-comment">    * Checks if the code runs without errors (Has to be implemented)
+</span></span><span id="319" class="l"><a href="#319">319: </a><span class="php-comment">    * @todo
+</span></span><span id="320" class="l"><a href="#320">320: </a><span class="php-comment">    * @param $code
 </span></span><span id="321" class="l"><a href="#321">321: </a><span class="php-comment">    */</span>
-</span><span id="322" class="l"><a href="#322">322: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> parse_params(<span class="php-var">$string</span>){
-</span><span id="323" class="l"><a href="#323">323: </a>        <span class="php-keyword2">preg_match_all</span>(<span class="php-quote">&quot;/([^:]+):([^:]+):(.*)/&quot;</span>, <span class="php-var">$string</span>, <span class="php-var">$m</span>);
-</span><span id="324" class="l"><a href="#324">324: </a>        <span class="php-var">$params</span> = <span class="php-keyword1">array</span>();
-</span><span id="325" class="l"><a href="#325">325: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$m</span> <span class="php-keyword1">as</span> <span class="php-var">$j</span> =&gt; <span class="php-var">$p</span>){
-</span><span id="326" class="l"><a href="#326">326: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$j</span> == <span class="php-num">0</span>) <span class="php-keyword1">continue</span>;
-</span><span id="327" class="l"><a href="#327">327: </a>            <span class="php-keyword1">foreach</span>(<span class="php-var">$p</span> <span class="php-keyword1">as</span> <span class="php-var">$i</span> =&gt; <span class="php-var">$v</span>) {
-</span><span id="328" class="l"><a href="#328">328: </a>                <span class="php-var">$params</span>[<span class="php-var">$i</span>][<span class="php-var">$this</span>-&gt;param_names[<span class="php-var">$j</span> - <span class="php-num">1</span>]] = <span class="php-keyword2">trim</span>(<span class="php-var">$v</span>); 
-</span><span id="329" class="l"><a href="#329">329: </a>            }
-</span><span id="330" class="l"><a href="#330">330: </a>        }
-</span><span id="331" class="l"><a href="#331">331: </a>        <span class="php-keyword1">return</span> <span class="php-var">$params</span>;
-</span><span id="332" class="l"><a href="#332">332: </a>    }
-</span><span id="333" class="l"><a href="#333">333: </a>
-</span><span id="334" class="l"><a href="#334">334: </a>}
-</span><span id="335" class="l"><a href="#335">335: </a></span></code></pre>
+</span><span id="322" class="l"><a href="#322">322: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> check_code(<span class="php-var">$code</span>){
+</span><span id="323" class="l"><a href="#323">323: </a>
+</span><span id="324" class="l"><a href="#324">324: </a>    }
+</span><span id="325" class="l"><a href="#325">325: </a>
+</span><span id="326" class="l"><a href="#326">326: </a>    
+</span><span id="327" class="l"><a href="#327">327: </a>    <span class="php-comment">/**
+</span></span><span id="328" class="l"><a href="#328">328: </a><span class="php-comment">    * Parses params from string 'name:type:description' into array(array('name' =&gt; '...', 'type' =&gt; '...', 'description' =&gt; '...'),...)
+</span></span><span id="329" class="l"><a href="#329">329: </a><span class="php-comment">    * @param string $string String to parse
+</span></span><span id="330" class="l"><a href="#330">330: </a><span class="php-comment">    */</span>
+</span><span id="331" class="l"><a href="#331">331: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> parse_params(<span class="php-var">$string</span>){
+</span><span id="332" class="l"><a href="#332">332: </a>        <span class="php-keyword2">preg_match_all</span>(<span class="php-quote">&quot;/([^:]+):([^:]+):(.*)/&quot;</span>, <span class="php-var">$string</span>, <span class="php-var">$m</span>);
+</span><span id="333" class="l"><a href="#333">333: </a>        <span class="php-var">$params</span> = <span class="php-keyword1">array</span>();
+</span><span id="334" class="l"><a href="#334">334: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$m</span> <span class="php-keyword1">as</span> <span class="php-var">$j</span> =&gt; <span class="php-var">$p</span>){
+</span><span id="335" class="l"><a href="#335">335: </a>            <span class="php-keyword1">if</span>(<span class="php-var">$j</span> == <span class="php-num">0</span>) <span class="php-keyword1">continue</span>;
+</span><span id="336" class="l"><a href="#336">336: </a>            <span class="php-keyword1">foreach</span>(<span class="php-var">$p</span> <span class="php-keyword1">as</span> <span class="php-var">$i</span> =&gt; <span class="php-var">$v</span>) {
+</span><span id="337" class="l"><a href="#337">337: </a>                <span class="php-var">$params</span>[<span class="php-var">$i</span>][<span class="php-var">$this</span>-&gt;param_names[<span class="php-var">$j</span> - <span class="php-num">1</span>]] = <span class="php-keyword2">trim</span>(<span class="php-var">$v</span>); 
+</span><span id="338" class="l"><a href="#338">338: </a>            }
+</span><span id="339" class="l"><a href="#339">339: </a>        }
+</span><span id="340" class="l"><a href="#340">340: </a>        <span class="php-keyword1">return</span> <span class="php-var">$params</span>;
+</span><span id="341" class="l"><a href="#341">341: </a>    }
+</span><span id="342" class="l"><a href="#342">342: </a>
+</span><span id="343" class="l"><a href="#343">343: </a>}
+</span><span id="344" class="l"><a href="#344">344: </a></span></code></pre>
 
 	<div id="footer">
 		 API documentation generated by <a href="http://apigen.org">ApiGen</a>

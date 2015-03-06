@@ -17,7 +17,6 @@ class console{
 	static $weekdays = array('Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag', 'Sonntag');
 	static $weekdaysShort = array('Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So');
 	static $intervalTypes = array('input timestamps', 'minutes', 'hours', 'days', 'weeks', 'months', 'years');
-	static $logTypes = array('_error' => 'Error');
 	static $adminState = 2;
 	static $contributorState = 1;
 	static $memberTypes = array('Guest', 'Contributor', 'Admin');

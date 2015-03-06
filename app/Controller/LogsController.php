@@ -18,21 +18,12 @@ App::uses('AppController', 'Controller');
  */
 class LogsController extends AppController {
 
-	/**
-	 * index method
-	 *
-	 * @return void
-	 */
-	public function index($project_id = null, $type = null) {
-		$logs = $this->Log->getLogs($project_id, $type);
-		$this->set(compact('logs', 'project_id'));
-		$this->layout = 'template';
-	}
 
 	/**
-	 * view method
-	 *
-	 * @param string $id
+	 * Returns a list of Logs for a project and a type: 
+	 * 
+	 * @param string $project_id Project ID
+	 * @param string $type Log type
 	 * @return void
 	 */
 	public function view($project_id = null, $type = null) {

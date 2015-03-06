@@ -1,7 +1,23 @@
+/**
+ * This is the values controller
+ *
+ * @copyright     Martin Kapp 2014-15
+ * @link          http://headkino.de
+ * @package       app.Lib
+ * @since         v 0.1
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
+ * 
+ * @class app.controllers.values
+ */
 app.controllers.events = BackboneMVC.Controller.extend({
     name: 'values',
 	views:[], //These are the views we will use with the controller
 	
+	/**
+	 * Executed in the Values.add or Values.edit action if the user changes the method for the value
+	 * @method method_change
+	 * @return 
+	 */
 	method_change: function(){
 		var method_id = $('#ValueMethodId').val();
 		if(!method_id) {
@@ -18,6 +34,12 @@ app.controllers.events = BackboneMVC.Controller.extend({
 		
 	},
 	
+	/**
+	 * Create a value in a project
+	 * @method add
+	 * @param {int} id Project ID
+	 * @return 
+	 */
 	add:function(id){
 		var self = this;
 		var dialog = $('#value-view-modal');
@@ -26,22 +48,27 @@ app.controllers.events = BackboneMVC.Controller.extend({
 		});
     },
 	
+	/**
+	 * Edit a value
+	 * @method edit
+	 * @param {int} id Value ID
+	 * @return 
+	 */
 	edit:function(id){
 		var self = this;
 		app.setRefresh();
 		var dialog = $('#value-view-modal');
 		app.loadDialog(this.name, 'edit', app.url(), dialog).done(function(d){
 			$('#ValueMethodId').change(self.method_change);
-			/*if(dialog.length) {
-				dialog.find('form').submit(function(e){
-					app.submit(e, function(){
-						dialog.modal('hide');
-					});
-				});
-			}*/
 		});
     },
 	
+	/**
+	 * Delete a Value
+	 * @method delete
+	 * @param {int} id Value ID
+	 * @return 
+	 */
 	delete:function(id){
 		var self = this;
 		app.post(this.name+'/delete/' + app.url()).done(function(d){
@@ -50,14 +77,4 @@ app.controllers.events = BackboneMVC.Controller.extend({
 		});
     },
 	
-    init:function(){
-     	
-    },
-	default:function(){this.index()},
-    index:function(project_id){
-		var self = this;
-		app.loadPage(this.name, 'index', app.url()).done(function(d){
-
-		});
-    }
 });

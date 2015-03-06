@@ -58,13 +58,11 @@ class UsersController extends AppController {
 	}
 	
 	public function register() {
-		//$this->loadModel('Aro');
-		//debug($this->request->data);
-		//$this->set("groups", $this->Aro->find('list', array('fields' => array('Aro.alias'))));
 		if ($this->request->is('post') || $this->request->is('put')) {
 			$this->User->create();
 			$this->request->data['User']['id'] = $this->generateID();
 			$this->request->data['User']['activated'] = 0;
+			$this->request->data['isAdmin'] = $this->User->find('count') == 0; //If it is the first user, it will be the admin
 			$user = $this->request->data['User'];
 			$this->request->data['User']['register_time'] = time();
 			$this->request->data['User']['email'] = strtolower($this->request->data['User']['email']);

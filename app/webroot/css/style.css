@@ -7,8 +7,8 @@ body{
 /*body pre, #page-wrapper{
 	margin-top:50px;
 }*/
-body.modal-open{
-	
+#help-modal .modal-dialog{
+	width: 80%;
 }
 .list{
 	list-style-type:none;
