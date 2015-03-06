@@ -1,0 +1,9 @@
+{
+    "name": "AllData",
+    "description": "AllData",
+    "version": "1.0",
+    "url": "http://headkino.de/alldata",
+    "options": {
+        "outdir": "webroot/docs/js"
+    }
+}

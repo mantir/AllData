@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>webroot\app.js - AllData</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.8.0pr2/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <script src="http://yui.yahooapis.com/combo?3.8.0pr2/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+            <h1><a href="../index.html"><img src="../assets/css/logo.png" width="117" height="52">AllData: webroot\app.js</a></h1>
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: 1.0</em>
+        </div>
+    </div>
+    <div class="yui3-g">
+
+        <div id="sidebar" class="yui3-u">
+            <div id="modules" class="sidebox">
+                <div class="hd">
+                    <h2 class="no-toc">Modules</h2>
+                </div>
+                <div class="bd">
+                    <ul>
+                    </ul>
+                </div>
+            </div>
+            
+            <div id="classes" class="sidebox">
+                <div class="hd">
+                    <h2 class="no-toc">Classes</h2>
+                </div>
+                <div class="bd">
+                    <ul>
+                            <li><a href="../classes/app.html">app</a></li>
+                            <li><a href="../classes/app.controllers.admin.html">app.controllers.admin</a></li>
+                            <li><a href="../classes/app.controllers.exports.html">app.controllers.exports</a></li>
+                            <li><a href="../classes/app.controllers.inputs.html">app.controllers.inputs</a></li>
+                            <li><a href="../classes/app.controllers.methods.html">app.controllers.methods</a></li>
+                            <li><a href="../classes/app.controllers.pages.html">app.controllers.pages</a></li>
+                            <li><a href="../classes/app.controllers.projects.html">app.controllers.projects</a></li>
+                            <li><a href="../classes/app.controllers.units.html">app.controllers.units</a></li>
+                            <li><a href="../classes/app.controllers.users.html">app.controllers.users</a></li>
+                            <li><a href="../classes/app.controllers.values.html">app.controllers.values</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            
+            
+            
+            
+            <div id="fileTree" class="sidebox">
+                <div class="hd">
+                    <h2 class="no-toc">Files</h2>
+                </div>
+                <div class="bd">
+                    <ul><li>webroot\app.js/<ul></ul></li><li>webroot\controllers\admin.js/<ul></ul></li><li>webroot\controllers\exports.js/<ul></ul></li><li>webroot\controllers\inputs.js/<ul></ul></li><li>webroot\controllers\logs.js/<ul></ul></li><li>webroot\controllers\methods.js/<ul></ul></li><li>webroot\controllers\pages.js/<ul></ul></li><li>webroot\controllers\projects.js/<ul></ul></li><li>webroot\controllers\units.js/<ul></ul></li><li>webroot\controllers\users.js/<ul></ul></li><li>webroot\controllers\values.js/<ul></ul></li></ul>
+                </div>
+            </div>
+            
+        </div>
+
+        <div id="main" class="yui3-u">
+            <div class="content"><h4>webroot\app.js</h4>
+
+<pre class="code prettyprint linenums">
+/**
+ * This is the app class. It manages the whole application.
+ *
+ * @copyright     Martin Kapp 2014-15
+ * @link          http://headkino.de
+ * @package       app.Lib
+ * @since         v 0.1
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
+ * 
+ * @class app
+ */
+requirejs.config({
+	baseUrl : baseUrl+&#x27;/&#x27;,
+	paths: {
+		c: &#x27;controllers&#x27;, //for shorter paths in app.controllerList
+
+		calendar: &#x27;js/bootstrap-datepicker&#x27;,
+		editor: &#x27;js/ckeditor/ckeditor&#x27;,
+		codeeditor: &#x27;js/codemirror-4.8/lib/codemirror&#x27;,
+		phpjs: &#x27;js/phpjs&#x27;,
+		charts: &#x27;js/highcharts/highstock&#x27;,
+		charts_exporting: &#x27;js/highcharts/modules/exporting&#x27;,
+		charts_theme: &#x27;js/highcharts/themes/dark-unica&#x27;
+	},
+	shim: {
+		charts_exporting: [&#x27;charts&#x27;],
+		charts_theme: [&#x27;charts&#x27;]
+	}
+	
+});
+var routes = {
+	&#x27;/&#x27;:&#x27;home&#x27;,
+	&#x27;&#x27;:&#x27;home&#x27;,
+};
+//routes[baseUrl+&#x27;/*&#x27;] = &#x27;relative&#x27;;
+var AppRouter = BackboneMVC.Router.extend({
+	name: &quot;appRouter&quot;,
+	routes:routes,
+	/**
+	 * Route the home url to the Projects.index page
+	 * @method home
+	 * @return 
+	 */
+	home:function(){
+		app.route(&#x27;projects/index&#x27;);
+	},
+});
+app = {
+	c: {}, //Controller array
+	controllers: {}, //Controllerklassen
+	controllerList: [&quot;c/projects&quot;, &quot;c/pages&quot;, &quot;c/logs&quot;, &#x27;c/values&#x27;, &#x27;c/inputs&#x27;, &#x27;c/units&#x27;, &#x27;c/methods&#x27;, &#x27;c/exports&#x27;, &#x27;c/users&#x27;, &#x27;c/admin&#x27;],
+	viewType:&quot;text/x-underscore-template&quot;,
+	loader_gif:baseUrl+&quot;/img/gloader.gif&quot;,
+	loader_gif_2:baseUrl+&quot;/img/fbloader.gif&quot;,
+	requests : [],
+	refreshNext: false, //Whether to not fetch data from cache instead of loading it from the server in the next request
+	jsonUrl: &#x27;json/&#x27;,
+	going : {},
+	config : [],
+	viewFileExt: &#x27;js&#x27;,
+	router : new AppRouter(),
+	/**
+	 * Initializes the app on page loading
+	 * @method init
+	 * @param {string} baseUrl The base url of alldata, it can be passed or is calculated from the current URL: e.g. http://headkino.de/alldata/
+	 * @param {Object} d Data array from the server. The same object would have been returned from an AJAX request to the page. The data is cached in the app.requests Object
+	 * @param {string} content Rendered view HTML
+	 * @return 
+	 */
+	init: function(baseUrl, d, content){ //Base Url and Data
+		if(baseUrl.substr(-1, 1) != &#x27;/&#x27;) baseUrl += &#x27;/&#x27;;
+		if(baseUrl) {
+			this.baseUrl = baseUrl;
+		} else {
+			this.baseUrl = document.location.pathname.replace(/\/index\.html/, &#x27;&#x27;);
+		}
+		var that = this;
+		//app.setUpRequire();
+		app.require([&#x27;phpjs&#x27;], function() {
+			d.content = content;
+			$(document).one(&#x27;app:controllersLoaded&#x27;, function(){
+				that.updateLayout();
+				that.bindEvents();
+				Backbone.history.start({pushState: true, root: that.baseUrl, silent: true});
+				var curUrl = that.url();
+				that.requests[curUrl] = d; //Start Url schon geladen
+				that.route(curUrl);
+			});
+			that.loadControllers(app.controllerList);
+		});
+	},
+	/**
+	 * Returns the current relative url. Relative to the app.baseUrl
+	 * @method url
+	 * @param {string} query string. If the string isn&#x27;t already at the end of the current URL, it is added and returned
+	 * @return BinaryExpression
+	 */
+	url:function(query){
+		var s = query ? query : Backbone.history.location.search;
+		if(Backbone.history.fragment.indexOf(s) &gt; -1 || Backbone.history.fragment.indexOf(decodeURI(s)) &gt; -1)
+			s = &#x27;&#x27;;
+		return Backbone.history.fragment + s;
+	},
+	/**
+	 * Removes the app.baseUrl from an url
+	 * @method unbaseUrl
+	 * @param {string} url
+	 * @return url
+	 */
+	unbaseUrl :function(url) {
+		if(url.indexOf(this.baseUrl) &gt; -1)
+			url = url.replace(new RegExp(this.baseUrl), &#x27;&#x27;);
+		return url;
+	},
+	/**
+	 * Routes a given URL to the corresponding controller and method and the URL in the browser can be changed. e.g. /projects/view/2 =&gt; Projects-controller executing view-function passing parameter 2.
+	 * 
+	 * @method route
+	 * @param {string} url The route url
+	 * @param {bool|undefined} notrigger Just change the Browser URL and don&#x27;t trigger the action in the controller
+	 * @param {bool|undefined} replace Replaces the current URL in the browser with with the url parameter and doesn&#x27;t add it to the Backbone history. (like nothing happened) 
+	 * @return 
+	 */
+	route:function(url, notrigger, replace){
+		url = app.unbaseUrl(url);
+		/*var fr = url.indexOf(&#x27;?&#x27;); 
+		if(fr &gt; -1)
+			url = url.substr(0, fr) + &#x27;~&#x27;+url.substr(fr + 1);*/
+		if(!notrigger)
+			app.lastURL = Backbone.history.fragment;
+		this.router.navigate(url, {trigger: !notrigger, replace: replace});
+	},
+	/**
+	 * Just change the browser URL without triggering the corresponding controller action.
+	 * @method updateUrl
+	 * @param {string} url
+	 * @return 
+	 */
+	updateUrl: function(url){
+		this.route(url, true, true);
+	},
+	/**
+	 * Executes a controller action and changes the URL, then it replaces the changed URL with the previous URL again (like nothing happened)
+	 * @method call_url
+	 * @param {} url
+	 * @return 
+	 */
+	call_url: function(url){
+		var current = Backbone.history.fragment;
+		this.route(url, false, true);
+		this.route(current, true, true);
+	},
+	/**
+	 * Wrapper for require.js
+	 * @method require
+	 * @param {string|array} what What should be required
+	 * @param {function} callback Executed after required files are loaded
+	 * @return 
+	 */
+	require:function(what, callback){
+		if(typeof(what) == &#x27;string&#x27;)
+			what = [what];
+		var which = what.slice(0); //clone array, must be array
+		for(var i in what) {
+			if(what[i] == &#x27;calendar&#x27;){ this.config[&#x27;calendar&#x27;] = {language: &quot;de&quot;, autoclose: true, todayHighlight: true}; app.loadCss(this.baseUrl+&#x27;css/datepicker3.css&#x27;); } else
+			if(what[i] == &#x27;phpjs&#x27;) { which[i] = &#x27;phpjs/date&#x27;; which.push(&#x27;phpjs/strtotime&#x27;); } else
+			if(what[i] == &#x27;charts&#x27;) {  which.push(&#x27;charts_exporting&#x27;); /*which.push(&#x27;charts_theme&#x27;);*/ } else
+			if(what[i] == &#x27;codeeditor&#x27;) { app.loadCss(this.baseUrl+&#x27;js/codemirror-4.8/lib/codemirror.css&#x27;); } 
+		}
+		//console.log(which);
+		require(which, callback);
+	},
+	/**
+	 * Loads a stylesheet dynamically and adds it to the header
+	 * @method loadCss
+	 * @param {string} url
+	 * @return 
+	 */
+	loadCss:function(url) {
+		var link = document.createElement(&quot;link&quot;);
+		link.type = &quot;text/css&quot;;
+		link.rel = &quot;stylesheet&quot;;
+		link.href = url;
+		document.getElementsByTagName(&quot;head&quot;)[0].appendChild(link);
+	},
+	/**
+	 * Refresh the current view
+	 * @method refresh
+	 * @param {function} callback
+	 * @return 
+	 */
+	refresh:function(callback){
+		var url = Backbone.history.fragment;
+		this.refreshing = true;
+		this.setCallback(callback);
+		this.route(url);
+	},
+	/**
+	 * Uncache the data for an already loaded URL so it is loaded again.
+	 * @method setRefresh
+	 * @param {string} url URL to be refreshed. If empty the next request is refreshed.
+	 * @return 
+	 */
+	setRefresh:function(url){
+		if(url) {
+			delete app.requests[url];
+		} else
+		this.refreshNext = true;
+	},
+	/**
+	 * app.callback a global callback function which can be set with setCallback. Used for example in the app.loadPage function
+	 * @method callback
+	 * @return 
+	 */
+	callback : function(){},
+	/**
+	 * Set the app.callback function.
+	 * @method setCallback
+	 * @param {} callback
+	 * @return 
+	 */
+	setCallback:function(callback){
+		var self = this;
+		this.callback = function(){
+			callback(arguments);
+			self.callback = function(){};
+		}
+	},
+
+	/**
+	 * Like loadPage only laoding the page contents into a given dialog
+	 * @method loadDialog
+	 * @param {string} c Controller name
+	 * @param {string} a Action name
+	 * @param {string} url URL to fetch data from the server
+	 * @param {jQuery Object} target Backbone modal Dialog container
+	 * @return Q.promise from Q.js for callbacks
+	 */
+	loadDialog: function(c, a, url, target) {
+		var q = Q.defer();
+		if(this.locked) {
+			q.resolve();
+			return q.promise;
+		}
+		if($(&#x27;.modal-backdrop:visible&#x27;).length)
+			$(&#x27;.modal-backdrop:visible&#x27;).remove();
+		target.modal();
+		target.on(&#x27;hidden.bs.modal&#x27;, function() {
+			app.route(app.lastURL, true);
+		})
+		this.loadPage(c, a, url, target.find(&#x27;.modal-body&#x27;)).done(function(d){
+			q.resolve(d);
+		});
+		return q.promise;
+	},
+	/**
+	 * Load the page contents rom the server
+	 * @method loadPage
+	 * @param {} c Controller name
+	 * @param {} a Action name
+	 * @param {} url URL to fetch data from the server
+	 * @param {} target The target container for the loaded page content (Default this.container.find(&#x27;.page&#x27;))
+	 * @return Q.promise from Q.js for callbacks
+	 */
+	loadPage: function(c, a, url, target){
+		var q = Q.defer();
+		if(this.locked) {
+			q.resolve();
+			return q.promise;
+		}
+		this.locked = true;
+		if(url.indexOf(&#x27;/admin_&#x27;) &gt; -1) //Admin routing
+			url = &#x27;admin/&#x27;+url.replace(RegExp(&#x27;/admin_&#x27;), &#x27;/&#x27;);
+		if(window.backDetected) {
+			back = true;
+			window.backDetected = false;
+		}
+		var self = this; var samePage = false;
+		var $con = this.container.find(&#x27;.page&#x27;);
+		if(target &amp;&amp; target.length &gt; 0)
+			$con = target;
+		$con.html(this.loadIndicator());
+		/**
+		 * Executed after new page was loaded
+		 * @method callback
+		 * @param {} d
+		 * @return 
+		 */
+		var callback = function(d){
+			if(self.activePage().data(&#x27;appurl&#x27;) == url) {
+				app.locked = false;
+				q.resolve(d);
+				samePage = true;
+			}
+			var html = d.content;
+
+			if(self.refreshing) {
+				$con.append(html);
+				self.callback();
+			} else {
+				$con[0].innerHTML = html;
+			}
+			self.activePage().data(&#x27;appurl&#x27;, url);
+			self.refreshing = false;
+			app.locked = false;
+			app.clearAlerts();
+			q.resolve(d);
+			if(samePage || true) return;
+			//$.mobile.pageContainer.change will be needed in future versions
+			Q(app.changePage(&#x27;#&#x27;+c+&#x27;-&#x27;+a,{allowSamePageTransition:true,reloadPage:false,changeHash:true,transition:transition, reverse:back}))
+			.then(function(){
+				$.mobile.activePage.data(&#x27;appurl&#x27;, url);
+				$.mobile.activePage.data(&#x27;appfunction&#x27;, c+&#x27;.&#x27;+a);
+				app.locked = false;
+				q.resolve(d);
+			});
+		}
+	
+
+		if(url &amp;&amp; url != null &amp;&amp; typeof(url) == &#x27;string&#x27;)
+			app.get(url).done(callback);
+		else
+			callback(url);
+		return q.promise;
+	},
+	/**
+	 * Implement if page transitions a wanted
+	 * @todo
+	 * @method changePage
+	 * @return 
+	 */
+	changePage:function(){
+		
+	},
+	/**
+	 * Fetches json data from the server
+	 * @method get
+	 * @param {string} url
+	 * @param {object} params URL parameters
+	 * @return a Q.promise from Q.js for callback
+	 */
+	get: function(url, params){
+		var q = Q.defer();
+		if(!params)
+			var queryString = &#x27;&#x27;; 
+		else
+			var queryString = $.param(params);
+		if(app.requests[url+queryString] &amp;&amp; !this.refreshing &amp;&amp; !this.refreshNext) {
+			q.resolve(app.requests[url]);
+		} else {
+			this.refreshNext = false;
+        	$.getJSON(this.baseUrl+this.jsonUrl + url, params)
+				.done(function(d){ 
+					app.requests[url+queryString] = d; 
+					app.checkForMessageToShow(d);
+					q.resolve(d);
+				})
+				.fail(function(d){
+					var text = d.responseText;
+					console.log(text);
+					var m = text.match(/{.*}/mg);
+					console.log(m);
+					if(m[0]) {
+						for(var i in m) {
+							if($.isNumeric(i)) {
+								try {
+									d = eval(&#x27;(&#x27;+m[i]+&#x27;)&#x27;);
+								} catch(e) {
+									d = {};
+								}
+								if(d.vars) {
+									var index = text.search(RegExp(m[i].replace(/[-\/\\^$*+?.()|[\]{}]/g, &#x27;\\$&amp;&#x27;), &#x27;mg&#x27;));
+									text = text.substr(0, index) + text.substring(index + m[i].length);
+									break;
+								}
+							} 
+						}
+					} else
+						d = {};
+					if(d.message)
+						text += d.message+&#x27; &#x27;;
+					text += &#x27;An error occured, please reaload the page.&#x27;;
+					$(&#x27;#error-view-modal&#x27;).find(&#x27;.modal-body&#x27;).html(text);
+					$(&#x27;#error-view-modal&#x27;).modal();
+					//app.checkForMessageToShow(d);
+					q.resolve(d); 
+				});
+		}
+		return q.promise;
+	},
+	/**
+	 * post data to a server url
+	 * @method post
+	 * @param {string} url
+	 * @return MemberExpression
+	 */
+	post: function(url){
+		var q = Q.defer();
+        $.post(this.baseUrl+this.jsonUrl + url).done(function(d){ app.requests[url] = d; q.resolve(d);}).fail(function(){ alert(&#x27;Es ist ein Fehler aufgetreten. Bitte Seite neuladen.&#x27;); q.resolve({}); });
+		return q.promise;
+	},
+	/**
+	 * Checks if the returned data object contains a message which should be shown in a dialog
+	 * @method checkForMessageToShow
+	 * @param {} d
+	 * @return 
+	 */
+	checkForMessageToShow: function(d){
+		if(d.message) {
+			$(&#x27;#error-view-modal&#x27;).find(&#x27;.modal-body&#x27;).html(d.message);
+			$(&#x27;#error-view-modal&#x27;).modal();
+		}
+		d.message = false;
+	},
+
+
+	/**
+	 * Updates the layout on page load or on windows resize
+	 * @method updateLayout
+	 * @return 
+	 */
+	updateLayout:function(){
+		if(!this.container) {
+			this.container = $(&#x27;#page-wrapper&#x27;);
+			console.log(this.container);
+			this.header = $(&#x27;#header&#x27;);
+			var self = this;
+			$(window).resize(function(){
+				self.updateLayout();
+			});
+			$(window).resize();
+			return;
+		}
+		var hheight = this.container.offset().top;
+		var fheight = 0//(this.footer.is(&#x27;:visible&#x27;)) * this.footer.outerHeight(true);
+		var height = $(window).height() - hheight - fheight;
+		this.container.css(&#x27;min-height&#x27;, height+&#x27;px&#x27;);
+	},
+	/**
+	 * Binds all global events to their jQuery DOM objects
+	 * @method bindEvents
+	 * @return 
+	 */
+	bindEvents:function(){
+		var self = this;
+		$(document).on(&#x27;pagebeforechange&#x27;, function(e, a){
+			var toPage = a.toPage;
+			if(typeof(a.toPage) == &#x27;string&#x27;) return;
+			var header = $(&#x27;.header&#x27;, toPage);
+			var footer = $(&#x27;.footer&#x27;, toPage);
+			self.headerContent[0].innerHTML = header[0].innerHTML;
+			var duration = 350, animating = &#x27;footer&#x27;;
+			window.footerAnimating = true;
+			var dir = window.reverseTransition ? 1 : -1;
+			if(footer.length &gt; 0) {
+				self.footerContent[0].innerHTML = footer[0].innerHTML;
+				self.footer[0].style.display = &#x27;block&#x27;;
+				self.footer.animate({&#x27;left&#x27;:0}, duration, function(){
+					window.footerAnimating = false;
+					self.updateLayout();
+				});
+			} else { 
+				self.footer.animate({&#x27;left&#x27;:(self.footer.width() * dir)+&#x27;px&#x27;}, duration, function(){ 
+					self.footer[0].style.display = &#x27;none&#x27;;
+					self.updateLayout();
+					window.footerAnimating = false;
+				});
+			}
+			self.updateLayout(animating);
+		});
+		
+		$(&#x27;.modal&#x27;).on(&#x27;hidden.bs.modal&#x27;, function( event ) {
+        	$(this).removeClass( &#x27;fv-modal-stack&#x27; );
+        	$(&#x27;body&#x27;).data( &#x27;fv_open_modals&#x27;, $(&#x27;body&#x27;).data( &#x27;fv_open_modals&#x27; ) - 1 );
+        });
+		
+		$( &#x27;.modal&#x27; ).on( &#x27;shown.bs.modal&#x27;, function ( event ) {
+		   // keep track of the number of open modals
+		   if ( typeof( $(&#x27;body&#x27;).data( &#x27;fv_open_modals&#x27; ) ) == &#x27;undefined&#x27; ) {
+			 $(&#x27;body&#x27;).data( &#x27;fv_open_modals&#x27;, 0 );
+		   }
+			// if the z-index of this modal has been set, ignore.
+			if ( $(this).hasClass( &#x27;fv-modal-stack&#x27; ) ) {
+				return;
+			}
+			$(this).addClass( &#x27;fv-modal-stack&#x27; );
+			$(&#x27;body&#x27;).data( &#x27;fv_open_modals&#x27;, $(&#x27;body&#x27;).data( &#x27;fv_open_modals&#x27; ) + 1 );
+			$(this).css(&#x27;z-index&#x27;, 1040 + (10 * $(&#x27;body&#x27;).data( &#x27;fv_open_modals&#x27; )));
+			$( &#x27;.modal-backdrop&#x27; ).not( &#x27;.fv-modal-stack&#x27; ).css( &#x27;z-index&#x27;, 1039 + (10 * $(&#x27;body&#x27;).data( &#x27;fv_open_modals&#x27; )));
+			$( &#x27;.modal-backdrop&#x27; ).not( &#x27;fv-modal-stack&#x27; ).addClass( &#x27;fv-modal-stack&#x27; ); 
+		});
+
+		$(document).on(&#x27;click&#x27;, &#x27;a[data-rel=&quot;back&quot;]&#x27;, function(){
+			window.history.back();
+		});
+		//Klick Handler
+		$(document).on(&#x27;click&#x27;, &#x27;a&#x27;, function(e){
+			var href = $(this).attr(&#x27;href&#x27;);
+			var target = $(this).attr(&#x27;target&#x27;);
+			var rel = $(this).attr(&#x27;rel&#x27;);
+			var role = $(this).attr(&#x27;role&#x27;);
+			if(href &amp;&amp; href.indexOf(&#x27;javascript:&#x27;) == -1 &amp;&amp; href.indexOf(&#x27;https://&#x27;) == -1 &amp;&amp; href.indexOf(&#x27;http://&#x27;) == -1 &amp;&amp; !target &amp;&amp; role != &#x27;tab&#x27;) {
+				$(this).addClass(&#x27;ui-btn-active&#x27;);
+				self.route(href);
+				e.preventDefault();
+			}
+		})
+		
+		$(document).on(&#x27;submit&#x27;, &#x27;form&#x27;, function(e){
+			var m = $(this).attr(&#x27;method&#x27;);
+			var href = $(this).attr(&#x27;action&#x27;);
+			if(m == &#x27;post&#x27;){
+				//app.post();
+				return;
+			} else {
+				var query = $(this).serialize();
+				app.route(href+&#x27;/?&#x27;+query);
+			}
+			e.preventDefault();
+		});
+	},
+	/**
+	 * Returns the current page Container as jQuery Object
+	 * @method activePage
+	 * @return MemberExpression
+	 */
+	activePage: function(){
+		return this.container;
+	},
+	/**
+	 * Loads all controller files
+	 * @method loadControllers
+	 * @param {array} urls URLs to the controller files. Defined in app.controllerList
+	 * @trigger app:controllersLoaded
+	 * @return 
+	 */
+	loadControllers: function(urls) {
+		var that = this;
+		require(urls, function(){
+			var views = [], viewNames = [], appc = [];
+			var c = 0;
+			for(var i in app.controllers) {
+				that.controllersLoaded = true;
+				app.c[i] = appc[i] = (new app.controllers[i]);
+				if(app.c[i].init)
+					app.c[i].init();
+				if(appc[i].views)
+				for(var j in appc[i].views) {
+					views[c] = &#x27;text!&#x27;+appc[i].views[j]+&#x27;.&#x27; + that.viewFileExt;
+					viewNames[c] = appc[i].views[j];
+					c++;
+				}
+			}
+		});
+	},
+
+	/**
+	 * Returns HTML for a global loading animation
+	 * @method loadIndicator
+	 * @return string HTML
+	 */
+	loadIndicator:function(){
+		return &#x27;&lt;img class=&quot;loader&quot; src=&quot;&#x27;+this.loader_gif+&#x27;&quot; alt=&quot;Loading...&quot; /&gt;&#x27;;
+	},
+	/**
+	 * Returns HTML for a non global loading animation
+	 * @method loadIndicator2
+	 * @return string HTML
+	 */
+	loadIndicator2:function(){
+		return &#x27;&lt;img src=&quot;&#x27;+this.loader_gif_2+&#x27;&quot; alt=&quot;Loading...&quot; /&gt;&#x27;;
+	}, 
+	/**
+	 * Fades out any alert messages which have been shown to the user after 4 seconds.
+	 * @method clearAlerts
+	 * @return 
+	 */
+	clearAlerts: function(){
+		if($(&#x27;.alert&#x27;).length)
+			window.setTimeout(function(){
+				$(&#x27;.alert&#x27;).fadeOut(200);
+			}, 4000);
+	}
+}
+
+/**
+ * Detects the browser the user is using
+ * @method detectUA
+ * @param {jQuery} $ jQuery
+ * @param {string} userAgent UserAgent string
+ * @return 
+ */
+var detectUA = function($, userAgent) {
+	$.os = {};
+	$.os.webkit = userAgent.match(/WebKit\/([\d.]+)/) ? true : false;
+	$.os.android = userAgent.match(/(Android)\s+([\d.]+)/) || userAgent.match(/Silk-Accelerated/) ? true : false;
+	$.os.androidICS = $.os.android &amp;&amp; userAgent.match(/(Android)\s4/) ? true : false;
+	$.os.ipad = userAgent.match(/(iPad).*OS\s([\d_]+)/) ? true : false;
+	$.os.iphone = !$.os.ipad &amp;&amp; userAgent.match(/(iPhone\sOS)\s([\d_]+)/) ? true : false;
+	$.os.ios7 = userAgent.match(/(iPhone\sOS)\s([7_]+)/) ? true : false;
+	$.os.webos = userAgent.match(/(webOS|hpwOS)[\s\/]([\d.]+)/) ? true : false;
+	$.os.touchpad = $.os.webos &amp;&amp; userAgent.match(/TouchPad/) ? true : false;
+	$.os.ios = $.os.ipad || $.os.iphone;
+	$.os.playbook = userAgent.match(/PlayBook/) ? true : false;            
+	$.os.blackberry10 = userAgent.match(/BB10/) ? true : false;
+	$.os.blackberry = $.os.playbook || $.os.blackberry10|| userAgent.match(/BlackBerry/) ? true : false;
+	$.os.chrome = userAgent.match(/Chrome/) ? true : false;
+	$.os.opera = userAgent.match(/Opera/) ? true : false;
+	$.os.fennec = userAgent.match(/fennec/i) ? true : userAgent.match(/Firefox/) ? true : false;
+	$.os.ie = userAgent.match(/MSIE 10.0/i) ? true : false;
+	$.os.ieTouch = $.os.ie &amp;&amp; userAgent.toLowerCase().match(/touch/i) ? true : false;
+	$.os.supportsTouch = ((window.DocumentTouch &amp;&amp; document instanceof window.DocumentTouch) || &#x27;ontouchstart&#x27; in window);
+	//features
+	$.feat = {};
+	var head = document.documentElement.getElementsByTagName(&quot;head&quot;)[0];
+	$.feat.nativeTouchScroll = typeof(head.style[&quot;-webkit-overflow-scrolling&quot;]) !== &quot;undefined&quot; &amp;&amp; ($.os.ios||$.os.blackberry10);
+	$.feat.cssPrefix = $.os.webkit ? &quot;Webkit&quot; : $.os.fennec ? &quot;Moz&quot; : $.os.ie ? &quot;ms&quot; : $.os.opera ? &quot;O&quot; : &quot;&quot;;
+	$.feat.cssTransformStart = !$.os.opera ? &quot;3d(&quot; : &quot;(&quot;;
+	$.feat.cssTransformEnd = !$.os.opera ? &quot;,0)&quot; : &quot;)&quot;;
+	if ($.os.android &amp;&amp; !$.os.webkit)
+		$.os.android = false;
+}
+
+	
+</pre>
+
+</div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/js/tabs.js"></script>
+</body>
+</html>

@@ -1,0 +1,1042 @@
+2014-11-06 16:30:42 Error: [MissingDispatcherFilterException] AssetDispatcher
+#0 D:\Dropbox\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(71): Dispatcher->_attachFilters(Object(CakeEventManager))
+#1 D:\Dropbox\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(141): Dispatcher->getEventManager()
+#2 D:\Dropbox\Dropbox\htdocs\alldata\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2014-11-06 16:30:42 Error: Fatal Error (1): Class 'CakeErrorController' not found in [D:\Dropbox\Dropbox\htdocs\alldata\lib\Cake\Error\ExceptionRenderer.php, line 151]
+2014-11-06 16:30:42 Error: [FatalErrorException] Class 'CakeErrorController' not found
+#0 D:\Dropbox\Dropbox\htdocs\alldata\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Class 'CakeErro...', 'D:\\Dropbox\\Drop...', 151)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'CakeErro...', 'D:\\Dropbox\\Drop...', 151, Array)
+#2 D:\Dropbox\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Class 'CakeErro...', 'D:\\Dropbox\\Drop...', 151, Array)
+#3 D:\Dropbox\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-11-07 13:31:20 Error: [MissingControllerException] Controller class DocumentationsController could not be found.
+#0 D:\Dropbox\Dropbox\htdocs\alldata\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-11-14 12:07:24 Error: [MissingConnectionException] Database connection "SQLSTATE[HY000] [2002] Ein Verbindungsversuch ist fehlgeschlagen, da die Gegenstelle nach einer bestimmten Zeitspanne nicht richtig reagiert hat, oder die hergestellte Verbindung war fehlerhaft, da der verbundene Host nicht reagiert hat.
+" is missing, or could not be created.
+#0 D:\Dropbox\Dropbox\htdocs\alldata\lib\Cake\Model\Datasource\DboSource.php(260): Mysql->connect()
+#1 D:\Dropbox\Dropbox\htdocs\alldata\lib\Cake\Model\ConnectionManager.php(101): DboSource->__construct(Array)
+#2 D:\Dropbox\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(3158): ConnectionManager::getDataSource('default')
+#3 D:\Dropbox\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(1092): Model->setDataSource('default')
+#4 D:\Dropbox\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(3180): Model->setSource('projects')
+#5 D:\Dropbox\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(2732): Model->getDataSource()
+#6 D:\Dropbox\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(2668): Model->_findCount('before', Array)
+#7 D:\Dropbox\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(2626): Model->buildQuery('count', Array)
+#8 D:\Dropbox\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(2556): Model->find('count', Array)
+#9 D:\Dropbox\Dropbox\htdocs\alldata\app\Controller\ProjectsController.php(31): Model->exists()
+#10 [internal function]: ProjectsController->view('2')
+#11 D:\Dropbox\Dropbox\htdocs\alldata\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ProjectsController), Array)
+#12 D:\Dropbox\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#13 D:\Dropbox\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(ProjectsController), Object(CakeRequest), Object(CakeResponse))
+#14 D:\Dropbox\Dropbox\htdocs\alldata\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#15 {main}
+2014-11-14 12:08:13 Error: [MissingConnectionException] Database connection "SQLSTATE[HY000] [2002] Ein Verbindungsversuch ist fehlgeschlagen, da die Gegenstelle nach einer bestimmten Zeitspanne nicht richtig reagiert hat, oder die hergestellte Verbindung war fehlerhaft, da der verbundene Host nicht reagiert hat.
+" is missing, or could not be created.
+#0 D:\Dropbox\Dropbox\htdocs\alldata\lib\Cake\Model\Datasource\DboSource.php(260): Mysql->connect()
+#1 D:\Dropbox\Dropbox\htdocs\alldata\lib\Cake\Model\ConnectionManager.php(101): DboSource->__construct(Array)
+#2 D:\Dropbox\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(3158): ConnectionManager::getDataSource('default')
+#3 D:\Dropbox\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(1092): Model->setDataSource('default')
+#4 D:\Dropbox\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(3180): Model->setSource('projects')
+#5 D:\Dropbox\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(2732): Model->getDataSource()
+#6 D:\Dropbox\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(2668): Model->_findCount('before', Array)
+#7 D:\Dropbox\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(2626): Model->buildQuery('count', Array)
+#8 D:\Dropbox\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(2556): Model->find('count', Array)
+#9 D:\Dropbox\Dropbox\htdocs\alldata\app\Controller\ProjectsController.php(31): Model->exists()
+#10 [internal function]: ProjectsController->view('2')
+#11 D:\Dropbox\Dropbox\htdocs\alldata\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ProjectsController), Array)
+#12 D:\Dropbox\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#13 D:\Dropbox\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(ProjectsController), Object(CakeRequest), Object(CakeResponse))
+#14 D:\Dropbox\Dropbox\htdocs\alldata\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#15 {main}
+2014-11-14 12:08:37 Error: [MissingConnectionException] Database connection "SQLSTATE[HY000] [2002] Ein Verbindungsversuch ist fehlgeschlagen, da die Gegenstelle nach einer bestimmten Zeitspanne nicht richtig reagiert hat, oder die hergestellte Verbindung war fehlerhaft, da der verbundene Host nicht reagiert hat.
+" is missing, or could not be created.
+#0 D:\Dropbox\Dropbox\htdocs\alldata\lib\Cake\Model\Datasource\DboSource.php(260): Mysql->connect()
+#1 D:\Dropbox\Dropbox\htdocs\alldata\lib\Cake\Model\ConnectionManager.php(101): DboSource->__construct(Array)
+#2 D:\Dropbox\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(3158): ConnectionManager::getDataSource('default')
+#3 D:\Dropbox\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(1092): Model->setDataSource('default')
+#4 D:\Dropbox\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(3180): Model->setSource('projects')
+#5 D:\Dropbox\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(2732): Model->getDataSource()
+#6 D:\Dropbox\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(2668): Model->_findCount('before', Array)
+#7 D:\Dropbox\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(2626): Model->buildQuery('count', Array)
+#8 D:\Dropbox\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(2556): Model->find('count', Array)
+#9 D:\Dropbox\Dropbox\htdocs\alldata\app\Controller\ProjectsController.php(31): Model->exists()
+#10 [internal function]: ProjectsController->view('2')
+#11 D:\Dropbox\Dropbox\htdocs\alldata\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ProjectsController), Array)
+#12 D:\Dropbox\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#13 D:\Dropbox\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(ProjectsController), Object(CakeRequest), Object(CakeResponse))
+#14 D:\Dropbox\Dropbox\htdocs\alldata\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#15 {main}
+2014-11-14 14:36:00 Error: [MissingConnectionException] Database connection "SQLSTATE[HY000] [2002] Ein Verbindungsversuch ist fehlgeschlagen, da die Gegenstelle nach einer bestimmten Zeitspanne nicht richtig reagiert hat, oder die hergestellte Verbindung war fehlerhaft, da der verbundene Host nicht reagiert hat.
+" is missing, or could not be created.
+#0 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Datasource\DboSource.php(260): Mysql->connect()
+#1 D:\Dropbox\htdocs\alldata\lib\Cake\Model\ConnectionManager.php(101): DboSource->__construct(Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(3158): ConnectionManager::getDataSource('default')
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(1092): Model->setDataSource('default')
+#4 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(3180): Model->setSource('projects')
+#5 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(2732): Model->getDataSource()
+#6 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(2668): Model->_findCount('before', Array)
+#7 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(2626): Model->buildQuery('count', Array)
+#8 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(2556): Model->find('count', Array)
+#9 D:\Dropbox\htdocs\alldata\app\Controller\ProjectsController.php(31): Model->exists()
+#10 [internal function]: ProjectsController->view('2')
+#11 D:\Dropbox\htdocs\alldata\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ProjectsController), Array)
+#12 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#13 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(ProjectsController), Object(CakeRequest), Object(CakeResponse))
+#14 D:\Dropbox\htdocs\alldata\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#15 {main}
+2014-11-16 22:38:50 Error: [MissingConnectionException] Database connection "SQLSTATE[HY000] [2002] Ein Verbindungsversuch ist fehlgeschlagen, da die Gegenstelle nach einer bestimmten Zeitspanne nicht richtig reagiert hat, oder die hergestellte Verbindung war fehlerhaft, da der verbundene Host nicht reagiert hat.
+" is missing, or could not be created.
+#0 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Datasource\DboSource.php(260): Mysql->connect()
+#1 D:\Dropbox\htdocs\alldata\lib\Cake\Model\ConnectionManager.php(101): DboSource->__construct(Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(3158): ConnectionManager::getDataSource('default')
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(1092): Model->setDataSource('default')
+#4 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(3180): Model->setSource('values')
+#5 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(2631): Model->getDataSource()
+#6 D:\Dropbox\htdocs\alldata\app\Controller\ProjectsController.php(163): Model->find('all', Array)
+#7 [internal function]: ProjectsController->data('2')
+#8 D:\Dropbox\htdocs\alldata\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ProjectsController), Array)
+#9 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#10 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(ProjectsController), Object(CakeRequest), Object(CakeResponse))
+#11 D:\Dropbox\htdocs\alldata\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2014-11-21 10:43:26 Error: [MissingControllerException] Controller class DocumentationsController could not be found.
+#0 D:\Dropbox\Dropbox\htdocs\alldata\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-11-21 12:05:10 Error: Fatal Error (4): syntax error, unexpected '<' in [D:\Dropbox\Dropbox\htdocs\alldata\app\View\Projects\view.ctp, line 85]
+2014-11-21 12:05:10 Error: [FatalErrorException] syntax error, unexpected '<'
+#0 D:\Dropbox\Dropbox\htdocs\alldata\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(4, 'syntax error, u...', 'D:\\Dropbox\\Drop...', 85)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', 'D:\\Dropbox\\Drop...', 85, Array)
+#2 D:\Dropbox\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', 'D:\\Dropbox\\Drop...', 85, Array)
+#3 D:\Dropbox\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-11-21 13:50:14 Error: [MissingControllerException] Controller class DocumentationsController could not be found.
+#0 D:\Dropbox\Dropbox\htdocs\alldata\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-11-21 16:24:15 Error: [MissingControllerException] Controller class JsController could not be found.
+#0 D:\Dropbox\htdocs\alldata\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-11-22 19:40:32 Error: [MissingConnectionException] Database connection "SQLSTATE[HY000] [2002] Ein Verbindungsversuch ist fehlgeschlagen, da die Gegenstelle nach einer bestimmten Zeitspanne nicht richtig reagiert hat, oder die hergestellte Verbindung war fehlerhaft, da der verbundene Host nicht reagiert hat.
+" is missing, or could not be created.
+#0 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Datasource\DboSource.php(260): Mysql->connect()
+#1 D:\Dropbox\htdocs\alldata\lib\Cake\Model\ConnectionManager.php(101): DboSource->__construct(Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(3158): ConnectionManager::getDataSource('default')
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(1092): Model->setDataSource('default')
+#4 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(3180): Model->setSource('projects')
+#5 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(2732): Model->getDataSource()
+#6 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(2668): Model->_findCount('before', Array)
+#7 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(2626): Model->buildQuery('count', Array)
+#8 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(2556): Model->find('count', Array)
+#9 D:\Dropbox\htdocs\alldata\app\Controller\ProjectsController.php(31): Model->exists()
+#10 [internal function]: ProjectsController->view('2')
+#11 D:\Dropbox\htdocs\alldata\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ProjectsController), Array)
+#12 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#13 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(ProjectsController), Object(CakeRequest), Object(CakeResponse))
+#14 D:\Dropbox\htdocs\alldata\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#15 {main}
+2014-11-25 17:47:57 Error: Fatal Error (4): syntax error, unexpected '<' in [D:\Dropbox\htdocs\alldata\app\View\Projects\index.ctp, line 48]
+2014-11-25 17:47:57 Error: [FatalErrorException] syntax error, unexpected '<'
+#0 D:\Dropbox\htdocs\alldata\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(4, 'syntax error, u...', 'D:\Dropbox\htdo...', 48)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', 'D:\Dropbox\htdo...', 48, Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', 'D:\Dropbox\htdo...', 48, Array)
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-11-25 17:48:00 Error: Fatal Error (4): syntax error, unexpected '<' in [D:\Dropbox\htdocs\alldata\app\View\Projects\index.ctp, line 48]
+2014-11-25 17:48:00 Error: [FatalErrorException] syntax error, unexpected '<'
+#0 D:\Dropbox\htdocs\alldata\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(4, 'syntax error, u...', 'D:\Dropbox\htdo...', 48)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', 'D:\Dropbox\htdo...', 48, Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', 'D:\Dropbox\htdo...', 48, Array)
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-12-02 23:26:26 Error: [PDOException] SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+#0 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Datasource\DboSource.php(461): PDOStatement->execute(Array)
+#1 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Datasource\DboSource.php(427): DboSource->_execute('SELECT `Value`....', Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Datasource\DboSource.php(671): DboSource->execute('SELECT `Value`....', Array, Array)
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Datasource\DboSource.php(1082): DboSource->fetchAll('SELECT `Value`....', false)
+#4 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(2631): DboSource->read(Object(Value), Array)
+#5 D:\Dropbox\htdocs\alldata\app\Controller\InputsController.php(63): Model->find('list', Array)
+#6 [internal function]: InputsController->add()
+#7 D:\Dropbox\htdocs\alldata\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(InputsController), Array)
+#8 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#9 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(InputsController), Object(CakeRequest), Object(CakeResponse))
+#10 D:\Dropbox\htdocs\alldata\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#11 {main}
+2014-12-02 23:50:50 Error: [MissingViewException] View file "D:\Dropbox\htdocs\alldata\app\View\Methods\edit.ctp" is missing.
+#0 D:\Dropbox\htdocs\alldata\lib\Cake\View\View.php(472): View->_getViewFileName(NULL)
+#1 D:\Dropbox\htdocs\alldata\lib\Cake\Controller\Controller.php(957): View->render(NULL, 'ajax')
+#2 D:\Dropbox\htdocs\alldata\app\Controller\AppController.php(190): Controller->render(NULL, 'ajax')
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(193): AppController->render()
+#4 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(MethodsController), Object(CakeRequest), Object(CakeResponse))
+#5 D:\Dropbox\htdocs\alldata\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#6 {main}
+2014-12-04 00:18:17 Error: [MissingActionException] Action ProjectsController::methods() could not be found.
+#0 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#1 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(ProjectsController), Object(CakeRequest), Object(CakeResponse))
+#2 D:\Dropbox\htdocs\alldata\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2014-12-04 00:48:10 Error: [MissingControllerException] Controller class DocumentationsController could not be found.
+#0 D:\Dropbox\htdocs\alldata\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-12-04 00:51:16 Error: [MissingControllerException] Controller class DocumentationsController could not be found.
+#0 D:\Dropbox\htdocs\alldata\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-12-04 01:20:22 Error: [MissingControllerException] Controller class CssController could not be found.
+#0 D:\Dropbox\htdocs\alldata\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-12-04 01:20:22 Error: [MissingControllerException] Controller class Favicon.icoController could not be found.
+#0 D:\Dropbox\htdocs\alldata\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-12-04 01:20:22 Error: [MissingControllerException] Controller class Favicon.icoController could not be found.
+#0 D:\Dropbox\htdocs\alldata\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-12-04 01:20:22 Error: [MissingControllerException] Controller class ImgController could not be found.
+#0 D:\Dropbox\htdocs\alldata\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-12-04 01:20:23 Error: [MissingControllerException] Controller class Favicon.icoController could not be found.
+#0 D:\Dropbox\htdocs\alldata\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-12-04 01:20:35 Error: [MissingControllerException] Controller class CssController could not be found.
+#0 D:\Dropbox\htdocs\alldata\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-12-04 01:20:35 Error: [MissingControllerException] Controller class ImgController could not be found.
+#0 D:\Dropbox\htdocs\alldata\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-12-04 02:19:08 Error: Fatal Error (1): Unsupported operand types in [D:\Dropbox\htdocs\alldata\app\Controller\MethodsController.php(63) : eval()'d code, line 5]
+2014-12-04 02:19:08 Error: [FatalErrorException] Unsupported operand types
+#0 D:\Dropbox\htdocs\alldata\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Unsupported ope...', 'D:\Dropbox\htdo...', 5)
+#1 [internal function]: ErrorHandler::handleError(1, 'Unsupported ope...', 'D:\Dropbox\htdo...', 5, Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Unsupported ope...', 'D:\Dropbox\htdo...', 5, Array)
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-12-04 02:20:22 Error: Fatal Error (1): Unsupported operand types in [D:\Dropbox\htdocs\alldata\app\Controller\MethodsController.php(63) : eval()'d code, line 6]
+2014-12-04 02:20:22 Error: [FatalErrorException] Unsupported operand types
+#0 D:\Dropbox\htdocs\alldata\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Unsupported ope...', 'D:\Dropbox\htdo...', 6)
+#1 [internal function]: ErrorHandler::handleError(1, 'Unsupported ope...', 'D:\Dropbox\htdo...', 6, Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Unsupported ope...', 'D:\Dropbox\htdo...', 6, Array)
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-12-04 02:20:50 Error: Fatal Error (1): Unsupported operand types in [D:\Dropbox\htdocs\alldata\app\Controller\MethodsController.php(63) : eval()'d code, line 6]
+2014-12-04 02:20:50 Error: [FatalErrorException] Unsupported operand types
+#0 D:\Dropbox\htdocs\alldata\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Unsupported ope...', 'D:\Dropbox\htdo...', 6)
+#1 [internal function]: ErrorHandler::handleError(1, 'Unsupported ope...', 'D:\Dropbox\htdo...', 6, Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Unsupported ope...', 'D:\Dropbox\htdo...', 6, Array)
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-12-10 15:51:41 Error: [MissingControllerException] Controller class DocumentationsController could not be found.
+#0 D:\Dropbox\htdocs\alldata\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-12-10 16:34:53 Error: [PDOException] SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'undefined_value' cannot be null
+#0 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Datasource\DboSource.php(461): PDOStatement->execute(Array)
+#1 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Datasource\DboSource.php(427): DboSource->_execute('INSERT INTO `d0...', Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Datasource\DboSource.php(1009): DboSource->execute('INSERT INTO `d0...')
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(1730): DboSource->create(Object(Value), Array, Array)
+#4 D:\Dropbox\htdocs\alldata\app\Controller\ValuesController.php(43): Model->save(Array)
+#5 [internal function]: ValuesController->add('2')
+#6 D:\Dropbox\htdocs\alldata\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ValuesController), Array)
+#7 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#8 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(ValuesController), Object(CakeRequest), Object(CakeResponse))
+#9 D:\Dropbox\htdocs\alldata\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2014-12-10 16:43:34 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'limit' in 'where clause'
+#0 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Datasource\DboSource.php(461): PDOStatement->execute(Array)
+#1 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Datasource\DboSource.php(427): DboSource->_execute('SELECT `Unit`.`...', Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Datasource\DboSource.php(671): DboSource->execute('SELECT `Unit`.`...', Array, Array)
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Datasource\DboSource.php(1082): DboSource->fetchAll('SELECT `Unit`.`...', false)
+#4 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(2631): DboSource->read(Object(Unit), Array)
+#5 D:\Dropbox\htdocs\alldata\lib\Cake\Controller\Component\PaginatorComponent.php(173): Model->find('all', Array)
+#6 D:\Dropbox\htdocs\alldata\lib\Cake\Controller\Controller.php(1082): PaginatorComponent->paginate(Array, Array, Array)
+#7 D:\Dropbox\htdocs\alldata\app\Controller\UnitsController.php(17): Controller->paginate(Array)
+#8 [internal function]: UnitsController->index()
+#9 D:\Dropbox\htdocs\alldata\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(UnitsController), Array)
+#10 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#11 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(UnitsController), Object(CakeRequest), Object(CakeResponse))
+#12 D:\Dropbox\htdocs\alldata\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#13 {main}
+2014-12-10 16:45:30 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'limit' in 'where clause'
+#0 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Datasource\DboSource.php(461): PDOStatement->execute(Array)
+#1 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Datasource\DboSource.php(427): DboSource->_execute('SELECT `Unit`.`...', Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Datasource\DboSource.php(671): DboSource->execute('SELECT `Unit`.`...', Array, Array)
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Datasource\DboSource.php(1082): DboSource->fetchAll('SELECT `Unit`.`...', false)
+#4 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(2631): DboSource->read(Object(Unit), Array)
+#5 D:\Dropbox\htdocs\alldata\lib\Cake\Controller\Component\PaginatorComponent.php(173): Model->find('all', Array)
+#6 D:\Dropbox\htdocs\alldata\lib\Cake\Controller\Controller.php(1082): PaginatorComponent->paginate(Array, Array, Array)
+#7 D:\Dropbox\htdocs\alldata\app\Controller\UnitsController.php(19): Controller->paginate(Array)
+#8 [internal function]: UnitsController->index()
+#9 D:\Dropbox\htdocs\alldata\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(UnitsController), Array)
+#10 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#11 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(UnitsController), Object(CakeRequest), Object(CakeResponse))
+#12 D:\Dropbox\htdocs\alldata\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#13 {main}
+2014-12-11 10:26:28 Error: [MissingConnectionException] Database connection "SQLSTATE[HY000] [2002] Ein Verbindungsversuch ist fehlgeschlagen, da die Gegenstelle nach einer bestimmten Zeitspanne nicht richtig reagiert hat, oder die hergestellte Verbindung war fehlerhaft, da der verbundene Host nicht reagiert hat.
+" is missing, or could not be created.
+#0 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Datasource\DboSource.php(260): Mysql->connect()
+#1 D:\Dropbox\htdocs\alldata\lib\Cake\Model\ConnectionManager.php(101): DboSource->__construct(Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(3158): ConnectionManager::getDataSource('default')
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(1092): Model->setDataSource('default')
+#4 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(3180): Model->setSource('projects')
+#5 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(2732): Model->getDataSource()
+#6 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(2668): Model->_findCount('before', Array)
+#7 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(2626): Model->buildQuery('count', Array)
+#8 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(2556): Model->find('count', Array)
+#9 D:\Dropbox\htdocs\alldata\app\Controller\ProjectsController.php(220): Model->exists()
+#10 [internal function]: ProjectsController->edit('2')
+#11 D:\Dropbox\htdocs\alldata\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ProjectsController), Array)
+#12 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#13 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(ProjectsController), Object(CakeRequest), Object(CakeResponse))
+#14 D:\Dropbox\htdocs\alldata\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#15 {main}
+2014-12-11 15:06:16 Error: Fatal Error (1): Call to a member function saveAll() on a non-object in [D:\Dropbox\htdocs\alldata\app\Controller\ProjectsController.php, line 62]
+2014-12-11 15:06:16 Error: [FatalErrorException] Call to a member function saveAll() on a non-object
+#0 D:\Dropbox\htdocs\alldata\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Call to a membe...', 'D:\Dropbox\htdo...', 62)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', 'D:\Dropbox\htdo...', 62, Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', 'D:\Dropbox\htdo...', 62, Array)
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-12-11 16:02:02 Error: [NotFoundException] Invalid Input
+#0 [internal function]: ProjectsController->update_imports('spsch.gif')
+#1 D:\Dropbox\htdocs\alldata\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ProjectsController), Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(ProjectsController), Object(CakeRequest), Object(CakeResponse))
+#4 D:\Dropbox\htdocs\alldata\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2014-12-11 16:02:02 Error: [NotFoundException] Invalid Input
+#0 [internal function]: ProjectsController->update_imports('graph.gif')
+#1 D:\Dropbox\htdocs\alldata\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ProjectsController), Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(ProjectsController), Object(CakeRequest), Object(CakeResponse))
+#4 D:\Dropbox\htdocs\alldata\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2014-12-11 16:02:03 Error: [NotFoundException] Invalid Input
+#0 [internal function]: ProjectsController->update_imports('spsch.gif')
+#1 D:\Dropbox\htdocs\alldata\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ProjectsController), Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(ProjectsController), Object(CakeRequest), Object(CakeResponse))
+#4 D:\Dropbox\htdocs\alldata\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2014-12-11 16:02:03 Error: [NotFoundException] Invalid Input
+#0 [internal function]: ProjectsController->update_imports('graph.gif')
+#1 D:\Dropbox\htdocs\alldata\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ProjectsController), Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(ProjectsController), Object(CakeRequest), Object(CakeResponse))
+#4 D:\Dropbox\htdocs\alldata\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2014-12-11 16:02:03 Error: [NotFoundException] Invalid Input
+#0 [internal function]: ProjectsController->update_imports('style.css')
+#1 D:\Dropbox\htdocs\alldata\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ProjectsController), Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(ProjectsController), Object(CakeRequest), Object(CakeResponse))
+#4 D:\Dropbox\htdocs\alldata\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2014-12-11 16:04:01 Error: [NotFoundException] Invalid Input
+#0 [internal function]: ProjectsController->update_imports('spsch.gif')
+#1 D:\Dropbox\htdocs\alldata\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ProjectsController), Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(ProjectsController), Object(CakeRequest), Object(CakeResponse))
+#4 D:\Dropbox\htdocs\alldata\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2014-12-11 16:04:01 Error: [NotFoundException] Invalid Input
+#0 [internal function]: ProjectsController->update_imports('graph.gif')
+#1 D:\Dropbox\htdocs\alldata\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ProjectsController), Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(ProjectsController), Object(CakeRequest), Object(CakeResponse))
+#4 D:\Dropbox\htdocs\alldata\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2014-12-11 16:04:02 Error: [NotFoundException] Invalid Input
+#0 [internal function]: ProjectsController->update_imports('graph.gif')
+#1 D:\Dropbox\htdocs\alldata\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ProjectsController), Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(ProjectsController), Object(CakeRequest), Object(CakeResponse))
+#4 D:\Dropbox\htdocs\alldata\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2014-12-11 16:04:02 Error: [NotFoundException] Invalid Input
+#0 [internal function]: ProjectsController->update_imports('spsch.gif')
+#1 D:\Dropbox\htdocs\alldata\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ProjectsController), Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(ProjectsController), Object(CakeRequest), Object(CakeResponse))
+#4 D:\Dropbox\htdocs\alldata\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2014-12-11 16:04:02 Error: [NotFoundException] Invalid Input
+#0 [internal function]: ProjectsController->update_imports('style.css')
+#1 D:\Dropbox\htdocs\alldata\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ProjectsController), Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(ProjectsController), Object(CakeRequest), Object(CakeResponse))
+#4 D:\Dropbox\htdocs\alldata\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2014-12-11 16:06:26 Error: [NotFoundException] Invalid Input
+#0 [internal function]: ProjectsController->update_imports('spsch.gif')
+#1 D:\Dropbox\htdocs\alldata\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ProjectsController), Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(ProjectsController), Object(CakeRequest), Object(CakeResponse))
+#4 D:\Dropbox\htdocs\alldata\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2014-12-11 16:06:26 Error: [NotFoundException] Invalid Input
+#0 [internal function]: ProjectsController->update_imports('graph.gif')
+#1 D:\Dropbox\htdocs\alldata\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ProjectsController), Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(ProjectsController), Object(CakeRequest), Object(CakeResponse))
+#4 D:\Dropbox\htdocs\alldata\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2014-12-11 16:06:26 Error: [NotFoundException] Invalid Input
+#0 [internal function]: ProjectsController->update_imports('style.css')
+#1 D:\Dropbox\htdocs\alldata\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ProjectsController), Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(ProjectsController), Object(CakeRequest), Object(CakeResponse))
+#4 D:\Dropbox\htdocs\alldata\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2014-12-11 16:07:45 Error: [NotFoundException] Invalid Input
+#0 [internal function]: ProjectsController->update_imports('spsch.gif')
+#1 D:\Dropbox\htdocs\alldata\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ProjectsController), Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(ProjectsController), Object(CakeRequest), Object(CakeResponse))
+#4 D:\Dropbox\htdocs\alldata\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2014-12-11 16:07:46 Error: [NotFoundException] Invalid Input
+#0 [internal function]: ProjectsController->update_imports('style.css')
+#1 D:\Dropbox\htdocs\alldata\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ProjectsController), Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(ProjectsController), Object(CakeRequest), Object(CakeResponse))
+#4 D:\Dropbox\htdocs\alldata\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2014-12-11 16:07:46 Error: [NotFoundException] Invalid Input
+#0 [internal function]: ProjectsController->update_imports('graph.gif')
+#1 D:\Dropbox\htdocs\alldata\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ProjectsController), Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(ProjectsController), Object(CakeRequest), Object(CakeResponse))
+#4 D:\Dropbox\htdocs\alldata\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2014-12-11 16:08:20 Error: [NotFoundException] Invalid Input
+#0 [internal function]: ProjectsController->update_imports('spsch.gif')
+#1 D:\Dropbox\htdocs\alldata\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ProjectsController), Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(ProjectsController), Object(CakeRequest), Object(CakeResponse))
+#4 D:\Dropbox\htdocs\alldata\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2014-12-11 16:08:20 Error: [NotFoundException] Invalid Input
+#0 [internal function]: ProjectsController->update_imports('graph.gif')
+#1 D:\Dropbox\htdocs\alldata\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ProjectsController), Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(ProjectsController), Object(CakeRequest), Object(CakeResponse))
+#4 D:\Dropbox\htdocs\alldata\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2014-12-11 16:08:20 Error: [NotFoundException] Invalid Input
+#0 [internal function]: ProjectsController->update_imports('style.css')
+#1 D:\Dropbox\htdocs\alldata\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ProjectsController), Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(ProjectsController), Object(CakeRequest), Object(CakeResponse))
+#4 D:\Dropbox\htdocs\alldata\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2014-12-14 23:48:04 Error: Fatal Error (1): Maximum execution time of 60 seconds exceeded in [D:\Dropbox\htdocs\alldata\lib\Cake\Model\Datasource\DboSource.php, line 461]
+2014-12-14 23:48:04 Error: [FatalErrorException] Maximum execution time of 60 seconds exceeded
+#0 D:\Dropbox\htdocs\alldata\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Maximum executi...', 'D:\Dropbox\htdo...', 461)
+#1 [internal function]: ErrorHandler::handleError(1, 'Maximum executi...', 'D:\Dropbox\htdo...', 461, Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Maximum executi...', 'D:\Dropbox\htdo...', 461, Array)
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-12-14 23:49:04 Error: Fatal Error (1): Maximum execution time of 60 seconds exceeded in [D:\Dropbox\htdocs\alldata\app\Controller\ProjectsController.php, line 151]
+2014-12-14 23:49:04 Error: [FatalErrorException] Maximum execution time of 60 seconds exceeded
+#0 D:\Dropbox\htdocs\alldata\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Maximum executi...', 'D:\Dropbox\htdo...', 151)
+#1 [internal function]: ErrorHandler::handleError(1, 'Maximum executi...', 'D:\Dropbox\htdo...', 151, Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Maximum executi...', 'D:\Dropbox\htdo...', 151, Array)
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-12-15 02:02:34 Error: Fatal Error (1): Call to a member function load() on a non-object in [D:\Dropbox\htdocs\alldata\app\Controller\ProjectsController.php, line 36]
+2014-12-15 02:02:34 Error: [FatalErrorException] Call to a member function load() on a non-object
+#0 D:\Dropbox\htdocs\alldata\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Call to a membe...', 'D:\Dropbox\htdo...', 36)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', 'D:\Dropbox\htdo...', 36, Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', 'D:\Dropbox\htdo...', 36, Array)
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-12-15 02:02:35 Error: Fatal Error (1): Call to a member function load() on a non-object in [D:\Dropbox\htdocs\alldata\app\Controller\ProjectsController.php, line 36]
+2014-12-15 02:02:35 Error: [FatalErrorException] Call to a member function load() on a non-object
+#0 D:\Dropbox\htdocs\alldata\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Call to a membe...', 'D:\Dropbox\htdo...', 36)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', 'D:\Dropbox\htdo...', 36, Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', 'D:\Dropbox\htdo...', 36, Array)
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-12-15 02:27:55 Error: [NotFoundException] Invalid value
+#0 [internal function]: ValuesController->delete()
+#1 D:\Dropbox\htdocs\alldata\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ValuesController), Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(ValuesController), Object(CakeRequest), Object(CakeResponse))
+#4 D:\Dropbox\htdocs\alldata\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2014-12-15 02:27:55 Error: [NotFoundException] Invalid value
+#0 [internal function]: ValuesController->delete('values', 'delete')
+#1 D:\Dropbox\htdocs\alldata\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ValuesController), Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(ValuesController), Object(CakeRequest), Object(CakeResponse))
+#4 D:\Dropbox\htdocs\alldata\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2014-12-15 02:30:52 Error: [PDOException] SQLSTATE[HY000]: General error: 2006 MySQL server has gone away
+#0 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Datasource\DboSource.php(461): PDOStatement->execute(Array)
+#1 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Datasource\DboSource.php(427): DboSource->_execute('SELECT `Unit`.`...', Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Datasource\DboSource.php(671): DboSource->execute('SELECT `Unit`.`...', Array, Array)
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Datasource\DboSource.php(1274): DboSource->fetchAll('SELECT `Unit`.`...', false)
+#4 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Datasource\DboSource.php(1220): DboSource->queryAssociation(Object(Value), Object(Unit), 'belongsTo', 'Unit', Array, Array, true, Array, 0, Array)
+#5 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Datasource\DboSource.php(1117): DboSource->queryAssociation(Object(Project), Object(Value), 'hasMany', 'Value', Array, Array, true, Array, 1, Array)
+#6 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(2631): DboSource->read(Object(Project), Array)
+#7 D:\Dropbox\htdocs\alldata\app\Controller\ProjectsController.php(35): Model->find('first', Array)
+#8 [internal function]: ProjectsController->view('2')
+#9 D:\Dropbox\htdocs\alldata\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ProjectsController), Array)
+#10 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#11 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(ProjectsController), Object(CakeRequest), Object(CakeResponse))
+#12 D:\Dropbox\htdocs\alldata\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#13 {main}
+2014-12-15 02:30:54 Error: [MissingConnectionException] Database connection "SQLSTATE[HY000] [2002] Es konnte keine Verbindung hergestellt werden, da der Zielcomputer die Verbindung verweigerte.
+" is missing, or could not be created.
+#0 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Datasource\DboSource.php(260): Mysql->connect()
+#1 D:\Dropbox\htdocs\alldata\lib\Cake\Model\ConnectionManager.php(101): DboSource->__construct(Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(3158): ConnectionManager::getDataSource('default')
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(1092): Model->setDataSource('default')
+#4 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(3180): Model->setSource('projects')
+#5 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(2732): Model->getDataSource()
+#6 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(2668): Model->_findCount('before', Array)
+#7 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(2626): Model->buildQuery('count', Array)
+#8 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(2556): Model->find('count', Array)
+#9 D:\Dropbox\htdocs\alldata\app\Controller\ProjectsController.php(31): Model->exists()
+#10 [internal function]: ProjectsController->view('2')
+#11 D:\Dropbox\htdocs\alldata\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ProjectsController), Array)
+#12 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#13 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(ProjectsController), Object(CakeRequest), Object(CakeResponse))
+#14 D:\Dropbox\htdocs\alldata\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#15 {main}
+2014-12-15 02:31:03 Error: [MissingConnectionException] Database connection "SQLSTATE[HY000] [2002] Es konnte keine Verbindung hergestellt werden, da der Zielcomputer die Verbindung verweigerte.
+" is missing, or could not be created.
+#0 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Datasource\DboSource.php(260): Mysql->connect()
+#1 D:\Dropbox\htdocs\alldata\lib\Cake\Model\ConnectionManager.php(101): DboSource->__construct(Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(3158): ConnectionManager::getDataSource('default')
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(1092): Model->setDataSource('default')
+#4 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(3180): Model->setSource('projects')
+#5 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(2732): Model->getDataSource()
+#6 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(2668): Model->_findCount('before', Array)
+#7 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(2626): Model->buildQuery('count', Array)
+#8 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(2556): Model->find('count', Array)
+#9 D:\Dropbox\htdocs\alldata\app\Controller\ProjectsController.php(31): Model->exists()
+#10 [internal function]: ProjectsController->view('2')
+#11 D:\Dropbox\htdocs\alldata\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ProjectsController), Array)
+#12 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#13 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(ProjectsController), Object(CakeRequest), Object(CakeResponse))
+#14 D:\Dropbox\htdocs\alldata\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#15 {main}
+2014-12-15 13:08:14 Error: [MissingConnectionException] Database connection "SQLSTATE[HY000] [2002] Ein Verbindungsversuch ist fehlgeschlagen, da die Gegenstelle nach einer bestimmten Zeitspanne nicht richtig reagiert hat, oder die hergestellte Verbindung war fehlerhaft, da der verbundene Host nicht reagiert hat.
+" is missing, or could not be created.
+#0 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Datasource\DboSource.php(260): Mysql->connect()
+#1 D:\Dropbox\htdocs\alldata\lib\Cake\Model\ConnectionManager.php(101): DboSource->__construct(Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(3158): ConnectionManager::getDataSource('default')
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(1092): Model->setDataSource('default')
+#4 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(3180): Model->setSource('values')
+#5 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(2631): Model->getDataSource()
+#6 D:\Dropbox\htdocs\alldata\app\Controller\ProjectsController.php(226): Model->find('all', Array)
+#7 [internal function]: ProjectsController->data('2')
+#8 D:\Dropbox\htdocs\alldata\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ProjectsController), Array)
+#9 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#10 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(ProjectsController), Object(CakeRequest), Object(CakeResponse))
+#11 D:\Dropbox\htdocs\alldata\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2014-12-15 15:47:37 Error: [MissingViewException] View file "D:\Dropbox\htdocs\alldata\app\View\Projects\upload_import.ctp" is missing.
+#0 D:\Dropbox\htdocs\alldata\lib\Cake\View\View.php(472): View->_getViewFileName(NULL)
+#1 D:\Dropbox\htdocs\alldata\lib\Cake\Controller\Controller.php(957): View->render(NULL, 'default')
+#2 D:\Dropbox\htdocs\alldata\app\Controller\AppController.php(188): Controller->render(NULL, 'default')
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(193): AppController->render()
+#4 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(ProjectsController), Object(CakeRequest), Object(CakeResponse))
+#5 D:\Dropbox\htdocs\alldata\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#6 {main}
+2014-12-15 15:47:52 Error: [MissingViewException] View file "D:\Dropbox\htdocs\alldata\app\View\Projects\upload_import.ctp" is missing.
+#0 D:\Dropbox\htdocs\alldata\lib\Cake\View\View.php(472): View->_getViewFileName(NULL)
+#1 D:\Dropbox\htdocs\alldata\lib\Cake\Controller\Controller.php(957): View->render(NULL, 'json')
+#2 D:\Dropbox\htdocs\alldata\app\Controller\AppController.php(188): Controller->render(NULL, 'json')
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(193): AppController->render()
+#4 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(ProjectsController), Object(CakeRequest), Object(CakeResponse))
+#5 D:\Dropbox\htdocs\alldata\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#6 {main}
+2014-12-15 15:47:58 Error: [MissingViewException] View file "D:\Dropbox\htdocs\alldata\app\View\Projects\upload_import.ctp" is missing.
+#0 D:\Dropbox\htdocs\alldata\lib\Cake\View\View.php(472): View->_getViewFileName(NULL)
+#1 D:\Dropbox\htdocs\alldata\lib\Cake\Controller\Controller.php(957): View->render(NULL, 'default')
+#2 D:\Dropbox\htdocs\alldata\app\Controller\AppController.php(188): Controller->render(NULL, 'default')
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(193): AppController->render()
+#4 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(ProjectsController), Object(CakeRequest), Object(CakeResponse))
+#5 D:\Dropbox\htdocs\alldata\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#6 {main}
+2014-12-15 15:48:07 Error: [MissingViewException] View file "D:\Dropbox\htdocs\alldata\app\View\Projects\upload_import.ctp" is missing.
+#0 D:\Dropbox\htdocs\alldata\lib\Cake\View\View.php(472): View->_getViewFileName(NULL)
+#1 D:\Dropbox\htdocs\alldata\lib\Cake\Controller\Controller.php(957): View->render(NULL, 'default')
+#2 D:\Dropbox\htdocs\alldata\app\Controller\AppController.php(188): Controller->render(NULL, 'default')
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(193): AppController->render()
+#4 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(ProjectsController), Object(CakeRequest), Object(CakeResponse))
+#5 D:\Dropbox\htdocs\alldata\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#6 {main}
+2014-12-15 19:01:40 Error: Fatal Error (1): Maximum execution time of 60 seconds exceeded in [D:\Dropbox\htdocs\alldata\lib\Cake\Model\Datasource\DboSource.php, line 461]
+2014-12-15 19:01:40 Error: [FatalErrorException] Maximum execution time of 60 seconds exceeded
+#0 D:\Dropbox\htdocs\alldata\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Maximum executi...', 'D:\Dropbox\htdo...', 461)
+#1 [internal function]: ErrorHandler::handleError(1, 'Maximum executi...', 'D:\Dropbox\htdo...', 461, Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Maximum executi...', 'D:\Dropbox\htdo...', 461, Array)
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-12-15 19:12:30 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'related_model' in 'where clause'
+#0 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Datasource\DboSource.php(461): PDOStatement->execute(Array)
+#1 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Datasource\DboSource.php(427): DboSource->_execute('SELECT `Log`.`i...', Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Datasource\DboSource.php(671): DboSource->execute('SELECT `Log`.`i...', Array, Array)
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Datasource\DboSource.php(1082): DboSource->fetchAll('SELECT `Log`.`i...', false)
+#4 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(2631): DboSource->read(Object(Log), Array)
+#5 D:\Dropbox\htdocs\alldata\app\Controller\AppController.php(413): Model->find('all', Array)
+#6 D:\Dropbox\htdocs\alldata\app\Controller\ProjectsController.php(62): AppController->getLogs('imported_url', Array, 'data')
+#7 D:\Dropbox\htdocs\alldata\app\Controller\ProjectsController.php(155): ProjectsController->get_imported_links(Array)
+#8 [internal function]: ProjectsController->upload_import('2')
+#9 D:\Dropbox\htdocs\alldata\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ProjectsController), Array)
+#10 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#11 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(ProjectsController), Object(CakeRequest), Object(CakeResponse))
+#12 D:\Dropbox\htdocs\alldata\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#13 {main}
+2014-12-15 20:33:20 Error: [NotFoundException] Invalid project
+#0 [internal function]: ProjectsController->upload_import('project', 'update_imports', 'undefined', 'www.enviwatch.n...', 'iflex', 'txtdata.php')
+#1 D:\Dropbox\htdocs\alldata\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ProjectsController), Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(ProjectsController), Object(CakeRequest), Object(CakeResponse))
+#4 D:\Dropbox\htdocs\alldata\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2014-12-15 20:34:53 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Array' in 'field list'
+#0 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Datasource\DboSource.php(461): PDOStatement->execute(Array)
+#1 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Datasource\DboSource.php(427): DboSource->_execute('INSERT INTO `d0...', Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Datasource\DboSource.php(1009): DboSource->execute('INSERT INTO `d0...')
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(1730): DboSource->create(Object(Log), Array, Array)
+#4 D:\Dropbox\htdocs\alldata\app\Controller\AppController.php(407): Model->save(Array)
+#5 D:\Dropbox\htdocs\alldata\app\Controller\ProjectsController.php(327): AppController->writeLog('imported_url', Array)
+#6 D:\Dropbox\htdocs\alldata\app\Controller\ProjectsController.php(89): ProjectsController->store_data('18', 'www.enviwatch.n...', 'pre')
+#7 [internal function]: ProjectsController->update_imports('18', 'www.enviwatch.n...', 'iflex', 'txtdata.php')
+#8 D:\Dropbox\htdocs\alldata\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ProjectsController), Array)
+#9 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#10 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(ProjectsController), Object(CakeRequest), Object(CakeResponse))
+#11 D:\Dropbox\htdocs\alldata\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2014-12-15 20:38:28 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Array' in 'field list'
+#0 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Datasource\DboSource.php(461): PDOStatement->execute(Array)
+#1 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Datasource\DboSource.php(427): DboSource->_execute('INSERT INTO `d0...', Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Datasource\DboSource.php(1009): DboSource->execute('INSERT INTO `d0...')
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(1730): DboSource->create(Object(Log), Array, Array)
+#4 D:\Dropbox\htdocs\alldata\app\Controller\AppController.php(407): Model->save(Array)
+#5 D:\Dropbox\htdocs\alldata\app\Controller\ProjectsController.php(329): AppController->writeLog('imported_url', Array)
+#6 D:\Dropbox\htdocs\alldata\app\Controller\ProjectsController.php(91): ProjectsController->store_data('18', 'http://www.envi...', 'pre')
+#7 [internal function]: ProjectsController->update_imports('18')
+#8 D:\Dropbox\htdocs\alldata\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ProjectsController), Array)
+#9 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#10 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(ProjectsController), Object(CakeRequest), Object(CakeResponse))
+#11 D:\Dropbox\htdocs\alldata\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2014-12-15 20:40:43 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Array' in 'field list'
+#0 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Datasource\DboSource.php(461): PDOStatement->execute(Array)
+#1 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Datasource\DboSource.php(427): DboSource->_execute('INSERT INTO `d0...', Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Datasource\DboSource.php(1009): DboSource->execute('INSERT INTO `d0...')
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(1730): DboSource->create(Object(Log), Array, Array)
+#4 D:\Dropbox\htdocs\alldata\app\Controller\AppController.php(407): Model->save(Array)
+#5 D:\Dropbox\htdocs\alldata\app\Controller\ProjectsController.php(329): AppController->writeLog('imported_url', Array)
+#6 D:\Dropbox\htdocs\alldata\app\Controller\ProjectsController.php(91): ProjectsController->store_data('18', 'http://www.envi...', 'pre')
+#7 [internal function]: ProjectsController->update_imports('18')
+#8 D:\Dropbox\htdocs\alldata\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ProjectsController), Array)
+#9 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#10 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(ProjectsController), Object(CakeRequest), Object(CakeResponse))
+#11 D:\Dropbox\htdocs\alldata\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2014-12-15 20:42:04 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Array' in 'field list'
+#0 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Datasource\DboSource.php(461): PDOStatement->execute(Array)
+#1 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Datasource\DboSource.php(427): DboSource->_execute('INSERT INTO `d0...', Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Datasource\DboSource.php(1009): DboSource->execute('INSERT INTO `d0...')
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(1730): DboSource->create(Object(Log), Array, Array)
+#4 D:\Dropbox\htdocs\alldata\app\Controller\AppController.php(407): Model->save(Array)
+#5 D:\Dropbox\htdocs\alldata\app\Controller\ProjectsController.php(329): AppController->writeLog('imported_url', Array)
+#6 D:\Dropbox\htdocs\alldata\app\Controller\ProjectsController.php(91): ProjectsController->store_data('18', 'http://www.envi...', 'pre')
+#7 [internal function]: ProjectsController->update_imports('18')
+#8 D:\Dropbox\htdocs\alldata\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ProjectsController), Array)
+#9 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#10 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(ProjectsController), Object(CakeRequest), Object(CakeResponse))
+#11 D:\Dropbox\htdocs\alldata\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2014-12-15 20:42:51 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Array' in 'field list'
+#0 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Datasource\DboSource.php(461): PDOStatement->execute(Array)
+#1 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Datasource\DboSource.php(427): DboSource->_execute('INSERT INTO `d0...', Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Datasource\DboSource.php(1009): DboSource->execute('INSERT INTO `d0...')
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(1730): DboSource->create(Object(Log), Array, Array)
+#4 D:\Dropbox\htdocs\alldata\app\Controller\AppController.php(407): Model->save(Array)
+#5 D:\Dropbox\htdocs\alldata\app\Controller\ProjectsController.php(329): AppController->writeLog('imported_url', Array)
+#6 D:\Dropbox\htdocs\alldata\app\Controller\ProjectsController.php(91): ProjectsController->store_data('18', 'http://www.envi...', 'pre')
+#7 [internal function]: ProjectsController->update_imports('18')
+#8 D:\Dropbox\htdocs\alldata\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ProjectsController), Array)
+#9 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#10 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(ProjectsController), Object(CakeRequest), Object(CakeResponse))
+#11 D:\Dropbox\htdocs\alldata\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2014-12-15 20:49:21 Error: Fatal Error (1): Maximum execution time of 60 seconds exceeded in [D:\Dropbox\htdocs\alldata\lib\Cake\Model\Datasource\DboSource.php, line 461]
+2014-12-15 20:49:21 Error: [FatalErrorException] Maximum execution time of 60 seconds exceeded
+#0 D:\Dropbox\htdocs\alldata\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Maximum executi...', 'D:\Dropbox\htdo...', 461)
+#1 [internal function]: ErrorHandler::handleError(1, 'Maximum executi...', 'D:\Dropbox\htdo...', 461, Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Maximum executi...', 'D:\Dropbox\htdo...', 461, Array)
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-12-15 20:56:23 Error: Fatal Error (1): Maximum execution time of 60 seconds exceeded in [D:\Dropbox\htdocs\alldata\lib\Cake\Model\Datasource\DboSource.php, line 461]
+2014-12-15 20:56:23 Error: [FatalErrorException] Maximum execution time of 60 seconds exceeded
+#0 D:\Dropbox\htdocs\alldata\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Maximum executi...', 'D:\Dropbox\htdo...', 461)
+#1 [internal function]: ErrorHandler::handleError(1, 'Maximum executi...', 'D:\Dropbox\htdo...', 461, Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Maximum executi...', 'D:\Dropbox\htdo...', 461, Array)
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-12-15 21:30:58 Error: Fatal Error (1): Maximum execution time of 60 seconds exceeded in [D:\Dropbox\htdocs\alldata\lib\Cake\Model\Datasource\DboSource.php, line 461]
+2014-12-15 21:30:58 Error: [FatalErrorException] Maximum execution time of 60 seconds exceeded
+#0 D:\Dropbox\htdocs\alldata\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Maximum executi...', 'D:\Dropbox\htdo...', 461)
+#1 [internal function]: ErrorHandler::handleError(1, 'Maximum executi...', 'D:\Dropbox\htdo...', 461, Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Maximum executi...', 'D:\Dropbox\htdo...', 461, Array)
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-12-16 14:14:59 Error: Fatal Error (1): Maximum execution time of 60 seconds exceeded in [D:\Dropbox\htdocs\alldata\lib\Cake\Model\Datasource\DboSource.php, line 461]
+2014-12-16 14:14:59 Error: [FatalErrorException] Maximum execution time of 60 seconds exceeded
+#0 D:\Dropbox\htdocs\alldata\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Maximum executi...', 'D:\Dropbox\htdo...', 461)
+#1 [internal function]: ErrorHandler::handleError(1, 'Maximum executi...', 'D:\Dropbox\htdo...', 461, Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Maximum executi...', 'D:\Dropbox\htdo...', 461, Array)
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-12-16 14:16:21 Error: Fatal Error (1): Maximum execution time of 60 seconds exceeded in [D:\Dropbox\htdocs\alldata\lib\Cake\Model\Datasource\DboSource.php, line 461]
+2014-12-16 14:16:21 Error: [FatalErrorException] Maximum execution time of 60 seconds exceeded
+#0 D:\Dropbox\htdocs\alldata\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Maximum executi...', 'D:\Dropbox\htdo...', 461)
+#1 [internal function]: ErrorHandler::handleError(1, 'Maximum executi...', 'D:\Dropbox\htdo...', 461, Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Maximum executi...', 'D:\Dropbox\htdo...', 461, Array)
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-12-16 15:59:43 Error: Fatal Error (1): Cannot redeclare padLeadingZero() (previously declared in D:\Dropbox\htdocs\alldata\app\Lib\console.php:25) in [D:\Dropbox\htdocs\alldata\app\Lib\console.php, line 25]
+2014-12-16 15:59:43 Error: [FatalErrorException] Cannot redeclare padLeadingZero() (previously declared in D:\Dropbox\htdocs\alldata\app\Lib\console.php:25)
+#0 D:\Dropbox\htdocs\alldata\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Cannot redeclar...', 'D:\Dropbox\htdo...', 25)
+#1 [internal function]: ErrorHandler::handleError(1, 'Cannot redeclar...', 'D:\Dropbox\htdo...', 25, Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Cannot redeclar...', 'D:\Dropbox\htdo...', 25, Array)
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-12-17 15:04:21 Error: Fatal Error (1): Maximum execution time of 30 seconds exceeded in [D:\Dropbox\htdocs\alldata\lib\Cake\Model\Datasource\DboSource.php, line 461]
+2014-12-17 15:04:21 Error: [FatalErrorException] Maximum execution time of 30 seconds exceeded
+#0 D:\Dropbox\htdocs\alldata\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Maximum executi...', 'D:\Dropbox\htdo...', 461)
+#1 [internal function]: ErrorHandler::handleError(1, 'Maximum executi...', 'D:\Dropbox\htdo...', 461, Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Maximum executi...', 'D:\Dropbox\htdo...', 461, Array)
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-12-19 16:25:20 Error: [PDOException] SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'project_id' in where clause is ambiguous
+#0 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Datasource\DboSource.php(461): PDOStatement->execute(Array)
+#1 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Datasource\DboSource.php(427): DboSource->_execute('SELECT `Value`....', Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Datasource\DboSource.php(671): DboSource->execute('SELECT `Value`....', Array, Array)
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Datasource\DboSource.php(1082): DboSource->fetchAll('SELECT `Value`....', false)
+#4 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(2631): DboSource->read(Object(Value), Array)
+#5 D:\Dropbox\htdocs\alldata\app\Controller\ProjectsController.php(303): Model->find('all', Array)
+#6 [internal function]: ProjectsController->data('2')
+#7 D:\Dropbox\htdocs\alldata\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ProjectsController), Array)
+#8 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#9 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(ProjectsController), Object(CakeRequest), Object(CakeResponse))
+#10 D:\Dropbox\htdocs\alldata\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#11 {main}
+2014-12-19 20:24:26 Error: Fatal Error (4): syntax error, unexpected '=>' (T_DOUBLE_ARROW), expecting ')' in [D:\Dropbox\htdocs\alldata\app\View\Projects\data.ctp, line 16]
+2014-12-19 20:24:26 Error: [FatalErrorException] syntax error, unexpected '=>' (T_DOUBLE_ARROW), expecting ')'
+#0 D:\Dropbox\htdocs\alldata\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(4, 'syntax error, u...', 'D:\Dropbox\htdo...', 16)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', 'D:\Dropbox\htdo...', 16, Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', 'D:\Dropbox\htdo...', 16, Array)
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-12-20 12:06:20 Error: [MissingConnectionException] Database connection "SQLSTATE[HY000] [2002] Ein Verbindungsversuch ist fehlgeschlagen, da die Gegenstelle nach einer bestimmten Zeitspanne nicht richtig reagiert hat, oder die hergestellte Verbindung war fehlerhaft, da der verbundene Host nicht reagiert hat.
+" is missing, or could not be created.
+#0 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Datasource\DboSource.php(260): Mysql->connect()
+#1 D:\Dropbox\htdocs\alldata\lib\Cake\Model\ConnectionManager.php(101): DboSource->__construct(Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(3158): ConnectionManager::getDataSource('default')
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(1092): Model->setDataSource('default')
+#4 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(3180): Model->setSource('values')
+#5 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(2631): Model->getDataSource()
+#6 D:\Dropbox\htdocs\alldata\app\Controller\ProjectsController.php(317): Model->find('all', Array)
+#7 [internal function]: ProjectsController->data('2')
+#8 D:\Dropbox\htdocs\alldata\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ProjectsController), Array)
+#9 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#10 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(ProjectsController), Object(CakeRequest), Object(CakeResponse))
+#11 D:\Dropbox\htdocs\alldata\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#12 {main}
+2014-12-20 17:42:22 Error: Fatal Error (1): Class 'Runkit_Sandbox' not found in [D:\Dropbox\htdocs\alldata\app\Controller\MethodsController.php, line 69]
+2014-12-20 17:42:22 Error: [FatalErrorException] Class 'Runkit_Sandbox' not found
+#0 D:\Dropbox\htdocs\alldata\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Class 'Runkit_S...', 'D:\Dropbox\htdo...', 69)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'Runkit_S...', 'D:\Dropbox\htdo...', 69, Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Class 'Runkit_S...', 'D:\Dropbox\htdo...', 69, Array)
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-12-20 17:56:11 Error: Fatal Error (1): Class 'PHPSandbox\PHPSandbox' not found in [D:\Dropbox\htdocs\alldata\app\Controller\MethodsController.php, line 64]
+2014-12-20 17:56:11 Error: [FatalErrorException] Class 'PHPSandbox\PHPSandbox' not found
+#0 D:\Dropbox\htdocs\alldata\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Class 'PHPSandb...', 'D:\Dropbox\htdo...', 64)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'PHPSandb...', 'D:\Dropbox\htdo...', 64, Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Class 'PHPSandb...', 'D:\Dropbox\htdo...', 64, Array)
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-12-20 17:56:19 Error: Fatal Error (1): Class 'PHPSandbox\PHPSandbox' not found in [D:\Dropbox\htdocs\alldata\app\Controller\MethodsController.php, line 64]
+2014-12-20 17:56:19 Error: [FatalErrorException] Class 'PHPSandbox\PHPSandbox' not found
+#0 D:\Dropbox\htdocs\alldata\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Class 'PHPSandb...', 'D:\Dropbox\htdo...', 64)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'PHPSandb...', 'D:\Dropbox\htdo...', 64, Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Class 'PHPSandb...', 'D:\Dropbox\htdo...', 64, Array)
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-12-20 18:02:33 Error: Fatal Error (1): Class 'PHPParser_Parser' not found in [D:\Dropbox\htdocs\alldata\app\Lib\phpSandbox\PHPSandbox.php, line 6810]
+2014-12-20 18:02:33 Error: [FatalErrorException] Class 'PHPParser_Parser' not found
+#0 D:\Dropbox\htdocs\alldata\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Class 'PHPParse...', 'D:\Dropbox\htdo...', 6810)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'PHPParse...', 'D:\Dropbox\htdo...', 6810, Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Class 'PHPParse...', 'D:\Dropbox\htdo...', 6810, Array)
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-12-20 18:11:23 Error: Fatal Error (1): Class 'FunctionParser\FunctionParser' not found in [D:\Dropbox\htdocs\alldata\app\Lib\phpSandbox\PHPSandbox.php, line 6645]
+2014-12-20 18:11:23 Error: [FatalErrorException] Class 'FunctionParser\FunctionParser' not found
+#0 D:\Dropbox\htdocs\alldata\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Class 'Function...', 'D:\Dropbox\htdo...', 6645)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'Function...', 'D:\Dropbox\htdo...', 6645, Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Class 'Function...', 'D:\Dropbox\htdo...', 6645, Array)
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-12-20 18:12:06 Error: Fatal Error (1): Class 'PHPParser_Parser' not found in [D:\Dropbox\htdocs\alldata\app\Lib\phpSandbox\PHPSandbox.php, line 6810]
+2014-12-20 18:12:06 Error: [FatalErrorException] Class 'PHPParser_Parser' not found
+#0 D:\Dropbox\htdocs\alldata\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Class 'PHPParse...', 'D:\Dropbox\htdo...', 6810)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'PHPParse...', 'D:\Dropbox\htdo...', 6810, Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Class 'PHPParse...', 'D:\Dropbox\htdo...', 6810, Array)
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-12-20 18:23:09 Error: Fatal Error (1): Class 'PHPSandbox\ValidatorVisitor' not found in [D:\Dropbox\htdocs\alldata\app\Lib\phpSandbox\PHPSandbox.php, line 6835]
+2014-12-20 18:23:09 Error: [FatalErrorException] Class 'PHPSandbox\ValidatorVisitor' not found
+#0 D:\Dropbox\htdocs\alldata\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Class 'PHPSandb...', 'D:\Dropbox\htdo...', 6835)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'PHPSandb...', 'D:\Dropbox\htdo...', 6835, Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Class 'PHPSandb...', 'D:\Dropbox\htdo...', 6835, Array)
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-12-20 18:24:31 Error: Fatal Error (1): Class 'PHPParser_NodeVisitorAbstract' not found in [D:\Dropbox\htdocs\alldata\app\Lib\phpSandbox\ValidatorVisitor.php, line 18]
+2014-12-20 18:24:31 Error: [FatalErrorException] Class 'PHPParser_NodeVisitorAbstract' not found
+#0 D:\Dropbox\htdocs\alldata\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Class 'PHPParse...', 'D:\Dropbox\htdo...', 18)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'PHPParse...', 'D:\Dropbox\htdo...', 18, Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Class 'PHPParse...', 'D:\Dropbox\htdo...', 18, Array)
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-12-20 18:31:35 Error: Fatal Error (1): Class 'PHPParser_NodeVisitorAbstract' not found in [D:\Dropbox\htdocs\alldata\app\Lib\phpSandbox\ValidatorVisitor.php, line 18]
+2014-12-20 18:31:35 Error: [FatalErrorException] Class 'PHPParser_NodeVisitorAbstract' not found
+#0 D:\Dropbox\htdocs\alldata\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Class 'PHPParse...', 'D:\Dropbox\htdo...', 18)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'PHPParse...', 'D:\Dropbox\htdo...', 18, Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Class 'PHPParse...', 'D:\Dropbox\htdo...', 18, Array)
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-12-20 18:31:37 Error: Fatal Error (1): Class 'PHPParser_NodeVisitorAbstract' not found in [D:\Dropbox\htdocs\alldata\app\Lib\phpSandbox\ValidatorVisitor.php, line 18]
+2014-12-20 18:31:37 Error: [FatalErrorException] Class 'PHPParser_NodeVisitorAbstract' not found
+#0 D:\Dropbox\htdocs\alldata\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Class 'PHPParse...', 'D:\Dropbox\htdo...', 18)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'PHPParse...', 'D:\Dropbox\htdo...', 18, Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Class 'PHPParse...', 'D:\Dropbox\htdo...', 18, Array)
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-12-20 18:33:11 Error: Fatal Error (1): Class 'PHPSandbox\ValidatorVisitor' not found in [D:\Dropbox\htdocs\alldata\app\Lib\phpSandbox\PHPSandbox.php, line 6835]
+2014-12-20 18:33:11 Error: [FatalErrorException] Class 'PHPSandbox\ValidatorVisitor' not found
+#0 D:\Dropbox\htdocs\alldata\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Class 'PHPSandb...', 'D:\Dropbox\htdo...', 6835)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'PHPSandb...', 'D:\Dropbox\htdo...', 6835, Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Class 'PHPSandb...', 'D:\Dropbox\htdo...', 6835, Array)
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-12-20 18:34:00 Error: Fatal Error (1): Class 'PHPSandbox\Error' not found in [D:\Dropbox\htdocs\alldata\app\Lib\phpSandbox\PHPSandbox.php, line 6029]
+2014-12-20 18:34:00 Error: [FatalErrorException] Class 'PHPSandbox\Error' not found
+#0 D:\Dropbox\htdocs\alldata\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Class 'PHPSandb...', 'D:\Dropbox\htdo...', 6029)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'PHPSandb...', 'D:\Dropbox\htdo...', 6029, Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Class 'PHPSandb...', 'D:\Dropbox\htdo...', 6029, Array)
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-12-20 18:37:27 Error: [PHPSandbox\Error] Sandboxed code attempted to call non-whitelisted function: file_get_contents
+#0 D:\Dropbox\htdocs\alldata\app\Lib\phpSandbox\PHPSandbox.php(6029): PHPSandbox\PHPSandbox->validation_error('Sandboxed code ...', 300, NULL, 'file_get_conten...')
+#1 D:\Dropbox\htdocs\alldata\app\Lib\phpSandbox\ValidatorVisitor.php(65): PHPSandbox\PHPSandbox->check_func('file_get_conten...')
+#2 D:\Dropbox\htdocs\alldata\app\Lib\PHP-Parser\lib\PhpParser\NodeTraverser.php(111): PHPSandbox\ValidatorVisitor->leaveNode(Object(PhpParser\Node\Expr\FuncCall))
+#3 D:\Dropbox\htdocs\alldata\app\Lib\PHP-Parser\lib\PhpParser\NodeTraverser.php(56): PhpParser\NodeTraverser->traverseArray(Array)
+#4 D:\Dropbox\htdocs\alldata\app\Lib\phpSandbox\PHPSandbox.php(6839): PhpParser\NodeTraverser->traverse(Array)
+#5 D:\Dropbox\htdocs\alldata\app\Lib\phpSandbox\PHPSandbox.php(6864): PHPSandbox\PHPSandbox->validate('file_get_conten...')
+#6 D:\Dropbox\htdocs\alldata\app\Lib\phpSandbox\PHPSandbox.php(6900): PHPSandbox\PHPSandbox->prepare('file_get_conten...', false)
+#7 D:\Dropbox\htdocs\alldata\app\Controller\MethodsController.php(72): PHPSandbox\PHPSandbox->execute('file_get_conten...')
+#8 [internal function]: MethodsController->execute()
+#9 D:\Dropbox\htdocs\alldata\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(MethodsController), Array)
+#10 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#11 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(MethodsController), Object(CakeRequest), Object(CakeResponse))
+#12 D:\Dropbox\htdocs\alldata\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#13 {main}
+2014-12-20 18:38:15 Error: [PHPSandbox\Error] Sandboxed code attempted to call non-whitelisted function: count
+#0 D:\Dropbox\htdocs\alldata\app\Lib\phpSandbox\PHPSandbox.php(6029): PHPSandbox\PHPSandbox->validation_error('Sandboxed code ...', 300, NULL, 'count')
+#1 D:\Dropbox\htdocs\alldata\app\Lib\phpSandbox\ValidatorVisitor.php(65): PHPSandbox\PHPSandbox->check_func('count')
+#2 D:\Dropbox\htdocs\alldata\app\Lib\PHP-Parser\lib\PhpParser\NodeTraverser.php(85): PHPSandbox\ValidatorVisitor->leaveNode(Object(PhpParser\Node\Expr\FuncCall))
+#3 D:\Dropbox\htdocs\alldata\app\Lib\PHP-Parser\lib\PhpParser\NodeTraverser.php(82): PhpParser\NodeTraverser->traverseNode(Object(PhpParser\Node\Expr\BinaryOp\Div))
+#4 D:\Dropbox\htdocs\alldata\app\Lib\PHP-Parser\lib\PhpParser\NodeTraverser.php(108): PhpParser\NodeTraverser->traverseNode(Object(PhpParser\Node\Stmt\Return_))
+#5 D:\Dropbox\htdocs\alldata\app\Lib\PHP-Parser\lib\PhpParser\NodeTraverser.php(56): PhpParser\NodeTraverser->traverseArray(Array)
+#6 D:\Dropbox\htdocs\alldata\app\Lib\phpSandbox\PHPSandbox.php(6839): PhpParser\NodeTraverser->traverse(Array)
+#7 D:\Dropbox\htdocs\alldata\app\Lib\phpSandbox\PHPSandbox.php(6864): PHPSandbox\PHPSandbox->validate('file_get_conten...')
+#8 D:\Dropbox\htdocs\alldata\app\Lib\phpSandbox\PHPSandbox.php(6900): PHPSandbox\PHPSandbox->prepare('file_get_conten...', false)
+#9 D:\Dropbox\htdocs\alldata\app\Controller\MethodsController.php(72): PHPSandbox\PHPSandbox->execute('file_get_conten...')
+#10 [internal function]: MethodsController->execute()
+#11 D:\Dropbox\htdocs\alldata\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(MethodsController), Array)
+#12 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#13 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(MethodsController), Object(CakeRequest), Object(CakeResponse))
+#14 D:\Dropbox\htdocs\alldata\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#15 {main}
+2014-12-20 18:38:34 Error: [PHPSandbox\Error] Sandboxed code attempted to call non-whitelisted function: file_get_contents
+#0 D:\Dropbox\htdocs\alldata\app\Lib\phpSandbox\PHPSandbox.php(6029): PHPSandbox\PHPSandbox->validation_error('Sandboxed code ...', 300, NULL, 'file_get_conten...')
+#1 D:\Dropbox\htdocs\alldata\app\Lib\phpSandbox\ValidatorVisitor.php(65): PHPSandbox\PHPSandbox->check_func('file_get_conten...')
+#2 D:\Dropbox\htdocs\alldata\app\Lib\PHP-Parser\lib\PhpParser\NodeTraverser.php(111): PHPSandbox\ValidatorVisitor->leaveNode(Object(PhpParser\Node\Expr\FuncCall))
+#3 D:\Dropbox\htdocs\alldata\app\Lib\PHP-Parser\lib\PhpParser\NodeTraverser.php(56): PhpParser\NodeTraverser->traverseArray(Array)
+#4 D:\Dropbox\htdocs\alldata\app\Lib\phpSandbox\PHPSandbox.php(6839): PhpParser\NodeTraverser->traverse(Array)
+#5 D:\Dropbox\htdocs\alldata\app\Lib\phpSandbox\PHPSandbox.php(6864): PHPSandbox\PHPSandbox->validate('file_get_conten...')
+#6 D:\Dropbox\htdocs\alldata\app\Lib\phpSandbox\PHPSandbox.php(6900): PHPSandbox\PHPSandbox->prepare('file_get_conten...', false)
+#7 D:\Dropbox\htdocs\alldata\app\Controller\MethodsController.php(72): PHPSandbox\PHPSandbox->execute('file_get_conten...')
+#8 [internal function]: MethodsController->execute()
+#9 D:\Dropbox\htdocs\alldata\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(MethodsController), Array)
+#10 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#11 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(MethodsController), Object(CakeRequest), Object(CakeResponse))
+#12 D:\Dropbox\htdocs\alldata\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#13 {main}
+2014-12-20 18:41:31 Error: Fatal Error (1): Call to undefined function PHPSandbox\wrapByRef() in [D:\Dropbox\htdocs\alldata\app\Lib\phpSandbox\PHPSandbox.php(6919) : eval()'d code, line 7]
+2014-12-20 18:41:31 Error: [FatalErrorException] Call to undefined function PHPSandbox\wrapByRef()
+#0 D:\Dropbox\htdocs\alldata\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Call to undefin...', 'D:\Dropbox\htdo...', 7)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to undefin...', 'D:\Dropbox\htdo...', 7, Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Call to undefin...', 'D:\Dropbox\htdo...', 7, Array)
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-12-20 19:14:24 Error: Fatal Error (1): Call to undefined function file_get_contentes() in [D:\Dropbox\htdocs\alldata\app\Lib\phpSandbox\PHPSandbox.php(6919) : eval()'d code, line 5]
+2014-12-20 19:14:24 Error: [FatalErrorException] Call to undefined function file_get_contentes()
+#0 D:\Dropbox\htdocs\alldata\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Call to undefin...', 'D:\Dropbox\htdo...', 5)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to undefin...', 'D:\Dropbox\htdo...', 5, Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Call to undefin...', 'D:\Dropbox\htdo...', 5, Array)
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-12-20 19:14:48 Error: [PHPSandbox\Error] Sandboxed code attempted to call blacklisted function: file_get_contents
+#0 D:\Dropbox\htdocs\alldata\app\Lib\phpSandbox\PHPSandbox.php(6033): PHPSandbox\PHPSandbox->validation_error('Sandboxed code ...', 400, NULL, 'file_get_conten...')
+#1 D:\Dropbox\htdocs\alldata\app\Lib\phpSandbox\ValidatorVisitor.php(65): PHPSandbox\PHPSandbox->check_func('file_get_conten...')
+#2 D:\Dropbox\htdocs\alldata\app\Lib\PHP-Parser\lib\PhpParser\NodeTraverser.php(111): PHPSandbox\ValidatorVisitor->leaveNode(Object(PhpParser\Node\Expr\FuncCall))
+#3 D:\Dropbox\htdocs\alldata\app\Lib\PHP-Parser\lib\PhpParser\NodeTraverser.php(56): PhpParser\NodeTraverser->traverseArray(Array)
+#4 D:\Dropbox\htdocs\alldata\app\Lib\phpSandbox\PHPSandbox.php(6839): PhpParser\NodeTraverser->traverse(Array)
+#5 D:\Dropbox\htdocs\alldata\app\Lib\phpSandbox\PHPSandbox.php(6864): PHPSandbox\PHPSandbox->validate('file_get_conten...')
+#6 D:\Dropbox\htdocs\alldata\app\Lib\phpSandbox\PHPSandbox.php(6900): PHPSandbox\PHPSandbox->prepare('file_get_conten...', false)
+#7 D:\Dropbox\htdocs\alldata\app\Controller\MethodsController.php(73): PHPSandbox\PHPSandbox->execute('file_get_conten...')
+#8 [internal function]: MethodsController->execute()
+#9 D:\Dropbox\htdocs\alldata\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(MethodsController), Array)
+#10 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#11 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(MethodsController), Object(CakeRequest), Object(CakeResponse))
+#12 D:\Dropbox\htdocs\alldata\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#13 {main}
+2014-12-20 19:15:14 Error: [PHPSandbox\Error] Sandboxed code attempted to call blacklisted function: file_get_contents
+#0 D:\Dropbox\htdocs\alldata\app\Lib\phpSandbox\PHPSandbox.php(6033): PHPSandbox\PHPSandbox->validation_error('Sandboxed code ...', 400, NULL, 'file_get_conten...')
+#1 D:\Dropbox\htdocs\alldata\app\Lib\phpSandbox\ValidatorVisitor.php(65): PHPSandbox\PHPSandbox->check_func('file_get_conten...')
+#2 D:\Dropbox\htdocs\alldata\app\Lib\PHP-Parser\lib\PhpParser\NodeTraverser.php(111): PHPSandbox\ValidatorVisitor->leaveNode(Object(PhpParser\Node\Expr\FuncCall))
+#3 D:\Dropbox\htdocs\alldata\app\Lib\PHP-Parser\lib\PhpParser\NodeTraverser.php(56): PhpParser\NodeTraverser->traverseArray(Array)
+#4 D:\Dropbox\htdocs\alldata\app\Lib\phpSandbox\PHPSandbox.php(6839): PhpParser\NodeTraverser->traverse(Array)
+#5 D:\Dropbox\htdocs\alldata\app\Lib\phpSandbox\PHPSandbox.php(6864): PHPSandbox\PHPSandbox->validate('file_get_conten...')
+#6 D:\Dropbox\htdocs\alldata\app\Lib\phpSandbox\PHPSandbox.php(6900): PHPSandbox\PHPSandbox->prepare('file_get_conten...', false)
+#7 D:\Dropbox\htdocs\alldata\app\Controller\MethodsController.php(73): PHPSandbox\PHPSandbox->execute('file_get_conten...')
+#8 [internal function]: MethodsController->execute()
+#9 D:\Dropbox\htdocs\alldata\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(MethodsController), Array)
+#10 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#11 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(MethodsController), Object(CakeRequest), Object(CakeResponse))
+#12 D:\Dropbox\htdocs\alldata\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#13 {main}
+2014-12-20 22:38:53 Error: Fatal Error (1): Call to undefined method ProjectsController::stationByName() in [D:\Dropbox\htdocs\alldata\app\Controller\ProjectsController.php, line 413]
+2014-12-20 22:38:53 Error: [FatalErrorException] Call to undefined method ProjectsController::stationByName()
+#0 D:\Dropbox\htdocs\alldata\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Call to undefin...', 'D:\Dropbox\htdo...', 413)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to undefin...', 'D:\Dropbox\htdo...', 413, Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Call to undefin...', 'D:\Dropbox\htdo...', 413, Array)
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-12-20 22:39:31 Error: Fatal Error (1): Call to a member function load() on a non-object in [D:\Dropbox\htdocs\alldata\app\Controller\ProjectsController.php, line 423]
+2014-12-20 22:39:31 Error: [FatalErrorException] Call to a member function load() on a non-object
+#0 D:\Dropbox\htdocs\alldata\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Call to a membe...', 'D:\Dropbox\htdo...', 423)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', 'D:\Dropbox\htdo...', 423, Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', 'D:\Dropbox\htdo...', 423, Array)
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-12-20 22:40:19 Error: Fatal Error (1): Call to a member function load() on a non-object in [D:\Dropbox\htdocs\alldata\app\Controller\ProjectsController.php, line 415]
+2014-12-20 22:40:19 Error: [FatalErrorException] Call to a member function load() on a non-object
+#0 D:\Dropbox\htdocs\alldata\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Call to a membe...', 'D:\Dropbox\htdo...', 415)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', 'D:\Dropbox\htdo...', 415, Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', 'D:\Dropbox\htdo...', 415, Array)
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-12-20 22:40:59 Error: Fatal Error (1): Call to a member function find() on a non-object in [D:\Dropbox\htdocs\alldata\app\Controller\ProjectsController.php, line 493]
+2014-12-20 22:40:59 Error: [FatalErrorException] Call to a member function find() on a non-object
+#0 D:\Dropbox\htdocs\alldata\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Call to a membe...', 'D:\Dropbox\htdo...', 493)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', 'D:\Dropbox\htdo...', 493, Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', 'D:\Dropbox\htdo...', 493, Array)
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-12-20 22:41:29 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Event.newest' in 'where clause'
+#0 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Datasource\DboSource.php(461): PDOStatement->execute(Array)
+#1 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Datasource\DboSource.php(427): DboSource->_execute('SELECT * FROM `...', Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Datasource\DboSource.php(671): DboSource->execute('SELECT * FROM `...', Array, Array)
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Datasource\DboSource.php(1082): DboSource->fetchAll('SELECT * FROM `...', false)
+#4 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(2631): DboSource->read(Object(Value), Array)
+#5 D:\Dropbox\htdocs\alldata\app\Controller\ProjectsController.php(493): Model->find('all', Array)
+#6 [internal function]: ProjectsController->export('2')
+#7 D:\Dropbox\htdocs\alldata\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ProjectsController), Array)
+#8 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#9 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(ProjectsController), Object(CakeRequest), Object(CakeResponse))
+#10 D:\Dropbox\htdocs\alldata\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#11 {main}
+2014-12-20 22:45:42 Error: [PDOException] SQLSTATE[42S22]: Column not found: 1054 Unknown column 'Measure.timestamp' in 'where clause'
+#0 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Datasource\DboSource.php(461): PDOStatement->execute(Array)
+#1 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Datasource\DboSource.php(427): DboSource->_execute('SELECT * FROM `...', Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Datasource\DboSource.php(671): DboSource->execute('SELECT * FROM `...', Array, Array)
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Datasource\DboSource.php(1082): DboSource->fetchAll('SELECT * FROM `...', false)
+#4 D:\Dropbox\htdocs\alldata\lib\Cake\Model\Model.php(2631): DboSource->read(Object(Value), Array)
+#5 D:\Dropbox\htdocs\alldata\app\Controller\ProjectsController.php(487): Model->find('all', Array)
+#6 [internal function]: ProjectsController->export('2')
+#7 D:\Dropbox\htdocs\alldata\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(ProjectsController), Array)
+#8 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#9 D:\Dropbox\htdocs\alldata\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(ProjectsController), Object(CakeRequest), Object(CakeResponse))
+#10 D:\Dropbox\htdocs\alldata\app\webroot\index.php(92): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#11 {main}
+2014-12-20 23:21:23 Error: Fatal Error (1): Allowed memory size of 1073741824 bytes exhausted (tried to allocate 134828032 bytes) in [D:\Dropbox\htdocs\alldata\lib\Cake\basics.php, line 115]
+2014-12-20 23:21:23 Error: [FatalErrorException] Allowed memory size of 1073741824 bytes exhausted (tried to allocate 134828032 bytes)
+#0 D:\Dropbox\htdocs\alldata\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Allowed memory ...', 'D:\Dropbox\htdo...', 115)
+#1 [internal function]: ErrorHandler::handleError(1, 'Allowed memory ...', 'D:\Dropbox\htdo...', 115, Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Allowed memory ...', 'D:\Dropbox\htdo...', 115, Array)
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-12-20 23:22:30 Error: Fatal Error (1): Allowed memory size of 1073741824 bytes exhausted (tried to allocate 134828032 bytes) in [D:\Dropbox\htdocs\alldata\lib\Cake\basics.php, line 115]
+2014-12-20 23:22:30 Error: [FatalErrorException] Allowed memory size of 1073741824 bytes exhausted (tried to allocate 134828032 bytes)
+#0 D:\Dropbox\htdocs\alldata\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Allowed memory ...', 'D:\Dropbox\htdo...', 115)
+#1 [internal function]: ErrorHandler::handleError(1, 'Allowed memory ...', 'D:\Dropbox\htdo...', 115, Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Allowed memory ...', 'D:\Dropbox\htdo...', 115, Array)
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-12-20 23:25:41 Error: Fatal Error (1): Allowed memory size of 1073741824 bytes exhausted (tried to allocate 134828032 bytes) in [D:\Dropbox\htdocs\alldata\lib\Cake\basics.php, line 115]
+2014-12-20 23:25:41 Error: [FatalErrorException] Allowed memory size of 1073741824 bytes exhausted (tried to allocate 134828032 bytes)
+#0 D:\Dropbox\htdocs\alldata\lib\Cake\Error\ErrorHandler.php(162): ErrorHandler::handleFatalError(1, 'Allowed memory ...', 'D:\Dropbox\htdo...', 115)
+#1 [internal function]: ErrorHandler::handleError(1, 'Allowed memory ...', 'D:\Dropbox\htdo...', 115, Array)
+#2 D:\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 1, 'Allowed memory ...', 'D:\Dropbox\htdo...', 115, Array)
+#3 D:\Dropbox\htdocs\alldata\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
