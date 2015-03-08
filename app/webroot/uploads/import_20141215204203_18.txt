@@ -1,7 +1,0 @@
-<html><head><title>Error</title>
-<style type="text/css">
-* {font-family:sans-serif; font-size:10pt ; padding-left:4pt}
-h2 {  font-weight:bold; background-color:#8af; font-size:14pt;  }
-</style></head>
-<body><h2><br>ERROR<br>&nbsp;</h2>
-(Script: '/iflex/txtdata.php')<br><br>Explanation: <b>'Access denied: Not authorised or File not found (possibly too old)'</b><hr></body></html>
