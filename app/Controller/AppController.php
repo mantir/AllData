@@ -274,12 +274,6 @@ class AppController extends Controller {
 		$this->set('return', $return);
 	}
 	
-	function getTemplate($name){
-		$n = explode('.', $name);
-		$name = Inflector::pluralize($n[0]).'/'.implode('/', array_slice($n, 1));
-		$this->render('/'.$name, 'template');
-	}
-	
 	/**
 	 * Refreshes the Auth session
 	 * @param string $field
@@ -300,17 +294,20 @@ class AppController extends Controller {
 		}
 	}
 	
-	/*
-	 * overrides the standard afterFilter Method from cakephp to give the possibility to redirect 
-	 * if redirectTo is passed as url param.
+	/**
+	* overrides the standard afterFilter Method from cakephp to give the possibility to redirect 
+	* if redirectTo is passed as url param.
 	*/
 	public function afterFilter(){
 		if($this->p['redirectTo'])
 			$this->redirect($this->p['redirectTo']);
 	}
 	
-	/* 
-	*
+	/**
+	* Writes a log to the database
+	* @param $type Can be one of the log types defined in Model/Log.php
+	* @param $data numeric array of data that shall be logged into the database. Max. 6 elements. The structure for a type is also defined by the log types in Model/Log.php
+	* @param mixed $dump a variable to dump in the database (Not implemented)
 	*/
 	public function writeLog($type, $data, $dump = false){
 		$this->loadModel('Log');
@@ -327,7 +324,11 @@ class AppController extends Controller {
 	}
 	
 	/**
-	* 
+	* Return a list of logs of a specified type
+	* @param $type can be one of the log types defined in Model/Log.php
+	* @param array $params CakePHP conditions for a find query to filter results
+	* @param string $combine Log column which should be the key for the returned array
+	* @param string $order SQL order to order results 
 	*/
 	public function getLogs($type, $params = array(), $combine = 'id', $order = 'time DESC'){
 		$this->loadModel('Log');

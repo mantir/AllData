@@ -29,6 +29,9 @@ class InputsController extends AppController {
 	 * @return void
 	 */
 	public function add($project_id) {
+		if(!$this->authorizedProject($project_id, console::$contributorState)) {
+			return;
+		}
 		if ($this->request->is('post')) {
 			$r = $this->request->data;
 			$name = $r['Input']['name'];
@@ -57,7 +60,7 @@ class InputsController extends AppController {
 	
 	/**
 	 * Edit method, Displays the template file and let's the user set some parameters for the input format. E.g. in which row starts the data, timestamp format, column delimiter (in CSV)
-	 * The function which replaces the marks with HTML-Selects is found in the view file View/Input/edit. It maybe has to be adapted for other formats than CSV.
+	 * The function which replaces the marks with HTML-Selects is found in the view file View/Input/edit.ctp. It maybe has to be adapted for other formats than CSV.
 	 * The user can setup a source list URL to automatically import data from a source.
 	 * @throws NotFoundException
 	 * @param string $id Input ID
@@ -70,19 +73,22 @@ class InputsController extends AppController {
 		}
 		$r = $this->request->data;
 		$input = $this->Input->read(null, $id);
+		if(!$this->authorizedProject($input['Input']['project_id'], console::$contributorState)) {
+			return;
+		}
 		$filename = $input['Input']['template_path'];
 		$filename = '../webroot'.$filename;
 	
-		if($input['Input']['type'] == 'text')
+		if($input['Input']['type'] == 'text') //Parse the template skeleton and set markers for HTML-selects
 			$skeleton = $this->parseText($filename, $input['Input']['delimiter'], $input['Input']['data_row'], $input['Input']['head_row']);
 		else if($input['Input']['type'])
 			$skeleton = $this->{'parse'.strtoupper($input['Input']['type'])}($filename);
 
 		$project_id = $input['Input']['project_id'];
-		if ($this->request->is('post') || $this->request->is('put')) {
-			$r['Input']['template_path'] = ($filename = $this->upload()) ? $filename : $input['Input']['template_path'];
+		if ($this->request->is('post') || $this->request->is('put')) { 
+			$r['Input']['template_path'] = ($filename = $this->upload()) ? $filename : $input['Input']['template_path']; //Upload an input template file
 			if($filename)
-				$r['Input']['type'] = $this->getTemplateType($filename);
+				$r['Input']['type'] = $this->getTemplateType($filename); //Get the template type
 			if(is_array($r['Value']['Value']))
 					foreach($r['Value']['Value'] as $i => $v) {
 						if($v == -1) {
@@ -110,9 +116,9 @@ class InputsController extends AppController {
 				$saved_paths[$v['InputsValue']['path']] = $v['InputsValue']['value_id'];
 			}
 		}
-		$marker = $this->marker;
-		$limiter = $this->limiter;
-		$title_limiter = $this->title_limiter;
+		$marker = $this->marker; //The marker for a HTML-select in the template skeleton
+		$limiter = $this->limiter; //The limiter in a marker for select which delimits name and path etc.
+		$title_limiter = $this->title_limiter; //Limiter for headlines
 		$skeleton = htmlspecialchars($skeleton); // Prepare for display
 		$values = $this->Input->Value->find('list', array('conditions' => 'Value.project_id = '.$project_id));
 		$this->set(compact('marker', 'limiter', 'title_limiter', 'name', 'values', 'skeleton', 'saved_paths', 'input'));
@@ -162,7 +168,6 @@ class InputsController extends AppController {
 		} else {
 			$rows = file($file);
 		}
-		//debug($file);
 		$paths = array();
 		$data_row--;
 		$head_row--;
@@ -170,7 +175,7 @@ class InputsController extends AppController {
 		$header = array();
 		if(!$delimiter) $delimiter = ',';
 		foreach($rows as $i => $r) {
-			if($head_row == $i) {
+			if($head_row == $i) { //Headlines
 				$limiter = $delimiter;
 				$cols = explode($limiter[0], $r);
 				$limiter = substr($limiter, 1);
@@ -178,9 +183,8 @@ class InputsController extends AppController {
 					$col = trim(str_replace("\n", '', $col));
 					$header[$j] = $col.$this->title_limiter;
 				}
-				//debug($header);
 			}
-			if($data_row >= 0) {
+			if($data_row >= 0) { //Data rows
 				if($i >= $data_row){
 					$limiter = $delimiter;
 					$cols = explode($limiter[0], $r);

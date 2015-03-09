@@ -227,21 +227,6 @@ class UsersController extends AppController {
 		} 
 	}
 	
-	public function admin_login(){
-		$this->render('login');
-		$this->login();
-	}
-	
-	public function admin_loginAs($id = null){
-		if($this->Auth->user('isAdmin')){
-			$user = $this->User->read(null, $id);
-			$this->Auth->login($user);
-			$this->_refreshAuth();
-			$this->_refreshAuth('isAdmin', true);
-		}
-		$this->redirect($this->referer());
-	}
-	
 /**
  * view method Profile
  *
@@ -269,22 +254,6 @@ class UsersController extends AppController {
 		$this->set(compact('user', 'ownProfile', 'isRecommended'));
 	}
 
-/**
- * add method
- *
- * @return void
- */
-	public function add() {
-		if ($this->request->is('post')) {
-			$this->User->create();
-			if ($this->User->save($this->request->data)) {
-				$this->Session->setFlash(__('The user has been saved'));
-				$this->redirect(array('action' => 'index'));
-			} else {
-				$this->Session->setFlash(__('The user could not be saved. Please, try again.'));
-			}
-		}
-	}
 
 /**
  * edit method
@@ -293,7 +262,7 @@ class UsersController extends AppController {
  * @param string $id
  * @return void
  */
-	public function settings($id = null) {
+	public function settings() {
 		$user = $this->Auth->user();
 		$id = $user['id'];
 		$this->User->id = $id;
@@ -304,7 +273,7 @@ class UsersController extends AppController {
 			$user = $this->request->data['User'];
 			$data = $this->request->data;
 			//Create New Genres for User
-			if ($this->User->save($data)) {
+			if ($this->User->save($this->request->data)) {
 				$u = $this->User->read(); //read user to get the setting id
 				//debug($this->User->lastQuery());
 				$this->_refreshAuth(); //refresh the authUser, if his url was change
@@ -319,10 +288,6 @@ class UsersController extends AppController {
 			$this->request->data = $this->User->read(null, $id);
 			unset($this->request->data['User']['password']);
 		}
-		$user = $this->User->read(null, $id);
-		unset($user['User']['password']);
-		$this->set(compact('user'));
-		//debug($this->Session->read('Auth.User.url'));
 	}
 	
 /**

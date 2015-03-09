@@ -196,7 +196,7 @@
                         foreach ($project['Unit'] as $i => $unit): ?>
                         <tr>
                             <td width="30" align="center"><?php echo $i + 1; ?></td>
-                            <td><?php echo $this->Html->link($unit['name'], array('controller' => 'units', 'action' => 'edit', $method['id'])); ?></td>
+                            <td><?php echo $this->Html->link($unit['name'], array('controller' => 'units', 'action' => 'edit', $unit['id'])); ?></td>
                             <td><?php echo $unit['symbol']; ?></td>
                             <td class="actions">
                                 <?php echo $this->Form->postLink(console::$icons['delete'], array('controller' => 'units', 'action' => 'delete', $unit['id']), array('escape' => false, 'title' => __('Delete')), __('Are you sure you want to delete the unit %s from the project?', $unit['name'])); ?>

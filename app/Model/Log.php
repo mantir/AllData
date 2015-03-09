@@ -63,10 +63,10 @@ class Log extends AppModel {
 	
 	/**
 	 * Get a list of logs for a given log type
-	 * @param $project_id
-	 * @param $type
-	 * @param $offset
-	 * @param $limit
+	 * @param $project_id Project ID
+	 * @param string $type import, user, data (data ist still not implemented, it shall return all actions which flagged, unflagged or deleted data)
+	 * @param $offset for paging
+	 * @param $limit max elements returned
 	 * @return array
 	 */
 	public function getLogs($project_id, $type, $offset = 0, $limit = 100){

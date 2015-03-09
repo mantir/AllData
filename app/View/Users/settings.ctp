@@ -1,8 +1,8 @@
 <div class="row">
 	<h2 class="col-md-12"><?php echo __('Settings'); ?></h2>
     <div class="col-sm-3 col-md-3 col-lg-2">
-		<?php echo $this->Form->create('User'); ?>
-        
+		<?php echo $this->Form->create('User'); 
+        ?>
         <?php
 		echo $this->Form->input('name', console::$htmlInput);
 		echo $this->Form->input('description', console::$htmlInput);

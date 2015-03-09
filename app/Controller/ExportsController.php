@@ -60,6 +60,7 @@ class ExportsController extends AppController {
 			$this->request->data['Export']['value_ids'] = implode(',', $this->request->data['Export']['value_ids']);
 			$this->request->data['Export']['project_id'] = $project_id;
 			$this->request->data['Export']['auth'] = uniqid().uniqid();
+			$this->request->data['Export']['interval_count'] = abs($this->request->data['Export']['interval_count']); //Only positive values possible
 			if ($this->Export->save($this->request->data)) {
 				$this->writeLog('created', array($this->Auth->user('id'), 'exports', 'related' => $this->Export->getLastInsertId()));
 				$this->Session->setFlash(__('The export has been saved'));
@@ -93,6 +94,7 @@ class ExportsController extends AppController {
 			throw new NotFoundException(__('Invalid export'));
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
+			$this->request->data['Export']['interval_count'] = abs($this->request->data['Export']['interval_count']); //Only positive values possible
 			$this->request->data['Export']['value_ids'] = implode(',', $this->request->data['Export']['value_ids']);
 			if ($this->Export->save($this->request->data)) {
 				$this->writeLog('edited', array($this->Auth->user('id'), 'exports', 'related' => $id));

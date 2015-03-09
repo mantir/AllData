@@ -47,8 +47,8 @@ var AppRouter = BackboneMVC.Router.extend({
 });
 app = {
 	c: {}, //Controller array
-	controllers: {}, //Controllerklassen
-	controllerList: ["c/projects", "c/pages", "c/logs", 'c/values', 'c/inputs', 'c/units', 'c/methods', 'c/exports', 'c/users', 'c/admin'],
+	controllers: {}, //Controllerclasses
+	controllerList: ["c/projects", "c/pages", 'c/values', 'c/inputs', 'c/units', 'c/methods', 'c/exports', 'c/users', 'c/admin'], //List of paths to controller classes
 	viewType:"text/x-underscore-template",
 	loader_gif:baseUrl+"/img/gloader.gif",
 	loader_gif_2:baseUrl+"/img/fbloader.gif",
@@ -589,7 +589,7 @@ app = {
  * @method detectUA
  * @param {jQuery} $ jQuery
  * @param {string} userAgent UserAgent string
- * @return 
+ * @return Object with bool properties
  */
 var detectUA = function($, userAgent) {
 	$.os = {};
