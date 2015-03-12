@@ -1,6 +1,7 @@
 <?php
     /** PHPSandbox class declaration
      * @package PHPSandbox
+	 * @link http://fieryprophet.com/phpsandbox-docs/classes/PHPSandbox.PHPSandbox.html
      */
     namespace PHPSandbox;
     use FunctionParser\FunctionParser;

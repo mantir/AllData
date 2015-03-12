@@ -126,7 +126,7 @@ class InputsController extends AppController {
 	}
 	
 	/**
-	* Converts a XML file structure into an array (Needs to be adapted to real formats if there is a use case)
+	* Converts a XML file structure into an array to parse it and set markers (Needs to be adapted to real formats if there is a use case)
 	* @param $file Path to file to parse
 	* @return array
 	*/
@@ -139,7 +139,7 @@ class InputsController extends AppController {
 	}
 	
 	/**
-	* Converts a JSON file structure into an array 
+	* Converts a JSON file structure into an array to parse it and set markers (Needs to be adapted to real formats if there is a use case)
 	* @todo Needs probably to be adapted to real foramts
 	* @param $file Path to file to parse
 	* @return array
@@ -153,7 +153,7 @@ class InputsController extends AppController {
 	}
 	
 	/** 
-	* Parses a textfile and sets marker to put in the view the HTML-selects for the values in the correct position with the correct title
+	* Parses a textfile and sets marker to put in the view the HTML-selects for the values in the correct position with the correct title. Each HTML-select has a path, which in the case of CSV templates is the column number where a value is located. The path is unique for each select and is used to map imported data to an input file at the same position (at the same structure path) as the associated value.
 	* @param string $file: file path to a template file
 	* @param string $delimiter: one or more characters which delimit the columns in the CSV
 	* @param int $data_row: number of the row where the actual data begins in the text file
@@ -196,7 +196,6 @@ class InputsController extends AppController {
 							$newRow[] = $this->marker.$header[$j].$col.$this->limiter.$j.$this->marker;
 						}
 					}
-					//debug($newRow);
 					$rows[$i] = implode($delimiter[0], $newRow);
 				} else {
 					$rows[$i] = trim($rows[$i]);
@@ -216,7 +215,7 @@ class InputsController extends AppController {
 	}
 	
 	/**
-	* parses an array structure and returns a textual representation with markers to replace them with HTML-selects in the view. The path is unique for each select.
+	* Parses an array structure and returns a textual representation with markers to replace them with HTML-selects in the view with which the Value is associated with a path. The path is unique for each select and is used to match imported data which is found in an input file at the given structure path to the associated value.
 	* @param array|string $d: Data structure as array (tree) or as a string (leave of the tree)
 	* @param string $path: the current path for $d
 	* @return array of markers if $d is an array or one marker if $d is a string

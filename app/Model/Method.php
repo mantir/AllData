@@ -112,7 +112,8 @@ class Method extends AppModel {
 	}
 	
 	/**
-	* Executes function code with it's parameters
+	* Executes function code with it's parameters. The code is executed in a SandboxClass provided in app/Lib/phpSandbox
+	* Documentation: http://fieryprophet.com/phpsandbox-docs/classes/PHPSandbox.PHPSandbox.html
 	*
 	* @param $method_id ID of the method to be executed
 	* @param array $params parameters for the method to be executed. Values are passed by their ID. E.g. array('value_parameter_name' => 18);
@@ -243,7 +244,9 @@ class Method extends AppModel {
 		$result = array();
 		//debug($interval_type);
 		//debug(date('d.m.Y. H:i:', $end));
-		while($timestamp < $end) {
+		
+		//*** Run the execution over whole interval ***
+		while($timestamp < $end) { 
 			//debug(date('d.m.Y. H:i:', $timestamp));
 			foreach($values as $name => $v){ //Extract value data for current timestamp interval
 				$params[$name]['data'] = array();
@@ -286,7 +289,7 @@ class Method extends AppModel {
 				//debug($timestamp_end);
 			} else {
 				$timestamp = $timestamp_end;
-				$timestamp_end = strtotime($interval, $timestamp);
+				$timestamp_end = strtotime($interval, $timestamp); //Timestamp for next round
 			}
 		}
 		return $result;

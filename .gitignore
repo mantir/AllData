@@ -1,6 +1,4 @@
 /app/Config/database.php
-/app/webroot/uploads
-/app/webroot/docs
 /app/tmp
 /lib/Cake/Console/Templates/skel/tmp/
 /plugins
