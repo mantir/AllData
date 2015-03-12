@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>app - AllData</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.8.0pr2/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <script src="http://yui.yahooapis.com/combo?3.8.0pr2/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+            <h1><a href="../index.html"><img src="../assets/css/logo.png" width="117" height="52">AllData: app</a></h1>
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: 1.0</em>
+        </div>
+    </div>
+    <div class="yui3-g">
+
+        <div id="sidebar" class="yui3-u">
+            <div id="modules" class="sidebox">
+                <div class="hd">
+                    <h2 class="no-toc">Modules</h2>
+                </div>
+                <div class="bd">
+                    <ul>
+                    </ul>
+                </div>
+            </div>
+            
+            <div id="classes" class="sidebox">
+                <div class="hd">
+                    <h2 class="no-toc">Classes</h2>
+                </div>
+                <div class="bd">
+                    <ul>
+                            <li><a href="../classes/app.html">app</a></li>
+                            <li><a href="../classes/app.controllers.admin.html">app.controllers.admin</a></li>
+                            <li><a href="../classes/app.controllers.exports.html">app.controllers.exports</a></li>
+                            <li><a href="../classes/app.controllers.inputs.html">app.controllers.inputs</a></li>
+                            <li><a href="../classes/app.controllers.methods.html">app.controllers.methods</a></li>
+                            <li><a href="../classes/app.controllers.pages.html">app.controllers.pages</a></li>
+                            <li><a href="../classes/app.controllers.projects.html">app.controllers.projects</a></li>
+                            <li><a href="../classes/app.controllers.units.html">app.controllers.units</a></li>
+                            <li><a href="../classes/app.controllers.users.html">app.controllers.users</a></li>
+                            <li><a href="../classes/app.controllers.values.html">app.controllers.values</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div id="methods-on-page" class="sidebox on-page">
+                <div class="hd">
+                    <h2 class="no-toc">Methods On Page</h2>
+                </div>
+                <div class="bd">
+                    <ul>
+                            <li><a href="#methods_activePage">activePage</a></li>
+                            <li><a href="#methods_bindEvents">bindEvents</a></li>
+                            <li><a href="#methods_call_url">call_url</a></li>
+                            <li><a href="#methods_callback">callback</a></li>
+                            <li><a href="#methods_callback">callback</a></li>
+                            <li><a href="#methods_changePage">changePage</a></li>
+                            <li><a href="#methods_checkForMessageToShow">checkForMessageToShow</a></li>
+                            <li><a href="#methods_clearAlerts">clearAlerts</a></li>
+                            <li><a href="#methods_detectUA">detectUA</a></li>
+                            <li><a href="#methods_get">get</a></li>
+                            <li><a href="#methods_home">home</a></li>
+                            <li><a href="#methods_init">init</a></li>
+                            <li><a href="#methods_loadControllers">loadControllers</a></li>
+                            <li><a href="#methods_loadCss">loadCss</a></li>
+                            <li><a href="#methods_loadDialog">loadDialog</a></li>
+                            <li><a href="#methods_loadIndicator">loadIndicator</a></li>
+                            <li><a href="#methods_loadIndicator2">loadIndicator2</a></li>
+                            <li><a href="#methods_loadPage">loadPage</a></li>
+                            <li><a href="#methods_post">post</a></li>
+                            <li><a href="#methods_refresh">refresh</a></li>
+                            <li><a href="#methods_require">require</a></li>
+                            <li><a href="#methods_route">route</a></li>
+                            <li><a href="#methods_setCallback">setCallback</a></li>
+                            <li><a href="#methods_setRefresh">setRefresh</a></li>
+                            <li><a href="#methods_unbaseUrl">unbaseUrl</a></li>
+                            <li><a href="#methods_updateLayout">updateLayout</a></li>
+                            <li><a href="#methods_updateUrl">updateUrl</a></li>
+                            <li><a href="#methods_url">url</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            
+            
+            
+            <div id="fileTree" class="sidebox">
+                <div class="hd">
+                    <h2 class="no-toc">Files</h2>
+                </div>
+                <div class="bd">
+                    <ul><li>webroot\app.js/<ul></ul></li><li>webroot\controllers\admin.js/<ul></ul></li><li>webroot\controllers\exports.js/<ul></ul></li><li>webroot\controllers\inputs.js/<ul></ul></li><li>webroot\controllers\methods.js/<ul></ul></li><li>webroot\controllers\pages.js/<ul></ul></li><li>webroot\controllers\projects.js/<ul></ul></li><li>webroot\controllers\units.js/<ul></ul></li><li>webroot\controllers\users.js/<ul></ul></li><li>webroot\controllers\values.js/<ul></ul></li><li>webroot\docs\php\resources\combined.js/<ul></ul></li></ul>
+                </div>
+            </div>
+            
+        </div>
+
+        <div id="main" class="yui3-u">
+            <div class="content"><h4>Class app</h4>
+<span class="foundat">Class defined in: <a href="../files/webroot_app.js.html#l1"><code>webroot\app.js:1</code></a></span>
+<div class="intro"><p>This is the app class. It manages the whole application.</p>
+</div>
+
+
+<div id="classdocs">
+    <ul>
+        <li><a href="#methods">Methods</a></li>
+    </ul>
+    <div>
+            <div id="methods">
+<a name="methods_activePage"></a>
+<div class="method item">
+    <strong class="name"><code>activePage</code></strong>( <code>  </code> ) 
+    <br>
+    <span class="foundat">
+        
+        <a href="../files/webroot_app.js.html#l522"><code>webroot\app.js:522</code></a>
+    </span><br>
+    <p>Returns the current page Container as jQuery Object</p>
+
+    <br><div class="returns"><strong>Returns:</strong> <p>MemberExpression</p>
+</div>
+</div>
+<a name="methods_bindEvents"></a>
+<div class="method item">
+    <strong class="name"><code>bindEvents</code></strong>( <code>  </code> ) 
+    <br>
+    <span class="foundat">
+        
+        <a href="../files/webroot_app.js.html#l439"><code>webroot\app.js:439</code></a>
+    </span><br>
+    <p>Binds all global events to their jQuery DOM objects</p>
+
+    <br><div class="returns"><strong>Returns:</strong> </div>
+</div>
+<a name="methods_call_url"></a>
+<div class="method item">
+    <strong class="name"><code>call_url</code></strong>( <code>url </code> ) 
+    <br>
+    <span class="foundat">
+        
+        <a href="../files/webroot_app.js.html#l142"><code>webroot\app.js:142</code></a>
+    </span><br>
+    <p>Executes a controller action and changes the URL, then it replaces the changed URL with the previous URL again (like nothing happened)</p>
+
+    <strong>Parameters:</strong>
+    <ul class="params">
+        <li>
+            <code>url</code> <strong>&lt;Object&gt;</strong>
+         
+        </li>
+    </ul>
+    <br><div class="returns"><strong>Returns:</strong> </div>
+</div>
+<a name="methods_callback"></a>
+<div class="method item">
+    <strong class="name"><code>callback</code></strong>( <code>d </code> ) 
+    <br>
+    <span class="foundat">
+        
+        <a href="../files/webroot_app.js.html#l283"><code>webroot\app.js:283</code></a>
+    </span><br>
+    <p>Executed after new page was loaded</p>
+
+    <strong>Parameters:</strong>
+    <ul class="params">
+        <li>
+            <code>d</code> <strong>&lt;Object&gt;</strong>
+         
+        </li>
+    </ul>
+    <br><div class="returns"><strong>Returns:</strong> </div>
+</div>
+<a name="methods_callback"></a>
+<div class="method item">
+    <strong class="name"><code>callback</code></strong>( <code>  </code> ) 
+    <br>
+    <span class="foundat">
+        
+        <a href="../files/webroot_app.js.html#l210"><code>webroot\app.js:210</code></a>
+    </span><br>
+    <p>app.callback a global callback function which can be set with setCallback. Used for example in the app.loadPage function</p>
+
+    <br><div class="returns"><strong>Returns:</strong> </div>
+</div>
+<a name="methods_changePage"></a>
+<div class="method item">
+    <strong class="name"><code>changePage</code></strong>( <code>  </code> ) 
+    <br>
+    <span class="foundat">
+        
+        <a href="../files/webroot_app.js.html#l326"><code>webroot\app.js:326</code></a>
+    </span><br>
+    <p>Implement if page transitions a wanted</p>
+
+    <br><div class="returns"><strong>Returns:</strong> </div>
+</div>
+<a name="methods_checkForMessageToShow"></a>
+<div class="method item">
+    <strong class="name"><code>checkForMessageToShow</code></strong>( <code>d </code> ) 
+    <br>
+    <span class="foundat">
+        
+        <a href="../files/webroot_app.js.html#l402"><code>webroot\app.js:402</code></a>
+    </span><br>
+    <p>Checks if the returned data object contains a message which should be shown in a dialog</p>
+
+    <strong>Parameters:</strong>
+    <ul class="params">
+        <li>
+            <code>d</code> <strong>&lt;Object&gt;</strong>
+         
+        </li>
+    </ul>
+    <br><div class="returns"><strong>Returns:</strong> </div>
+</div>
+<a name="methods_clearAlerts"></a>
+<div class="method item">
+    <strong class="name"><code>clearAlerts</code></strong>( <code>  </code> ) 
+    <br>
+    <span class="foundat">
+        
+        <a href="../files/webroot_app.js.html#l574"><code>webroot\app.js:574</code></a>
+    </span><br>
+    <p>Fades out any alert messages which have been shown to the user after 4 seconds.</p>
+
+    <br><div class="returns"><strong>Returns:</strong> </div>
+</div>
+<a name="methods_detectUA"></a>
+<div class="method item">
+    <strong class="name"><code>detectUA</code></strong>( <code>$, userAgent </code> ) 
+    <br>
+    <span class="foundat">
+        
+        <a href="../files/webroot_app.js.html#l587"><code>webroot\app.js:587</code></a>
+    </span><br>
+    <p>Detects the browser the user is using</p>
+
+    <strong>Parameters:</strong>
+    <ul class="params">
+        <li>
+            <code>$</code> <strong>&lt;JQuery&gt;</strong>
+        <p>jQuery</p>
+
+        </li>
+        <li>
+            <code>userAgent</code> <strong>&lt;String&gt;</strong>
+        <p>UserAgent string</p>
+
+        </li>
+    </ul>
+    <br><div class="returns"><strong>Returns:</strong> <p>Object with bool properties</p>
+</div>
+</div>
+<a name="methods_get"></a>
+<div class="method item">
+    <strong class="name"><code>get</code></strong>( <code>url, params </code> ) 
+    <br>
+    <span class="foundat">
+        
+        <a href="../files/webroot_app.js.html#l335"><code>webroot\app.js:335</code></a>
+    </span><br>
+    <p>Fetches json data from the server</p>
+
+    <strong>Parameters:</strong>
+    <ul class="params">
+        <li>
+            <code>url</code> <strong>&lt;String&gt;</strong>
+         
+        </li>
+        <li>
+            <code>params</code> <strong>&lt;Object&gt;</strong>
+        <p>URL parameters</p>
+
+        </li>
+    </ul>
+    <br><div class="returns"><strong>Returns:</strong> <p>a Q.promise from Q.js for callback</p>
+</div>
+</div>
+<a name="methods_home"></a>
+<div class="method item">
+    <strong class="name"><code>home</code></strong>( <code>  </code> ) 
+    <br>
+    <span class="foundat">
+        
+        <a href="../files/webroot_app.js.html#l39"><code>webroot\app.js:39</code></a>
+    </span><br>
+    <p>Route the home url to the Projects.index page</p>
+
+    <br><div class="returns"><strong>Returns:</strong> </div>
+</div>
+<a name="methods_init"></a>
+<div class="method item">
+    <strong class="name"><code>init</code></strong>( <code>baseUrl, d, content </code> ) 
+    <br>
+    <span class="foundat">
+        
+        <a href="../files/webroot_app.js.html#l62"><code>webroot\app.js:62</code></a>
+    </span><br>
+    <p>Initializes the app on page loading</p>
+
+    <strong>Parameters:</strong>
+    <ul class="params">
+        <li>
+            <code>baseUrl</code> <strong>&lt;String&gt;</strong>
+        <p>The base url of alldata, it can be passed or is calculated from the current URL: e.g. <a href="http://headkino.de/alldata/">http://headkino.de/alldata/</a></p>
+
+        </li>
+        <li>
+            <code>d</code> <strong>&lt;Object&gt;</strong>
+        <p>Data array from the server. The same object would have been returned from an AJAX request to the page. The data is cached in the app.requests Object</p>
+
+        </li>
+        <li>
+            <code>content</code> <strong>&lt;String&gt;</strong>
+        <p>Rendered view HTML</p>
+
+        </li>
+    </ul>
+    <br><div class="returns"><strong>Returns:</strong> </div>
+</div>
+<a name="methods_loadControllers"></a>
+<div class="method item">
+    <strong class="name"><code>loadControllers</code></strong>( <code>urls </code> ) 
+    <br>
+    <span class="foundat">
+        
+        <a href="../files/webroot_app.js.html#l530"><code>webroot\app.js:530</code></a>
+    </span><br>
+    <p>Loads all controller files</p>
+
+    <strong>Parameters:</strong>
+    <ul class="params">
+        <li>
+            <code>urls</code> <strong>&lt;Array&gt;</strong>
+        <p>URLs to the controller files. Defined in app.controllerList</p>
+
+        </li>
+    </ul>
+    <br><div class="returns"><strong>Returns:</strong> </div>
+</div>
+<a name="methods_loadCss"></a>
+<div class="method item">
+    <strong class="name"><code>loadCss</code></strong>( <code>url </code> ) 
+    <br>
+    <span class="foundat">
+        
+        <a href="../files/webroot_app.js.html#l173"><code>webroot\app.js:173</code></a>
+    </span><br>
+    <p>Loads a stylesheet dynamically and adds it to the header</p>
+
+    <strong>Parameters:</strong>
+    <ul class="params">
+        <li>
+            <code>url</code> <strong>&lt;String&gt;</strong>
+         
+        </li>
+    </ul>
+    <br><div class="returns"><strong>Returns:</strong> </div>
+</div>
+<a name="methods_loadDialog"></a>
+<div class="method item">
+    <strong class="name"><code>loadDialog</code></strong>( <code>c, a, url, target </code> ) 
+    <br>
+    <span class="foundat">
+        
+        <a href="../files/webroot_app.js.html#l230"><code>webroot\app.js:230</code></a>
+    </span><br>
+    <p>Like loadPage only laoding the page contents into a given dialog</p>
+
+    <strong>Parameters:</strong>
+    <ul class="params">
+        <li>
+            <code>c</code> <strong>&lt;String&gt;</strong>
+        <p>Controller name</p>
+
+        </li>
+        <li>
+            <code>a</code> <strong>&lt;String&gt;</strong>
+        <p>Action name</p>
+
+        </li>
+        <li>
+            <code>url</code> <strong>&lt;String&gt;</strong>
+        <p>URL to fetch data from the server</p>
+
+        </li>
+        <li>
+            <code>target</code> <strong>&lt;JQuery Object&gt;</strong>
+        <p>Backbone modal Dialog container</p>
+
+        </li>
+    </ul>
+    <br><div class="returns"><strong>Returns:</strong> <p>Q.promise from Q.js for callbacks</p>
+</div>
+</div>
+<a name="methods_loadIndicator"></a>
+<div class="method item">
+    <strong class="name"><code>loadIndicator</code></strong>( <code>  </code> ) 
+    <br>
+    <span class="foundat">
+        
+        <a href="../files/webroot_app.js.html#l558"><code>webroot\app.js:558</code></a>
+    </span><br>
+    <p>Returns HTML for a global loading animation</p>
+
+    <br><div class="returns"><strong>Returns:</strong> <p>string HTML</p>
+</div>
+</div>
+<a name="methods_loadIndicator2"></a>
+<div class="method item">
+    <strong class="name"><code>loadIndicator2</code></strong>( <code>  </code> ) 
+    <br>
+    <span class="foundat">
+        
+        <a href="../files/webroot_app.js.html#l566"><code>webroot\app.js:566</code></a>
+    </span><br>
+    <p>Returns HTML for a non global loading animation</p>
+
+    <br><div class="returns"><strong>Returns:</strong> <p>string HTML</p>
+</div>
+</div>
+<a name="methods_loadPage"></a>
+<div class="method item">
+    <strong class="name"><code>loadPage</code></strong>( <code>c, a, url, target </code> ) 
+    <br>
+    <span class="foundat">
+        
+        <a href="../files/webroot_app.js.html#l256"><code>webroot\app.js:256</code></a>
+    </span><br>
+    <p>Load the page contents rom the server</p>
+
+    <strong>Parameters:</strong>
+    <ul class="params">
+        <li>
+            <code>c</code> <strong>&lt;Object&gt;</strong>
+        <p>Controller name</p>
+
+        </li>
+        <li>
+            <code>a</code> <strong>&lt;Object&gt;</strong>
+        <p>Action name</p>
+
+        </li>
+        <li>
+            <code>url</code> <strong>&lt;Object&gt;</strong>
+        <p>URL to fetch data from the server</p>
+
+        </li>
+        <li>
+            <code>target</code> <strong>&lt;Object&gt;</strong>
+        <p>The target container for the loaded page content (Default this.container.find(&#39;.page&#39;))</p>
+
+        </li>
+    </ul>
+    <br><div class="returns"><strong>Returns:</strong> <p>Q.promise from Q.js for callbacks</p>
+</div>
+</div>
+<a name="methods_post"></a>
+<div class="method item">
+    <strong class="name"><code>post</code></strong>( <code>url </code> ) 
+    <br>
+    <span class="foundat">
+        
+        <a href="../files/webroot_app.js.html#l391"><code>webroot\app.js:391</code></a>
+    </span><br>
+    <p>post data to a server url</p>
+
+    <strong>Parameters:</strong>
+    <ul class="params">
+        <li>
+            <code>url</code> <strong>&lt;String&gt;</strong>
+         
+        </li>
+    </ul>
+    <br><div class="returns"><strong>Returns:</strong> <p>MemberExpression</p>
+</div>
+</div>
+<a name="methods_refresh"></a>
+<div class="method item">
+    <strong class="name"><code>refresh</code></strong>( <code>callback </code> ) 
+    <br>
+    <span class="foundat">
+        
+        <a href="../files/webroot_app.js.html#l186"><code>webroot\app.js:186</code></a>
+    </span><br>
+    <p>Refresh the current view</p>
+
+    <strong>Parameters:</strong>
+    <ul class="params">
+        <li>
+            <code>callback</code> <strong>&lt;Function&gt;</strong>
+         
+        </li>
+    </ul>
+    <br><div class="returns"><strong>Returns:</strong> </div>
+</div>
+<a name="methods_require"></a>
+<div class="method item">
+    <strong class="name"><code>require</code></strong>( <code>what, callback </code> ) 
+    <br>
+    <span class="foundat">
+        
+        <a href="../files/webroot_app.js.html#l153"><code>webroot\app.js:153</code></a>
+    </span><br>
+    <p>Wrapper for require.js</p>
+
+    <strong>Parameters:</strong>
+    <ul class="params">
+        <li>
+            <code>what</code> <strong>&lt;String | Array&gt;</strong>
+        <p>What should be required</p>
+
+        </li>
+        <li>
+            <code>callback</code> <strong>&lt;Function&gt;</strong>
+        <p>Executed after required files are loaded</p>
+
+        </li>
+    </ul>
+    <br><div class="returns"><strong>Returns:</strong> </div>
+</div>
+<a name="methods_route"></a>
+<div class="method item">
+    <strong class="name"><code>route</code></strong>( <code>url, notrigger, replace </code> ) 
+    <br>
+    <span class="foundat">
+        
+        <a href="../files/webroot_app.js.html#l115"><code>webroot\app.js:115</code></a>
+    </span><br>
+    <p>Routes a given URL to the corresponding controller and method and the URL in the browser can be changed. e.g. /projects/view/2 =&gt; Projects-controller executing view-function passing parameter 2.</p>
+
+    <strong>Parameters:</strong>
+    <ul class="params">
+        <li>
+            <code>url</code> <strong>&lt;String&gt;</strong>
+        <p>The route url</p>
+
+        </li>
+        <li>
+            <code>notrigger</code> <strong>&lt;Bool | Undefined&gt;</strong>
+        <p>Just change the Browser URL and don&#39;t trigger the action in the controller</p>
+
+        </li>
+        <li>
+            <code>replace</code> <strong>&lt;Bool | Undefined&gt;</strong>
+        <p>Replaces the current URL in the browser with with the url parameter and doesn&#39;t add it to the Backbone history. (like nothing happened)</p>
+
+        </li>
+    </ul>
+    <br><div class="returns"><strong>Returns:</strong> </div>
+</div>
+<a name="methods_setCallback"></a>
+<div class="method item">
+    <strong class="name"><code>setCallback</code></strong>( <code>callback </code> ) 
+    <br>
+    <span class="foundat">
+        
+        <a href="../files/webroot_app.js.html#l216"><code>webroot\app.js:216</code></a>
+    </span><br>
+    <p>Set the app.callback function.</p>
+
+    <strong>Parameters:</strong>
+    <ul class="params">
+        <li>
+            <code>callback</code> <strong>&lt;Object&gt;</strong>
+         
+        </li>
+    </ul>
+    <br><div class="returns"><strong>Returns:</strong> </div>
+</div>
+<a name="methods_setRefresh"></a>
+<div class="method item">
+    <strong class="name"><code>setRefresh</code></strong>( <code>url </code> ) 
+    <br>
+    <span class="foundat">
+        
+        <a href="../files/webroot_app.js.html#l198"><code>webroot\app.js:198</code></a>
+    </span><br>
+    <p>Uncache the data for an already loaded URL so it is loaded again.</p>
+
+    <strong>Parameters:</strong>
+    <ul class="params">
+        <li>
+            <code>url</code> <strong>&lt;String&gt;</strong>
+        <p>URL to be refreshed. If empty the next request is refreshed.</p>
+
+        </li>
+    </ul>
+    <br><div class="returns"><strong>Returns:</strong> </div>
+</div>
+<a name="methods_unbaseUrl"></a>
+<div class="method item">
+    <strong class="name"><code>unbaseUrl</code></strong>( <code>url </code> ) 
+    <br>
+    <span class="foundat">
+        
+        <a href="../files/webroot_app.js.html#l104"><code>webroot\app.js:104</code></a>
+    </span><br>
+    <p>Removes the app.baseUrl from an url</p>
+
+    <strong>Parameters:</strong>
+    <ul class="params">
+        <li>
+            <code>url</code> <strong>&lt;String&gt;</strong>
+         
+        </li>
+    </ul>
+    <br><div class="returns"><strong>Returns:</strong> <p>url</p>
+</div>
+</div>
+<a name="methods_updateLayout"></a>
+<div class="method item">
+    <strong class="name"><code>updateLayout</code></strong>( <code>  </code> ) 
+    <br>
+    <span class="foundat">
+        
+        <a href="../files/webroot_app.js.html#l417"><code>webroot\app.js:417</code></a>
+    </span><br>
+    <p>Updates the layout on page load or on windows resize</p>
+
+    <br><div class="returns"><strong>Returns:</strong> </div>
+</div>
+<a name="methods_updateUrl"></a>
+<div class="method item">
+    <strong class="name"><code>updateUrl</code></strong>( <code>url </code> ) 
+    <br>
+    <span class="foundat">
+        
+        <a href="../files/webroot_app.js.html#l133"><code>webroot\app.js:133</code></a>
+    </span><br>
+    <p>Just change the browser URL without triggering the corresponding controller action.</p>
+
+    <strong>Parameters:</strong>
+    <ul class="params">
+        <li>
+            <code>url</code> <strong>&lt;String&gt;</strong>
+         
+        </li>
+    </ul>
+    <br><div class="returns"><strong>Returns:</strong> </div>
+</div>
+<a name="methods_url"></a>
+<div class="method item">
+    <strong class="name"><code>url</code></strong>( <code>query </code> ) 
+    <br>
+    <span class="foundat">
+        
+        <a href="../files/webroot_app.js.html#l92"><code>webroot\app.js:92</code></a>
+    </span><br>
+    <p>Returns the current relative url. Relative to the app.baseUrl</p>
+
+    <strong>Parameters:</strong>
+    <ul class="params">
+        <li>
+            <code>query</code> <strong>&lt;String&gt;</strong>
+        <p>string. If the string isn&#39;t already at the end of the current URL, it is added and returned</p>
+
+        </li>
+    </ul>
+    <br><div class="returns"><strong>Returns:</strong> <p>BinaryExpression</p>
+</div>
+</div>
+            </div>
+    </div>
+</div>
+</div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/js/tabs.js"></script>
+</body>
+</html>

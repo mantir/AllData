@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>Class InputsController</title>
+
+	<link rel="stylesheet" href="resources/style.css?e99947befd7bf673c6b43ff75e9e0f170c88a60e">
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+				<h3>Packages</h3>
+			<ul>
+				<li>
+					<a href="package-app.html">
+						app<span></span>
+					</a>
+
+						<ul>
+				<li>
+					<a href="package-app.Controller.html">
+						Controller					</a>
+
+						</li>
+				<li>
+					<a href="package-app.Lib.html">
+						Lib					</a>
+
+						</li>
+				<li>
+					<a href="package-app.Model.html">
+						Model					</a>
+
+						</li>
+							</ul></li>
+			</ul>
+		</div>
+
+		<hr>
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-AppController.html">AppController</a></li>
+				<li><a href="class-ExportsController.html">ExportsController</a></li>
+				<li class="active"><a href="class-InputsController.html">InputsController</a></li>
+				<li><a href="class-LogsController.html">LogsController</a></li>
+				<li><a href="class-MethodsController.html">MethodsController</a></li>
+				<li><a href="class-PagesController.html">PagesController</a></li>
+				<li><a href="class-ProjectsController.html">ProjectsController</a></li>
+				<li><a href="class-UnitsController.html">UnitsController</a></li>
+				<li><a href="class-UsersController.html">UsersController</a></li>
+				<li><a href="class-ValuesController.html">ValuesController</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="">
+		<input type="hidden" name="ie" value="UTF-8">
+		<input type="text" name="q" class="text" placeholder="Search">
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+<span>Package</span>			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="todo.html" title="Todo list"><span>Todo</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class InputsController</h1>
+
+
+	<div class="description">
+	<p>Inputs Controller</p>
+	</div>
+
+	<dl class="tree">
+		<dd style="padding-left:0px">
+Controller
+			
+			
+		</dd>
+		<dd style="padding-left:30px">
+			<img src="resources/inherit.png" alt="Extended by">
+			<a href="class-AppController.html"><span>AppController</span></a>
+			
+			
+			
+		</dd>
+		<dd style="padding-left:60px">
+			<img src="resources/inherit.png" alt="Extended by">
+<b><span>InputsController</span></b>			
+			
+			
+		</dd>
+	</dl>
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		
+		<b>Package:</b> <a href="package-app.html">app</a>\<a href="package-app.Controller.html">Controller</a><br>
+
+				<b>Copyright:</b>
+				Martin Kapp 2014-15<br>
+				<b>License:</b>
+				<a href="MIT">License (http://www.opensource.org/licenses/mit-license.php)</a><br>
+			<b>Located at</b> <a href="source-class-InputsController.html#15-307" title="Go to source code">InputsController.php</a>
+		<br>
+	</div>
+
+
+
+	<table class="summary methods" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="add" id="_add">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_add">#</a>
+		<code><a href="source-class-InputsController.html#26-59" title="Go to source code">add</a>( <span> <var>$project_id</var></span> )</code>
+
+		<div class="description short">
+			<p>add method</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>add method</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$project_id</var></dt>
+					<dd>ID to which the Input shall be added</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="edit" id="_edit">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_edit">#</a>
+		<code><a href="source-class-InputsController.html#61-126" title="Go to source code">edit</a>( <span>string <var>$id</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			<p>Edit method, Displays the template file and let's the user set some parameters for the input format. E.g. in which row starts the data, timestamp format, column delimiter (in CSV)
+The function which replaces the marks with HTML-Selects is found in the view file View/Input/edit.ctp. It maybe has to be adapted for other formats than CSV.
+The user can setup a source list URL to automatically import data from a source.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Edit method, Displays the template file and let's the user set some parameters for the input format. E.g. in which row starts the data, timestamp format, column delimiter (in CSV)
+The function which replaces the marks with HTML-Selects is found in the view file View/Input/edit.ctp. It maybe has to be adapted for other formats than CSV.
+The user can setup a source list URL to automatically import data from a source.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd>Input ID</dd>
+				</dl></div>
+
+
+				<h4>Throws</h4>
+				<div class="list">
+					NotFoundException
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="parseXML" id="_parseXML">
+
+		<td class="attributes"><code>
+			 public 
+
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_parseXML">#</a>
+		<code><a href="source-class-InputsController.html#128-139" title="Go to source code">parseXML</a>( <span> <var>$file</var></span> )</code>
+
+		<div class="description short">
+			<p>Converts a XML file structure into an array to parse it and set markers (Needs to be adapted to real formats if there is a use case)</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Converts a XML file structure into an array to parse it and set markers (Needs to be adapted to real formats if there is a use case)</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$file</var></dt>
+					<dd>to file to parse</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					array
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="parseJSON" id="_parseJSON">
+
+		<td class="attributes"><code>
+			 public 
+
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_parseJSON">#</a>
+		<code><a href="source-class-InputsController.html#141-153" title="Go to source code">parseJSON</a>( <span> <var>$file</var></span> )</code>
+
+		<div class="description short">
+			<p>Converts a JSON file structure into an array to parse it and set markers (Needs to be adapted to real formats if there is a use case)</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Converts a JSON file structure into an array to parse it and set markers (Needs to be adapted to real formats if there is a use case)</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$file</var></dt>
+					<dd>to file to parse</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					array
+				</div>
+
+
+				<h4>Todo</h4>
+				<div class="list">
+						Needs probably to be adapted to real foramts<br>
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="parseTEXT" id="_parseTEXT">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_parseTEXT">#</a>
+		<code><a href="source-class-InputsController.html#155-215" title="Go to source code">parseTEXT</a>( <span>string <var>$file</var></span>, <span>string <var>$delimiter</var> = <span class="php-quote">','</span></span>, <span>integer <var>&amp; $data_row</var> = -<span class="php-num">1</span></span>, <span>integer <var>&amp; $head_row</var> = -<span class="php-num">1</span></span> )</code>
+
+		<div class="description short">
+			<p>Parses a textfile and sets marker to put in the view the HTML-selects for the values in the correct position with the correct title. Each HTML-select has a path, which in the case of CSV templates is the column number where a value is located. The path is unique for each select and is used to map imported data to an input file at the same position (at the same structure path) as the associated value.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Parses a textfile and sets marker to put in the view the HTML-selects for the values in the correct position with the correct title. Each HTML-select has a path, which in the case of CSV templates is the column number where a value is located. The path is unique for each select and is used to map imported data to an input file at the same position (at the same structure path) as the associated value.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$file</var></dt>
+					<dd>$file: file path to a template file</dd>
+					<dt><var>$delimiter</var></dt>
+					<dd>$delimiter: one or more characters which delimit the columns in the CSV</dd>
+					<dt><var>$data_row</var></dt>
+					<dd>$data_row: number of the row where the actual data begins in the text file</dd>
+					<dt><var>$head_row</var></dt>
+					<dd>$head_row: number of the row where headline information is found for the columns</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="parseArray" id="_parseArray">
+
+		<td class="attributes"><code>
+			 public 
+
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_parseArray">#</a>
+		<code><a href="source-class-InputsController.html#217-233" title="Go to source code">parseArray</a>( <span>array|string <var>$d</var></span>, <span>string <var>$path</var> = <span class="php-quote">''</span></span> )</code>
+
+		<div class="description short">
+			<p>Parses an array structure and returns a textual representation with markers to replace them with HTML-selects in the view with which the Value is associated with a path. The path is unique for each select and is used to match imported data which is found in an input file at the given structure path to the associated value.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Parses an array structure and returns a textual representation with markers to replace them with HTML-selects in the view with which the Value is associated with a path. The path is unique for each select and is used to match imported data which is found in an input file at the given structure path to the associated value.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$d</var></dt>
+					<dd>$d: Data structure as array (tree) or as a string (leave of the tree)</dd>
+					<dt><var>$path</var></dt>
+					<dd>$path: the current path for $d</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					array<br>of markers if $d is an array or one marker if $d is a string
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getTemplateType" id="_getTemplateType">
+
+		<td class="attributes"><code>
+			 public 
+
+			string:
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getTemplateType">#</a>
+		<code><a href="source-class-InputsController.html#235-252" title="Go to source code">getTemplateType</a>( <span>string <var>$file</var></span> )</code>
+
+		<div class="description short">
+			<p>returns the file format of a template file.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>returns the file format of a template file.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$file</var></dt>
+					<dd>$file: Input file path relative to the webroot folder</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					string:<br>text, json or xml
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="upload" id="_upload">
+
+		<td class="attributes"><code>
+			 public 
+
+			string,
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_upload">#</a>
+		<code><a href="source-class-InputsController.html#254-293" title="Go to source code">upload</a>( )</code>
+
+		<div class="description short">
+			<p>Handles the upload of an input template file from input->add or input->edit action.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Handles the upload of an input template file from input->add or input->edit action.</p>
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					string,<br>filename of the template file
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="delete" id="_delete">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_delete">#</a>
+		<code><a href="source-class-InputsController.html#296-306" title="Go to source code">delete</a>( <span>string <var>$id</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			<p>delete method</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>delete method</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd></dd>
+				</dl></div>
+
+
+				<h4>Throws</h4>
+				<div class="list">
+					MethodNotAllowedException<br>
+					NotFoundException
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+	<table class="summary inherited">
+	<caption>Methods inherited from <a href="class-AppController.html#methods">AppController</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-AppController.html#__refreshAuth">_refreshAuth()</a>, 
+			<a href="class-AppController.html#_afterFilter">afterFilter()</a>, 
+			<a href="class-AppController.html#_authorizedProject">authorizedProject()</a>, 
+			<a href="class-AppController.html#_beforeFilter">beforeFilter()</a>, 
+			<a href="class-AppController.html#_beforeRender">beforeRender()</a>, 
+			<a href="class-AppController.html#_checkFailedConstraint">checkFailedConstraint()</a>, 
+			<a href="class-AppController.html#_delete_object">delete_object()</a>, 
+			<a href="class-AppController.html#_er">er()</a>, 
+			<a href="class-AppController.html#_getLogs">getLogs()</a>, 
+			<a href="class-AppController.html#_noPermissionError">noPermissionError()</a>, 
+			<a href="class-AppController.html#_project_set_session">project_set_session()</a>, 
+			<a href="class-AppController.html#_redirect">redirect()</a>, 
+			<a href="class-AppController.html#_render">render()</a>, 
+			<a href="class-AppController.html#_setLanguage">setLanguage()</a>, 
+			<a href="class-AppController.html#_su">su()</a>, 
+			<a href="class-AppController.html#_writeLog">writeLog()</a>
+		</code></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+	<table class="summary properties" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="marker" id="$marker">
+		<td class="attributes"><code>
+			public  
+			string
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-InputsController.html#21" title="Go to source code"><var>$marker</var></a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$marker" class="anchor">#</a>
+				<code><span class="php-quote">'_###_'</span></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="limiter" id="$limiter">
+		<td class="attributes"><code>
+			public  
+			string
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-InputsController.html#22" title="Go to source code"><var>$limiter</var></a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$limiter" class="anchor">#</a>
+				<code><span class="php-quote">'_---_'</span></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="title_limiter" id="$title_limiter">
+		<td class="attributes"><code>
+			public  
+			string
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-InputsController.html#23" title="Go to source code"><var>$title_limiter</var></a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$title_limiter" class="anchor">#</a>
+				<code><span class="php-quote">'_____'</span></code>
+			</div>
+		</td>
+	</tr>
+	</table>
+
+	<table class="summary inherited">
+	<caption>Properties inherited from <a href="class-AppController.html#properties">AppController</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-AppController.html#$beforeRenderExecuted"><var>$beforeRenderExecuted</var></a>, 
+			<a href="class-AppController.html#$components"><var>$components</var></a>, 
+			<a href="class-AppController.html#$error"><var>$error</var></a>, 
+			<a href="class-AppController.html#$errorsExist"><var>$errorsExist</var></a>, 
+			<a href="class-AppController.html#$isAjax"><var>$isAjax</var></a>, 
+			<a href="class-AppController.html#$limitReturnList"><var>$limitReturnList</var></a>, 
+			<a href="class-AppController.html#$log_types"><var>$log_types</var></a>, 
+			<a href="class-AppController.html#$p"><var>$p</var></a>, 
+			<a href="class-AppController.html#$redirectState"><var>$redirectState</var></a>, 
+			<a href="class-AppController.html#$success"><var>$success</var></a>
+		</code></td>
+	</tr>
+	</table>
+
+
+	<table class="summary properties" id="magicProperties">
+	<caption>Magic properties summary</caption>
+	<tr data-order="Input" id="m$Input">
+		<td class="attributes"><code>
+			public  
+			<code><a href="class-Input.html">Input</a></code>
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-InputsController.html#18" title="Go to source code"><var>$Input</var></a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+	</tr>
+	</table>
+
+
+
+</div>
+
+	<div id="footer">
+		 API documentation generated by <a href="http://apigen.org">ApiGen</a>
+	</div>
+</div>
+</div>
+<script src="resources/combined.js"></script>
+<script src="elementlist.js"></script>
+</body>
+</html>

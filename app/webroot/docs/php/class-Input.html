@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>Class Input</title>
+
+	<link rel="stylesheet" href="resources/style.css?e99947befd7bf673c6b43ff75e9e0f170c88a60e">
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+				<h3>Packages</h3>
+			<ul>
+				<li>
+					<a href="package-app.html">
+						app<span></span>
+					</a>
+
+						<ul>
+				<li>
+					<a href="package-app.Controller.html">
+						Controller					</a>
+
+						</li>
+				<li>
+					<a href="package-app.Lib.html">
+						Lib					</a>
+
+						</li>
+				<li>
+					<a href="package-app.Model.html">
+						Model					</a>
+
+						</li>
+							</ul></li>
+			</ul>
+		</div>
+
+		<hr>
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-AppModel.html">AppModel</a></li>
+				<li><a href="class-Export.html">Export</a></li>
+				<li class="active"><a href="class-Input.html">Input</a></li>
+				<li><a href="class-Log.html">Log</a></li>
+				<li><a href="class-Measure.html">Measure</a></li>
+				<li><a href="class-Method.html">Method</a></li>
+				<li><a href="class-Project.html">Project</a></li>
+				<li><a href="class-Unit.html">Unit</a></li>
+				<li><a href="class-User.html">User</a></li>
+				<li><a href="class-Value.html">Value</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="">
+		<input type="hidden" name="ie" value="UTF-8">
+		<input type="text" name="q" class="text" placeholder="Search">
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+<span>Package</span>			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="todo.html" title="Todo list"><span>Todo</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class Input</h1>
+
+
+	<div class="description">
+	<p>Input Model</p>
+	</div>
+
+	<dl class="tree">
+		<dd style="padding-left:0px">
+Model
+			
+			
+		</dd>
+		<dd style="padding-left:30px">
+			<img src="resources/inherit.png" alt="Extended by">
+			<a href="class-AppModel.html"><span>AppModel</span></a>
+			
+			
+			
+		</dd>
+		<dd style="padding-left:60px">
+			<img src="resources/inherit.png" alt="Extended by">
+<b><span>Input</span></b>			
+			
+			
+		</dd>
+	</dl>
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		
+		<b>Package:</b> <a href="package-app.html">app</a>\<a href="package-app.Model.html">Model</a><br>
+
+				<b>Copyright:</b>
+				Martin Kapp 2014-15<br>
+				<b>License:</b>
+				<a href="MIT">License (http://www.opensource.org/licenses/mit-license.php)</a><br>
+			<b>Located at</b> <a href="source-class-Input.html#13-80" title="Go to source code">Input.php</a>
+		<br>
+	</div>
+
+
+
+
+	<table class="summary inherited">
+	<caption>Methods inherited from <a href="class-AppModel.html#methods">AppModel</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-AppModel.html#_checkUnique">checkUnique()</a>, 
+			<a href="class-AppModel.html#_debugDB">debugDB()</a>, 
+			<a href="class-AppModel.html#_generateID">generateID()</a>, 
+			<a href="class-AppModel.html#_lastQuery">lastQuery()</a>
+		</code></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+	<table class="summary properties" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="validate" id="$validate">
+		<td class="attributes"><code>
+			public  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Input.html#21-30" title="Go to source code"><var>$validate</var></a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$validate" class="anchor">#</a>
+				<code><span class="php-keyword1">array</span>(
+    <span class="php-quote">'name'</span> =&gt; <span class="php-keyword1">array</span>(
+        <span class="php-quote">'between'</span> =&gt; <span class="php-keyword1">array</span>(
+            <span class="php-quote">'rule'</span> =&gt; <span class="php-keyword1">array</span>(<span class="php-quote">'between'</span>, <span class="php-num">2</span>, <span class="php-num">20</span>),
+            <span class="php-quote">'message'</span> =&gt; <span class="php-quote">'Name must have at least 2 up to 20 characters'</span>,
+            <span class="php-quote">'allowEmpty'</span> =&gt; <span class="php-keyword1">false</span>,
+            <span class="php-quote">'last'</span> =&gt; <span class="php-keyword1">false</span>, <span class="php-comment">// Stop validation after this rule</span>
+        ),
+    ),
+)</code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="displayField" id="$displayField">
+		<td class="attributes"><code>
+			public  
+			string
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Input.html#32-37" title="Go to source code"><var>$displayField</var></a>
+
+			<div class="description short">
+				<p>Display field</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Display field</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$displayField" class="anchor">#</a>
+				<code><span class="php-quote">'name'</span></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="belongsTo" id="$belongsTo">
+		<td class="attributes"><code>
+			public  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Input.html#42-55" title="Go to source code"><var>$belongsTo</var></a>
+
+			<div class="description short">
+				<p>belongsTo associations</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>belongsTo associations</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$belongsTo" class="anchor">#</a>
+				<code><span class="php-keyword1">array</span>(
+    <span class="php-quote">'Project'</span> =&gt; <span class="php-keyword1">array</span>(
+        <span class="php-quote">'className'</span> =&gt; <span class="php-quote">'Project'</span>,
+        <span class="php-quote">'foreignKey'</span> =&gt; <span class="php-quote">'project_id'</span>,
+        <span class="php-quote">'conditions'</span> =&gt; <span class="php-quote">''</span>,
+        <span class="php-quote">'fields'</span> =&gt; <span class="php-quote">''</span>,
+        <span class="php-quote">'order'</span> =&gt; <span class="php-quote">''</span>
+    )
+)</code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="hasAndBelongsToMany" id="$hasAndBelongsToMany">
+		<td class="attributes"><code>
+			public  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Input.html#57-78" title="Go to source code"><var>$hasAndBelongsToMany</var></a>
+
+			<div class="description short">
+				<p>hasAndBelongsToMany associations</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>hasAndBelongsToMany associations</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$hasAndBelongsToMany" class="anchor">#</a>
+				<code><span class="php-keyword1">array</span>(
+    <span class="php-quote">'Value'</span> =&gt; <span class="php-keyword1">array</span>(
+        <span class="php-quote">'className'</span> =&gt; <span class="php-quote">'Value'</span>,
+        <span class="php-quote">'joinTable'</span> =&gt; <span class="php-quote">'inputs_values'</span>,
+        <span class="php-quote">'foreignKey'</span> =&gt; <span class="php-quote">'input_id'</span>,
+        <span class="php-quote">'associationForeignKey'</span> =&gt; <span class="php-quote">'value_id'</span>,
+        <span class="php-quote">'unique'</span> =&gt; <span class="php-quote">'keepExisting'</span>,
+        <span class="php-quote">'conditions'</span> =&gt; <span class="php-quote">''</span>,
+        <span class="php-quote">'fields'</span> =&gt; <span class="php-quote">''</span>,
+        <span class="php-quote">'order'</span> =&gt; <span class="php-quote">''</span>,
+        <span class="php-quote">'limit'</span> =&gt; <span class="php-quote">''</span>,
+        <span class="php-quote">'offset'</span> =&gt; <span class="php-quote">''</span>,
+        <span class="php-quote">'finderQuery'</span> =&gt; <span class="php-quote">''</span>,
+        <span class="php-quote">'deleteQuery'</span> =&gt; <span class="php-quote">''</span>,
+        <span class="php-quote">'insertQuery'</span> =&gt; <span class="php-quote">''</span>
+    )
+)</code>
+			</div>
+		</td>
+	</tr>
+	</table>
+
+
+
+	<table class="summary properties" id="magicProperties">
+	<caption>Magic properties summary</caption>
+	<tr data-order="Project" id="m$Project">
+		<td class="attributes"><code>
+			public  
+			<code><a href="class-Project.html">Project</a></code>
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Input.html#16" title="Go to source code"><var>$Project</var></a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+	</tr>
+	<tr data-order="Value" id="m$Value">
+		<td class="attributes"><code>
+			public  
+			<code><a href="class-Value.html">Value</a></code>
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Input.html#17" title="Go to source code"><var>$Value</var></a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+	</tr>
+	</table>
+
+
+
+</div>
+
+	<div id="footer">
+		 API documentation generated by <a href="http://apigen.org">ApiGen</a>
+	</div>
+</div>
+</div>
+<script src="resources/combined.js"></script>
+<script src="elementlist.js"></script>
+</body>
+</html>

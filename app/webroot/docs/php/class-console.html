@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>Class console</title>
+
+	<link rel="stylesheet" href="resources/style.css?e99947befd7bf673c6b43ff75e9e0f170c88a60e">
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+				<h3>Packages</h3>
+			<ul>
+				<li>
+					<a href="package-app.html">
+						app<span></span>
+					</a>
+
+						<ul>
+				<li>
+					<a href="package-app.Controller.html">
+						Controller					</a>
+
+						</li>
+				<li>
+					<a href="package-app.Lib.html">
+						Lib					</a>
+
+						</li>
+				<li>
+					<a href="package-app.Model.html">
+						Model					</a>
+
+						</li>
+							</ul></li>
+			</ul>
+		</div>
+
+		<hr>
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li class="active"><a href="class-console.html">console</a></li>
+				<li><a href="class-f.html">f</a></li>
+				<li><a href="class-s.html">s</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="">
+		<input type="hidden" name="ie" value="UTF-8">
+		<input type="text" name="q" class="text" placeholder="Search">
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+<span>Package</span>			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="todo.html" title="Todo list"><span>Todo</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class console</h1>
+
+
+	<div class="description">
+	<p>Console helper functions and constants for model, view and controller</p>
+	</div>
+
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		
+		<b>Package:</b> <a href="package-app.html">app</a>\<a href="package-app.Lib.html">Lib</a><br>
+
+				<b>Copyright:</b>
+				Martin Kapp 2014-15<br>
+				<b>License:</b>
+				<a href="MIT">License (http://www.opensource.org/licenses/mit-license.php)</a><br>
+				<b>Since:</b>
+				v 0.1<br>
+				<b>Link:</b>
+				<a href="http://headkino.de">http://headkino.de</a><br>
+			<b>Located at</b> <a href="source-class-console.html#3-170" title="Go to source code">console.php</a>
+		<br>
+	</div>
+
+
+
+	<table class="summary methods" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="range" id="_range">
+
+		<td class="attributes"><code>
+			 public static
+
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_range">#</a>
+		<code><a href="source-class-console.html#38-56" title="Go to source code">range</a>( <span>integer <var>$low</var></span>, <span>integer <var>$high</var></span>, <span>integer <var>$step</var> = <span class="php-num">1</span></span> )</code>
+
+		<div class="description short">
+			<p>Create a range of numbers as an array like the internal PHP function range but with leading zeros for HTML-selects e.g.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Create a range of numbers as an array like the internal PHP function range but with leading zeros for HTML-selects e.g.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$low</var></dt>
+					<dd>start value</dd>
+					<dt><var>$high</var></dt>
+					<dd>end value</dd>
+					<dt><var>$step</var></dt>
+					<dd>how much to increment in each step</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					array<br>of numbers with leading zeros
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="makeTimestamp" id="_makeTimestamp">
+
+		<td class="attributes"><code>
+			 public static
+
+			integer
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_makeTimestamp">#</a>
+		<code><a href="source-class-console.html#58-67" title="Go to source code">makeTimestamp</a>( <span> <var>$s</var></span> )</code>
+
+		<div class="description short">
+			<p>Converts as string into a timestamp with strtotime if it not already is one</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Converts as string into a timestamp with strtotime if it not already is one</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$s</var></dt>
+					<dd>string for strtotime</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					integer<br>timestamp
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="debug" id="_debug">
+
+		<td class="attributes"><code>
+			 public static
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_debug">#</a>
+		<code><a href="source-class-console.html#69-76" title="Go to source code">debug</a>( <span> <var>$d</var></span> )</code>
+
+		<div class="description short">
+			<p>A function to print out a variable in a formatted way</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>A function to print out a variable in a formatted way</p>
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="checkable_value" id="_checkable_value">
+
+		<td class="attributes"><code>
+			 public static
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_checkable_value">#</a>
+		<code><a href="source-class-console.html#78-84" title="Go to source code">checkable_value</a>( <span>array <var>$value</var></span> )</code>
+
+		<div class="description short">
+			<p>Checks for a given value if its data is checkable (Possible if it has set at least a minimum or a maximum or a max_variation)</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Checks for a given value if its data is checkable (Possible if it has set at least a minimum or a maximum or a max_variation)</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$value</var></dt>
+					<dd>$value: Properties of a value to check if the data can be checked</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="editOrAdd" id="_editOrAdd">
+
+		<td class="attributes"><code>
+			 public static
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_editOrAdd">#</a>
+		<code><a href="source-class-console.html#86-92" title="Go to source code">editOrAdd</a>( <span> <var>$url</var></span> )</code>
+
+		<div class="description short">
+			<p>Checks a URL whether it is to edit or to add an object and returns Add or Edit as a word for headlines if one view template file is used for both methods</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Checks a URL whether it is to edit or to add an object and returns Add or Edit as a word for headlines if one view template file is used for both methods</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$url</var></dt>
+					<dd>check</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="fetch_page" id="_fetch_page">
+
+		<td class="attributes"><code>
+			 public static
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_fetch_page">#</a>
+		<code><a href="source-class-console.html#101-134" title="Go to source code">fetch_page</a>( <span> <var>$method</var></span>, <span> <var>$url</var></span>, <span> <var>$p</var> = <span class="php-keyword1">array</span>()</span>, <span> <var>$header</var> = <span class="php-keyword1">array</span>()</span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="pre_regex" id="_pre_regex">
+
+		<td class="attributes"><code>
+			 public static
+
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_pre_regex">#</a>
+		<code><a href="source-class-console.html#136-153" title="Go to source code">pre_regex</a>( <span>string <var>$s</var></span> )</code>
+
+		<div class="description short">
+			<p>Simplifies as string for aprsing it, usually an HTML-Document</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Simplifies as string for aprsing it, usually an HTML-Document</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$s</var></dt>
+					<dd>String to simplify</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					string<br>simplified string
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="file_get_contents_curl" id="_file_get_contents_curl">
+
+		<td class="attributes"><code>
+			 public static
+
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_file_get_contents_curl">#</a>
+		<code><a href="source-class-console.html#155-168" title="Go to source code">file_get_contents_curl</a>( <span> <var>$url</var></span> )</code>
+
+		<div class="description short">
+			<p>The same as file_get_contents but using the cURL library. Can be used as an alternative to file_get_contents if a server has restritctive rights and cURL is installed</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>The same as file_get_contents but using the cURL library. Can be used as an alternative to file_get_contents if a server has restritctive rights and cURL is installed</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$url</var></dt>
+					<dd></dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					string<br>$data
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+	<table class="summary properties" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="systemName" id="$systemName">
+		<td class="attributes"><code>
+			public static 
+			string
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-console.html#13" title="Go to source code"><var>$systemName</var></a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$systemName" class="anchor">#</a>
+				<code><span class="php-quote">'AllData'</span></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="noreplyEmail" id="$noreplyEmail">
+		<td class="attributes"><code>
+			public static 
+			string
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-console.html#14" title="Go to source code"><var>$noreplyEmail</var></a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$noreplyEmail" class="anchor">#</a>
+				<code><span class="php-quote">'noreply@headkino.de'</span></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="serviceEmail" id="$serviceEmail">
+		<td class="attributes"><code>
+			public static 
+			string
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-console.html#15" title="Go to source code"><var>$serviceEmail</var></a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$serviceEmail" class="anchor">#</a>
+				<code><span class="php-quote">'info@headkino.de'</span></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="weekdays" id="$weekdays">
+		<td class="attributes"><code>
+			public static 
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-console.html#17" title="Go to source code"><var>$weekdays</var></a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$weekdays" class="anchor">#</a>
+				<code><span class="php-keyword1">array</span>(<span class="php-quote">'Montag'</span>, <span class="php-quote">'Dienstag'</span>, <span class="php-quote">'Mittwoch'</span>, <span class="php-quote">'Donnerstag'</span>, <span class="php-quote">'Freitag'</span>, <span class="php-quote">'Samstag'</span>, <span class="php-quote">'Sonntag'</span>)</code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="weekdaysShort" id="$weekdaysShort">
+		<td class="attributes"><code>
+			public static 
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-console.html#18" title="Go to source code"><var>$weekdaysShort</var></a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$weekdaysShort" class="anchor">#</a>
+				<code><span class="php-keyword1">array</span>(<span class="php-quote">'Mo'</span>, <span class="php-quote">'Di'</span>, <span class="php-quote">'Mi'</span>, <span class="php-quote">'Do'</span>, <span class="php-quote">'Fr'</span>, <span class="php-quote">'Sa'</span>, <span class="php-quote">'So'</span>)</code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="intervalTypes" id="$intervalTypes">
+		<td class="attributes"><code>
+			public static 
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-console.html#19" title="Go to source code"><var>$intervalTypes</var></a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$intervalTypes" class="anchor">#</a>
+				<code><span class="php-keyword1">array</span>(<span class="php-quote">'input timestamps'</span>, <span class="php-quote">'minutes'</span>, <span class="php-quote">'hours'</span>, <span class="php-quote">'days'</span>, <span class="php-quote">'weeks'</span>, <span class="php-quote">'months'</span>, <span class="php-quote">'years'</span>)</code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="adminState" id="$adminState">
+		<td class="attributes"><code>
+			public static 
+			integer
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-console.html#20" title="Go to source code"><var>$adminState</var></a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$adminState" class="anchor">#</a>
+				<code><span class="php-num">2</span></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="contributorState" id="$contributorState">
+		<td class="attributes"><code>
+			public static 
+			integer
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-console.html#21" title="Go to source code"><var>$contributorState</var></a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$contributorState" class="anchor">#</a>
+				<code><span class="php-num">1</span></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="memberTypes" id="$memberTypes">
+		<td class="attributes"><code>
+			public static 
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-console.html#22" title="Go to source code"><var>$memberTypes</var></a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$memberTypes" class="anchor">#</a>
+				<code><span class="php-keyword1">array</span>(<span class="php-quote">'Guest'</span>, <span class="php-quote">'Contributor'</span>, <span class="php-quote">'Admin'</span>)</code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="unit_prefixes" id="$unit_prefixes">
+		<td class="attributes"><code>
+			public static 
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-console.html#23" title="Go to source code"><var>$unit_prefixes</var></a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$unit_prefixes" class="anchor">#</a>
+				<code><span class="php-keyword1">array</span>(<span class="php-quote">'p'</span> =&gt; <span class="php-quote">'Piko'</span>, <span class="php-quote">'n'</span> =&gt; <span class="php-quote">'Nano'</span>, <span class="php-quote">'µ'</span> =&gt; <span class="php-quote">'Mikro'</span>, <span class="php-quote">'m'</span> =&gt; <span class="php-quote">'Milli'</span>, <span class="php-quote">'c'</span> =&gt; <span class="php-quote">'Zenti'</span>, <span class="php-quote">'d'</span> =&gt; <span class="php-quote">'Dezi'</span>, <span class="php-quote">'h'</span> =&gt; <span class="php-quote">'Hekto'</span>, <span class="php-quote">'k'</span> =&gt; <span class="php-quote">'Kilo'</span>, <span class="php-quote">'M'</span> =&gt; <span class="php-quote">'Mega'</span>, <span class="php-quote">'G'</span> =&gt; <span class="php-quote">'Giga'</span>, <span class="php-quote">'T'</span> =&gt; <span class="php-quote">'Tera'</span>)</code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="defaultDateformat" id="$defaultDateformat">
+		<td class="attributes"><code>
+			public static 
+			string
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-console.html#24" title="Go to source code"><var>$defaultDateformat</var></a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$defaultDateformat" class="anchor">#</a>
+				<code><span class="php-quote">'d.m.Y H:i:s'</span></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="minTime" id="$minTime">
+		<td class="attributes"><code>
+			public static 
+			float
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-console.html#25" title="Go to source code"><var>$minTime</var></a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$minTime" class="anchor">#</a>
+				<code>-<span class="php-num">100000000000</span></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="maxTime" id="$maxTime">
+		<td class="attributes"><code>
+			public static 
+			float
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-console.html#26" title="Go to source code"><var>$maxTime</var></a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$maxTime" class="anchor">#</a>
+				<code><span class="php-num">100000000000</span></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="disabled_functions" id="$disabled_functions">
+		<td class="attributes"><code>
+			public static 
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-console.html#28" title="Go to source code"><var>$disabled_functions</var></a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$disabled_functions" class="anchor">#</a>
+				<code><span class="php-keyword1">array</span>(<span class="php-quote">'eval'</span>, <span class="php-quote">'assert'</span>, <span class="php-quote">'preg_replace'</span>, <span class="php-quote">'create_function'</span>, <span class="php-quote">'include'</span>, <span class="php-quote">'include_once'</span>, <span class="php-quote">'require'</span>, <span class="php-quote">'require_once'</span>, <span class="php-quote">'exec'</span>, <span class="php-quote">'passthru'</span>, <span class="php-quote">'system'</span>, <span class="php-quote">'shell_exec'</span>, <span class="php-quote">'``'</span>,<span class="php-quote">'popen'</span>,<span class="php-quote">'proc_open'</span>,<span class="php-quote">'pcntl_exec'</span>,<span class="php-quote">'phpinfo'</span>,<span class="php-quote">'posix_mkfifo'</span>,<span class="php-quote">'posix_getlogin'</span>,<span class="php-quote">'posix_ttyname'</span>,<span class="php-quote">'getenv'</span>,<span class="php-quote">'get_current_user'</span>,<span class="php-quote">'proc_get_status'</span>,<span class="php-quote">'get_cfg_var'</span>,<span class="php-quote">'disk_free_space'</span>,<span class="php-quote">'disk_total_space'</span>,<span class="php-quote">'diskfreespace'</span>,<span class="php-quote">'getcwd'</span>,<span class="php-quote">'getlastmo'</span>,<span class="php-quote">'getmygid'</span>,<span class="php-quote">'getmyinode'</span>,<span class="php-quote">'getmypid'</span>,<span class="php-quote">'getmyuid'</span>,<span class="php-quote">'extract'</span>,<span class="php-quote">'parse_str'</span>,<span class="php-quote">'putenv'</span>,<span class="php-quote">'ini_set'</span>,<span class="php-quote">'mail'</span>,<span class="php-quote">'header'</span>,<span class="php-quote">'proc_nice'</span>,<span class="php-quote">'proc_terminate'</span>,<span class="php-quote">'proc_close'</span>,<span class="php-quote">'pfsockopen'</span>,<span class="php-quote">'fsockopen'</span>,<span class="php-quote">'apache_child_terminate'</span>,<span class="php-quote">'posix_kill'</span>,<span class="php-quote">'posix_mkfifo'</span>,<span class="php-quote">'posix_setpgid'</span>,<span class="php-quote">'posix_setsid'</span>,<span class="php-quote">'posix_setuid'</span>,<span class="php-quote">'fopen'</span>,<span class="php-quote">'tmpfile'</span>,<span class="php-quote">'bzopen'</span>,<span class="php-quote">'gzopen'</span>,<span class="php-quote">'SplFileObject-&gt;__construct'</span>,<span class="php-quote">'chgrp'</span>,<span class="php-quote">'chmod'</span>,<span class="php-quote">'chown'</span>,<span class="php-quote">'copy'</span>,<span class="php-quote">'file_put_contents'</span>,<span class="php-quote">'lchgrp'</span>,<span class="php-quote">'lchown'</span>,<span class="php-quote">'link'</span>,<span class="php-quote">'mkdir'</span>,<span class="php-quote">'move_uploaded_file'</span>,<span class="php-quote">'rename'</span>,<span class="php-quote">'rmdir'</span>,<span class="php-quote">'symlink'</span>,<span class="php-quote">'tempnam'</span>,<span class="php-quote">'touch'</span>,<span class="php-quote">'unlink'</span>,<span class="php-quote">'imagepng '</span>,<span class="php-quote">'imagewbmp'</span>,<span class="php-quote">'image2wbmp'</span>,<span class="php-quote">'imagejpeg'</span>,<span class="php-quote">'imagexbm'</span>,<span class="php-quote">'imagegif'</span>,<span class="php-quote">'imagegd'</span>,<span class="php-quote">'imagegd2'</span>,<span class="php-quote">'iptcembed'</span>,<span class="php-quote">'ftp_get'</span>,<span class="php-quote">'ftp_nb_get'</span>,<span class="php-quote">'file_exists'</span>,<span class="php-quote">'file_get_contents'</span>,<span class="php-quote">'file'</span>,<span class="php-quote">'fileatime'</span>,<span class="php-quote">'filectime'</span>,<span class="php-quote">'filegroup'</span>,<span class="php-quote">'fileinode'</span>,<span class="php-quote">'filemtime'</span>,<span class="php-quote">'fileowner'</span>,<span class="php-quote">'fileperms'</span>,<span class="php-quote">'filesize'</span>,<span class="php-quote">'filetype'</span>,<span class="php-quote">'glob'</span>,<span class="php-quote">'is_dir'</span>,<span class="php-quote">'is_executable'</span>,<span class="php-quote">'is_file'</span>,<span class="php-quote">'is_link'</span>,<span class="php-quote">'is_readable'</span>,<span class="php-quote">'is_uploaded_file'</span>,<span class="php-quote">'is_writable'</span>,<span class="php-quote">'is_writeable'</span>,<span class="php-quote">'linkinfo'</span>,<span class="php-quote">'lstat'</span>,<span class="php-quote">'parse_ini_file'</span>,<span class="php-quote">'pathinfo'</span>,<span class="php-quote">'readfile'</span>,<span class="php-quote">'readlink'</span>,<span class="php-quote">'realpath'</span>,<span class="php-quote">'stat'</span>,<span class="php-quote">'gzfile'</span>,<span class="php-quote">'readgzfile'</span>,<span class="php-quote">'getimagesize'</span>,<span class="php-quote">'imagecreatefromgif'</span>,<span class="php-quote">'imagecreatefromjpeg'</span>,<span class="php-quote">'imagecreatefrompng'</span>,<span class="php-quote">'imagecreatefromwbmp'</span>,<span class="php-quote">'imagecreatefromxbm'</span>,<span class="php-quote">'imagecreatefromxpm'</span>,<span class="php-quote">'ftp_put'</span>,<span class="php-quote">'ftp_nb_put'</span>,<span class="php-quote">'exif_read_data'</span>,<span class="php-quote">'read_exif_data'</span>,<span class="php-quote">'exif_thumbnail'</span>,<span class="php-quote">'exif_imagetype'</span>,<span class="php-quote">'hash_file'</span>,<span class="php-quote">'hash_hmac_file'</span>,<span class="php-quote">'hash_update_file'</span>,<span class="php-quote">'md5_file'</span>,<span class="php-quote">'sha1_file'</span>,<span class="php-quote">'highlight_file'</span>,<span class="php-quote">'show_source'</span>,<span class="php-quote">'php_strip_whitespace'</span>,<span class="php-quote">'get_meta_tags'</span>)</code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="htmlInput" id="$htmlInput">
+		<td class="attributes"><code>
+			public static 
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-console.html#30" title="Go to source code"><var>$htmlInput</var></a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$htmlInput" class="anchor">#</a>
+				<code><span class="php-keyword1">array</span>(<span class="php-quote">'div'</span> =&gt; <span class="php-keyword1">array</span>(<span class="php-quote">'class'</span> =&gt; <span class="php-quote">'form-group'</span>), <span class="php-quote">'class'</span> =&gt; <span class="php-quote">'form-control'</span>)</code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="icons" id="$icons">
+		<td class="attributes"><code>
+			public static 
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-console.html#31-36" title="Go to source code"><var>$icons</var></a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$icons" class="anchor">#</a>
+				<code><span class="php-keyword1">array</span>(
+    <span class="php-quote">'delete'</span> =&gt; <span class="php-quote">'&lt;i class=&quot;fa fa-trash-o&quot;&gt;&lt;/i&gt;'</span>, 
+    <span class="php-quote">'add'</span> =&gt; <span class="php-quote">'&lt;i class=&quot;fa fa-plus-circle&quot;&gt;&lt;/i&gt;'</span>, 
+    <span class="php-quote">'edit'</span> =&gt; <span class="php-quote">'&lt;i class=&quot;fa fa-pencil&quot;&gt;&lt;/i&gt;'</span>,
+    <span class="php-quote">'refresh'</span> =&gt; <span class="php-quote">'&lt;i class=&quot;fa fa-refresh&quot;&gt;&lt;/i&gt;'</span>
+)</code>
+			</div>
+		</td>
+	</tr>
+	</table>
+
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		 API documentation generated by <a href="http://apigen.org">ApiGen</a>
+	</div>
+</div>
+</div>
+<script src="resources/combined.js"></script>
+<script src="elementlist.js"></script>
+</body>
+</html>

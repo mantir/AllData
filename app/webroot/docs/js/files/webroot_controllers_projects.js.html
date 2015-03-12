@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>webroot\controllers\projects.js - AllData</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.8.0pr2/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <script src="http://yui.yahooapis.com/combo?3.8.0pr2/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+            <h1><a href="../index.html"><img src="../assets/css/logo.png" width="117" height="52">AllData: webroot\controllers\projects.js</a></h1>
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: 1.0</em>
+        </div>
+    </div>
+    <div class="yui3-g">
+
+        <div id="sidebar" class="yui3-u">
+            <div id="modules" class="sidebox">
+                <div class="hd">
+                    <h2 class="no-toc">Modules</h2>
+                </div>
+                <div class="bd">
+                    <ul>
+                    </ul>
+                </div>
+            </div>
+            
+            <div id="classes" class="sidebox">
+                <div class="hd">
+                    <h2 class="no-toc">Classes</h2>
+                </div>
+                <div class="bd">
+                    <ul>
+                            <li><a href="../classes/app.html">app</a></li>
+                            <li><a href="../classes/app.controllers.admin.html">app.controllers.admin</a></li>
+                            <li><a href="../classes/app.controllers.exports.html">app.controllers.exports</a></li>
+                            <li><a href="../classes/app.controllers.inputs.html">app.controllers.inputs</a></li>
+                            <li><a href="../classes/app.controllers.methods.html">app.controllers.methods</a></li>
+                            <li><a href="../classes/app.controllers.pages.html">app.controllers.pages</a></li>
+                            <li><a href="../classes/app.controllers.projects.html">app.controllers.projects</a></li>
+                            <li><a href="../classes/app.controllers.units.html">app.controllers.units</a></li>
+                            <li><a href="../classes/app.controllers.users.html">app.controllers.users</a></li>
+                            <li><a href="../classes/app.controllers.values.html">app.controllers.values</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            
+            
+            
+            
+            <div id="fileTree" class="sidebox">
+                <div class="hd">
+                    <h2 class="no-toc">Files</h2>
+                </div>
+                <div class="bd">
+                    <ul><li>webroot\app.js/<ul></ul></li><li>webroot\controllers\admin.js/<ul></ul></li><li>webroot\controllers\exports.js/<ul></ul></li><li>webroot\controllers\inputs.js/<ul></ul></li><li>webroot\controllers\methods.js/<ul></ul></li><li>webroot\controllers\pages.js/<ul></ul></li><li>webroot\controllers\projects.js/<ul></ul></li><li>webroot\controllers\units.js/<ul></ul></li><li>webroot\controllers\users.js/<ul></ul></li><li>webroot\controllers\values.js/<ul></ul></li><li>webroot\docs\php\resources\combined.js/<ul></ul></li></ul>
+                </div>
+            </div>
+            
+        </div>
+
+        <div id="main" class="yui3-u">
+            <div class="content"><h4>webroot\controllers\projects.js</h4>
+
+<pre class="code prettyprint linenums">
+/**
+ * This is the projects controller.
+ *
+ * @copyright     Martin Kapp 2014-15
+ * @link          http://headkino.de
+ * @package       app.Lib
+ * @since         v 0.1
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
+ * 
+ * @class app.controllers.projects
+ */
+app.controllers.projects = BackboneMVC.Controller.extend({
+    name: &#x27;projects&#x27;,
+	current: 0, //current project
+	measured_data: {},
+	loaded_value:{},
+	show_flagged_values:{},
+	show_original_values:{},
+	value_states: {},
+	initialized: false,
+	start:0,
+	end:0,
+	maxZoom:0,
+	minZoom:0,
+	w_resize:function(){}, //window resize function
+	charts: [],
+	/**
+	 * Sets the current project {id:&quot;&quot;, name:&quot;&quot;} and updates the links the page header.
+	 * @method setCurrent
+	 * @param {Object} c Project object containing id and name
+	 * @return 
+	 */
+	setCurrent: function(c){
+		this.current = c;
+		if(c &amp;&amp; c.id) {
+			$(&#x27;#project-name-link&#x27;).html(c.name);
+			$(&#x27;#project-link&#x27;).attr(&#x27;href&#x27;, app.baseUrl+&#x27;projects/view/&#x27;+c.id);
+			$(&#x27;#projects-link&#x27;).hide();
+			$(&#x27;#data-link&#x27;).attr(&#x27;href&#x27;, app.baseUrl+&#x27;projects/data/&#x27;+c.id);
+			$(&#x27;#import-link&#x27;).attr(&#x27;href&#x27;, app.baseUrl+&#x27;projects/upload_import/&#x27;+c.id);
+			$(&#x27;#data-link,#import-link,#project-link&#x27;).show();
+		}
+		else {
+			$(&#x27;#project-link,#data-link,#import-link&#x27;).hide();
+			$(&#x27;#projects-link&#x27;).show();
+		}
+	},
+	
+    /**
+     * Loads the Project.view from the server
+     * @method view
+     * @param {int} id Project ID
+     * @return 
+     */
+    view:function(id){
+		var self = this;
+		app.loadPage(this.name, &#x27;view&#x27;, app.url()).done(function(d){
+			self.setCurrent(d.vars.project.Project);
+			self.loadLogs(&#x27;import&#x27;);
+			$(&#x27;#log-selector&#x27;).find(&#x27;a&#x27;).click(function(){
+				var type = $(this).data(&#x27;log&#x27;);
+				self.loadLogs(type, 0);
+			});
+		});
+    },
+	
+	/**
+	 * Loads the Logs into the space on the Project.view view
+	 * @method loadLogs
+	 * @param {string} type Can be import, user, or data
+	 * @param {string} page Default 0
+	 * @return 
+	 */
+	loadLogs: function(type, page){
+		if(!page)
+			$(&#x27;#logs&#x27;).html(&#x27;&#x27;);
+		$.get(app.baseUrl + &#x27;logs/view/&#x27;+this.current.id+&#x27;/&#x27;+type+&#x27;&#x27;, function(d){
+			$(&#x27;#logs&#x27;).append(d);
+		})
+	},
+	
+	/**
+	 * Loads the Project.view from the server
+	 * @method add
+	 * @param {} id
+	 * @return 
+	 */
+	add:function(id){
+		var self = this;
+		var dialog = $(&#x27;#project-view-modal&#x27;);
+		app.loadDialog(this.name, &#x27;add&#x27;, app.url(), dialog).done(function(d){
+			
+		});
+    },
+	
+	/**
+	 * Upload a file or import a list of links from an input source
+	 * @method upload_import
+	 * @param {} id
+	 * @return 
+	 */
+	upload_import:function(id){
+		var self = this;
+		var dialog = $(&#x27;#project-view-modal&#x27;);
+		app.loadDialog(this.name, &#x27;import&#x27;, app.url(), dialog).done(function(d){
+			if(d.vars.links &amp;&amp; d.vars.links.length) {
+				app.setRefresh(app.url());
+			}
+			/*$(&#x27;#Input&#x27;).change(function(){
+				var vid = $(&#x27;#Input&#x27;).val();
+				app.get(&#x27;inputs/view/&#x27; + vid).done(function(d){
+					
+				});
+			});*/
+			$(&#x27;#import_links&#x27;).submit(function(){
+				self.fetch_links(d.vars);
+				return false;
+			});
+		});
+    },
+	
+	/**
+	 * Import an uploaded file 
+	 * @method import
+	 * @todo
+	 * @param {} id Input ID
+	 * @return 
+	 */
+	import:function(id){
+		/*TODO
+		Create the logic to import a file that has already been uploaded. E.g. from the logs to import again if there was an error
+		*/
+    },
+	
+	/**
+	 * Fetch all selected file links in the Projects.upload_import view
+	 * @method fetch_links
+	 * @param {} d
+	 * @return 
+	 */
+	fetch_links: function(d) {
+		var self = this;
+		if(self.importing) return;
+		//console.log(d);
+		var $ach = $(&#x27;input[type=checkbox]&#x27;);
+		$ach.attr(&#x27;disabled&#x27;, true);
+		var $ch = $(&#x27;input[type=checkbox]:checked&#x27;);
+		$(&#x27;#show-data-btn&#x27;).show();
+		if(!$ch.length)
+			return $ach.removeAttr(&#x27;disabled&#x27;);
+		self.importing = true;
+		var index = $ach.index($ch.first());
+		var link = d.links[index];
+		$ch.first().siblings(&#x27;label&#x27;).append(app.loadIndicator());
+		$(&#x27;#source-link-container&#x27;).scrollTop($(&#x27;#source-link-container&#x27;).scrollTop() + $ch.first().offset().top - 300);
+		$.get(app.baseUrl+app.jsonUrl+&#x27;projects/update_imports/&#x27; + d.input.Input.id, { &quot;link&quot;: link }, function(d){
+			d = eval(&#x27;(&#x27;+d+&#x27;)&#x27;);
+			//console.log(d);
+			self.importing = false;
+			$ch.first().siblings(&#x27;label&#x27;).append(&#x27; Imported&#x27;);
+			$ch.first().siblings(&#x27;label&#x27;).find(&#x27;.loader&#x27;).remove();
+			$ch.first().parents(&#x27;tr&#x27;).find(&#x27;td:last&#x27;).html(date(&#x27;d.m.Y, H:i&#x27;));
+			$ch.first().parents(&#x27;tr&#x27;).find(&#x27;td:eq(1)&#x27;).html(date(&#x27;d.m.Y, H:i&#x27;, d.vars.imported.earliest)+&#x27; - &#x27;+date(&#x27;d.m.Y, H:i&#x27;, d.vars.imported.latest));
+			$ch.first().prop(&#x27;checked&#x27;, false);
+			self.fetch_links(d);
+		});
+	},
+	
+	/**
+	 * Before submitting data in the Projects.data view, the selected values should be added to the form so they are passed over the url so they can be checked in the new view again (E.g. when changing time range)
+	 * @method addSelectedValuesToForm
+	 * @return Literal
+	 */
+	addSelectedValuesToForm: function(){
+		var values = $(&#x27;.value-checkbox:checked&#x27;).map(function(d,i){ return $(this).data(&#x27;value_id&#x27;) } ).get();
+		$(&#x27;#form-value-ids&#x27;).html($.map(values, function(d){
+			return &#x27;&lt;input type=&quot;hidden&quot; name=&quot;values[]&quot; value=&quot;&#x27;+d+&#x27;&quot; /&gt;&#x27;;
+		}));
+		return true;
+	},
+	
+	/**
+	 * Update the Url in Projects.data view if other values are selected to keep track of the changes in history
+	 * @method updateDataUrl
+	 * @return 
+	 */
+	updateDataUrl:function(){
+		this.addSelectedValuesToForm();
+		var $project_form = $(&#x27;#ProjectDataForm&#x27;);
+		var query = $project_form.serialize();
+		app.route(&#x27;/projects/data/&#x27;+this.current.id+&#x27;?&#x27;+query, true, true);
+	},
+	
+	/**
+	 * This function is executed when the Projects.data view for the data visualization was loaded. It sets the events for buttons and value interactions in the sidebar.
+	 * @method data
+	 * @param {} params
+	 * @return 
+	 */
+	data:function(params){
+		var self = this;
+		this.loaded_value = {};
+		app.loadPage(this.name, &#x27;data&#x27;, app.url()).done(function(d){
+			self.setCurrent(d.vars.project.Project);
+			app.require([&#x27;calendar&#x27;], function() {
+				var p = d = d.vars;
+				self.measured_data = d;
+				self.start = d.start;
+				self.end = d.end;
+				//console.log(d);
+				$(&#x27;.value-link&#x27;).click(function(){
+					var id = $(this).data(&#x27;value_id&#x27;);
+					self.selectValue(id);
+					self.drawGraphs();
+				});
+				$(&#x27;.value-method-link&#x27;).click(function(e) {
+                    var id = $(this).data(&#x27;value_id&#x27;);
+					self.calculateValue(id, $(&#x27;[name=start]&#x27;).val(), $(&#x27;[name=end]&#x27;).val(), $(&#x27;[name=start_hour]&#x27;).val(), $(&#x27;[name=start_minute]&#x27;).val(), $(&#x27;[name=end_hour]&#x27;).val(), $(&#x27;[name=end_minute]&#x27;).val());
+                });
+				$(&#x27;.value-edit-link&#x27;).click(function(e) {
+					e.preventDefault();
+					e.stopImmediatePropagation();
+                    var href = $(this).attr(&#x27;href&#x27;);
+					//href = href.substr(0, href.indexOf(&#x27;?&#x27;) != -1 ? href.indexOf(&#x27;?&#x27;) + 1 : href.length);
+					href = href+&#x27;?redirect=&#x27;+encodeURIComponent(window.location.href);
+					app.route(href);
+                });
+				$(&#x27;.value-check-data-link&#x27;).click(function(e) {
+                    var id = $(this).data(&#x27;value_id&#x27;);
+					self.checkValueData(id, self.start, self.end);
+                });
+				//click on a value
+				$(&#x27;.value-checkbox,#diagram_type&#x27;).change(function(){
+					self.updateDataUrl();
+					self.drawGraphs();
+				});
+				$(&#x27;.value-toggle-flag-link&#x27;).click(function(e) {
+					var id = $(this).data(&#x27;value_id&#x27;);
+                    self.toggleFlags(id);
+                });
+				$(&#x27;.value-original-link&#x27;).click(function(e) {
+					var id = $(this).data(&#x27;value_id&#x27;);
+                    self.showOriginal(id);
+                });
+				
+				$(&#x27;#manipulate-btn&#x27;).click(function(){
+					self.manipulateFlags($(&#x27;#point_action&#x27;).val(), $(&#x27;#point_class&#x27;).val());
+				});
+				
+				$(&#x27;#flag-btn&#x27;).click(function(){
+					self.flag_data($(&#x27;#flag_class&#x27;).val());
+				});
+				
+				$(&#x27;#reset-btn&#x27;).click(function(){
+					self.reset_data($(&#x27;#reset_class&#x27;).val());
+				});
+				
+				$(&#x27;.make-null&#x27;).click(function(){
+					$(this).prevAll(&#x27;select&#x27;).each(function(index, element) {
+                        $(this).val(0);
+                    });
+				});
+				var $project_form = $(&#x27;#ProjectDataForm&#x27;);
+				//when a method is executed
+				var $method_select = $(&#x27;#method_id&#x27;);
+				var currentMethod = 0;
+				/**
+				 * Loads the Method.view view into a dialog to execute the method.
+				 * @method method_function
+				 * @return
+				 */
+				var method_function = function(){
+					var method_id = $(&#x27;#method_id&#x27;).val();
+					if(!method_id) return;
+					currentMethod = method_id;
+					var dialog = $(&#x27;#method-view-modal&#x27;);
+					app.setRefresh();
+					self.addSelectedValuesToForm();
+					var p = $project_form.serialize();
+					app.loadDialog(&#x27;method&#x27;, &#x27;view&#x27;, &#x27;methods/view/&#x27;+method_id+&#x27;/&#x27;+self.current.id+&#x27;?&#x27;+p, dialog).done(function(d){
+						$(&#x27;.make-null&#x27;).click(function(){
+							$(this).prevAll(&#x27;select&#x27;).each(function(index, element) {
+								$(this).val(0);
+							});
+						});
+						$(&#x27;.methods-view&#x27;).find(&#x27;.calendar-input&#x27;).datepicker($.extend(app.config[&#x27;calendar&#x27;], {
+							startDate: &#x27;1.1.2014&#x27;,
+							endDate: new Date()
+						}));
+						
+						$(&#x27;#calculate-form&#x27;).submit(function(){
+							var params = $(this).serialize();
+							app.setRefresh();
+							$(this).find(&#x27;input&#x27;).attr(&#x27;disabled&#x27;, &#x27;disabled&#x27;); 
+							$(this).append(app.loadIndicator());
+							app.get(&#x27;methods/execute/&#x27;+method_id+&#x27;/?&#x27;+params).done(function(d){
+								//console.log(d);
+								dialog.modal(&#x27;hide&#x27;);
+								self.calculatedMethod(d);
+							});
+							return false;
+						});
+					});
+					return false;
+				}
+				$method_select.change(method_function);
+				$(&#x27;#run-method-btn&#x27;).click(method_function);
+				//when the filter form is submitted
+				$project_form.submit(self.addSelectedValuesToForm);
+				$(&#x27;.calendar-input&#x27;).datepicker($.extend(app.config[&#x27;calendar&#x27;], {
+					startDate: &#x27;1.1.2014&#x27;,
+					endDate: new Date()
+				}));
+				//$(&#x27;#project-data&#x27;).css(&#x27;overflow&#x27;, &#x27;hidden !important&#x27;);
+				
+				if(!self.initialized) {
+					self.initialized = true;
+					/**
+					 * Executed on window resize, is defined on runtime
+					 * @method w_resize
+					 * @return 
+					 */
+					self.w_resize = function(){
+						$(&#x27;body&#x27;).scrollTop();
+						if($(&#x27;#value-list&#x27;).length)
+							$(&#x27;#value-list&#x27;).height($(window).height() - $(&#x27;#value-list&#x27;).offset().top - 9);
+						$(&#x27;.chart-container&#x27;).height($(window).height() - 160);
+						$(&#x27;#charts&#x27;).height($(window).height() - 160);
+						$(&#x27;#chart-controls&#x27;).height(100);
+						$(&#x27;#project-data&#x27;).height($(window).height() - $(&#x27;#project-data&#x27;).offset().top - 9);
+						window.setTimeout(function(){
+							for(var i in self.charts) {
+								self.charts[i].redraw();
+							}
+						}, 10);
+						
+					};
+					$(window).resize(self.w_resize);
+				}
+				$(&#x27;.nav-tabs a&#x27;).click(function(){ window.setTimeout(self.w_resize, 10)});
+				self.w_resize();
+				self.drawGraphs();
+				self.w_resize();
+			});
+		});
+    },
+	
+	/**
+	 * Checks a value in the list in the Projects.data view
+	 * @method selectValue
+	 * @param {int} id Value ID
+	 * @return 
+	 */
+	selectValue:function(id){
+		$(&#x27;.value-checkbox&#x27;).prop(&#x27;checked&#x27;, false);
+		$(&#x27;#value_&#x27;+id).prop(&#x27;checked&#x27;, true);
+		this.updateDataUrl();
+	},
+	
+	/**
+	 * Shows or hides the flagged data (state: -1) in the graph
+	 * @method toggleFlags
+	 * @param {} value_id
+	 * @return 
+	 */
+	toggleFlags: function(value_id){
+		this.show_flagged_values[value_id] = !this.show_flagged_values[value_id];
+		$btn = $(&#x27;.value-toggle-flag-link[data-value_id=&#x27;+value_id+&#x27;]&#x27;);
+		$btn.find(&#x27;.fa&#x27;).toggleClass(&#x27;fa-flag-o&#x27;, !this.show_flagged_values[value_id]);
+		$btn.find(&#x27;.fa&#x27;).toggleClass(&#x27;fa-flag&#x27;, this.show_flagged_values[value_id]);
+		this.selectValue(value_id);
+		if( this.show_original_values[value_id] &amp;&amp; this.show_flagged_values[value_id] ) {
+			this.showOriginal(value_id);
+		} else
+			this.drawGraphs();
+	},
+	
+	/**
+	 * Shows the original graph with user deleted data and flags where the user marked the data as correct in the Projects.data view.
+	 * @method showOriginal
+	 * @param {int} value_id Value ID
+	 * @return 
+	 */
+	showOriginal: function(value_id){
+		this.show_original_values[value_id] = !this.show_original_values[value_id];
+		$btn = $(&#x27;.value-original-link[data-value_id=&#x27;+value_id+&#x27;]&#x27;);
+		$btn.find(&#x27;.fa&#x27;).toggleClass(&#x27;fa-history&#x27;, !this.show_original_values[value_id]);
+		$btn.find(&#x27;.fa&#x27;).toggleClass(&#x27;fa-bolt&#x27;, this.show_original_values[value_id]);
+		this.selectValue(value_id);
+		if( this.show_original_values[value_id] &amp;&amp; this.show_flagged_values[value_id] ) {
+			this.toggleFlags(value_id);
+		} else 
+			this.drawGraphs();
+	},
+	
+	/**
+	 * Flags the data in the current view as ! (state: -1) or correct (state: 1). In the Projects.data view.
+	 * @method flag_data
+	 * @param {string} flag can be !, correct
+	 * @return 
+	 */
+	flag_data: function(flag){
+		var start = Math.floor(this.minZoom / 1000); 
+		var end = Math.ceil(this.maxZoom / 1000);
+		var value_id = this.get_selected_value_ids()[0];
+		//console.log(value_id);
+		var self = this;
+		$(&#x27;#flag-btn&#x27;).hide();
+		$loader = $(app.loadIndicator2());
+		$(&#x27;#flag-btn&#x27;).after($loader);
+		app.get(&#x27;values/flag_data/&#x27;+value_id+&#x27;/&#x27;+flag+&#x27;/&#x27;+start+&#x27;/&#x27;+end+&#x27;/&#x27;).done(function(d){
+			delete self.loaded_value[value_id];
+			$loader.remove();
+			self.toggleFlags(value_id);
+			$(&#x27;#flag-btn&#x27;).show();
+		});
+	},
+	
+	/**
+	 * Resets user deleted data (state: -2) or from user as correct marked data (state: 2) to state 0. In the Projects.data view.
+	 * @method reset_data
+	 * @param {string} flag deleted or correct
+	 * @return 
+	 */
+	reset_data: function(flag){
+		var start = Math.floor(this.minZoom / 1000); 
+		var end = Math.ceil(this.maxZoom / 1000);
+		var value_id = this.get_selected_value_ids()[0];
+		//console.log(value_id);
+		var self = this;
+		$(&#x27;#reset-btn&#x27;).hide();
+		$loader = $(app.loadIndicator2());
+		$(&#x27;#reset-btn&#x27;).after($loader);
+		app.get(&#x27;values/reset_data/&#x27;+value_id+&#x27;/&#x27;+flag+&#x27;/&#x27;+start+&#x27;/&#x27;+end+&#x27;/&#x27;).done(function(d){
+			delete self.loaded_value[value_id];
+			$loader.remove();
+			$(&#x27;#reset-btn&#x27;).show();
+			if( self.show_original_values[value_id] ) {
+				self.showOriginal(value_id);
+			} else 
+				self.drawGraphs();
+		});
+	},
+	
+	/**
+	 * Checks the data for a value on the server and reloads the value data in the Projects.data view. 
+	 * @method checkValueData
+	 * @param {} value_id
+	 * @param {} start
+	 * @param {} end
+	 * @return 
+	 */
+	checkValueData: function(value_id, start, end){
+		var self = this;
+		app.setRefresh();
+		$btn = $(&#x27;.value-check-data-link[data-value_id=&#x27;+value_id+&#x27;]&#x27;);
+		var html = $btn.html();
+		$btn.html(app.loadIndicator2());
+		app.get(&#x27;values/check_data/&#x27;+value_id+&#x27;/&#x27;+start+&#x27;/&#x27;+end).done(function(d){
+			delete self.loaded_value[value_id];
+			$btn.html(html);
+			self.selectValue(value_id);
+			if(d.vars.flagged &gt; 0) {
+				self.toggleFlags(value_id);
+			} else
+				self.drawGraphs();
+		});
+	},
+	
+	/**
+	 * Unflags or deletes data in the Projects.data view, which is flagged -1. The flag type says why it is flagged.
+	 * @method manipulateFlags
+	 * @param {string} method can be unflag or delete
+	 * @param {string} flagType can be !, max, min or error
+	 * @return 
+	 */
+	manipulateFlags: function(method, flagType){
+		var start = Math.floor(this.minZoom / 1000); 
+		var end = Math.ceil(this.maxZoom / 1000);
+		var value_id = this.get_selected_value_ids()[0];
+		var self = this;
+		$(&#x27;#manipulate-btn&#x27;).hide();
+		$loader = $(app.loadIndicator2());
+		$(&#x27;#manipulate-btn&#x27;).after($loader);
+		app.get(&#x27;values/manipulate_data/&#x27;+value_id+&#x27;/&#x27;+start+&#x27;/&#x27;+end+&#x27;/&#x27;+method+&#x27;/&#x27;+flagType).done(function(d){
+			delete self.loaded_value[value_id];
+			$loader.remove();
+			$(&#x27;#manipulate-btn&#x27;).show();
+			self.drawGraphs();
+		});
+	},
+	
+	/**
+	 * Is executed when a method was calculated in the Projects.data view. 
+	 *
+	 * @method calculatedMethod
+	 * @param {Object} d the returned data from the server
+	 * @param {int} method_id ID of executed method
+	 * @return 
+	 */
+	calculatedMethod: function(d, method_id){
+		var res = d.vars.result;
+		if(typeof(data) == &#x27;string&#x27;) {
+			alert(data);
+			return;
+		}
+
+		var caption = d.vars.execName;
+		var data = {&#x27;Value&#x27;:{&#x27;prefix&#x27;: &#x27;&#x27;, &#x27;name&#x27;:caption},&#x27;Measure&#x27;:res, &#x27;Unit&#x27;:{ &#x27;symbol&#x27;: &#x27;&#x27;, &#x27;name&#x27; : &#x27;&#x27;}};
+		this.measured_data.values[-1] = data;
+		this.loaded_value[-1] = true;
+		$(&#x27;#method-value&#x27;).find(&#x27;input&#x27;)[0].checked = true;
+		$(&#x27;#method-value&#x27;).find(&#x27;a&#x27;).html(caption);
+		$(&#x27;#method-value&#x27;).show();
+		this.drawGraphs();
+	},
+	
+	/**
+	 * Calculates a value by its predefined method. Triggered by a button click on the value in the list in the Projects.data view.
+	 * 
+	 * @method calculateValue
+	 * @param {} id
+	 * @param {} startDate
+	 * @param {} endDate
+	 * @param {} startHour
+	 * @param {} startMinute
+	 * @param {} endHour
+	 * @param {} endMinute
+	 * @return 
+	 */
+	calculateValue: function(id, startDate, endDate, startHour, startMinute, endHour, endMinute){
+		if(this.calculating_value) {
+			alert(&#x27;It can only one value be calculated at once.&#x27;);
+			return;
+		}
+		this.calculating_value = true;
+		var start = startDate+&#x27;, &#x27;+startHour+&#x27;:&#x27;+startMinute;
+		var end = endDate+&#x27;, &#x27;+endHour+&#x27;:&#x27;+endMinute;
+		$(&#x27;.value-method-link[data-value_id=&#x27;+id+&#x27;]&#x27;).html(app.loadIndicator2());
+		var self = this;
+		app.get(&#x27;projects/calculate_value/&#x27;+id+&#x27;/?&#x27;+$.param({start:start, end:end})).done(function(d){
+			self.calculating_value = false;
+			$(&#x27;.value-method-link[data-value_id=&#x27;+id+&#x27;]&#x27;).remove();
+			delete self.loaded_value[id];
+			$(&#x27;.value-link[data-value_id=&#x27;+id+&#x27;]&#x27;).click();
+		});
+	},
+	
+	/**
+	 * It sets the visiblity of the buttons on a value in the list.
+	 * If the value has data in the current time range with state:
+	 * 0: Show the check_data button
+	 * -1: Show the show flags button
+	 * 2 or -2: Show the show original data button
+	 * 
+	 * @method value_state_btns
+	 * @param {} value_id
+	 * @return 
+	 */
+	value_state_btns: function(value_id){
+		//console.log(this.value_states[value_id]);
+		$(&#x27;.value-check-data-link[data-value_id=&#x27;+value_id+&#x27;]&#x27;).toggle(this.value_states[value_id][0] != undefined);
+		$(&#x27;.value-toggle-flag-link[data-value_id=&#x27;+value_id+&#x27;]&#x27;).toggle(this.value_states[value_id][-1] != undefined);
+		$(&#x27;.value-original-link[data-value_id=&#x27;+value_id+&#x27;]&#x27;).toggle(this.value_states[value_id][2] != undefined || this.value_states[value_id][-2] != undefined);
+	},
+	
+	/**
+	 * Converts an array of values with measures from the database into the Highcharts chart format. In the Projects.data view.
+	 * @method data_to_chart_format
+	 * @param {} values
+	 * @return data
+	 */
+	data_to_chart_format: function(values){
+		var data = {};
+		var timestamps = {};
+		var t, d;
+		for(var i in values) { //convert data structure for diagram
+			var v = values[i];
+			data[i] = [];
+			this.value_states[i] = {};
+			if(v.Measure.length &gt; 0) {
+				for(var j in v.Measure) {
+					var m = v.Measure[j];
+					if($.isNumeric(m.d)) {
+						this.value_states[i][m.s] = true;
+						/*if(timestamps[m.t])
+							m.t = parseInt(m.t) + timestamps[m.t];
+						else
+							timestamps[parseInt(m.t)] = 0;*/
+						if(m.s &lt; 0) {
+							if(m.s == -1 &amp;&amp; this.show_flagged_values[v.Value.id])
+								data[i].push([m.t * 1000, parseFloat(m.d)]);
+							if(m.s == -2 &amp;&amp; this.show_original_values[v.Value.id])
+								data[i].push([m.t * 1000, parseFloat(m.d)]);
+						} else {
+							//console.log(m);
+							data[i].push([m.t * 1000, parseFloat(m.d)]);
+						}
+						//timestamps[m.t]++;
+					}
+				}
+			}
+		}
+		return data;
+	},
+	
+	/**
+	 * Converts an array of values with measures from the database into the series of flags to be drawn on the data with the Highcharts framework in the Projects.data view.
+	 * @method data_to_flags
+	 * @param {} values
+	 * @param {} original
+	 * @return data
+	 */
+	data_to_flags: function(values, original){
+		var data = {};
+		for(var i in values) { //convert data structure for diagram
+			var v = values[i];
+			data[i] = [];
+			if(!this.show_flagged_values[v.Value.id] &amp;&amp; !original)
+				continue;
+			if(v.Measure.length &gt; 0) {
+				for(var j in v.Measure) {
+					var m = v.Measure[j];
+					if($.isNumeric(m.d)) {
+						m.d = parseFloat(m.d);
+						//console.log(m.s);
+						if(original &amp;&amp; ( m.s == -2 || m.s == 2)) {
+							data[i].push({
+								title:m.s == 2 ? &#x27;c&#x27; : &#x27;d&#x27;,
+								x:m.t*1000,
+								y:parseFloat(m.d)
+							});
+						} else
+						if(m.s == -1 &amp;&amp; !original) {
+							var title = [];
+							if(m.d &lt; parseFloat(v.Value.minimum)) title.push(&#x27;Min&#x27;)
+							else if(m.d &gt; parseFloat(v.Value.maximum)) title.push(&#x27;Max&#x27;);
+							else if(v.Value.error_codes.indexOf(m.d+&#x27;:&#x27;) &gt; -1) {
+								title.push(&#x27;Error&#x27;);
+							}
+							else title.push(&#x27;!&#x27;); 
+							data[i].push({
+								title:title.join(&#x27;, &#x27;),
+								x:m.t*1000,
+								y:parseFloat(m.d)
+							});
+						}
+					} else {
+						data[i].push({
+							title:m.d,
+							x:m.t*1000
+						});
+					}
+				}
+			}
+		}
+		return data;
+	},
+	
+	/**
+	 * Returns an array of all selected value IDs in Projects.data view
+	 * @method get_selected_value_ids
+	 * @return array of int
+	 */
+	get_selected_value_ids: function(){
+		return $(&#x27;.value-checkbox:checked&#x27;).map(function(){ return $(this).data(&#x27;value_id&#x27;); }).get();
+	},
+	
+	/**
+	 * Draws the data-charts for the selected values in the Projects.data view. It uses the Highcharts API
+	 * @method drawGraphs
+	 * @return 
+	 */
+	drawGraphs:function(){
+		var p = this.measured_data;
+		var diagram_type = $(&#x27;#diagram_type&#x27;).val();
+		//console.log(diagram_type);
+		this.charts = [];
+		var start = false;
+		var value_ids = this.get_selected_value_ids();
+		var showMarker = false;
+		var showOriginal = false;
+		for(var i in value_ids) {
+			//if measured data is already loaded for the value add it to the data array
+			showMarker = this.show_flagged_values[value_ids[i]] || showMarker;
+			showOriginal = this.show_original_values[value_ids[i]] || showOriginal;
+		}
+		
+		var data = this.data_to_chart_format(p.values);
+		if(showOriginal)
+			var flags = this.data_to_flags(p.values, true); //Get data series to put flags on the graphs
+		else if(showMarker) {
+			var flags = this.data_to_flags(p.values);
+		}
+		var showFlags = showMarker || showOriginal;
+		
+		var the_data = {}, the_flags = {};
+		var self = this;
+		$(&#x27;#charts&#x27;).html(app.loadIndicator()); //clear the chart container
+		$(&#x27;#charts&#x27;).html(&#x27;&lt;div id=&quot;chart&quot; class=&quot;chart-container&quot;&gt;&#x27;+app.loadIndicator()+&#x27;&lt;/div&gt;&#x27;);
+		
+		var count = 0;
+		for(var i in value_ids) {
+			//if measured data is already loaded for the value add it to the data array
+			if(this.loaded_value[value_ids[i]]) {
+				the_data[value_ids[i]] = data[value_ids[i]];
+				if(showFlags)
+					the_flags[value_ids[i]] = flags[value_ids[i]];
+			} else { //otherwise load the data for the value from the server
+				var params = utils.getUrlParameters(window.location.href);
+				params.value_id = value_ids[i];
+				app.setRefresh();
+				app.get(&#x27;projects/data/&#x27;+this.current.id, params).done(function(d){
+					self.loaded_value[params.value_id] = true;
+					self.measured_data.values[params.value_id] = d.vars.values[params.value_id];
+					self.drawGraphs();
+				});
+				return;
+			}
+			this.value_state_btns(value_ids[i]);
+			count++;
+		}
+		data = the_data;
+		if(showFlags)
+			flags = the_flags;
+		
+		$(&#x27;#manipulate-points&#x27;).toggle(showMarker &amp;&amp; count == 1);
+		$(&#x27;#reset-points&#x27;).toggle(showOriginal &amp;&amp; count == 1);
+		$(&#x27;#flag-points&#x27;).toggle(!showOriginal &amp;&amp; !showMarker &amp;&amp; count == 1);
+		
+		
+		$charts = $(&#x27;.chart-container&#x27;);
+		
+		//console.log(data);
+		app.require([&#x27;charts&#x27;], function(Chart) {
+			Highcharts.setOptions({ //Global Highcharts options
+				global: {
+					//timezoneOffset: 0,
+					useUTC: false //Show time in browser timezone settings
+				}
+			});
+			var opts = {
+				chart: {
+					zoomType: &#x27;x&#x27;
+				},
+				xAxis: { //
+					type: &#x27;datetime&#x27;,
+					events: {
+						/**
+						 * Sets the zomm start and zoom end on the xAxis
+						 * @method setExtremes
+						 * @param {} e
+						 * @return 
+						 */
+						setExtremes: function (e) { //Store zoom level to reset it on redrawing
+							self.maxZoom = e.max;
+							self.minZoom = e.min;
+						}
+					}
+					//minRange: 14 * 24 * 3600000 // fourteen days
+				},
+				legend: {
+					enabled: false
+				},
+				rangeSelector : {
+					selected:5,
+					buttons: [{ //Zoom Buttons top left corner
+						type: &#x27;hour&#x27;, count: 1, text: &#x27;1h&#x27;
+					}, {type: &#x27;day&#x27;, count: 1, text: &#x27;1d&#x27;
+					}, {type: &#x27;week&#x27;, count: 1, text: &#x27;1w&#x27;
+					}, {type: &#x27;month&#x27;, count: 1, text: &#x27;1m&#x27;
+					}, {type: &#x27;year&#x27;, count: 1, text: &#x27;1y&#x27;
+					}, {type: &#x27;all&#x27;, text: &#x27;All&#x27;
+					}]
+				},
+				credits: {
+					text: &#x27;&#x27;,
+				},
+				plotOptions: {
+					series: {
+						animation:false, //no animation
+						turboThreshold: showOriginal || value_ids.length &gt; 1 ? 0 : undefined ,
+						dataGrouping: {
+							enabled: false
+						}
+					},
+					area: { //Area filling
+						stacking: &#x27;normal&#x27;,
+						fillColor: {
+							linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1},
+							stops: [
+								[0, Highcharts.getOptions().colors[0]],
+								[1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get(&#x27;rgba&#x27;)]
+							]
+						},
+						lineWidth: 1,
+						states: {
+							hover: {
+								lineWidth: 1
+							}
+						},
+						threshold: null
+					}
+				},
+				useUTC: false,
+				exporting: { //Export parameters
+					sourceWidth: 1000,
+					sourceHeight: 750,
+					buttons: {
+						contextButton: {
+							text: &#x27;Export&#x27;
+						}
+					}
+				}
+			};
+			var tooltip_point_format = &#x27;&lt;span style=&quot;color:{series.color}&quot;&gt;\u25CF&lt;/span&gt; {series.name}: &lt;b&gt;{point.y}&lt;/b&gt;&lt;br/&gt;&#x27;; //Tooltip format
+			var aSeries = {
+					type: diagram_type,
+					pointInterval: 24 * 3600 * 1000, //One day
+					marker: {
+						enabled: false//showMarker
+					}
+					//pointStart: start,
+			};
+			/**
+			 * Returns the caption for a yAxis (Value name prefix unit e.g.)
+			 * @method get_y_text
+			 * @param {} i
+			 * @return BinaryExpression
+			 */
+			var get_y_text = function(i){ return (p.values[i].Value.prefix ? p.unit_prefixes[p.values[i].Value.prefix] : &#x27;&#x27;) + p.values[i].Unit.name + &#x27; (&#x27; + p.values[i].Value.prefix + p.values[i].Unit.symbol + &#x27;)&#x27;; }; //Text for y Axis: unit name
+			
+			
+			var $chart = $(&#x27;#chart&#x27;);
+			var linkUnits = {};
+			
+			for(var i in value_ids) {
+				i = parseInt(i);
+				if(!p.values[value_ids[i]].Unit.id &amp;&amp; p.values[value_ids[i + 1]]) {
+					linkUnits[i + 1] = i;
+				}
+			}
+			
+			//Build the yAxis for all data graphs to be drawn
+			var counter = -1;
+			var yAxis = $.map(data, function(d,i){
+				counter++;
+				var yAx = {
+					title: {
+						text: p.values[i].Value.name
+					},
+					opposite:  counter &gt; 0,
+					labels: {
+						format: &#x27;{value} &#x27; + p.values[i].Value.prefix + p.values[i].Unit.symbol,
+						style: {
+							color: Highcharts.getOptions().colors[counter]
+						}
+					},
+				}
+				return yAx;
+			})
+			
+			//Build the series for all graphs
+			var counter = -1;
+			var series = $.map(data, function(d,i) { 
+				counter++;
+				var yAx = linkUnits[counter] != undefined ? linkUnits[counter] : counter;
+				return $.extend(true, {},  $.extend(aSeries, {
+					yAxis:yAx, 
+					data:d, 
+					id:&#x27;series&#x27;+counter,
+					//linkedTo: yAx != counter ? &#x27;series&#x27;+yAx : null,
+					name: p.values[i].Value.name,
+					fillColor : {
+						linearGradient : {
+							x1: counter,
+							y1: counter,
+							x2: counter,
+							y2: counter + 1
+						},
+						stops : [
+							[0, Highcharts.Color(Highcharts.getOptions().colors[counter]).setOpacity(0.7).get(&#x27;rgba&#x27;)],
+							[1, Highcharts.Color(Highcharts.getOptions().colors[counter]).setOpacity(0).get(&#x27;rgba&#x27;)]
+						]
+					},
+				})); 
+			});
+			
+			//Build the flags for all graphs if they should be shown
+			if(showFlags) {
+				var counter = -1;
+				var flagseries = $.map(flags, function(f,i) { 
+					counter++;
+					return {
+						type : &#x27;flags&#x27;,
+						data : f,
+						onSeries : &#x27;series&#x27;+counter,  // Id of which series it should be placed on.
+						shape : &#x27;flag&#x27;  // Defines the shape of the flags.
+					}
+				});
+				series = series.concat(flagseries);
+			}
+			
+			//Assemble the chart options
+			var chartOpts = $.extend(opts, {
+				chart: $.extend(opts.chart, {
+					renderTo: &quot;charts&quot; //Chart container id
+				}),
+				title: {
+					text: $.map(data, function(d, i) { return $.trim(p.values[i].Value.name) }).join(&#x27;, &#x27;) //All Value names as diagram title
+				},
+				subtitle: {
+					text: &#x27;&#x27;//No subtitle
+				},
+				tooltip: {
+					shared: true,
+					pointFormat: tooltip_point_format,
+					valueDecimals : 2
+				},
+				legend: {
+					layout: &#x27;vertical&#x27;,
+					align: &#x27;left&#x27;,
+					x: 120,
+					verticalAlign: &#x27;top&#x27;,
+					y: 10,
+					floating: true,
+					backgroundColor: (Highcharts.theme &amp;&amp; Highcharts.theme.legendBackgroundColor) || &#x27;#FFFFFF&#x27;
+				},
+				yAxis: yAxis,
+				series: series
+			});
+		 	//console.log(JSON.stringify(series));
+			var chart = new Highcharts.StockChart(chartOpts);
+			if(self.minZoom &amp;&amp; self.maxZoom) {
+				if(chart.xAxis[0].getExtremes().max &lt; self.minZoom || chart.xAxis[0].getExtremes().min &gt; self.maxZoom) {
+					self.minZoom = chart.xAxis[0].getExtremes().min;
+					self.maxZoom = chart.xAxis[0].getExtremes().max;
+				}
+				chart.xAxis[0].setExtremes(self.minZoom, self.maxZoom);
+			} else {
+				self.maxZoom = chart.xAxis[0].getExtremes().max
+				self.minZoom = chart.xAxis[0].getExtremes().min;
+			}
+			
+			self.charts.push(chart);
+
+			$(window).trigger(&#x27;resize&#x27;);
+			
+			$(&#x27;.chart-container&#x27;).height($(window).height() - 160);
+			
+		});
+	},
+	
+	/**
+	 * Invites a user to a project
+	 * @method invite
+	 * @param {int} id Project ID
+	 * @return 
+	 */
+	invite:function(id){
+		var self = this;
+		var dialog = $(&#x27;#user-view-modal&#x27;);
+		app.loadDialog(this.name, &#x27;invite&#x27;, app.url(), dialog).done(function(d){
+			self.setCurrent(d.vars.project.Project);
+		});
+	},
+	
+	/**
+	 * Edit the project
+	 * @method edit
+	 * @param {int} id Project ID
+	 * @return 
+	 */
+	edit:function(id){
+		var self = this;
+		var dialog = $(&#x27;#project-view-modal&#x27;);
+		app.loadDialog(this.name, &#x27;edit&#x27;, app.url(), dialog).done(function(d){
+			
+		});
+    },
+	
+
+	/**
+	 * Backbone default method if no action is provided. It maps it on the index method.
+	 * @method default
+	 * @param {string} filter CakePHP filter string, can be empty
+	 * @return 
+	 */
+	default:function(filter){this.index(filter)},
+	
+    /**
+     * Shows a list of the users projects
+     * @method index
+     * @param {string} filter CakePHP filter string, can be empty
+     * @return 
+     */
+    index:function(filter){
+		this.setCurrent(0);
+		var self = this;
+		app.loadPage(this.name, &#x27;index&#x27;, app.url(filter)).done(function(d){
+
+		});
+    }
+});
+</pre>
+
+</div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/js/tabs.js"></script>
+</body>
+</html>

@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>Class Value</title>
+
+	<link rel="stylesheet" href="resources/style.css?e99947befd7bf673c6b43ff75e9e0f170c88a60e">
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+				<h3>Packages</h3>
+			<ul>
+				<li>
+					<a href="package-app.html">
+						app<span></span>
+					</a>
+
+						<ul>
+				<li>
+					<a href="package-app.Controller.html">
+						Controller					</a>
+
+						</li>
+				<li>
+					<a href="package-app.Lib.html">
+						Lib					</a>
+
+						</li>
+				<li>
+					<a href="package-app.Model.html">
+						Model					</a>
+
+						</li>
+							</ul></li>
+			</ul>
+		</div>
+
+		<hr>
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-AppModel.html">AppModel</a></li>
+				<li><a href="class-Export.html">Export</a></li>
+				<li><a href="class-Input.html">Input</a></li>
+				<li><a href="class-Log.html">Log</a></li>
+				<li><a href="class-Measure.html">Measure</a></li>
+				<li><a href="class-Method.html">Method</a></li>
+				<li><a href="class-Project.html">Project</a></li>
+				<li><a href="class-Unit.html">Unit</a></li>
+				<li><a href="class-User.html">User</a></li>
+				<li class="active"><a href="class-Value.html">Value</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="">
+		<input type="hidden" name="ie" value="UTF-8">
+		<input type="text" name="q" class="text" placeholder="Search">
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+<span>Package</span>			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="todo.html" title="Todo list"><span>Todo</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class Value</h1>
+
+
+	<div class="description">
+	<p>Value Model</p>
+	</div>
+
+	<dl class="tree">
+		<dd style="padding-left:0px">
+Model
+			
+			
+		</dd>
+		<dd style="padding-left:30px">
+			<img src="resources/inherit.png" alt="Extended by">
+			<a href="class-AppModel.html"><span>AppModel</span></a>
+			
+			
+			
+		</dd>
+		<dd style="padding-left:60px">
+			<img src="resources/inherit.png" alt="Extended by">
+<b><span>Value</span></b>			
+			
+			
+		</dd>
+	</dl>
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		
+		<b>Package:</b> <a href="package-app.html">app</a>\<a href="package-app.Model.html">Model</a><br>
+
+				<b>Copyright:</b>
+				Martin Kapp 2014-15<br>
+				<b>License:</b>
+				<a href="MIT">License (http://www.opensource.org/licenses/mit-license.php)</a><br>
+			<b>Located at</b> <a href="source-class-Value.html#13-249" title="Go to source code">Value.php</a>
+		<br>
+	</div>
+
+
+
+	<table class="summary methods" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="beforeSave" id="_beforeSave">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_beforeSave">#</a>
+		<code><a href="source-class-Value.html#30-39" title="Go to source code">beforeSave</a>( <span> <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+
+		<div class="description short">
+			<p>Is executed always before Value->save($data) is executed. It replaces commas by points for numbers to avoid errors in number formatting</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Is executed always before Value->save($data) is executed. It replaces commas by points for numbers to avoid errors in number formatting</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$options</var></dt>
+					<dd>of options passed with the Value->save function</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="uncheck_data" id="_uncheck_data">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_uncheck_data">#</a>
+		<code><a href="source-class-Value.html#41-55" title="Go to source code">uncheck_data</a>( <span> <var>$value_id</var></span>, <span>boolean <var>$all</var> = <span class="php-keyword1">false</span></span>, <span>integer <var>$start</var> = <span class="php-num">0</span></span>, <span>integer <var>$end</var> = <span class="php-num">0</span></span> )</code>
+
+		<div class="description short">
+			<p>Set all measure states to 0 where the state is -1 or 1 to check them again. The function e.g. executed when a values maximum, minimum... parameters are change which affect the data chacking</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Set all measure states to 0 where the state is -1 or 1 to check them again. The function e.g. executed when a values maximum, minimum... parameters are change which affect the data chacking</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$value_id</var></dt>
+					<dd>id for which all measures should be unchecked</dd>
+					<dt><var>$all</var></dt>
+					<dd>If false only the measures with states -1 and 1 are unchecked, if true all measures are unchecked</dd>
+					<dt><var>$start</var></dt>
+					<dd>Start timestamp</dd>
+					<dt><var>$end</var></dt>
+					<dd>End timestamp</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="check_data" id="_check_data">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_check_data">#</a>
+		<code><a href="source-class-Value.html#57-141" title="Go to source code">check_data</a>( <span> <var>$value_id</var></span>, <span>integer <var>$start</var> = <span class="php-num">0</span></span>, <span>integer <var>$end</var> = <span class="php-num">0</span></span> )</code>
+
+		<div class="description short">
+			<p>Checks a range of data for a value if the data is not over the maximum, under the minimum, an error code or changing to fast.
+The data is flagged -1 when something is wrong with the data, and flagged 1 when the data is ok.</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Checks a range of data for a value if the data is not over the maximum, under the minimum, an error code or changing to fast.
+The data is flagged -1 when something is wrong with the data, and flagged 1 when the data is ok.</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$value_id</var></dt>
+					<dd>id for which all measures should be checked</dd>
+					<dt><var>$start</var></dt>
+					<dd>Start timestamp</dd>
+					<dt><var>$end</var></dt>
+					<dd>End timestamp</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="parse_errorcodes" id="_parse_errorcodes">
+
+		<td class="attributes"><code>
+			 public 
+
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_parse_errorcodes">#</a>
+		<code><a href="source-class-Value.html#143-159" title="Go to source code">parse_errorcodes</a>( <span>string <var>$ec</var></span> )</code>
+
+		<div class="description short">
+			<p>Converts the textual representation of error codes from a value into an array
+Parses error codes from string 'code:description' into array(array('code' => '...', 'description' => '...'),...)</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Converts the textual representation of error codes from a value into an array
+Parses error codes from string 'code:description' into array(array('code' => '...', 'description' => '...'),...)</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$ec</var></dt>
+					<dd>Error Codes text</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+	<table class="summary inherited">
+	<caption>Methods inherited from <a href="class-AppModel.html#methods">AppModel</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-AppModel.html#_checkUnique">checkUnique()</a>, 
+			<a href="class-AppModel.html#_debugDB">debugDB()</a>, 
+			<a href="class-AppModel.html#_generateID">generateID()</a>, 
+			<a href="class-AppModel.html#_lastQuery">lastQuery()</a>
+		</code></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+	<table class="summary properties" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="displayField" id="$displayField">
+		<td class="attributes"><code>
+			public  
+			string
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Value.html#23-28" title="Go to source code"><var>$displayField</var></a>
+
+			<div class="description short">
+				<p>Display field</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Display field</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$displayField" class="anchor">#</a>
+				<code><span class="php-quote">'name'</span></code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="validate" id="$validate">
+		<td class="attributes"><code>
+			public  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Value.html#162-171" title="Go to source code"><var>$validate</var></a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$validate" class="anchor">#</a>
+				<code><span class="php-keyword1">array</span>(
+    <span class="php-quote">'name'</span> =&gt; <span class="php-keyword1">array</span>(
+        <span class="php-quote">'between'</span> =&gt; <span class="php-keyword1">array</span>(
+            <span class="php-quote">'rule'</span> =&gt; <span class="php-keyword1">array</span>(<span class="php-quote">'between'</span>, <span class="php-num">2</span>, <span class="php-num">40</span>),
+            <span class="php-quote">'message'</span> =&gt; <span class="php-quote">'Name must have at least 2 up to 40 characters'</span>,
+            <span class="php-quote">'allowEmpty'</span> =&gt; <span class="php-keyword1">false</span>,
+            <span class="php-quote">'last'</span> =&gt; <span class="php-keyword1">false</span>, <span class="php-comment">// Stop validation after this rule</span>
+        ),
+    ),
+)</code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="belongsTo" id="$belongsTo">
+		<td class="attributes"><code>
+			public  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Value.html#175-202" title="Go to source code"><var>$belongsTo</var></a>
+
+			<div class="description short">
+				<p>belongsTo associations</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>belongsTo associations</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$belongsTo" class="anchor">#</a>
+				<code><span class="php-keyword1">array</span>(
+    <span class="php-quote">'Project'</span> =&gt; <span class="php-keyword1">array</span>(
+        <span class="php-quote">'className'</span> =&gt; <span class="php-quote">'Project'</span>,
+        <span class="php-quote">'foreignKey'</span> =&gt; <span class="php-quote">'project_id'</span>,
+        <span class="php-quote">'conditions'</span> =&gt; <span class="php-quote">''</span>,
+        <span class="php-quote">'fields'</span> =&gt; <span class="php-quote">''</span>,
+        <span class="php-quote">'order'</span> =&gt; <span class="php-quote">''</span>
+    ),
+    <span class="php-quote">'Unit'</span> =&gt; <span class="php-keyword1">array</span>(
+        <span class="php-quote">'className'</span> =&gt; <span class="php-quote">'Unit'</span>,
+        <span class="php-quote">'foreignKey'</span> =&gt; <span class="php-quote">'unit_id'</span>,
+        <span class="php-quote">'conditions'</span> =&gt; <span class="php-quote">''</span>,
+        <span class="php-quote">'fields'</span> =&gt; <span class="php-quote">''</span>,
+        <span class="php-quote">'order'</span> =&gt; <span class="php-quote">''</span>
+    ),
+    <span class="php-quote">'Method'</span> =&gt; <span class="php-keyword1">array</span>(
+        <span class="php-quote">'className'</span> =&gt; <span class="php-quote">'Method'</span>,
+        <span class="php-quote">'foreignKey'</span> =&gt; <span class="php-quote">'method_id'</span>,
+        <span class="php-quote">'conditions'</span> =&gt; <span class="php-quote">''</span>,
+        <span class="php-quote">'fields'</span> =&gt; <span class="php-quote">''</span>,
+        <span class="php-quote">'order'</span> =&gt; <span class="php-quote">''</span>
+    )
+)</code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="hasMany" id="$hasMany">
+		<td class="attributes"><code>
+			public  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Value.html#204-223" title="Go to source code"><var>$hasMany</var></a>
+
+			<div class="description short">
+				<p>hasMany associations</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>hasMany associations</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$hasMany" class="anchor">#</a>
+				<code><span class="php-keyword1">array</span>(
+    <span class="php-quote">'Measure'</span> =&gt; <span class="php-keyword1">array</span>(
+        <span class="php-quote">'className'</span> =&gt; <span class="php-quote">'Measure'</span>,
+        <span class="php-quote">'foreignKey'</span> =&gt; <span class="php-quote">'value_id'</span>,
+        <span class="php-quote">'dependent'</span> =&gt; <span class="php-keyword1">false</span>,
+        <span class="php-quote">'conditions'</span> =&gt; <span class="php-quote">''</span>,
+        <span class="php-quote">'fields'</span> =&gt; <span class="php-quote">''</span>,
+        <span class="php-quote">'order'</span> =&gt; <span class="php-quote">''</span>,
+        <span class="php-quote">'limit'</span> =&gt; <span class="php-quote">''</span>,
+        <span class="php-quote">'offset'</span> =&gt; <span class="php-quote">''</span>,
+        <span class="php-quote">'exclusive'</span> =&gt; <span class="php-quote">''</span>,
+        <span class="php-quote">'finderQuery'</span> =&gt; <span class="php-quote">''</span>,
+        <span class="php-quote">'counterQuery'</span> =&gt; <span class="php-quote">''</span>
+    )
+)</code>
+			</div>
+		</td>
+	</tr>
+	<tr data-order="hasAndBelongsToMany" id="$hasAndBelongsToMany">
+		<td class="attributes"><code>
+			public  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Value.html#226-247" title="Go to source code"><var>$hasAndBelongsToMany</var></a>
+
+			<div class="description short">
+				<p>hasAndBelongsToMany associations</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>hasAndBelongsToMany associations</p>
+
+			</div>
+		</td>
+		<td class="value">
+			<div>
+				<a href="#$hasAndBelongsToMany" class="anchor">#</a>
+				<code><span class="php-keyword1">array</span>(
+    <span class="php-quote">'Input'</span> =&gt; <span class="php-keyword1">array</span>(
+        <span class="php-quote">'className'</span> =&gt; <span class="php-quote">'Input'</span>,
+        <span class="php-quote">'joinTable'</span> =&gt; <span class="php-quote">'inputs_values'</span>,
+        <span class="php-quote">'foreignKey'</span> =&gt; <span class="php-quote">'value_id'</span>,
+        <span class="php-quote">'associationForeignKey'</span> =&gt; <span class="php-quote">'input_id'</span>,
+        <span class="php-quote">'unique'</span> =&gt; <span class="php-quote">'keepExisting'</span>,
+        <span class="php-quote">'conditions'</span> =&gt; <span class="php-quote">''</span>,
+        <span class="php-quote">'fields'</span> =&gt; <span class="php-quote">''</span>,
+        <span class="php-quote">'order'</span> =&gt; <span class="php-quote">''</span>,
+        <span class="php-quote">'limit'</span> =&gt; <span class="php-quote">''</span>,
+        <span class="php-quote">'offset'</span> =&gt; <span class="php-quote">''</span>,
+        <span class="php-quote">'finderQuery'</span> =&gt; <span class="php-quote">''</span>,
+        <span class="php-quote">'deleteQuery'</span> =&gt; <span class="php-quote">''</span>,
+        <span class="php-quote">'insertQuery'</span> =&gt; <span class="php-quote">''</span>
+    )
+)</code>
+			</div>
+		</td>
+	</tr>
+	</table>
+
+
+
+	<table class="summary properties" id="magicProperties">
+	<caption>Magic properties summary</caption>
+	<tr data-order="Project" id="m$Project">
+		<td class="attributes"><code>
+			public  
+			<code><a href="class-Project.html">Project</a></code>
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Value.html#16" title="Go to source code"><var>$Project</var></a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+	</tr>
+	<tr data-order="Unit" id="m$Unit">
+		<td class="attributes"><code>
+			public  
+			<code><a href="class-Unit.html">Unit</a></code>
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Value.html#17" title="Go to source code"><var>$Unit</var></a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+	</tr>
+	<tr data-order="Measure" id="m$Measure">
+		<td class="attributes"><code>
+			public  
+			<code><a href="class-Measure.html">Measure</a></code>
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Value.html#18" title="Go to source code"><var>$Measure</var></a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+	</tr>
+	<tr data-order="Input" id="m$Input">
+		<td class="attributes"><code>
+			public  
+			<code><a href="class-Input.html">Input</a></code>
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Value.html#19" title="Go to source code"><var>$Input</var></a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</td>
+	</tr>
+	</table>
+
+
+
+</div>
+
+	<div id="footer">
+		 API documentation generated by <a href="http://apigen.org">ApiGen</a>
+	</div>
+</div>
+</div>
+<script src="resources/combined.js"></script>
+<script src="elementlist.js"></script>
+</body>
+</html>
