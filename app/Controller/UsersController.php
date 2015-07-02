@@ -61,14 +61,17 @@ class UsersController extends AppController {
 		if ($this->request->is('post') || $this->request->is('put')) {
 			$this->User->create();
 			$this->request->data['User']['id'] = $this->generateID();
-			$this->request->data['User']['activated'] = 0;
-			$this->request->data['User']['isAdmin'] = $this->User->find('count') == 0; //If it is the first user, it will be the admin
+			$this->request->data['User']['activated'] =
+			$this->request->data['User']['isAdmin'] = $this->User->find('count') == 0; //If it is the first user, it will be the admin and updated
 			$user = $this->request->data['User'];
 			$this->request->data['User']['register_time'] = time();
 			$this->request->data['User']['email'] = strtolower($this->request->data['User']['email']);
 			$code = $this->request->data['User']['activation_code'] = uniqid();
 			if (($user['password'] == $user['passwordRepeat']) && $this->User->save($this->request->data)) {
-					$this->su(__('The registration was successfull. An email with an activation link was sent to your inbox.'));
+					if($this->request->data['User']['isAdmin'])
+						$this->su(__('You are the first user. So you are the admin. Now you can login.'));
+					else
+						$this->su(__('The registration was successfull. An email with an activation link was sent to your inbox.'));
 					//cant send mails from localhost...
 					if(!$this->isLocalhost) {
 						$email = new CakeEmail();
