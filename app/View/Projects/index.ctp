@@ -7,12 +7,14 @@
 	<div class="col-md-12">
         
         <table class="table table-hover">
-        <?php
+        <?php if(is_array($project)) {
         foreach ($projects as $project): ?>
         <tr>
             <td><h2><?= $this->Html->link(h($project['name']), array('action' => 'view', $project['id'])); ?></h2></td>
         </tr>
-    <?php endforeach; ?>
+    <?php endforeach; } else { 
+		?><td><?=__('Here will be shown your projects, when you created them.')?></td><?
+	} ?>
         </table>
     </div>
 </div>
