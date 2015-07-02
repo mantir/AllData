@@ -62,7 +62,7 @@ class UsersController extends AppController {
 			$this->User->create();
 			$this->request->data['User']['id'] = $this->generateID();
 			$this->request->data['User']['activated'] = 0;
-			$this->request->data['isAdmin'] = $this->User->find('count') == 0; //If it is the first user, it will be the admin
+			$this->request->data['User']['isAdmin'] = $this->User->find('count') == 0; //If it is the first user, it will be the admin
 			$user = $this->request->data['User'];
 			$this->request->data['User']['register_time'] = time();
 			$this->request->data['User']['email'] = strtolower($this->request->data['User']['email']);
