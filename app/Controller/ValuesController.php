@@ -233,7 +233,10 @@ class ValuesController extends AppController {
 					$cond[] = 'data < "'.$v['minimum'].'"';
 				if($hasErrorCodes)
 					$cond[] = 'data IN ('.$errors.')';
-				$cond = 'NOT('.implode(' OR ', $cond).')';
+				if(count($cond))
+					$cond = 'NOT('.implode(' OR ', $cond).')';
+				else
+					$cond = '';
 			break;
 			case 'error':
 				if($hasErrorCodes)
@@ -243,7 +246,9 @@ class ValuesController extends AppController {
 		if($flagType == 'error' && !$hasErrorCodes) {
 			$this->er(__('There are no error codes defined.'));
 		} else {
-			$query = 'UPDATE measures SET state='.$state.' WHERE state=-1 AND value_id="'.$value_id.'" AND '.$cond.$timecond;
+			if($cond)
+				$cond = ' AND '.$cond;
+			$query = 'UPDATE measures SET state='.$state.' WHERE state=-1 AND value_id="'.$value_id.'"'.$cond.$timecond;
 			//debug($query);
 			$this->Value->query($query);
 		}

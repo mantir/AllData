@@ -408,16 +408,20 @@ class AppController extends Controller {
 		}
 		$m = $this->{$model}->read(null, $id);
 		$project_id = $m[$model]['project_id'];
+		if($project_id) {
+			$redirect = array('controller' => 'projects', 'action' => 'view', $project_id);
+		} else
+			$redirect = array('controller' => 'projects', 'action' => 'index');
 		if(!$this->authorizedProject($project_id, console::$contributorState)) {
 			return;
 		}
 		if ($this->{$model}->delete()) {
 			$this->Session->setFlash(__($model.' deleted'));
 			$this->writeLog('deleted', array($this->Auth->user('id'), strtolower(Inflector::pluralize($model)), $m[$model]['name'], $project_id, 'related' => $id));
-			$this->redirect(array('controller' => 'projects', 'action' => 'view', $project_id));
+			$this->redirect($redirect);
 		}
 		$this->Session->setFlash(__($model.' was not deleted'));
-		$this->redirect(array('controller' => 'projects', 'action' => 'view', $project_id));
+		$this->redirect($redirect);
 	}
 	
 	/**
